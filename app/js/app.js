@@ -15,7 +15,15 @@ var eventsApp = angular.module('eventsApp', ['ngResource'])
         $routeProvider.when('/event/:eventId',
             {
                 templateUrl: '/templates/EventDetails.html',
-                controller: 'EventController'
+                controller: 'EventController',
+                resolve: {
+                    event: function($q, $route, eventData) {
+                        var deferred = $q.defer();
+                        eventData.getEvent($route.current.pathParams.eventId)
+                            .then(function(event) { deferred.resolve(event); });
+                        return deferred.promise;
+                    }
+                }
             });
         $locationProvider.html5Mode(true);
     });
