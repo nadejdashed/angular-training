@@ -1,7 +1,7 @@
 'use strict';
 
 var eventsApp = angular.module('eventsApp', ['ngResource'])
-    .config(function($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/newEvent',
             {
                 templateUrl:'templates/NewEvent.html',
@@ -12,10 +12,11 @@ var eventsApp = angular.module('eventsApp', ['ngResource'])
                 templateUrl: 'templates/EventList.html',
                 controller: 'EventListController'
             });
-        $routeProvider.when('/event/:eventId/:foo/:bar',
+        $routeProvider.when('/event/:eventId',
             {
-                templateUrl: 'templates/EventDetails.html',
+                templateUrl: '/templates/EventDetails.html',
                 controller: 'EventController'
             });
+        $locationProvider.html5Mode(true);
     });
 
