@@ -25,6 +25,7 @@ var eventsApp = angular.module('eventsApp', ['ngResource'])
                     }
                 }
             });
+        $routeProvider.otherwise({redirectTo: '/events'});
         $locationProvider.html5Mode(true);
     });
 
