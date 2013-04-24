@@ -1,17 +1,15 @@
-eventsApp.factory('eventData', function ($resource, $q, $timeout) {
+eventsApp.factory('eventData', function ($resource, $q) {
     var resource = $resource('/data/event/:id', {id: '@id'});
     return {
         getEvent: function (eventId) {
             var deferred = $q.defer();
-            $timeout(function() {
-                resource.get({id: eventId},
-                    function (event) {
-                        deferred.resolve(event);
-                    },
-                    function (response) {
-                        deferred.reject(response);
-                    });
-            }, 3000);
+            resource.get({id: eventId},
+                function (event) {
+                    deferred.resolve(event);
+                },
+                function (response) {
+                    deferred.reject(response);
+                });
             return deferred.promise;
         },
         save: function(event) {
