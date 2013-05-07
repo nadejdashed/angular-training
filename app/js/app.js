@@ -34,3 +34,4 @@ var eventsApp = angular.module('eventsApp', ['ngResource'])
         $locationProvider.html5Mode(true);
     });
 
+
