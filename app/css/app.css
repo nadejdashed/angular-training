@@ -28,3 +28,8 @@ select, textarea {
   padding-left:6px;
   cursor:pointer;
 }
+
+.sessionThumbnail {
+    height:100%;
+    overflow: hidden;
+}
