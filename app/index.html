@@ -13,6 +13,8 @@
     <script src="/build/app.js"></script>
 </head>
 <body ng-app="">
-    Hello World!
+    <div ng-init="isVisible=false">
+        <span ng-click="isVisible=!isVisible">click to <span ng-hide="isVisible">toggle me</span></span>
+    </div>
 </body>
 </html>
