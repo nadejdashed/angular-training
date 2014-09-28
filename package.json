@@ -2,10 +2,6 @@
   "name": "angular-training",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "grunt jasmine"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/vpishuk/angular-training"
@@ -14,5 +10,8 @@
   "bugs": {
     "url": "https://github.com/vpishuk/angular-training/issues"
   },
-  "homepage": "https://github.com/vpishuk/angular-training"
+  "homepage": "https://github.com/vpishuk/angular-training",
+  "devDependencies": {
+
+  }
 }
