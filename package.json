@@ -1,0 +1,18 @@
+{
+  "name": "angular-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "grunt jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vpishuk/angular-training"
+  },
+  "author": "Viktor Pishuk",
+  "bugs": {
+    "url": "https://github.com/vpishuk/angular-training/issues"
+  },
+  "homepage": "https://github.com/vpishuk/angular-training"
+}
