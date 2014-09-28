@@ -12,6 +12,6 @@
   },
   "homepage": "https://github.com/vpishuk/angular-training",
   "devDependencies": {
-
+      "express.io": ">=1.1.0"
   }
 }
