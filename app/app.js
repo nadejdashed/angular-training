@@ -8,8 +8,6 @@
     angular.module("app").run(function () {
     });
 
-    alert('222');
-
     angular.module("app").config(function () {
     });
 })();
