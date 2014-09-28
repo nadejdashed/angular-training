@@ -12,6 +12,14 @@
   },
   "homepage": "https://github.com/vpishuk/angular-training",
   "devDependencies": {
-      "express.io": ">=1.1.0"
+      "express.io": ">=1.1.0",
+      "serve-static": ">=1.6.3",
+      "grunt-express": "1.2.1",
+      "grunt-contrib-jshint": ">=0.4.0",
+      "grunt-ng-annotate": ">=0.4.0",
+      "grunt-parallel": ">=0.3.0",
+      "grunt-contrib-watch": ">=0.5.3",
+      "grunt-newer": ">=0.6.0",
+      "grunt-contrib-copy": ">=0.4.0"
   }
 }

@@ -12,37 +12,13 @@ app.listen(8000);
 // Session is automatically setup on initial request.
 app.get('/', function(req, res) {
     req.session.loginDate = new Date().toString();
-    res.sendfile(__dirname + '/app/index.html');
+    res.sendfile(__dirname + '/build/index.html');
 });
 app.use(expressIO.static(__dirname + '/'));
-app.use(expressIO.static(__dirname + '/app'));
+app.use(expressIO.static(__dirname + '/build'));
 
 app.io.route('ready', function(req) {
     console.log('ready');
 });
-//var server = http.createServer(app);
-//server.listen(8000);
 
-/*var connect = require('connect'),
-    serveStatic = require('serve-static'),
-    http = require('http'),
-    io = require("socket.io");
-
-var app = connect();
-
-
-var server = http.createServer(app);
-var socket = io.listen(server);
-server.listen(8000);
-socket.set('log level', 3);
-socket.set('resource', '/api');
-
-socket.on('connection', function(client) {
-    client.on('disconnect', function(){
-    });
-
-    client.on('hello', function(){
-        console.log('test');
-    });
-});
-*/
+exports = module.exports = app;
