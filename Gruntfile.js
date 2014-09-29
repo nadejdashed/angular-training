@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             debug: {
-                files: [appPath + '**/*.js', appPath + '**/*.html'],
+                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css'],
                 tasks: ['build']
             }
         },
@@ -37,7 +37,8 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/'}
+                    {expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/'},
+                    {expand: true, cwd: 'app/', src: ['*.css'], dest: 'build/'}
                 ]
             }
         },

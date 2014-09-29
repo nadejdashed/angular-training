@@ -3,18 +3,41 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>My contacts</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="/bower_components/angular/angular-csp.css" />
+    <link rel="stylesheet" type="text/css" href="/build/app.css" />
     <script src="/socket.io/socket.io.js"></script>
     <script src="/bower_components/jquery/jquery.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/build/app.js"></script>
 </head>
-<body ng-app="">
-    <div ng-init="isVisible=false">
-        <span ng-click="isVisible=!isVisible">click to <span ng-hide="isVisible">toggle me</span></span>
+<body>
+    <div class="container-fluid">
+        <div class="row nav-buttons">
+            <button class="col-xs-6 btn btn-dark">New Game</button>
+            <div class="col-xs-6 text-right text-bigger">0:00</div>
+        </div>
+        <div class="area clearfix">
+            <div class="brick center">1</div>
+            <div class="brick center">2</div>
+            <div class="brick center">3</div>
+            <div class="brick center">4</div>
+            <div class="brick center">5</div>
+            <div class="brick center">6</div>
+            <div class="brick center">7</div>
+            <div class="brick center">8</div>
+            <div class="brick center">9</div>
+            <div class="brick center">10</div>
+            <div class="brick center">11</div>
+            <div class="brick center">12</div>
+            <div class="brick center">13</div>
+            <div class="brick center">14</div>
+            <div class="brick center">15</div>
+        </div>
+        <div class="moves">Moves: 0</div>
     </div>
 </body>
 </html>
