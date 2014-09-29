@@ -15,6 +15,7 @@
   "dependencies": {
     "jquery": "~1.9.x",
     "angular": "~1.2.25",
-    "bootstrap": "~3.2.0"
+    "bootstrap": "~3.2.0",
+    "angular-swipe": "~0.0.6"
   }
 }

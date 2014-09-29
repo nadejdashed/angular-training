@@ -47,7 +47,6 @@ body {
     font-size: 200%;
     line-height: 70px;
     text-align: center;
-    transition: all 0.3s ease-out;
 }
 
 .text-bigger {
@@ -62,40 +61,40 @@ body {
     font-size: 120%;
 }
 
-.row-1 {
+.row-0 {
     top: 0px;
     border-bottom: 0;
 }
 
-.row-2 {
+.row-1 {
     top: 70px;
     border-bottom: 0;
 }
 
-.row-3 {
+.row-2 {
     top: 140px;
     border-bottom: 0;
 }
 
-.row-4 {
+.row-3 {
     top: 210px;
 }
 
-.col-1 {
+.col-0 {
     left: 0px;
     border-right: 0;
 }
 
-.col-2 {
+.col-1 {
     left: 70px;
     border-right: 0;
 }
 
-.col-3 {
+.col-2 {
     left: 140px;
     border-right: 0;
 }
 
-.col-4 {
+.col-3 {
     left: 210px;
 }
