@@ -3,9 +3,20 @@ body {
     color: #FFF;
 }
 
-.nav-buttons {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.overlay {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 250px 50px;
+}
+
+.timer {
+    margin-top: 80px;
+    margin-bottom: 0px;
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -34,7 +45,7 @@ body {
     position: relative;
     width: 280px;
     height: 280px;
-    margin: 50px auto;
+    margin: 20px auto;
     background-color: #FFF;
 }
 
@@ -50,7 +61,7 @@ body {
 }
 
 .text-bigger {
-    font-size: 180%;
+    font-size: 250%;
     line-height: 34px;
 }
 

@@ -17,9 +17,11 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row nav-buttons">
-            <button class="col-xs-6 btn btn-dark">New Game</button>
-            <div class="col-xs-6 text-right text-bigger">0:00</div>
+        <div class="container overlay">
+            <button class="col-xs-12 btn btn-dark" ng-click="startNewGame()">New Game</button>
+        </div>
+        <div class="row timer">
+            <div class="col-xs-12 text-center text-bigger">0:00</div>
         </div>
         <div class="area clearfix">
             <div class="brick center row-0 col-0">1</div>
