@@ -31,20 +31,23 @@ body {
 }
 
 .area {
+    position: relative;
     width: 280px;
+    height: 280px;
     margin: 50px auto;
     background-color: #FFF;
 }
 
 .brick {
+    position: absolute;
     height: 70px;
     width: 70px;
-    float: left;
     background-color: #343234;
     border: 1px solid #FFF;
     font-size: 200%;
     line-height: 70px;
     text-align: center;
+    transition: all 0.3s ease-out;
 }
 
 .text-bigger {
@@ -59,3 +62,40 @@ body {
     font-size: 120%;
 }
 
+.row-1 {
+    top: 0px;
+    border-bottom: 0;
+}
+
+.row-2 {
+    top: 70px;
+    border-bottom: 0;
+}
+
+.row-3 {
+    top: 140px;
+    border-bottom: 0;
+}
+
+.row-4 {
+    top: 210px;
+}
+
+.col-1 {
+    left: 0px;
+    border-right: 0;
+}
+
+.col-2 {
+    left: 70px;
+    border-right: 0;
+}
+
+.col-3 {
+    left: 140px;
+    border-right: 0;
+}
+
+.col-4 {
+    left: 210px;
+}
