@@ -14,13 +14,6 @@ body {
     padding: 250px 50px;
 }
 
-.timer {
-    margin-top: 80px;
-    margin-bottom: 0px;
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
 .btn-dark {
     border: 1px solid #000000;
     background-image: -webkit-linear-gradient(top,#444644 0,#2C2A2C 100%);
@@ -108,4 +101,109 @@ body {
 
 .col-3 {
     left: 210px;
+}
+
+.timer {
+    margin-top: 80px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+    margin-left: 20px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.cell {
+    width: 0.60em;
+    height: 40px;
+    font-size: 50px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+
+.numbers {
+    width: 0.6em;
+    line-height: 40px;
+    font-family: digital, arial, verdana;
+    text-align: center;
+    color: #fff;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /*Glow to the text*/
+    text-shadow: 0 0 5px rgba(255, 255, 255, 1);
+}
+
+/*Control code*/
+.timer.pause .numbers {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+.timer.play .numbers {
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+}
+.timer.reset .numbers {
+    -webkit-animation: none;
+    animation: none;
+}
+
+.moveten {
+    -webkit-animation: moveten 1s steps(10, end) infinite;
+    -webkit-animation-play-state: paused;
+    animation: moveten 1s steps(10, end) infinite;
+    animation-play-state: paused;
+}
+.movesix {
+    -webkit-animation: movesix 1s steps(6, end) infinite;
+    -webkit-animation-play-state: paused;
+    animation: movesix 1s steps(6, end) infinite;
+    animation-play-state: paused;
+}
+
+.second {
+    -webkit-animation-duration: 10s;
+    animation-duration: 10s;
+}
+.tensecond {
+    -webkit-animation-duration: 60s;
+    animation-duration: 60s;
+}
+
+.minute {
+    -webkit-animation-duration: 600s;
+    animation-duration: 600s;
+}
+.tenminute {
+    -webkit-animation-duration: 3600s;
+    animation-duration: 3600s;
+}
+
+@keyframes moveten {
+    0% {top: 0;}
+    100% {top: -400px;}
+}
+
+@-webkit-keyframes moveten {
+    0% {top: 0;}
+    100% {top: -400px;}
+}
+
+@keyframes movesix {
+    0% {top: 0;}
+    100% {top: -240px;}
+}
+
+@-webkit-keyframes movesix {
+    0% {top: 0;}
+    100% {top: -240px;}
+}
+
+
+@font-face {
+    font-family: 'digital';
+    src: url('http://thecodeplayer.com/uploads/fonts/DS-DIGI.TTF');
+
 }

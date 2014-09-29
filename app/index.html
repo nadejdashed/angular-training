@@ -17,11 +17,25 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="container overlay">
+        <div class="container overlay" ng-show="!inProgress">
             <button class="col-xs-12 btn btn-dark" ng-click="startNewGame()">New Game</button>
         </div>
-        <div class="row timer">
-            <div class="col-xs-12 text-center text-bigger">0:00</div>
+        <div class="text-center text-bigger">
+            <div class="timer play">
+                <div class="cell">
+                    <div class="numbers tenminute movesix">0 1 2 3 4 5 6</div>
+                </div>
+                <div class="cell">
+                    <div class="numbers minute moveten">0 1 2 3 4 5 6 7 8 9</div>
+                </div>
+                <div class="cell divider"><div class="numbers">:</div></div>
+                <div class="cell">
+                    <div class="numbers tensecond movesix">0 1 2 3 4 5 6</div>
+                </div>
+                <div class="cell">
+                    <div class="numbers second moveten">0 1 2 3 4 5 6 7 8 9</div>
+                </div>
+            </div>
         </div>
         <div class="area clearfix">
             <div class="brick center row-0 col-0">1</div>
