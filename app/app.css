@@ -5,7 +5,7 @@ body {
 
 .overlay {
     position: absolute;
-    background: rgba(255, 255, 255, 0.6);
+    background: #343234;
     top: 0;
     left: 0;
     right: 0;
@@ -51,6 +51,10 @@ body {
     font-size: 200%;
     line-height: 70px;
     text-align: center;
+}
+
+._m-b-10 {
+    margin-bottom: 10px;
 }
 
 .text-bigger {
