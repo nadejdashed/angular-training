@@ -7,58 +7,12 @@
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="/bower_components/angular/angular-csp.css" />
-    <link rel="stylesheet" type="text/css" href="/app/app.css" />
-    <script src="/bower_components/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/build/app.css" />
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/angular-swipe/dist/angular-swipe.min.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/app/app.js"></script>
+    <script src="/build/app.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="container overlay">
-            <button class="col-xs-12 btn btn-dark _m-b-10">New Game</button>
-            <button class="col-xs-12 btn btn-dark">Winners</button>
-        </div>
-        <div class="text-center text-bigger">
-            <div class="timer play">
-                <div class="cell">
-                    <div class="numbers tenminute movesix">0 1 2 3 4 5 6</div>
-                </div>
-                <div class="cell">
-                    <div class="numbers minute moveten">0 1 2 3 4 5 6 7 8 9</div>
-                </div>
-                <div class="cell divider"><div class="numbers">:</div></div>
-                <div class="cell">
-                    <div class="numbers tensecond movesix">0 1 2 3 4 5 6</div>
-                </div>
-                <div class="cell">
-                    <div class="numbers second moveten">0 1 2 3 4 5 6 7 8 9</div>
-                </div>
-            </div>
-        </div>
-        <div class="area clearfix">
-            <div class="brick center row-0 col-0">1</div>
-            <div class="brick center row-0 col-1">2</div>
-            <div class="brick center row-0 col-2">3</div>
-            <div class="brick center row-0 col-3">4</div>
-            <div class="brick center row-1 col-0">5</div>
-            <div class="brick center row-1 col-1">6</div>
-            <div class="brick center row-1 col-2">7</div>
-            <div class="brick center row-1 col-3">8</div>
-            <div class="brick center row-2 col-0">9</div>
-            <div class="brick center row-2 col-1">10</div>
-            <div class="brick center row-2 col-2">11</div>
-            <div class="brick center row-2 col-3">12</div>
-            <div class="brick center row-3 col-0">13</div>
-            <div class="brick center row-3 col-1">14</div>
-            <div class="brick center row-3 col-2">15</div>
-        </div>
-        <div class="row">
-            <button class="col-xs-4 btn btn-dark col-xs-offset-1">Restart</button>
-            <button class="col-xs-4 btn btn-dark col-xs-offset-2">Pause</button>
-        </div>
-        <div class="moves">Moves: 0</div>
-    </div>
+
 </body>
 </html>

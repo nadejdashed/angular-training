@@ -24,6 +24,15 @@ module.exports = function (grunt) {
             }
         },
 
+        ng_template: {
+            files : ['app/**/*.html'],
+            options: {
+                appDir : 'app',
+                indexFile : 'index.html',
+                concat : true
+            }
+        },
+
         express: {
             app: {
                 options: {
@@ -37,7 +46,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, cwd: 'app/', src: ['*.html'], dest: 'build/'},
+                    {expand: true, cwd: 'app/', src: ['index.html'], dest: 'build/'},
                     {expand: true, cwd: 'app/', src: ['*.css'], dest: 'build/'}
                 ]
             }
@@ -59,6 +68,7 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-ng-template');
     grunt.loadNpmTasks('grunt-parallel');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-express');
