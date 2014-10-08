@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     var appPath = 'app/';
 
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         watch: {
             debug: {
                 files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css'],
@@ -20,11 +21,11 @@ module.exports = function (grunt) {
                     sourceMapStyle: "link"
                 },
                 src: ['app/**/*.js'],
-                dest: 'build/app.js'
+                dest: 'build/<%= pkg.name %>.js'
             },
             appAndTpl: {
-                src: ['build/app.js', 'build/app.templates.js'],
-                dest: 'build/app.js'
+                src: ['build/<%= pkg.name %>.js', 'build/templates.js'],
+                dest: 'build/<%= pkg.name %>.js'
             }
         },
 
@@ -35,7 +36,7 @@ module.exports = function (grunt) {
         ngAnnotate: {
             app: {
                 files: {
-                    'build/app.js': ['build/app.js']
+                    'build/<%= pkg.name %>.js': ['build/<%= pkg.name %>.js']
                 }
             }
         },
@@ -44,7 +45,7 @@ module.exports = function (grunt) {
             app: {
                 cwd: 'app',
                 src: '**/*.html',
-                dest: 'build/app.templates.js'
+                dest: 'build/templates.js'
             }
         },
 
@@ -64,6 +65,14 @@ module.exports = function (grunt) {
                     {src: ['app/index.jx'], dest: 'build/index.html'},
                     {expand: true, cwd: 'app/', src: ['*.css'], dest: 'build/'}
                 ]
+            }
+        },
+
+        uglify: {
+            release: {
+                files: {
+                    'build/<%= pkg.name %>.<%= pkg.version %>.min.js': ['build/<%= pkg.name %>.js']
+                }
             }
         },
 
@@ -93,8 +102,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-concat-sourcemaps');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', [ 'build', "express:app", "parallel:server"]);
-    grunt.registerTask('build', ['jshint', 'copy:main', 'ngtemplates', 'concat:app', 'ngAnnotate', 'concat:appAndTpl']);
+    grunt.registerTask('develop', [ 'build', "express:app", "parallel:server"]);
+    grunt.registerTask('build', [
+        'jshint', 'copy:main', 'ngtemplates', 'concat:app',
+        'ngAnnotate', 'concat:appAndTpl'
+    ]);
+    grunt.registerTask('release', ['build', 'uglify:release']);
     grunt.registerTask('server', ['watch:debug', 'express-keepalive:app']);
 };
