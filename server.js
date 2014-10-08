@@ -12,10 +12,10 @@ app.listen(8000);
 // Session is automatically setup on initial request.
 app.get('/', function(req, res) {
     req.session.loginDate = new Date().toString();
-    res.sendfile(__dirname + '/app/index.html');
+    res.sendfile(__dirname + '/build/index.html');
 });
 app.use(expressIO.static(__dirname + '/'));
-app.use(expressIO.static(__dirname + '/app'));
+app.use(expressIO.static(__dirname + '/build'));
 
 app.io.route('ready', function(req) {
     console.log('ready');

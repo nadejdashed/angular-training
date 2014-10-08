@@ -12,6 +12,22 @@ module.exports = function (grunt) {
             }
         },
 
+        concat: {
+            app: {
+                options: {
+                    sourceMap: true,
+                    sourceMapName: "build/sourcemap.map",
+                    sourceMapStyle: "link"
+                },
+                src: ['app/**/*.js'],
+                dest: 'build/app.js'
+            },
+            appAndTpl: {
+                src: ['build/app.js', 'build/app.templates.js'],
+                dest: 'build/app.js'
+            }
+        },
+
         jshint: {
             all: [appPath + '**/*.js']
         },
@@ -19,17 +35,16 @@ module.exports = function (grunt) {
         ngAnnotate: {
             app: {
                 files: {
-                    'build/app.js': ['app/**/*.js']
+                    'build/app.js': ['build/app.js']
                 }
             }
         },
 
-        ng_template: {
-            files : ['app/**/*.html'],
-            options: {
-                appDir : 'app',
-                indexFile : 'index.html',
-                concat : true
+        ngtemplates: {
+            app: {
+                cwd: 'app',
+                src: '**/*.html',
+                dest: 'build/app.templates.js'
             }
         },
 
@@ -46,7 +61,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, cwd: 'app/', src: ['index.html'], dest: 'build/'},
+                    {src: ['app/index.jx'], dest: 'build/index.html'},
                     {expand: true, cwd: 'app/', src: ['*.css'], dest: 'build/'}
                 ]
             }
@@ -68,7 +83,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-ng-template');
     grunt.loadNpmTasks('grunt-parallel');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-express');
@@ -76,8 +90,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-ng-annotate');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-contrib-concat-sourcemaps');
 
     grunt.registerTask('default', [ 'build', "express:app", "parallel:server"]);
-    grunt.registerTask('build', ['jshint', 'copy:main', 'ngAnnotate']);
+    grunt.registerTask('build', ['jshint', 'copy:main', 'ngtemplates', 'concat:app', 'ngAnnotate', 'concat:appAndTpl']);
     grunt.registerTask('server', ['watch:debug', 'express-keepalive:app']);
 };
