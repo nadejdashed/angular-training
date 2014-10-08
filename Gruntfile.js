@@ -10,6 +10,10 @@ module.exports = function (grunt) {
             debug: {
                 files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css'],
                 tasks: ['build']
+            },
+            test: {
+                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css', 'specs/**/*.js'],
+                tasks: ['karma:unit:run']
             }
         },
 
@@ -89,6 +93,14 @@ module.exports = function (grunt) {
                 },
                 tasks: ["watch:debug"]
             }
+        },
+
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                background: true,
+                singleRun: false
+            }
         }
     });
 
@@ -103,12 +115,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-concat-sourcemaps');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('develop', [ 'build', "express:app", "parallel:server"]);
+    grunt.registerTask('run', [ 'build', "express:app", "parallel:server"]);
     grunt.registerTask('build', [
         'jshint', 'copy:main', 'ngtemplates', 'concat:app',
         'ngAnnotate', 'concat:appAndTpl'
     ]);
+
+    grunt.registerTask('test', [ "karma:unit", "watch:test" ]);
+
     grunt.registerTask('release', ['build', 'uglify:release']);
     grunt.registerTask('server', ['watch:debug', 'express-keepalive:app']);
 };

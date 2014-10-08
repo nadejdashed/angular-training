@@ -4,8 +4,4 @@
 
     angular.module("chat", []);
 
-    angular.module("chat").config(function ($routeProvider) {
-
-    });
-
 })();
