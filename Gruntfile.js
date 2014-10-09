@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             app: {
                 cwd: 'app',
-                src: '**/*.html',
+                src: 'templates/**/*.html',
                 dest: 'build/templates.js'
             }
         },
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {src: ['app/index.jx'], dest: 'build/index.html'},
+                    {src: ['app/index.html'], dest: 'build/index.html'},
                     {expand: true, cwd: 'app/', src: ['*.css'], dest: 'build/'}
                 ]
             }
