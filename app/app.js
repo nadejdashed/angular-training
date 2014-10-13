@@ -1,8 +1,8 @@
 (function () {
     "use strict";
-    angular.module("chat", ["ngRoute"]);
+    angular.module("app", ["ngRoute"]);
 
-    angular.module("chat").config(function ($routeProvider) {
+    angular.module("app").config(function ($routeProvider) {
         $routeProvider.otherwise({ redirectTo: "/home" });
 
         $routeProvider.when('/home', {
