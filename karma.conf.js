@@ -5,6 +5,11 @@ module.exports = function(config) {
         files: [
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
+            'bower_components/angular-route/angular-route.min.js',
+            'bower_components/angular-sanitize/angular-sanitize.min.js',
+            'bower_components/angular-emoji-filter-hd/dist/emoji.min.js',
+            'bower_components/angular-socket-io/socket.min.js',
+            'specs/mock.js',
             'app/**/*.js',
             'specs/**/*.js'
         ],
