@@ -8,12 +8,24 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             debug: {
-                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css'],
+                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.less'],
                 tasks: ['build']
             },
             test: {
                 files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css', 'specs/**/*.js'],
                 tasks: ['karma:unit:run']
+            }
+        },
+
+        less: {
+            app: {
+                options: {
+                    paths: ["app/less"],
+                    cleancss: true
+                },
+                files: {
+                    "build/app.css": "app/**/*.less"
+                }
             }
         },
 
@@ -115,12 +127,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-concat-sourcemaps');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('run', [ 'build', "express:app", "parallel:server"]);
     grunt.registerTask('build', [
         'jshint', 'copy:main', 'ngtemplates', 'concat:app',
-        'ngAnnotate', 'concat:appAndTpl'
+        'ngAnnotate', 'concat:appAndTpl', "less:app"
     ]);
 
     grunt.registerTask('test', [ "karma:unit", "watch:test" ]);
