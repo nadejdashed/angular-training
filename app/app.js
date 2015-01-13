@@ -6,8 +6,7 @@
         $routeProvider.otherwise({ redirectTo: "/home" });
 
         $routeProvider.when('/home', {
-            templateUrl: 'templates/phone/home.html',
-            controller: 'HomeController'
+            templateUrl: 'templates/home.html'
         });
     });
 
