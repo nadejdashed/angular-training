@@ -10,7 +10,7 @@ angular.module("app").directive("listItem", function ($templateCache, $compile) 
             }
             elem.append(tpl);
             return function (scope) {
-            }
+            };
         }
-    }
+    };
 });
