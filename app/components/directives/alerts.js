@@ -4,12 +4,12 @@
         return {
             restrict: "AE",
             templateUrl: "/templates/alerts.html",
-            scope: true,
-            controller: function($scope) {
+            scope: false,
+            /*controller: function($scope) {
                 $scope.removeAlert = function (alert) {
                     alerting.removeAlert(alert);
                 };
-            },
+            },*/
             link: function (scope) {
                 scope.currentAlerts = alerting.currentAlerts;
             }

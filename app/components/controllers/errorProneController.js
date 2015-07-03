@@ -1,11 +1,13 @@
 ﻿(function(module) {
 
-    var errorProneController = function (alerting, $http) {
+    var errorProneController = function ($scope, alerting, $http) {
         var model = this;
 
         model.alertTypes = alerting.alertTypes;
         model.alertType = model.alertTypes[0];
         model.alertMessage = "";
+
+        $scope.isTrue = true;
 
         model.createAlert = function () {
             alerting.addAlert(model.alertType, model.alertMessage);
