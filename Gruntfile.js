@@ -128,6 +128,12 @@ module.exports = function (grunt) {
                 options: {
                     logConcurrentOutput: true
                 }
+            },
+            test: {
+                tasks: ["watch:test"],
+                options: {
+                    logConcurrentOutput: true
+                }
             }
         }
     });
@@ -153,7 +159,7 @@ module.exports = function (grunt) {
         'ngAnnotate', 'concat:appAndTpl', "less:app"
     ]);
 
-    grunt.registerTask('test', [ "karma:unit", "watch:test" ]);
+    grunt.registerTask('test', [ "karma:unit", "concurrent:test" ]);
 
     grunt.registerTask('release', ['build', 'uglify:release']);
     grunt.registerTask('server', ['watch:debug', 'express-keepalive:app']);
