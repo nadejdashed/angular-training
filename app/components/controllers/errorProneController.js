@@ -19,7 +19,7 @@
             throw new Error("Something has gone terribly wrong!");
         };
                     
-        $http.get("/api/slows")
+        $http.get("/mentors")
              .then(function () {
                  // process success
                  // ...
