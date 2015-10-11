@@ -1,16 +1,16 @@
 {
   "name": "angular-training",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vpishuk/angular-training"
+    "url": "https://github.com/nadejdashed/angular-training"
   },
-  "author": "Viktor Pishuk",
+  "author": "Nadzeya Shedava",
   "bugs": {
-    "url": "https://github.com/vpishuk/angular-training/issues"
+    "url": "https://github.com/nadejdashed/angular-training/issues"
   },
-  "homepage": "https://github.com/vpishuk/angular-training",
+  "homepage": "https://github.com/nadejdashed/angular-training",
   "devDependencies": {
     "express.io": ">=1.1.0",
     "serve-static": ">=1.6.3",

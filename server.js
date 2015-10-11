@@ -17,13 +17,8 @@ app.get('/', function(req, res) {
 app.use(expressIO.static(__dirname + '/'));
 app.use(expressIO.static(__dirname + '/build'));
 
-app.get('/mentors', function(req, res) {
-    var result = require('./json/mentors.json');
-    res.json(result);
-});
-
-app.get('/mentees', function(req, res) {
-    var result = require('./json/mentees.json');
+app.get('/cats', function(req, res) {
+    var result = require('./json/cats.json');
     res.json(result);
 });
 
