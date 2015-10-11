@@ -8,11 +8,11 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             debug: {
-                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.less'],
+                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css'],
                 tasks: ['build']
             },
             test: {
-                files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css', 'specs/**/*.js'],
+                files: [appPath + '**/*.js', appPath + '**/*.html', 'specs/**/*.js'],
                 tasks: ['karma:unit:run']
             }
         },
