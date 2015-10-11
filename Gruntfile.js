@@ -72,13 +72,19 @@ module.exports = function (grunt) {
                     port: 8000,
                     server: path.resolve(__dirname, 'server.js')
                 }
+            },
+            debug: {
+                options: {
+                    bases: [path.resolve('app')],
+                    port: 8000,
+                    server: path.resolve(__dirname, 'server.js') + ' debug'
+                }
             }
         },
 
         copy: {
             main: {
                 files: [
-                    {src: ['app/index.html'], dest: 'build/index.html'},
                     {expand: true, cwd: 'app/', src: ['*.css'], dest: 'build/'},
                     {expand: true, cwd: "app/", src: ['**/*.jpg', "**/*.png", "**/*.gif"], dest: 'build/'}
                 ]
@@ -90,21 +96,6 @@ module.exports = function (grunt) {
                 files: {
                     'build/<%= pkg.name %>.<%= pkg.version %>.min.js': ['build/<%= pkg.name %>.js']
                 }
-            }
-        },
-
-        parallel: {
-            server: {
-                options: {
-                    grunt: true
-                },
-                tasks: ["server"]
-            },
-            watch: {
-                options: {
-                    grunt: true
-                },
-                tasks: ["watch:debug"]
             }
         },
 
@@ -135,6 +126,14 @@ module.exports = function (grunt) {
                     logConcurrentOutput: true
                 }
             }
+        },
+
+        processhtml: {
+            dist: {
+                files: {
+                    'build/index.html': ['app/index.html']
+                }
+            }
         }
     });
 
@@ -151,14 +150,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-processhtml');
 
     grunt.registerTask('run', [ 'build', "express:app", "serverAndWatch"]);
     grunt.registerTask('serverAndWatch', [ 'concurrent:server', "concurrent:watch"]);
     grunt.registerTask('build', [
-        'jshint', 'copy:main', 'ngtemplates', 'concat:app',
+        'jshint', 'processhtml', 'copy:main', 'ngtemplates', 'concat:app',
         'ngAnnotate', 'concat:appAndTpl', "less:app"
     ]);
 
+    grunt.registerTask('debug', [ "express:app", 'express-keepalive:app' ]);
     grunt.registerTask('test', [ "karma:unit", "concurrent:test" ]);
 
     grunt.registerTask('release', ['build', 'uglify:release']);
