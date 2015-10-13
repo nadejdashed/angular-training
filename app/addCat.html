@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Cats application</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <!-- build:css /build/app.css -->
+    <link rel="stylesheet" type="text/css" href="/angular-training/app/app.css"/>
+    <!-- /build -->
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <!-- build:js /build/angular-training.js -->
+    <script src="/app/addCatModule/appAddCat.js"></script>
+    <script src="/app/addCatModule/components/controller/addCatController.js"></script>
+    <!-- /build -->
+</head>
+<body ng-app="appAddCat">
+
+<a href="/index.html">Home Page</a> || <a href="/addCat.html">Add Cat</a>
+
+<div ng-controller="addCatController" class="container">
+    <form>
+        Name: <input type="text" ng-model="catName"/>
+        <br />
+        Link: <input type="url" ng-blur="blur()" ng-model="catUrl">
+        <br />
+        <img ng-show="showCat" ng-src="{{ readyUrl }}" />
+        <span class="bg-primary cursor btn" ng-click="saveCat(catName, readyUrl)">Save</span>
+    </form>
+
+</div>
+
+</body>
+</html>

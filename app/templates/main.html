@@ -13,8 +13,8 @@
 
     <br />
 
-    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: searchCatNameFilter | orderBy: sort">
-        <h1 class="cursor" ng-click="show(cat)">Name: {{cat.name}} <span ng-show="cat.view">&#8730;</span></h1>
+    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: {name: searchCatNameFilter} | orderBy: sort">
+        <h1 class="cursor" ng-click="show(cat)">{{cat.clickCount | clickCountFilter }} Name: {{cat.name}} <span ng-show="cat.view">&#8730;</span></h1>
     </div>
 
     <div class="selected-cat">

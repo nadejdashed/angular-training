@@ -12,11 +12,13 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/filter/clickCountFilter.js"></script>
     <!--<script src="/app/components/controllers/mainController.js"></script>-->
     <!-- /build -->
 </head>
-<body ng-app="app">
-
+<body ng-app="app" ng-cloak>
+    <a href="/app/index.html">Home Page</a> ||
+    <a href="addCat.html">Add Cat</a>
     <div ng-controller="mainController" class="container">
         <div ng-include="'templates/main.html'"></div>
     </div>
