@@ -1,3 +1,41 @@
 body {
 	color:red;
 }
+
+
+.cat-names-list {
+	width: 500px;
+	border-color: #7D9029;
+	border-style: ridge;
+	border-width: 3px;
+	background-color: #245580;
+}
+
+.search-input {
+	width: 350px;
+	border-radius: 5px;
+	height: 30px;
+}
+.selected-cat {
+	margin-top: -300px;
+	height:500px;
+	width: 500px;
+	margin-left: 550px;
+	border-color: #00ee00;
+	border-style: ridge;
+	border-width: 3px;
+
+}
+.cat-photo {
+	height:300px;
+	width: 300px;
+	text-align: center;
+}
+
+.main {
+	margin-top: 50px;
+}
+
+.cursor {
+	cursor: pointer;
+}

@@ -1,1 +1,27 @@
-<h1>{{text}}</h1>
+<div class="main">
+
+    <div class="search">
+        <input class="search-input" placeholder="search..." ng-model="searchCatName">
+        <span class="bg-primary cursor btn" ng-click="search(searchCatName)">Search</span>
+    </div>
+
+    <br />
+
+    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | orderBy:'-name' | filter: searchCatNameFilter">
+        <h1 class="cursor" ng-click="show(cat)">Name: {{cat.name}} <span ng-show="cat.view">&#8730;</span></h1>
+    </div>
+
+    <div class="selected-cat">
+        <div class="bg-success">
+            <h1>Current Name: {{selectedCat.name}}</h1>
+            <h2>Click count: {{selectedCat.clickCount}}</h2>
+        </div>
+
+        <div style="margin-left: 115px;">
+            <img class="cat-photo" src={{selectedCat.link}}>
+
+            <span class="btn btn-success" ng-click="like(selectedCat)">&#8593;</span>
+            <span class="btn btn-danger" ng-click="dislike(selectedCat)">&#8595;</span>
+        </div>
+    </div>
+</div>
