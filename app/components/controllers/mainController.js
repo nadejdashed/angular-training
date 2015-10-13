@@ -1,6 +1,7 @@
 ﻿(function(module) {
 
     var mainController = function ($scope) { // , mainService  --> add after $scope
+        $scope.sort = "-name";
 
         $scope.cats = [
              {'name': 'Kitty', 'link': 'http://exmoorpet.com/wp-content/uploads/2012/08/cat.png', 'clickCount': 0, 'view': 1},

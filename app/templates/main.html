@@ -1,13 +1,19 @@
 <div class="main">
 
     <div class="search">
+
+        <select ng-model="sort">
+            <option value="-name">Ask</option>
+            <option value="name">Desk</option>
+        </select>
+
         <input class="search-input" placeholder="search..." ng-model="searchCatName">
         <span class="bg-primary cursor btn" ng-click="search(searchCatName)">Search</span>
     </div>
 
     <br />
 
-    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | orderBy:'-name' | filter: searchCatNameFilter">
+    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: searchCatNameFilter | orderBy: sort">
         <h1 class="cursor" ng-click="show(cat)">Name: {{cat.name}} <span ng-show="cat.view">&#8730;</span></h1>
     </div>
 
