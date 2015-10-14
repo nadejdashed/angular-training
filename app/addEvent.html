@@ -12,6 +12,9 @@
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
             display: none !important;
         }
+        .form-group:not(.has-error){
+            padding-bottom:20px;
+        }
     </style>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -35,16 +38,33 @@
     </nav>
 
     <div ng-controller="addEventController" class="container">
-        <form name="addEventForm" action="" method="post" role="form" ng-submit="submit($event)">
+        <form class="col-xs-6 col-sm-6 col-md-6 col-lg-6" name="addEventForm" action="" method="post" role="form" ng-submit="submit($event)">
             <legend>Add event</legend>
 
-            <div class="form-group" ng-class="{'has-error': addEventForm.nameEvent.$invalid}">
-                <label for=""></label>
-                <input ng-model="event.name"   ng-pattern="/\d/" type="text" class="form-control" name="nameEvent" id="" placeholder="Input...">
+            <div class="form-group" ng-class="{'has-error': addEventForm.name.$dirty && addEventForm.name.$invalid}">
+                <label for="name">*Name</label>
+                <input ng-model="event.name" required type="text" class="form-control" name="name" id="name" placeholder="Angular">
+                <span ng-show="addEventForm.name.$dirty && addEventForm.name.$invalid">Name is required</span>
+            </div>
+            <div class="form-group" ng-class="{'has-error': addEventForm.trainer.$dirty && addEventForm.trainer.$invalid}">
+                <label for="trainer">*Trainer</label>
+                <input ng-model="event.trainer" required ng-pattern="/^[A-Za-z ]*$/" type="text" class="form-control" name="trainer" id="trainer" placeholder="Nadzeya Shedava">
+                <span ng-show="addEventForm.trainer.$dirty && addEventForm.trainer.$error.required">Trainer is required</span>
+                <span ng-show="addEventForm.trainer.$dirty && addEventForm.trainer.$error.pattern">Trainer should only contains latin characters and spaces</span>
+            </div>
+            <div class="form-group" ng-class="{'has-error': addEventForm.src.$dirty && addEventForm.src.$invalid}">
+                <label for="src">Image source</label>
+                <input ng-model-options="{ updateOn: 'blur' }" ng-model="event.src" type="url" class="form-control" name="src" id="src" placeholder="https://angularjs.org/img/AngularJS-large.png">
+                <span ng-show="addEventForm.src.$dirty && addEventForm.src.$error.url">URL is not valid</span>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="addEventForm.$invalid">Submit</button>
+            <button type="button" class="btn btn-danger">Cancel</button>
         </form>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <img ng-show="event.src" width="100%" ng-src="{{event.src}}"/>
+        </div>
     </div>
 </body>
 </html>

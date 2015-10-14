@@ -11,7 +11,4 @@ angular.module('eventApp').controller('addEventController', function($scope){
 		}
 	};
 
-	var i=0;
-	while(i<10000000000){i++;}
-
 });
