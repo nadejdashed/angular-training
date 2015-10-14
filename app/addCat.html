@@ -19,13 +19,29 @@
 <a href="/index.html">Home Page</a> || <a href="/addCat.html">Add Cat</a>
 
 <div ng-controller="addCatController" class="container">
-    <form>
-        Name: <input type="text" ng-model="catName"/>
+
+    <form name="addCatForm" novalidate>
+        <p><h2>Cat name:</h2>
+            <input type="text" name="catName" ng-model="catName" required>
+            <span style="color:red" ng-show="addCatForm.catName.$dirty && addCatForm.catName.$invalid">
+            <span ng-show="addCatForm.catName.$error.required">Cat name is required.</span>
+            </span>
+        </p>
+
+        <p><h2>Link for cat picture:</h2>
+            <input type="url" name="catUrl" ng-model-options="{ updateOn: 'blur' }" ng-model="catUrl" required>
+            <span style="color:red" ng-show="addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid">
+            <span ng-show="addCatForm.catUrl.$error.required">Link for cat picture is required.</span>
+            </span>
+        </p>
         <br />
-        Link: <input type="url" ng-blur="blur()" ng-model="catUrl">
-        <br />
-        <img ng-show="showCat" ng-src="{{ readyUrl }}" />
-        <span class="bg-primary cursor btn" ng-click="saveCat(catName, readyUrl)">Save</span>
+
+        <img ng-src="{{ catUrl }}" />
+
+        <span class="bg-primary cursor btn" ng-disabled="addCatForm.$invalid" ng-click="saveCat()">Save</span>
+        <!--addCatForm.catName.$error.required || addCatForm.catName.$dirty && addCatForm.catName.$invalid ||-->
+        <!--addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid || addCatForm.catUrl.$error.required-->
+        <a href="/addCat.html"><span class="bg-primary cursor btn">Cancel</span></a>
     </form>
 
 </div>

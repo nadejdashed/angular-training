@@ -13,18 +13,27 @@
 
     <br />
 
-    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: {name: searchCatNameFilter} | orderBy: sort">
-        <h1 class="cursor" ng-click="show(cat)">{{cat.clickCount | clickCountFilter }} Name: {{cat.name}} <span ng-show="cat.view">&#8730;</span></h1>
+    <ng-pluralize count="goodRatingCats.length"
+        when="{'0': 'No one cat is liked.',
+        'one': '1 || {{ goodRatingCats[0] }} || is liked.',
+        'other': '{} cats are liked.'}">
+    </ng-pluralize>
+
+    <br />
+
+    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: { name: searchCatNameFilter } | orderBy: sort">
+        <h1 class="cursor" ng-click="show(cat)">{{ cat.clickCount | clickCountFilter }} Name: {{ cat.name }} <span ng-show="cat.view">&#8730;</span></h1>
     </div>
 
     <div class="selected-cat">
         <div class="bg-success">
-            <h1>Current Name: {{selectedCat.name}}</h1>
-            <h2>Click count: {{selectedCat.clickCount}}</h2>
+            <h1>Current Name: {{ selectedCat.name }}</h1>
+            <h2>Click count: {{ selectedCat.clickCount }}</h2>
+            <h2>Created {{ selectedCat.addCatTime | date:"MM/dd/yyyy 'at' h:mma" }}</h2>
         </div>
 
         <div style="margin-left: 115px;">
-            <img class="cat-photo" src={{selectedCat.link}}>
+            <img class="cat-photo" ng-src="{{selectedCat.link}}">
 
             <span class="btn btn-success" ng-click="like(selectedCat)">&#8593;</span>
             <span class="btn btn-danger" ng-click="dislike(selectedCat)">&#8595;</span>

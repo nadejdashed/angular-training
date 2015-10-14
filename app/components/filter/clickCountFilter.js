@@ -9,5 +9,5 @@ angular.module('app').filter('clickCountFilter', function(){
         else if(count === 0) raiting = ':|';
 
         return raiting;
-    }
+    };
 });

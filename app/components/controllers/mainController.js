@@ -2,13 +2,12 @@
 
     var mainController = function ($scope) { // , mainService  --> add after $scope
         $scope.sort = "-name";
-
         $scope.cats = [
-             {'name': 'Kitty', 'link': 'http://exmoorpet.com/wp-content/uploads/2012/08/cat.png', 'clickCount': 0, 'view': 1, 'raiting': ':|'},
-             {'name': 'Tom', 'link': 'https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg', 'clickCount': 0, 'view': 0, 'raiting': ':|'},
-             {'name': 'TomGirl', 'link': 'http://wac.450f.edgecastcdn.net/80450F/hudsonvalleycountry.com/files/2015/01/cat4.jpg', 'clickCount': 0, 'view': 0},
-             {'name': 'Fake', 'link': 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQOq6CS4Rr-BNM555IXm5mjFNNIAG9Pey-683HNbwnmzbYLob7R', 'clickCount': 0, 'view': 0, 'raiting': ':|'},
-             {'name': 'Tom13', 'link': 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRYuez70B3WmIBDgIn4Q0EfkaZc-rKW34Nxb6dilfz5HATFl9Xd', 'clickCount': 0, 'view': 0, 'raiting': ':|'}
+             {'name': 'Kitty', 'link': 'http://exmoorpet.com/wp-content/uploads/2012/08/cat.png', 'clickCount': 0, 'view': 1, addCatTime: 1453456343543},
+             {'name': 'Tom', 'link': 'https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg', 'clickCount': 0, 'view': 0, addCatTime: 1444857612448},
+             {'name': 'TomGirl', 'link': 'http://wac.450f.edgecastcdn.net/80450F/hudsonvalleycountry.com/files/2015/01/cat4.jpg', 'clickCount': 0, 'view': 0, addCatTime: 1288323626006},
+             {'name': 'Fake', 'link': 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQOq6CS4Rr-BNM555IXm5mjFNNIAG9Pey-683HNbwnmzbYLob7R', 'clickCount': 0, 'view': 0, addCatTime: 1288323643006},
+             {'name': 'Tom13', 'link': 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRYuez70B3WmIBDgIn4Q0EfkaZc-rKW34Nxb6dilfz5HATFl9Xd', 'clickCount': 0, 'view': 0, addCatTime: 1288323623006}
         ];
 
         $scope.selectedCat = $scope.cats[0];
@@ -32,7 +31,25 @@
         $scope.search = function(searchCatName){
             $scope.searchCatNameFilter = searchCatName;
         };
+
+        $scope.$watch(
+            'cats',
+            function( allCats ) {
+                $scope.goodRatingCats = [];
+
+                var catsCount = allCats.length;
+                for(var i = 0; i < catsCount; i++ )
+                    if(allCats[i].clickCount > 0)
+                        $scope.goodRatingCats.push(allCats[i].name);
+            },
+            true
+        );
+
+
+
+
     };
+
 
     //mainController.$inject = ['$scope']; -- one of versions
 

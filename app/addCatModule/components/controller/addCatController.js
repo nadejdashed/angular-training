@@ -2,16 +2,20 @@
 
     var addCatController = function ($scope) {
         $scope.cat = [];
-        $scope.showCat = 0;
 
-        $scope.blur = function(){
-                $scope.readyUrl = $scope.catUrl;
-                $scope.showCat = 1;
-        };
-
-        $scope.saveCat = function(catName, catUrl){
-            $scope.cat.push({'name': catName, 'link': catUrl, 'clickCount': 0, 'view': 0, 'raiting': ':|'});
-            console.log( $scope.cat);
+        $scope.saveCat = function(){
+            if($scope.catName !== undefined || $scope.catUrl !== undefined)
+            {
+                var date = new Date();
+                $scope.cat.push({
+                    'name': $scope.catName,
+                    'link': $scope.catUrl,
+                    'clickCount': 0,
+                    'view': 0,
+                    'addCatTime': date.getTime()
+                });
+                console.log($scope.cat);
+            }
         };
 
 
