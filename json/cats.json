@@ -1,9 +1,0 @@
-{
-  "responses": [
-    {"id": "0", "name": "Alex", "image": "http://thecatapi.com/?id=9ht", "vote": 0},
-    {"id": "1", "name": "Liuba", "image": "http://thecatapi.com/?id=MTg2ODc5Mw", "vote": 2},
-    {"id": "2", "name": "Viktor", "image": "http://thecatapi.com/?id=953", "vote": 3},
-    {"id": "3", "name": "Albert", "image": "http://thecatapi.com/?id=efh", "vote": 0},
-    {"id": "4", "name": "Yaroslav", "image": "http://thecatapi.com/?id=MjAzNjQ3Mw", "vote": 5}
-  ]
-}
