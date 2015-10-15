@@ -1,6 +1,6 @@
 (function(module) {
 
-    var addCatController = function ($scope) {
+    var addCatController = function ($scope, $filter) {
         $scope.cat = [];
 
         $scope.saveCat = function(){
@@ -12,9 +12,8 @@
                     'link': $scope.catUrl,
                     'clickCount': 0,
                     'view': 0,
-                    'addCatTime': date.getTime()
+                    'addCatTime': $filter('date')(new Date(),'dd-MMM-yyyy')
                 });
-                console.log($scope.cat);
             }
         };
 
