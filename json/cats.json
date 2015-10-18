@@ -1,9 +1,21 @@
-{
-  "responses": [
-    {"id": "0", "name": "Alex", "image": "http://thecatapi.com/?id=9ht", "vote": 0},
-    {"id": "1", "name": "Liuba", "image": "http://thecatapi.com/?id=MTg2ODc5Mw", "vote": 2},
-    {"id": "2", "name": "Viktor", "image": "http://thecatapi.com/?id=953", "vote": 3},
-    {"id": "3", "name": "Albert", "image": "http://thecatapi.com/?id=efh", "vote": 0},
-    {"id": "4", "name": "Yaroslav", "image": "http://thecatapi.com/?id=MjAzNjQ3Mw", "vote": 5}
-  ]
-}
+[{
+  "id": 1,
+  "name": "Alex",
+  "src": "http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg",
+  "vote": 0
+}, {
+  "id": 2,
+  "name": "Viktor",
+  "src": "http://24.media.tumblr.com/tumblr_lsrk9vhVai1qzopnho1_1280.jpg",
+  "vote": 3
+}, {
+  "id": 3,
+  "name": "Albert",
+  "src": "http://24.media.tumblr.com/tumblr_m4jgfkIsWU1qjev1to1_500.jpg",
+  "vote": 0
+}, {
+  "id": 4,
+  "name": "Lia",
+  "src": "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
+  "vote": 5
+}]
