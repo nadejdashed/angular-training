@@ -1,0 +1,19 @@
+<form class="col-xs-6 col-sm-6 col-md-6 col-lg-6" name="addEventForm" action="" method="post" role="form" ng-submit="submit($event, event)">
+	<legend>Add event</legend>
+
+	<div class="form-group" ng-class="{'has-error': addEventForm.name.$dirty && addEventForm.name.$invalid}">
+		<label for="name">*Name</label>
+		<input ng-model="event.name" required type="text" class="form-control" name="name" id="name" placeholder="Angular">
+		<span ng-show="addEventForm.name.$dirty && addEventForm.name.$invalid">Name is required</span>
+	</div>
+	<div class="form-group" ng-class="{'has-error': addEventForm.trainer.$dirty && addEventForm.trainer.$invalid}">
+		<label for="trainer">*Trainer</label>
+		<input ng-model="event.trainer" required ng-pattern="/^[A-Za-z ]*$/" type="text" class="form-control" name="trainer" id="trainer" placeholder="Nadzeya Shedava">
+		<span ng-show="addEventForm.trainer.$dirty && addEventForm.trainer.$error.required">Trainer is required</span>
+		<span ng-show="addEventForm.trainer.$dirty && addEventForm.trainer.$error.pattern">Trainer should only contains latin characters and spaces</span>
+	</div>
+	<div image-preview source="event.src"></div>
+
+	<button type="submit" class="btn btn-primary" ng-disabled="addEventForm.$invalid">Submit</button>
+	<button type="button" class="btn btn-danger">Cancel</button>
+</form>

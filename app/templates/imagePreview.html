@@ -1,0 +1,10 @@
+<div ng-form name="imagePreview">
+	<div class="form-group" ng-class="{'has-error': imagePreview.src.$dirty && imagePreview.src.$invalid}">
+		<label for="src">Image source</label>
+		<input ng-model-options="{ updateOn: 'blur' }" ng-model="src" type="url" class="form-control" name="src" id="src" placeholder="https://angularjs.org/img/AngularJS-large.png">
+		<span ng-show="imagePreview.src.$dirty && imagePreview.src.$error.url">URL is not valid</span>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<img ng-show="src" width="100%" ng-src="{{src}}"/>
+	</div>
+</div>

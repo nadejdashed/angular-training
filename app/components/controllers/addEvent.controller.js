@@ -1,11 +1,10 @@
-angular.module('eventApp').controller('addEventController', function($scope){
-
+angular.module('eventApp').controller('addEventController', function($scope, $location, events){
 
 	$scope.submit = function($event){
 		$event.preventDefault();
 
 		if ($scope.addEventForm.$valid){
-			console.log('valid')
+			events.addEvent($scope.event);
 		} else {
 			console.log('invalid')
 		}

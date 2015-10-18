@@ -1,0 +1,21 @@
+<div class="panel panel-default" ng-class="{'panel-info': event.selected}" ng-click="selectEvent(event)">
+	<div class="panel-heading" >
+		{{event.name | uppercase}}
+		<div class="pull-right" style="margin-top:-5px; margin-right:-5px;">
+			<button class="btn btn-default btn-sm" ng-click="vote($event, event, 1)"><i class="glyphicon glyphicon-arrow-up"></i></button>
+			<button class="btn btn-default btn-sm" ng-click="vote($event, event, -1)"><i class="glyphicon glyphicon-arrow-down"></i></button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="pull-left" style="margin:10px">
+			<img height="50px" ng-src="{{event.src}}"/>
+		</div>
+		<div class="clearfix">
+			<div><strong>Trainer name:</strong>{{event.trainer}}</div>
+			<div><strong>Date:</strong>{{event.date | date}}</div>
+			<div><strong>Vote:</strong>{{event.vote | voteReaction:5:-1}}</div>
+		</div>
+	</div>
+</div>
+
+<ui-view></ui-view>
