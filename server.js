@@ -1,12 +1,24 @@
 var expressIO = require('express.io'),
     serveStatic = require('serve-static'),
     fs = require('fs'),
-    extend = require('util')._extend;
+    jwt = require("jsonwebtoken");
+    extend = require('util')._extend,
+    equal = require("assert").deepEqual,
+    app = expressIO();
 
-var app = expressIO(),
+var savedUser = {},
+  securityCode = 'monkey',
   folder = process.argv[2] !== 'debug' ? 'build' : 'app',
-  eventFile = './json/events.json';
+  fileName = './json/events.json',
+  instanceName = '/events',
+  fields = {
+    id: 'id',
+    name: 'name',
+    url: 'src',
+    vote: 'vote'
+  };
 
+// Default configuration
 app.use(expressIO.cookieParser());
 app.use(expressIO.session({secret: 'monkey'}));
 app.use(expressIO.bodyParser());
@@ -14,9 +26,8 @@ app.use(expressIO.bodyParser());
 app.http().io();
 app.listen(8000);
 
-// Session is automatically setup on initial request.
+// Static request
 app.get('/', function(req, res) {
-    req.session.loginDate = new Date().toString();
     res.sendfile(__dirname + '/' + folder + '/index.html');
 });
 app.get('/templates/{name}', function(req, res) {
@@ -25,30 +36,85 @@ app.get('/templates/{name}', function(req, res) {
 app.use(expressIO.static(__dirname + '/'));
 app.use(expressIO.static(__dirname + '/' + folder));
 
-app.get('/events', function(req, res) {
-    var result = require(eventFile);
+// Authorization
+function checkAuth(req, res, next) {
+  var token = req.headers["authorization"];
+  jwt.verify(token, securityCode, function(err, decoded) {
+    if (err) {
+      res
+        .status(403)
+        .send({status: 'error', code: "NOPERMISSION", error: "Session expired"});
+    } else {
+      if (equal(decoded, savedUser)) {
+        next(req, res, savedUser);
+      } else {
+        res
+          .status(401)
+          .send({status: 'error', code: "NOPERMISSION", error: "No authorized"});
+      }
+    }
+  });
+}
+app.post('/register', function(req, res){
+  var login = req.body.login,
+    password = req.body.password,
+    password2 = req.body.password2;
+
+  if (login && password && password === password2){
+    savedUser.login = login;
+    savedUser.password = password;
+    res.send({status: 'success'});
+  } else {
+    res.error({status: 'error'});
+  }
+});
+app.get('/auth', checkAuth, function(req, res){
+  res.send({status: 'success'});
+});
+app.post('/auth', function(req, res) {
+  var user = {
+      login: req.body.login,
+      password: req.body.password
+    },
+    token;
+
+  if (user.login && user.password && equal(user, savedUser)) {
+    token = jwt.sign(user, securityCode);
+    res.send({
+      status: 'success',
+      user: user,
+      token: token
+    });
+  } else {
+    res.send({status: 'error'});
+  }
+});
+
+// REST
+app.get(instanceName, function(req, res) {
+    var result = require(fileName);
     res.json(result);
 });
-app.get('/events/:id', function(req, res) {
-    var result = require(eventFile),
+app.get(instanceName + '/:id', function(req, res) {
+    var result = require(fileName),
       id = req.params.id,
-      event = result.responses.filter(function(el){return el.id == id})[0];
-    res.json(event);
+      instance = result.filter(function(el){return el[fields.id] == id})[0];
+    res.json(instance);
 });
-app.post('/events', function(req, res){
-    var result = require(eventFile),
-      events = result.responses,
-      lastId = events[events.length - 1].id,
+app.post(instanceName, checkAuth, function(req, res){
+    var result = require(fileName),
+      instances = result,
+      lastId = instances[instances.length - 1][fields.id],
       data = req.body;
 
-    data.id = lastId + 1;
-    data.vote = 0;
-    data.src = data.src || "";
-    data.date = new Date();
+    data[fields.id] = lastId + 1;
+    data[fields.vote] = 0;
+    data[fields.src] = data[fields.src] || "";
+    //data.date = new Date();
 
-    result.responses.push(data);
-    fs.writeFile(eventFile, JSON.stringify(result), function(err) {
-        console.log(err ? err : "JSON saved to " + eventFile);
+    result.push(data);
+    fs.writeFile(fileName, JSON.stringify(result), function(err) {
+        console.log(err ? err : "JSON saved to " + fileName);
         if (err){
             res.error(err);
         } else {
@@ -56,15 +122,15 @@ app.post('/events', function(req, res){
         }
     });
 });
-app.put('/events/:id', function(req, res){
+app.put(instanceName + '/:id', checkAuth, function(req, res, user){
     var id = req.params.id,
-      result = require(eventFile),
-      event = result.responses.filter(function(el){return el.id == id})[0],
+      result = require(fileName),
+      instance = result.filter(function(el){return el[fields.id] == id})[0],
       data = req.body;
 
-    extend(event, data);
-    fs.writeFile(eventFile, JSON.stringify(result), function(err) {
-        console.log(err ? err : "JSON saved to " + eventFile);
+    extend(instance, data);
+    fs.writeFile(fileName, JSON.stringify(result), function(err) {
+        console.log(err ? err : "JSON saved to " + fileName);
         if (err){
             res.error(err);
         } else {
@@ -72,16 +138,16 @@ app.put('/events/:id', function(req, res){
         }
     });
 });
-app.delete('/events/:id', function(req, res){
+app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
     var id = req.params.id,
-      result = require(eventFile),
-      event = result.responses.filter(function(el){return el.id == id})[0],
-      events = result.responses,
-      ind = events.indexOf(event);
+      result = require(fileName),
+      instance = result.filter(function(el){return el[fields.id] == id})[0],
+      instances = result,
+      ind = instances.indexOf(instance);
 
-    if (ind >= 0) {events.splice(ind, 1);}
-    fs.writeFile(eventFile, JSON.stringify(result), function(err) {
-        console.log(err ? err : "JSON saved to " + eventFile);
+    if (ind >= 0) {instances.splice(ind, 1);}
+    fs.writeFile(fileName, JSON.stringify(result), function(err) {
+        console.log(err ? err : "JSON saved to " + fileName);
         if (err){
             res.error(err);
         } else {

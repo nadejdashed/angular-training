@@ -29,6 +29,7 @@
     "grunt-newer": ">=0.6.0",
     "grunt-ng-annotate": ">=0.4.0",
     "grunt-processhtml": "^0.3.8",
+    "jsonwebtoken": "^5.4.0",
     "karma": "~0.12.x",
     "karma-beep-reporter": "~0.1",
     "karma-jasmine": "~0.2.x",
