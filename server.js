@@ -3,7 +3,6 @@ var expressIO = require('express.io'),
     fs = require('fs'),
     jwt = require("jsonwebtoken");
     extend = require('util')._extend,
-    equal = require("assert").deepEqual,
     app = expressIO();
 
 var savedUser = {},
@@ -20,7 +19,6 @@ var savedUser = {},
 
 // Default configuration
 app.use(expressIO.cookieParser());
-app.use(expressIO.session({secret: 'monkey'}));
 app.use(expressIO.bodyParser());
 
 app.http().io();
@@ -38,15 +36,18 @@ app.use(expressIO.static(__dirname + '/' + folder));
 
 // Authorization
 function checkAuth(req, res, next) {
-  var token = req.headers["authorization"];
+  var strToken = req.headers["authorization"],
+    token;
+
+  token = strToken ? req.headers["authorization"].replace('Bearer ', '') : '';
   jwt.verify(token, securityCode, function(err, decoded) {
     if (err) {
       res
         .status(403)
         .send({status: 'error', code: "NOPERMISSION", error: "Session expired"});
     } else {
-      if (equal(decoded, savedUser)) {
-        next(req, res, savedUser);
+      if (decoded.login === savedUser.login && decoded.password === savedUser.password) {
+        next();
       } else {
         res
           .status(401)
@@ -78,7 +79,7 @@ app.post('/auth', function(req, res) {
     },
     token;
 
-  if (user.login && user.password && equal(user, savedUser)) {
+  if (user.login && user.password && user.login === savedUser.login && user.password === savedUser.password) {
     token = jwt.sign(user, securityCode);
     res.send({
       status: 'success',
