@@ -1,4 +1,4 @@
-angular.module('eventApp').factory('events', function($resource, $http, $q ){
+angular.module('eventApp').factory('events', function($resource, $http, $timeout,  $q ){
   var Event = $resource('/events/:id', {id: '@id'}, {
 		update: {method:'PUT'}
 	});
@@ -14,7 +14,9 @@ angular.module('eventApp').factory('events', function($resource, $http, $q ){
 			events = Event.query();
 			events.$promise.then(function(data){
 				events = data;
-				defer.resolve(events);
+				$timeout(function(){
+					defer.resolve(events);
+				}, 3000);
 			}, function(){
 				defer.reject('error');
 			});

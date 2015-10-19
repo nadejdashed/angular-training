@@ -1,10 +1,10 @@
-angular.module('eventApp').controller('eventsController', function($scope, events,  profile){
+angular.module('eventApp').controller('eventsController', function($scope, loadedEvents, profile){
 
-	events.getEvents().then(function(data){
-		$scope.events = data;
-	}, function(error){
+	//events.getEvents().then(function(data){
+		$scope.events = loadedEvents;
+	/*}, function(error){
 		console.log(error);
-	});
+	});*/
 
 	$scope.selectedEvents = profile.getSelectedEvents();
 

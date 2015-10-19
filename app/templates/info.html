@@ -1,0 +1,8 @@
+<div class="alert alert-info">
+	<div ng-pluralize count="selectedEvents.length" offset="1"
+			 when="{'0': 'No event is selected.',
+                '1': '{{selectedEvents[0].name}} is selected.',
+                'one': '{{selectedEvents[0].name}} and 1 more event are selected.',
+                'other': '{{selectedEvents[0].name}} and {} more events are selected.'}">
+	</div>
+</div>

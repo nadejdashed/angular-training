@@ -1,5 +1,58 @@
 "use strict";
-angular.module("eventApp", ['ngCookies', 'ngResource']).config(function($httpProvider){
+angular.module("eventApp", ['ngCookies', 'ngResource', 'ngRoute', 'ui.router']).config(function($locationProvider, $stateProvider, $urlRouterProvider){
+
+	$locationProvider.hashPrefix('!');
+	
+	$urlRouterProvider.otherwise("/");
+
+	$stateProvider.state('events', {
+		url: '/',
+		views: {
+			info: {templateUrl: '/templates/info.html', controller: 'infoController'},
+			events: {
+				templateUrl: '/templates/events.html',
+				controller: 'eventsController',
+				resolve: {
+					'loadedEvents': function(events){
+						return events.getEvents();
+					}
+				}
+			}
+		}
+	}).state('events.add', {
+		url: 'addEvent',
+		templateUrl: '/templates/addEvent.html',
+		controller: 'addEventController'
+	}).state('events.edit', {
+		url: 'edit/:id',
+		templateUrl: '/templates/addEvent.html',
+		controller: 'addEventController'
+	});
+
+	/*
+	 $locationProvider.html5Mode(true);
+
+	 $routeProvider.when('/', {
+		templateUrl: '/templates/events.html',
+		controller: 'eventsController',
+		resolve: {
+			'loadedEvents': function(events){
+				return events.getEvents();
+			}
+		}
+	}).when('/addEvent/:id?', {
+		templateUrl: '/templates/addEvent.html',
+		controller: 'addEventController',
+		resolve: {
+			'loadedEvents': function(events, $routeParams, $route){
+				return events.getEvents();
+			}
+		}
+	}).when('/about', {
+		template: '<h1>Event application v1.0</h1>'
+	}).otherwise({
+		redirectTo: '/'
+	});*/
 
 	/*$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location) {
 		return {
