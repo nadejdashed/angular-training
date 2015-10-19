@@ -1,54 +1,53 @@
 <form class="form-horizontal" novalidate>
-<fieldset>
+  <fieldset>
+    <!-- Form Name -->
+    <legend>Register User  </legend>
 
-<!-- Form Name -->
-<legend>Register User  </legend>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="usr_name">User Login</label>
+      <div class="col-md-8">
+      <input id="usr_name" name="usr_name" type="text" placeholder="login"
+        class="form-control input-md" required ng-model="myuser.login" />
+      </div>
+    </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="usr_name">User Login</label>
-  <div class="col-md-8">
-  <input id="usr_name" name="usr_name" type="text" placeholder="login"
-    class="form-control input-md" required ng-model="myuser.login" />
-  </div>
-</div>
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="usr_password">Password</label>
+      <div class="col-md-8">
+        <input id="usr_password" name="usr_password" type="password" placeholder="password"
+          class="form-control input-md" required ng-model="myuser.password" />
+      </div>
+    </div>
 
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="usr_password">Password</label>
-  <div class="col-md-8">
-    <input id="usr_password" name="usr_password" type="password" placeholder="password"
-      class="form-control input-md" required ng-model="myuser.password" />
-  </div>
-</div>
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="usr_repeat_passwor">Repeat Password</label>
+      <div class="col-md-8">
+        <input id="usr_repeat_passwor" name="usr_repeat_passwor" type="password" placeholder="password"
+          class="form-control input-md" required  />
+      </div>
+    </div>
 
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="usr_repeat_passwor">Repeat Password</label>
-  <div class="col-md-8">
-    <input id="usr_repeat_passwor" name="usr_repeat_passwor" type="password" placeholder="password"
-      class="form-control input-md" required  />
-  </div>
-</div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="usr_email">Email</label>
+      <div class="col-md-8">
+      <input id="usr_email" name="usr_email" type="email" placeholder="email"
+        class="form-control input-md" required ng-model="myuser.email" />
+      </div>
+    </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="usr_email">Email</label>
-  <div class="col-md-8">
-  <input id="usr_email" name="usr_email" type="email" placeholder="email"
-    class="form-control input-md" required ng-model="myuser.email" />
-  </div>
-</div>
+    <!-- Button (Double) -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="btn_register"></label>
+      <div class="col-md-8">
+        <button id="btn_register" name="btn_register" class="btn btn-success" ng-click="registerUser(myuser)">Register</button>
+        <button id="btn_cancel" name="btn_cancel" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
 
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="btn_register"></label>
-  <div class="col-md-8">
-    <button id="btn_register" name="btn_register" class="btn btn-success" ng-click="registerUser(myuser)">Register</button>
-    <button id="btn_cancel" name="btn_cancel" class="btn btn-danger" ng-click="redirectHome()">Cancel</button>
-  </div>
-</div>
-
-</fieldset>
+  </fieldset>
 </form>
 <hr/>

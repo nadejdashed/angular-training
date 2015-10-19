@@ -21,6 +21,7 @@
     "angular-resource": "latest",
     "components-font-awesome": "latest",
     "ngstorage": "latest",
-    "angular-cookies": "latest"
+    "angular-cookies": "latest",
+    "angular-route": "latest"
   }
 }

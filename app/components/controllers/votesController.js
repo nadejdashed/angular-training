@@ -1,22 +1,12 @@
 (function(module) {
 
-  var votesController = function ($scope, dataService, $cookies) {
-    
+  var votesController = function ($scope, dataService) {
+
     $scope.votes = function(language, param) {
-      if (param === 1) {
-        language.likes ++;
+      language.likes += param;
+      dataService.changeLanguage(language).then(function(data) {
 
-        dataService.changeLanguage(language).then(function(data) {
-          console.log(data);
-        });
-      } else if (param === -1) {
-        language.likes --;
-
-        dataService.changeLanguage(language).then(function(data) {
-          console.log(data);
-        });
-      }
-
+      });
     };
 
   };

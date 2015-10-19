@@ -9,48 +9,56 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/addLanguageController.js"></script>
+    <script src="/app/components/controllers/editLanguageController.js"></script>
+    <script src="/app/components/controllers/registerController.js"></script>
     <script src="/app/components/controllers/votesController.js"></script>
+
+    <script src="/app/components/services/usersStorageService.js"></script>
     <script src="/app/components/services/dataService.js"></script>
-    <script src="/app/components/directive/votesDirective.js"></script>
-    <script src="/app/components/directive/editLanguageDirective.js"></script>
+
+    <script src="/app/components/directives/votesDirective.js"></script>
+    <script src="/app/components/directives/editLanguageDirective.js"></script>
+    <script src="/app/components/directives/loginDirective.js"></script>
+    <script src="/app/components/directives/registerDirective.js"></script>
+    <script src="/app/components/directives/focusDirective.js"></script>
+    <script src="/app/components/directives/imgPreviewDirective.js"></script>
     <!-- /build -->
 </head>
 <body ng-app="app">
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Languages</a>
-      </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/">Languages</a>
+      </div>
+      <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home <span class="sr-only"></span></a></li>
-          <li><a href="/addLanguage.html">Add Language</a></li>
-          <li><a href="/register.html">Login/Register</a></li>
-          <!-- <li class="">Hello {{ getUser }}</li> -->
+          <li class="active"><a href="#/">Home <span class="sr-only"></span></a></li>
+          <li ng-class=""><a href="#/add-language">
+            <span class="glyphicon glyphicon-plus-sign"></span> Add Language
+          </a></li>
+          <li><a href="#/register">
+            <span class="glyphicon glyphicon-log-in"></span> Login/Register
+          </a></li>
+          <li><a href="#/about">
+            <span class="glyphicon glyphicon-info-sign"></span> About
+          </a></li>
         </ul>
       </div>
-
-      <!-- <button type="submit" class="btn btn-success" ng-click=''>Register</button> -->
-
     </div>
   </nav>
 
-  <div ng-controller="mainController" class="container">
-      <div ng-include="'templates/language-main.html'"></div>
+  <div class="container">
+    <ng-view></ng-view>
   </div>
 
 </body>

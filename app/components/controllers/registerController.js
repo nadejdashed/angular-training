@@ -1,11 +1,9 @@
 (function(module) {
 
-    var registerController = function ($scope, usersStorageService, $cookies) {
+    var registerController = function ($scope, usersStorageService, $cookies, $location) {
 
-
-      $scope.redirectHome = function() {
-        window.location.href = "/";
-        //console.log(localStorageService.getAllUsers());
+      $scope.cancel = function() {
+        $location.path('/');
       };
 
       $scope.registerUser = function(myuser) {
@@ -14,7 +12,7 @@
           password: myuser.password,
           email: myuser.email
         };
-        var regUser = localStorageService.registerUser(user);
+        var regUser = usersStorageService.registerUser(user);
 
         if (regUser !== false) {
           console.log(regUser);
@@ -24,7 +22,7 @@
       };
 
       $scope.loginUser = function(logUser) {
-        var checkLogin = localStorageService.loginUser(logUser);
+        var checkLogin = usersStorageService.loginUser(logUser);
         if (checkLogin === false) {
           console.log("Login or Password are WRONG!!");
         } else if (checkLogin === 'loged') {
@@ -37,10 +35,10 @@
       $scope.logout = function() {
         $cookies.remove('UserLogin');
         console.log($cookies.getObject('UserLogin'));
-        //localStorageService.dropUsers();
       };
 
       $scope.showLg = true;
+      
       $scope.showLoginTab = function() {
         $scope.showLg = !$scope.showLg;
         console.log($scope.showLg);
