@@ -1,8 +1,8 @@
 "use strict";
-angular.module("eventApp", ['ngCookies', 'ngResource', 'ngRoute', 'ui.router']).config(function($locationProvider, $stateProvider, $urlRouterProvider){
+angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(function($locationProvider, $stateProvider, $urlRouterProvider){
 
 	$locationProvider.hashPrefix('!');
-	
+
 	$urlRouterProvider.otherwise("/");
 
 	$stateProvider.state('events', {
@@ -29,10 +29,9 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ngRoute', 'ui.router']).
 		controller: 'addEventController'
 	});
 
-	/*
-	 $locationProvider.html5Mode(true);
+	/*$locationProvider.html5Mode(true);
 
-	 $routeProvider.when('/', {
+	$routeProvider.when('/', {
 		templateUrl: '/templates/events.html',
 		controller: 'eventsController',
 		resolve: {
@@ -44,8 +43,9 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ngRoute', 'ui.router']).
 		templateUrl: '/templates/addEvent.html',
 		controller: 'addEventController',
 		resolve: {
-			'loadedEvents': function(events, $routeParams, $route){
-				return events.getEvents();
+			'loadedEvent': function(events, $route){
+				var id = $route.current.params.id;
+				return events.getEvent(id);
 			}
 		}
 	}).when('/about', {

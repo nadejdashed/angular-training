@@ -1,11 +1,6 @@
-angular.module('eventApp').controller('eventsController', function($scope, loadedEvents, profile){
+angular.module('eventApp').controller('eventsController', function($scope, events, loadedEvents, profile){
 
-	//events.getEvents().then(function(data){
-		$scope.events = loadedEvents;
-	/*}, function(error){
-		console.log(error);
-	});*/
-
+	$scope.events = loadedEvents;
 	$scope.selectedEvents = profile.getSelectedEvents();
 
 	$scope.sort = 'name';

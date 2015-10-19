@@ -1,6 +1,5 @@
-angular.module('eventApp').controller('addEventController', function($scope, $location, events, $stateParams){
+angular.module('eventApp').controller('addEventController', function($scope, $location, $stateParams, events){
 
-	console.log($stateParams);
 	var id = $stateParams.id;
 	if (id) {
 		$scope.event = events.getEvent(id);
@@ -10,9 +9,11 @@ angular.module('eventApp').controller('addEventController', function($scope, $lo
 		$event.preventDefault();
 
 		if ($scope.addEventForm.$valid){
-			events.addEvent($scope.event);
+			events.addEvent($scope.event).then(function(){
+				$location.url('/');
+			});
 		} else {
-			console.log('invalid')
+			console.log('invalid');
 		}
 	};
 

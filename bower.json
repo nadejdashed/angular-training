@@ -15,9 +15,11 @@
   "dependencies": {
     "angular": "latest",
     "bootstrap": "latest",
-    "angular-mocks": "latest",
+    "angular-mocks": "~1.4.7",
     "angular-sanitize": "latest",
-    "angular-ui-router": "latest",
-    "angular-resource": "latest"
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-cookies": "~1.4.7"
   }
 }
