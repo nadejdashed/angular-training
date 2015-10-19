@@ -1,0 +1,42 @@
+<h2> Add New Language </h2>
+
+<form role="form" name="addLangForm" class="add-form" novalidate ng-submit="saveLanguage(lang)" >
+  <div class="row">
+    <div class="form-group  col-md-6">
+      <label for="name">Language Name:</label>
+      <div class="has-feedback "
+        ng-class="{ 'has-error': addLangForm.addLangName.$dirty && addLangForm.addLangName.$invalid,
+          'has-success': addLangForm.addLangName.$dirty && addLangForm.addLangName.$valid }">
+        <input type="text" class="form-control" id="name"
+          name="addLangName" placeholder="Name"
+          ng-model="lang.name"
+          required="required"
+          ng-focus
+        />
+        <span class="glyphicon glyphicon-remove form-control-feedback"
+          ng-show="addLangForm.addLangName.$dirty && addLangForm.addLangName.$invalid"></span>
+        <span class="glyphicon glyphicon-ok form-control-feedback"
+          ng-show="addLangForm.addLangName.$dirty && addLangForm.addLangName.$valid"></span>
+      </div>
+      <div class=" my-error">
+        <span ng-show="addLangForm.addLangName.$dirty && addLangForm.addLangName.$invalid">
+          <span  ng-show="addLangForm.addLangName.$error.required">Language Name is required.</span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+
+      <img-preview source="lang.catImg"></img-preview>
+
+  </div>
+  <div class="form-group">
+    <button
+      class="btn btn-success"
+
+      ng-disabled="addLangForm.$invalid">Save
+    </button>
+    <button class="btn btn-warning" ng-click="redirectHome()">Cancel</button>
+  </div>
+</form>

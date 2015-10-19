@@ -1,3 +1,36 @@
-body {
-	color:red;
+
+.languages {
+	margin: 20px;
+	margin-left: 0;
+}
+
+.color-red {
+	color: #ff0039;
+}
+
+.lang-info {
+	padding: 10px;
+}
+
+.lang-info h3{
+	margin-top: 0;
+}
+
+.likes {
+	margin:5px;
+}
+
+.order-select {
+	width: 100px;
+	float: left;
+}
+
+.my-error {
+	/*float: left;*/
+	color: #ff0039;
+}
+
+.current-img {
+	max-height: 300px;
+	margin: 10px;
 }

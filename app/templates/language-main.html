@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <form class="form-inline" role="form">
+    <div class="form-group ">
+      <input type="text" class="form-control" placeholder="Search" ng-model="langNameFilter"/>
+      <button type="submit" class="btn btn-primary glyphicon glyphicon-search " ng-click="searchByName(langNameFilter)"></button>
+    </div>
+    <div class="form-group ">
+      <div  class="">Select Sort Order: </div>
+      <select class="form-control order-select"  ng-model="sortOrder" name="order">
+        <option value="name">ASC Name</option>
+        <option value="-name">DESC Name</option>
+        <option value="[-likes,name]">ASC Likes</option>
+      </select>
+
+    </div>
+
+  </form>
+
+  <div class="row languages" >
+    <h2>Select Language</h2>
+    <div class="col-md-6 lang-info " data-target="lang-list">
+
+      <ul class="list-group" id="lang-list"
+        ng-repeat="lang in languagesArray | filter: query | orderBy: sortOrder" >
+        <div class="row">
+          <li ng-click="selectCurrentLanguage(lang)" class="list-unstyled col-md-9" >
+            <a href="#" class="list-group-item list-group-item-info"
+              ng-class="{ 'active': lang.selected }" >{{ lang.name }}
+              <span class="glyphicon glyphicon-check" ng-show="lang.viewed"></span>
+              <p class="pull-right">
+                <i class="fa fa-lg fa-frown-o text-danger" ng-if="lang.likes<0"></i>
+                <i class="fa fa-lg fa-smile-o text-success" ng-if="lang.likes>0"></i>
+              </p>
+            </a>
+          </li>
+          <div class="col-md-3 btn-group">
+            <button class="btn btn-warning " ng-click="editLanguageShow(lang)" >
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button class="btn btn-danger " ng-click="deleteLanguage(lang)" >
+              <span class="glyphicon glyphicon-remove-sign"></span>
+            </button>
+          </div>
+        </div>
+
+        <ng-edit-language source="lang" ng-if="lang.editShow"></ng-edit-language>
+
+      </ul>
+    </div>
+
+    <div class="col-md-6 lang-info" >
+      <div class="lang-info text-primary bg-success">
+        <h3>Name: <span class="color-red"> {{ currentLanguage.name }} </span></h3>
+        <h4>Clicks: <span class="color-red"> {{ currentLanguage.clicks }} </span></h4>
+        <h4>Likes: <span class="color-red"> {{ currentLanguage.likes }} </span></h4>
+        <h4>Date add: <span class="color-red"> {{ currentLanguage.dataAdd }} </span></h4>
+      </div>
+      <ng-vote lang="currentLanguage"></ng-vote>
+      <img ng-src="{{ currentLanguage.catImg }}" class="img-responsive current-img" ng-click="counter(currentLanguage)" />
+
+    </div>
+
+  </div>
+
+
+</div>

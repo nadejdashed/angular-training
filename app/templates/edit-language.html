@@ -1,0 +1,71 @@
+<h2> Edit Language </h2>
+
+<form role="form" name="editLangForm" class="edit-form" novalidate ng-submit="editLanguage(source)" >
+  <div class="row">
+
+    <div class="form-group  col-md-6">
+      <label for="name">Language Name:</label>
+      <div class="has-feedback "
+        ng-class="{ 'has-error': editLangForm.editLangName.$dirty && editLangForm.editLangName.$invalid,
+        'has-success': editLangForm.editLangName.$dirty && editLangForm.editLangName.$valid }">
+
+        <input type="text" class="form-control" id="name"
+          name="editLangName" placeholder="Name"
+          ng-model="source.name"
+          required="required"
+
+         />
+
+        <span class="glyphicon glyphicon-remove form-control-feedback"
+          ng-show="editLangForm.editLangName.$dirty && editLangForm.editLangName.$invalid">
+        </span>
+        <span class="glyphicon glyphicon-ok form-control-feedback"
+          ng-show="editLangForm.editLangName.$dirty && editLangForm.editLangName.$valid">
+        </span>
+
+      </div>
+      <div class=" my-error">
+        <span ng-show="editLangForm.editLangName.$dirty && editLangForm.editLangName.$invalid">
+          <span  ng-show="editLangForm.editLangName.$error.required">Language Name is required.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="form-group col-md-6">
+      <label for="img-url">Language Img URL:</label>
+      <div class="has-feedback"
+        ng-class="{ 'has-error': editLangForm.editLangUrl.$dirty && editLangForm.editLangUrl.$invalid,
+        'has-success': editLangForm.editLangUrl.$dirty && editLangForm.editLangUrl.$valid }">
+
+        <input type="text" class="form-control" id="img-url"
+          name="editLangUrl" placeholder="URL"
+          ng-model="source.catImg" ng-model-options="{ updateOn: 'blur' }"
+          required="required" pattern="(https?:\/\/.{1,}\.(png|jpg|jpeg|gif|svg)$|\/app\/img\/.{1,}\.(png|jpg|jpeg|gif|svg)$)"
+         />
+        <!-- http://ecx.images-amazon.com/images/I/41KcvYbAEOL.png -->
+        <!-- /app/img/php_img.jpg -->
+        <span class="glyphicon glyphicon-remove form-control-feedback"
+          ng-show="editLangForm.editLangUrl.$dirty && editLangForm.editLangUrl.$invalid">
+        </span>
+        <span class="glyphicon glyphicon-ok form-control-feedback"
+          ng-show="editLangForm.editLangUrl.$dirty && editLangForm.editLangUrl.$valid">
+        </span>
+      </div>
+
+      <div class=" my-error">
+        <span ng-show="editLangForm.editLangUrl.$dirty && editLangForm.editLangUrl.$invalid">
+          <span ng-show="editLangForm.editLangUrl.$error.required">Img URL is required.</span>
+          <span ng-show="editLangForm.editLangUrl.$error.pattern">Invalid Img URL editress.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" ng-disabled="editLangForm.$invalid" >Save</button>
+    <button class="btn btn-warning" ng-click="source.editShow=false">Cancel</button>
+  </div>
+<!-- editLanguage(source) -->
+</form>

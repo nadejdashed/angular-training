@@ -1,0 +1,30 @@
+<div ng-form name="myForm" >
+  <div class="form-group col-md-6">
+    <label for="img-url">Language Img URL:</label>
+    <div class="has-feedback"
+      ng-class="{ 'has-error': myForm.addLangUrl.$dirty && myForm.addLangUrl.$invalid,
+        'has-success': myForm.addLangUrl.$dirty && myForm.addLangUrl.$valid }">
+    <input type="text" class="form-control" id="img-url"
+      name="addLangUrl" placeholder="URL"
+      ng-model="source" ng-model-options="{ updateOn: 'blur' }"
+      required="required" pattern="(https?:\/\/.{1,}\.(png|jpg|jpeg|gif|svg)$|\/app\/img\/.{1,}\.(png|jpg|jpeg|gif|svg)$)"
+    />
+    <!-- http://ecx.images-amazon.com/images/I/41KcvYbAEOL.png -->
+    <!-- /app/img/php_img.jpg -->
+    <span class="glyphicon glyphicon-remove form-control-feedback"
+      ng-show="myForm.addLangUrl.$dirty && myForm.addLangUrl.$invalid"></span>
+    <span class="glyphicon glyphicon-ok form-control-feedback"
+      ng-show="myForm.addLangUrl.$dirty && myForm.addLangUrl.$valid"></span>
+    </div>
+    <div class=" my-error">
+      <span ng-show="myForm.addLangUrl.$dirty && myForm.addLangUrl.$invalid">
+        <span ng-show="myForm.addLangUrl.$error.required">Img URL is required.</span>
+        <span ng-show="myForm.addLangUrl.$error.pattern">Invalid Img URL address.</span>
+      </span>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-12">
+  <img ng-src="{{ source }}" class="img-responsive current-img" />
+</div>

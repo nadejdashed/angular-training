@@ -18,6 +18,9 @@
     "angular-mocks": "latest",
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "components-font-awesome": "latest",
+    "ngstorage": "latest",
+    "angular-cookies": "latest"
   }
 }
