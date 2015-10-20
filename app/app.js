@@ -29,12 +29,12 @@
                 .state("authorization.signIn", {
                     url: "/signIn",
                     templateUrl: "templates/authorizationAndRegistration/authorizationForm.html",
-                    controller: "signInController",
-                    resolve: {
-                        getUser: function(userService){
-                            return userService.getUser();
-                        }
-                    }
+                    controller: "signInController"
+                    //resolve: {
+                    //    getUser: function(userService){
+                    //        return userService.getUser();
+                    //    }
+                 //   }
                 })
                 .state("authorization.registration", {
                     url: "/registration",

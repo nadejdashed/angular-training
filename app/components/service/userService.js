@@ -1,6 +1,18 @@
 
 module.service('userService', function ($q, $http) {
 
+    this.login = function (user) {
+        var deferred = $q.defer();
+
+        $http.post('/auth', user)
+            .then(function (data) {
+                console.log(data);
+            }, function () {
+                deferred.reject('error');
+            });
+        return deferred.promise;
+    };
+
     this.getUser = function () {
         var deferred = $q.defer();
 

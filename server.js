@@ -41,7 +41,7 @@ app.use(expressIO.static(__dirname + '/' + folder));
 
 // Authorization
 function checkAuth(req, res, next) {
-    /*var strToken = req.headers["authorization"],
+    var strToken = req.headers["authorization"],
      token;
      currentUser = {};
      token = strToken ? req.headers["authorization"].replace('Bearer ', '') : '';
@@ -60,8 +60,7 @@ function checkAuth(req, res, next) {
      .send({status: 'error', code: "NOPERMISSION", error: "No authorized"});
      }
      }
-     });*/
-    next();
+     });
 }
 app.post('/register', function(req, res){
     var login = req.body.login,

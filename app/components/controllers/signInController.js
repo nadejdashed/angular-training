@@ -1,9 +1,10 @@
 (function (module) {
 
-    var signInController = function ($scope, getUser) {
+    var signInController = function ($scope, userService) {
 
         $scope.UserAuthentication = function (user) {
-            console.log(getUser);
+           // console.log(getUser);
+            userService.login(user);
            // userAuthorizationService.userAuthentication(user);
         };
     };
