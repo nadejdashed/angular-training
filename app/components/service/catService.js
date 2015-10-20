@@ -43,7 +43,7 @@ module.service('catService', function ($q, $http) {
     };
 
     this.deleteCat = function (catId) {
-        $http.delete('/cats/'+ catId, {params: {id: catId}}).success(function (data, status) {
+        $http.delete('/cats/'+ catId).success(function () {
             console.log('deleted');
         });
     };

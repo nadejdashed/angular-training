@@ -1,19 +1,27 @@
+module.service('userService', function ($q, $http, localStorageService, cookiesService) {
+    var token = localStorageService.get('token');
+    var user = cookiesService.getCookie('userData');
 
-module.service('userService', function ($q, $http) {
-
-    this.login = function (user) {
-        var deferred = $q.defer();
-
-        $http.post('/auth', user)
-            .then(function (data) {
-                console.log(data);
-            }, function () {
-                deferred.reject('error');
-            });
-        return deferred.promise;
+    this.logout = function(){
+        token = undefined;
+        localStorageService.remove('token'); //@todo add removeItem into localStorageService
+        cookiesService.removeCookie('userData');
     };
 
-    this.getUser = function () {
+    this.login = function (user) {
+        $http.post('/auth', user).then(function(resp){
+            token = resp.data.token;
+
+            localStorageService.set('token', token);
+            cookiesService.setCookie('userData', resp.data.user);
+        })
+    };
+
+    this.getToken = function(){
+        return token;
+    };
+
+    this.getUser = function () {  // don't need for now
         var deferred = $q.defer();
 
         $http.get('/auth')

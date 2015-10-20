@@ -7,7 +7,11 @@ module.service('localStorageService', function($window){
      };
 
      this.get = function (login){
-          return  JSON.parse($window.localStorage.getItem(login));
+          return  $window.localStorage.getItem(login);
+     };
+
+     this.remove = function(name){
+          $window.localStorage.removeItem(name);
      };
 
 });

@@ -4,7 +4,7 @@
 
         $scope.UserAuthentication = function (user) {
            // console.log(getUser);
-            userService.login(user);
+            console.log(userService.login(user));
            // userAuthorizationService.userAuthentication(user);
         };
     };

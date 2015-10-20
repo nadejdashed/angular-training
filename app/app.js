@@ -1,7 +1,9 @@
 (function () {
     "use strict";
     angular.module("app", ["ngCookies", "ui.router"])
-        .config(function ($stateProvider, $urlRouterProvider) {
+        .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+
+            $httpProvider.interceptors.push('authInterceptorService');
 
             $urlRouterProvider.otherwise("/");
 

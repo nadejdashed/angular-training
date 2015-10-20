@@ -13,13 +13,9 @@ var savedUser = {}, currentUser = {},
     fields = {
         id: 'id',
         name: 'name',
-        link: 'src',
-        clickCount: 0,
-        view: 0,
-        addCatTime: 0,
-        vote: 'vote',
-        creator: '',
-        userVotes: []
+        src: 'link',
+        vote: 'clickCount',
+        owner: 'creator'
     };
 
 // Default configuration
@@ -136,7 +132,7 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
         instance = result.filter(function(el){return el[fields.id] == id})[0],
         data = req.body;
 
-    if (currentUser.login === instance.owner){
+    if (currentUser.login === instance[fields.owner]){
         extend(instance, data);
         fs.writeFile(fileName, JSON.stringify(result), function(err) {
             console.log(err ? err : "JSON saved to " + fileName);
@@ -158,7 +154,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
         instances = result,
         ind = instances.indexOf(instance);
 
-    if (currentUser.login === instance.owner){
+    if (currentUser.login === instance[fields.owner]){
         if (ind >= 0) {instances.splice(ind, 1);}
         fs.writeFile(fileName, JSON.stringify(result), function(err) {
             console.log(err ? err : "JSON saved to " + fileName);

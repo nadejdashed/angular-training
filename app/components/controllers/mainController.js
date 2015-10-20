@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catService, $stateParams, userAuthorizationService) { // , mainService  --> add after $scope
+    var mainController = function ($scope, catService, $stateParams, userAuthorizationService, userService) { // , mainService  --> add after $scope
         $scope.sort = "-name";
 
         var activeUser = userAuthorizationService.getActiveUser('userData');
@@ -9,7 +9,7 @@
         $scope.logoutButtonShow = userAuthorizationService.isUserActive(activeUser);
 
         $scope.logout = function(){
-            userAuthorizationService.logoutUser('userData');
+            userService.logout('userData');
             $scope.logoutButtonShow = false;
         };
 
