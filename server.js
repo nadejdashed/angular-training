@@ -5,7 +5,7 @@ var expressIO = require('express.io'),
     extend = require('util')._extend,
     app = expressIO();
 
-var savedUser = {},
+var savedUser = {}, currentUser = {},
   securityCode = 'monkey',
   folder = process.argv[2] !== 'debug' ? 'build' : 'app',
   fileName = './json/cats.json',
@@ -40,6 +40,7 @@ function checkAuth(req, res, next) {
   /*var strToken = req.headers["authorization"],
     token;
 
+  currentUser = {};
   token = strToken ? req.headers["authorization"].replace('Bearer ', '') : '';
   jwt.verify(token, securityCode, function(err, decoded) {
     if (err) {
@@ -48,6 +49,7 @@ function checkAuth(req, res, next) {
         .send({status: 'error', code: "NOPERMISSION", error: "Session expired"});
     } else {
       if (decoded.login === savedUser.login && decoded.password === savedUser.password) {
+        currentUser = decoded;
         next();
       } else {
         res
@@ -132,15 +134,20 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
       instance = result.filter(function(el){return el[fields.id] == id})[0],
       data = req.body;
 
+  if (currentUser.login === instance.owner){
     extend(instance, data);
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
-        console.log(err ? err : "JSON saved to " + fileName);
-        if (err){
-            res.error(err);
-        } else {
-            res.send(result);
-        }
+      console.log(err ? err : "JSON saved to " + fileName);
+      if (err){
+        res.error(err);
+      } else {
+        res.send(result);
+      }
     });
+  } else {
+    res.status(405).send({status: 'error', code: "NOPERMISSION", error: "No permissions"});
+  }
+
 });
 app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
     var id = req.params.id,
@@ -149,6 +156,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
       instances = result,
       ind = instances.indexOf(instance);
 
+  if (currentUser.login === instance.owner){
     if (ind >= 0) {instances.splice(ind, 1);}
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
         console.log(err ? err : "JSON saved to " + fileName);
@@ -158,6 +166,9 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
             res.send(result);
         }
     });
+  } else {
+    res.status(405).send({status: 'error', code: "NOPERMISSION", error: "No permissions"});
+  }
 });
 
 exports = module.exports = app;
