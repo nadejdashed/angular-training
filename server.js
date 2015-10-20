@@ -1,22 +1,25 @@
-var expressIO = require('express.io'),
-    serveStatic = require('serve-static'),
-    fs = require('fs'),
-    jwt = require("jsonwebtoken");
-    extend = require('util')._extend,
-    app = expressIO();
-
-var savedUser = {},
-  securityCode = 'monkey',
-  folder = process.argv[2] !== 'debug' ? 'build' : 'app',
-  fileName = './json/events.json',
+// VARIABLES for changes - ADD your changes only here
+var fileName = './json/events.json',
   instanceName = '/events',
   fields = {
     id: 'id',
     name: 'name',
     url: 'src',
     vote: 'vote',
-    owner: 'owner'
+    owner: 'owner',
+    date: 'date'
   };
+
+// SERVER variables
+var expressIO = require('express.io'),
+    serveStatic = require('serve-static'),
+    fs = require('fs'),
+    jwt = require("jsonwebtoken");
+    extend = require('util')._extend,
+    app = expressIO(),
+    securityCode = 'monkey',
+    folder = process.argv[2] !== 'debug' ? 'build' : 'app',
+    authFilename = './json/users.json';
 
 // Default configuration
 app.use(expressIO.cookieParser());
@@ -47,40 +50,42 @@ function checkAuth(req, res, next) {
         .status(403)
         .send({status: 'error', code: "NOPERMISSION", error: "Session expired"});
     } else {
-      if (decoded.login === savedUser.login && decoded.password === savedUser.password) {
-        next();
-      } else {
-        res
-          .status(401)
-          .send({status: 'error', code: "NOPERMISSION", error: "No authorized"});
-      }
+      req.user = decoded;
+      next();
     }
   });
 }
 app.post('/register', function(req, res){
   var login = req.body.login,
     password = req.body.password,
-    password2 = req.body.password2;
+    password2 = req.body.password2,
+    users = require(authFilename);
 
   if (login && password && password === password2){
-    savedUser.login = login;
-    savedUser.password = password;
-    res.send({status: 'success'});
+    users[login] = password;
+    fs.writeFile(authFilename, JSON.stringify(users), function(err) {
+      if (err){
+        res.error({status: 'error'});
+      } else {
+        res.send({status: 'success'});
+      }
+    });
   } else {
     res.error({status: 'error'});
   }
 });
 app.get('/auth', checkAuth, function(req, res){
-  res.send({status: 'success'});
+  res.send({status: 'success', user: req.user});
 });
 app.post('/auth', function(req, res) {
   var user = {
       login: req.body.login,
       password: req.body.password
     },
+    users = require(authFilename),
     token;
 
-  if (user.login && user.password && user.login === savedUser.login && user.password === savedUser.password) {
+  if (user.login && user.password && users[user.login] && user.password === users[user.login]) {
     token = jwt.sign(user, securityCode);
     res.send({
       status: 'success',
@@ -112,7 +117,7 @@ app.post(instanceName, checkAuth, function(req, res){
     data[fields.id] = lastId + 1;
     data[fields.vote] = 0;
     data[fields.src] = data[fields.src] || "";
-    data[fields.owner] = savedUser.login;
+    data[fields.owner] = req.user.login;
     //data.date = new Date();
 
     result.push(data);
@@ -131,15 +136,22 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
       instance = result.filter(function(el){return el[fields.id] == id})[0],
       data = req.body;
 
-    extend(instance, data);
-    fs.writeFile(fileName, JSON.stringify(result), function(err) {
+    if (req.user.login === instance[fields.owner]) {
+      extend(instance, data);
+      fs.writeFile(fileName, JSON.stringify(result), function (err) {
         console.log(err ? err : "JSON saved to " + fileName);
-        if (err){
-            res.error(err);
+        if (err) {
+          res.error(err);
         } else {
-            res.send(result);
+          res.send(result);
         }
-    });
+      });
+    } else  {
+      res
+        .status(405)
+        .send({status: 'error', code: "NOPERMISSION", error: "No permission"});
+    }
+
 });
 app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
     var id = req.params.id,
@@ -148,15 +160,22 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
       instances = result,
       ind = instances.indexOf(instance);
 
-    if (ind >= 0) {instances.splice(ind, 1);}
-    fs.writeFile(fileName, JSON.stringify(result), function(err) {
+    if (req.user.login === instance[fields.owner]){
+      if (ind >= 0) {instances.splice(ind, 1);}
+      fs.writeFile(fileName, JSON.stringify(result), function(err) {
         console.log(err ? err : "JSON saved to " + fileName);
         if (err){
-            res.error(err);
+          res.error(err);
         } else {
-            res.send(result);
+          res.send(result);
         }
-    });
+      });
+    } else {
+      res
+        .status(405)
+        .send({status: 'error', code: "NOPERMISSION", error: "No permission"});
+    }
+
 });
 
 exports = module.exports = app;

@@ -22,15 +22,22 @@
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <script src="/app/components/controllers/main.controller.js"></script>
     <script src="/app/components/controllers/events.controller.js"></script>
-    <script src="/app/components/controllers/addEvent.controller.js"></script>
+    <script src="/app/components/controllers/event.controller.js"></script>
+    <script src="/app/components/controllers/changeEvent.controller.js"></script>
     <script src="/app/components/controllers/info.controller.js"></script>
-    <script src="/app/components/controllers/login.controller.js"></script>
+    <script src="/app/components/controllers/auth.controller.js"></script>
+
     <script src="/app/components/filters/vote.filter.js"></script>
+
     <script src="/app/components/services/events.service.js"></script>
     <script src="/app/components/services/profile.service.js"></script>
     <script src="/app/components/services/auth.service.js"></script>
-    <script src="/app/components/services/authInterceprot.service.js"></script>
+    <script src="/app/components/services/permission.service.js"></script>
+
+    <script src="/app/components/interceptors/auth.interceprot.js"></script>
+
     <script src="/app/components/directives/event.directive.js"></script>
     <script src="/app/components/directives/imagePreview.directive.js"></script>
     <!-- /build -->
@@ -40,26 +47,32 @@
 </head>
 <body ng-app="eventApp" class="ng-cloak">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" ng-controller="mainController">
         <a class="navbar-brand" href="/">Events</a>
         <ul class="nav navbar-nav">
-            <li>
+            <li ng-class="{active: isSelected('events')}">
                 <a ui-sref="events">Home</a>
             </li>
-            <li>
+            <li ng-show="canAdd" ng-class="{active: isSelected('events.add')}">
                 <a ui-sref="events.add">Add Event</a>
             </li>
-            <li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+            <li ng-hide="isAuthenticated" ng-class="{active: isSelected('login')}">
                 <a ui-sref="login">Login</a>
+            </li>
+            <li ng-hide="isAuthenticated" ng-class="{active: isSelected('register')}">
+                <a ui-sref="register">Registration</a>
+            </li>
+            <li ng-show="isAuthenticated">
+                <a href="#" ng-click="logout($event)">Logout</a>
             </li>
         </ul>
     </nav>
 
-    <div ng-include="'templates/login.html'"></div>
-
     <div class="container">
         <div ui-view="info"></div>
-        <div ui-view="events"></div>
+        <div ui-view></div>
     </div>
 
 </body>

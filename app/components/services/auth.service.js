@@ -1,23 +1,26 @@
 angular.module('eventApp').factory('authService', function($http, $window){
-	var token = $window.localStorage.getItem('token');
-	console.log(token);
+	var token = $window.localStorage.getItem('token'),
+		user;
+
+	$http.get('/auth').then(function(resp){
+		user = resp.data.user;
+	});
 
 	function register(data){
-		$http.post('/register', data).then(function(resp){
-			console.log(resp);
-		})
+		return $http.post('/register', data);
 	}
 
 	function login(data){
-		$http.post('/auth', data).then(function(resp){
-			console.log(resp);
+		return $http.post('/auth', data).then(function(resp){
 			token = resp.data.token;
+			user = resp.data.user;
 			$window.localStorage.setItem('token', token);
-		})
+		});
 	}
 
 	function logout(){
 		token = undefined;
+		user = null;
 		$window.localStorage.removeItem('token');
 	}
 
@@ -25,10 +28,15 @@ angular.module('eventApp').factory('authService', function($http, $window){
 		return token;
 	}
 
+	function getUser(){
+		return user;
+	}
+
 	return {
 		register: register,
 		login: login,
 		logout: logout,
-		getToken: getToken
+		getToken: getToken,
+		getUser: getUser
 	}
 });

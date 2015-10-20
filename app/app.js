@@ -9,7 +9,7 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(func
 		url: '/',
 		views: {
 			info: {templateUrl: '/templates/info.html', controller: 'infoController'},
-			events: {
+			'': {
 				templateUrl: '/templates/events.html',
 				controller: 'eventsController',
 				resolve: {
@@ -20,17 +20,21 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(func
 			}
 		}
 	}).state('events.add', {
-		url: 'addEvent',
-		templateUrl: '/templates/addEvent.html',
-		controller: 'addEventController'
+		url: '/event/new',
+		templateUrl: '/templates/eventForm.html',
+		controller: 'changeEventController'
 	}).state('events.edit', {
-		url: 'edit/:id',
-		templateUrl: '/templates/addEvent.html',
-		controller: 'addEventController'
+		url: '/edit/:id',
+		templateUrl: '/templates/eventForm.html',
+		controller: 'changeEventController'
 	}).state('login', {
-		url: 'login',
+		url: '/login',
 		templateUrl: '/templates/login.html',
-		controller: 'loginController'
+		controller: 'authController'
+	}).state('register', {
+		url: '/register',
+		templateUrl: '/templates/register.html',
+		controller: 'authController'
 	});
 
 	$httpProvider.interceptors.push('authInterceptor');
@@ -46,7 +50,7 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(func
 			}
 		}
 	}).when('/addEvent/:id?', {
-		templateUrl: '/templates/addEvent.html',
+		templateUrl: '/templates/eventForm.html',
 		controller: 'addEventController',
 		resolve: {
 			'loadedEvent': function(events, $route){
@@ -59,24 +63,6 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(func
 	}).otherwise({
 		redirectTo: '/'
 	});*/
-
-	/*$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location) {
-		return {
-			'request': function (config) {
-				config.headers = config.headers || {};
-				if (token) {
-					config.headers.Authorization = 'Bearer ' + $localStorage.token;
-				}
-				return config;
-			},
-			'responseError': function(response) {
-				if(response.status === 401 || response.status === 403) {
-					$location.path('/signin');
-				}
-				return $q.reject(response);
-			}
-		};
-	}]);*/
 
 	/*$provide.decorator('ngClickDirective', [
 		'$delegate', '$parse',

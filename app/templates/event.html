@@ -15,7 +15,10 @@
 			<div><strong>Date:</strong>{{event.date | date}}</div>
 			<div><strong>Vote:</strong>{{event.vote | voteReaction:5:-1}}</div>
 		</div>
-		<!--<a ng-href="/addEvent/{{event.id}}">Edit</a>-->
-		<a ui-sref="events.edit({id: event.id})">Edit</a>
+
+		<div ng-show="canEditAndDelete">
+			<a ui-sref="events.edit({id: event.id})">Edit</a>
+			<a href="#" ng-click="deleteEvent($event, event)">Delete</a>
+		</div>
 	</div>
 </div>

@@ -11,14 +11,25 @@ angular.module('eventApp').factory('events', function($resource, $q ){
 		return Event.get({id: id});
 	}
 
-	function addEvent(event){
-		var savedEvent = Event.save(event);
-		return savedEvent.$promise;
+	function saveEvent(event){
+		var promise;
+		if (event.id){
+			promise = event.$update();
+		} else {
+			promise = Event.save(event).$promise;
+		}
+		return promise;
+	}
+
+	function deleteEvent(event){
+		event.$remove();
+		return event.$promise;
 	}
 
 	return {
 		getEvents: getEvents,
-		addEvent: addEvent,
-		getEvent: getEvent
+		saveEvent: saveEvent,
+		getEvent: getEvent,
+		deleteEvent: deleteEvent
 	};
 });

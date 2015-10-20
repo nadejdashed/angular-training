@@ -1,4 +1,4 @@
-angular.module('eventApp').controller('addEventController', function($scope, $location, $stateParams, events){
+angular.module('eventApp').controller('changeEventController', function($scope, $location, $stateParams, events){
 
 	var id = $stateParams.id;
 	if (id) {
@@ -9,11 +9,11 @@ angular.module('eventApp').controller('addEventController', function($scope, $lo
 		$event.preventDefault();
 
 		if ($scope.addEventForm.$valid){
-			events.addEvent($scope.event).then(function(){
+			events.saveEvent($scope.event).then(function(){
 				$location.url('/');
 			});
 		} else {
-			console.log('invalid');
+			console.log('Add form invalid');
 		}
 	};
 

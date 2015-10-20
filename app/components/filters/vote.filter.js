@@ -7,7 +7,7 @@ angular.module('eventApp').filter('voteReaction', function(){
 		} else if (data < param2){
 			str = 'Oops!'
 		}
-		return data + ' ' + str;
+		return [data, str].join(' ');
 	};
 
 });
