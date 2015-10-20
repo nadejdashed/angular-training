@@ -1,5 +1,5 @@
 "use strict";
-angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(function($locationProvider, $stateProvider, $urlRouterProvider){
+angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
 	$locationProvider.hashPrefix('!');
 
@@ -27,7 +27,13 @@ angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(func
 		url: 'edit/:id',
 		templateUrl: '/templates/addEvent.html',
 		controller: 'addEventController'
+	}).state('login', {
+		url: 'login',
+		templateUrl: '/templates/login.html',
+		controller: 'loginController'
 	});
+
+	$httpProvider.interceptors.push('authInterceptor');
 
 	/*$locationProvider.html5Mode(true);
 

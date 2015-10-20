@@ -25,9 +25,12 @@
     <script src="/app/components/controllers/events.controller.js"></script>
     <script src="/app/components/controllers/addEvent.controller.js"></script>
     <script src="/app/components/controllers/info.controller.js"></script>
+    <script src="/app/components/controllers/login.controller.js"></script>
     <script src="/app/components/filters/vote.filter.js"></script>
     <script src="/app/components/services/events.service.js"></script>
     <script src="/app/components/services/profile.service.js"></script>
+    <script src="/app/components/services/auth.service.js"></script>
+    <script src="/app/components/services/authInterceprot.service.js"></script>
     <script src="/app/components/directives/event.directive.js"></script>
     <script src="/app/components/directives/imagePreview.directive.js"></script>
     <!-- /build -->
@@ -46,8 +49,13 @@
             <li>
                 <a ui-sref="events.add">Add Event</a>
             </li>
+            <li>
+                <a ui-sref="login">Login</a>
+            </li>
         </ul>
     </nav>
+
+    <div ng-include="'templates/login.html'"></div>
 
     <div class="container">
         <div ui-view="info"></div>

@@ -1,0 +1,16 @@
+<div ng-controller="loginController">
+	<input type="text" ng-model="registerUser.login"/>
+	<input type="password" ng-model="registerUser.password"/>
+	<input type="password" ng-model="registerUser.password2"/>
+	<button ng-click="register(registerUser)">Register</button>
+
+	</br>
+
+	<input type="text" ng-model="loginUser.login"/>
+	<input type="password" ng-model="loginUser.password"/>
+	<button ng-click="login(loginUser)">Login</button>
+
+	</br>
+
+	<button ng-click="logout()">Logout</button>
+</div>
