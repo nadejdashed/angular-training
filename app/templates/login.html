@@ -1,0 +1,11 @@
+<div ng-show="!logoutButtonShow">
+    <span class="bg-info cursor btn"><a ui-sref="authorization.registration">Registration</a></span>
+    <span class="bg-info cursor btn"><a ui-sref="authorization.signIn">Authorization</a></span>
+</div>
+
+<div ui-view></div>
+
+<div ng-show="logoutButtonShow">
+   <h1> [{{activeUserLogin}}] </h1>
+<span  class="bg-danger cursor btn" ng-click="logout()">Logout</span>
+</div>

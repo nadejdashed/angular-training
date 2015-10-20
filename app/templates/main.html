@@ -1,3 +1,12 @@
+<div ui-view></div>
+
+<span ng-show="logoutButtonShow">[ {{ activeUserLogin }} ]</span>
+
+<br />
+
+<span ng-show="logoutButtonShow" class="bg-danger cursor btn" ng-click="logout()">Logout</span>
+
+
 <div class="main">
 
     <div class="search">
@@ -23,20 +32,25 @@
 
     <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: { name: searchCatNameFilter } | orderBy: sort">
         <h1 class="cursor" ng-click="show(cat)">{{ cat.clickCount | clickCountFilter }} Name: {{ cat.name }} <span ng-show="cat.view">&#8730;</span></h1>
+
+        <div ng-show="logoutButtonShow">
+            <div ng-show="cat.creator === activeUserLogin">
+                <span  class="bg-danger cursor"><a ng-href = "#/edit/{{cat.id}}">Edit</a></span>
+                <span  class="bg-danger cursor" ng-click="deleteCat(cat.id)">Delete</span>
+            </div>
+        </div>
     </div>
 
     <div class="selected-cat">
         <div class="bg-success">
             <h1>Current Name: {{ selectedCat.name }}</h1>
             <h2>Click count: {{ selectedCat.clickCount }}</h2>
-            <h2>Created {{ selectedCat.addCatTime | date:"MM/dd/yyyy 'at' h:mma" }}</h2>
+            <h2>Created {{ selectedCat.addCatTime | date:"dd-MMM-yyyy" }}</h2>
         </div>
 
         <div style="margin-left: 115px;">
             <img class="cat-photo" ng-src="{{selectedCat.link}}">
-
-            <span class="btn btn-success" ng-click="like(selectedCat)">&#8593;</span>
-            <span class="btn btn-danger" ng-click="dislike(selectedCat)">&#8595;</span>
+            <vote-spinner ng-show="logoutButtonShow" current-cat="selectedCat"></vote-spinner>
         </div>
     </div>
 </div>

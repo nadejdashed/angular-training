@@ -39,3 +39,7 @@ body {
 .cursor {
 	cursor: pointer;
 }
+
+.center{
+	text-align: center;
+}

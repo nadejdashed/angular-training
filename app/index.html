@@ -9,19 +9,41 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
     <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+
+    <script src="/app/components/controllers/isUserActiveController.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/signInController.js"></script>
+    <script src="/app/components/controllers/registrationController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
+
+    <script src="/app/components/service/catService.js"></script>
+    <script src="/app/components/service/localStorageService.js"></script>
+    <script src="/app/components/service/userAuthorizationService.js"></script>
+    <script src="/app/components/service/cookiesService.js"></script>
+    <script src="/app/components/service/userService.js"></script>
+
+    <script src="/app/components/directive/imagePreviewDirective.js"></script>
+    <script src="/app/components/directive/voteSpinnerDirective.js"></script>
+    <script src="/app/components/directive/addCatNameFocusDirective.js"></script>
+    <script src="/app/components/directive/saveCatButtonPressEnterDirective.js"></script>
+
     <script src="/app/components/filter/clickCountFilter.js"></script>
-    <!--<script src="/app/components/controllers/mainController.js"></script>-->
     <!-- /build -->
 </head>
+
 <body ng-app="app" ng-cloak>
-    <a href="/app/index.html">Home Page</a> ||
-    <a href="addCat.html">Add Cat</a>
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
-    </div>
+
+   || <a ui-sref="mainPage">Home</a> ||
+    <a ui-sref="addCat">Add Cat</a> ||
+    <a ui-sref="authorization">Authorization</a> ||
+
+    <div ui-view></div>
+
+
 
 </body>
 </html>
