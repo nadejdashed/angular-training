@@ -33,7 +33,8 @@
             </a>
           </li>
 
-          <div class="col-md-3 btn-group">
+          <!-- ng-if="editPermission(lang)" -->
+          <div class="col-md-3 btn-group" ng-if="editPermission(lang)">
             <button class="btn btn-warning " ng-click="editLanguageShow(lang)" >
               <span class="glyphicon glyphicon-pencil"></span>
             </button>

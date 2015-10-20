@@ -1,4 +1,5 @@
 (function(module) {
+    "use strict";
 
     var ngFocus = function () {
       return {

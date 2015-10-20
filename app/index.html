@@ -21,8 +21,11 @@
     <script src="/app/components/controllers/registerController.js"></script>
     <script src="/app/components/controllers/votesController.js"></script>
 
-    <script src="/app/components/services/usersStorageService.js"></script>
+    <!-- <script src="/app/components/services/usersStorageService.js"></script> -->
     <script src="/app/components/services/dataService.js"></script>
+    <!-- <script src="/app/components/services/permissionsService.js"></script> -->
+    <script src="/app/components/services/authService.js"></script>
+    <script src="/app/components/services/authInterceptorService.js"></script>
 
     <script src="/app/components/directives/votesDirective.js"></script>
     <script src="/app/components/directives/editLanguageDirective.js"></script>
@@ -46,7 +49,7 @@
           <li ng-class=""><a href="#/add-language">
             <span class="glyphicon glyphicon-plus-sign"></span> Add Language
           </a></li>
-          <li><a href="#/register">
+          <li><a href="#/authentication">
             <span class="glyphicon glyphicon-log-in"></span> Login/Register
           </a></li>
           <li><a href="#/about">

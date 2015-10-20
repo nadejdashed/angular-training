@@ -1,6 +1,7 @@
 ﻿(function(module) {
-
-    var mainController = function ($scope, dataService, $location) {
+    "use strict";
+    //, permissionsService
+    var mainController = function ($scope, $location, dataService, authService) {
 
       $scope.languagesArray = [];
       $scope.currentLanguage = {};
@@ -9,6 +10,18 @@
         $scope.languagesArray = data;
         $scope.currentLanguage = $scope.languagesArray[0];
       });
+
+      $scope.editPermission = function(language) {
+        var user = authService.getUser();
+        var canEdit = false;
+        if (user) {
+          if (user === language.owner) {
+            canEdit = true;
+          }
+        }
+        return canEdit;
+         //return permissionsService.canEditPermission(language);
+      };
 
       $scope.deleteLanguage = function(language) {
         dataService.deleteLanguage(language).then(function(data) {

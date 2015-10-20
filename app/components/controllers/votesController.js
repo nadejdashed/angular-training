@@ -1,5 +1,6 @@
 (function(module) {
-
+  "use strict";
+  
   var votesController = function ($scope, dataService) {
 
     $scope.votes = function(language, param) {

@@ -1,50 +1,41 @@
 (function(module) {
-
-    var registerController = function ($scope, usersStorageService, $cookies, $location) {
+    "use strict";
+    // usersStorageService
+    var registerController = function ($scope, $location, authService) {
 
       $scope.cancel = function() {
         $location.path('/');
       };
 
-      $scope.registerUser = function(myuser) {
+      $scope.registerUser = function(newUser) {
         var user = {
-          login: myuser.login,
-          password: myuser.password,
-          email: myuser.email
+          login: newUser.login,
+          password: newUser.password,
+          password2: newUser.password2,
+          email: newUser.email
         };
-        var regUser = usersStorageService.registerUser(user);
-
-        if (regUser !== false) {
-          console.log(regUser);
-        } else {
-          console.log("Login already exist");
-        }
+        //var regUser = usersStorageService.registerUser(user);
+        var regUser = authService.register(user);
+        console.log(regUser);
       };
 
       $scope.loginUser = function(logUser) {
-        var checkLogin = usersStorageService.loginUser(logUser);
-        if (checkLogin === false) {
-          console.log("Login or Password are WRONG!!");
-        } else if (checkLogin === 'loged') {
-          console.log("User already loged in");
-        } else {
-          console.log($cookies.getObject('UserLogin'));
-        }
+        //var login = usersStorageService.loginUser(logUser);
+        var login = authService.login(logUser);
+        console.log(login);
       };
 
       $scope.logout = function() {
-        $cookies.remove('UserLogin');
-        console.log($cookies.getObject('UserLogin'));
+        //usersStorageService.userLogout();
+        authService.logout();
+        console.log('Logout');
       };
 
       $scope.showLg = true;
-      
+
       $scope.showLoginTab = function() {
         $scope.showLg = !$scope.showLg;
-        console.log($scope.showLg);
       };
-
-      $scope.getUser = $cookies.getObject('UserLogin') | false;
 
     };
 

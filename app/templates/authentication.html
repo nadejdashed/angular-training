@@ -1,15 +1,15 @@
-<div ng-controller="registerController" class="container" >
+<div  class="container" >
   <ul class="nav nav-tabs">
     <li class="" ng-class="{ 'active': showLg, 'disabled' : showLg }" ng-click="showLoginTab()">
-      <a href="#login">Login</a>
+      <a href="#/authentication">Login</a>
     </li>
-    <li class="" ng-class="{ 'active': !showLg, 'disabled' : !showLg}" ng-click="showLoginTab()">
-      <a href="#register" >Register</a>
+    <li class="" ng-class="{ 'active': !showLg, 'disabled' : !showLg }" ng-click="showLoginTab()">
+      <a href="#/authentication" >Register</a>
     </li>
   </ul>
 
   <div class="col-md-6" style="margin-top:20px;">
-    <ng-login id="login" ng-if="showLg"  ></ng-login>
+    <ng-login id="login" ng-if="showLg" ></ng-login>
     <ng-register id="register" ng-if="!showLg"></ng-register>
   </div>
 

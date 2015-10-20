@@ -1,6 +1,8 @@
 (function(module) {
+  "use strict";
 
   module.factory('usersStorageService', function($localStorage, $cookies) {
+
     $localStorage.$default({
        lastId: 1,
        users: []
@@ -10,42 +12,43 @@
       $localStorage.$reset();
     };
 
-    var registerUser = function(user) {
-      var reg = true;
+    var checkLogin = function(user) {
+      var check = {};
+      check.login = false;
       for (var i = 0; i < $localStorage.users.length; i++) {
         if ($localStorage.users[i].login === user.login) {
-          reg = false;
+          user.id = $localStorage.users[i].id;
+          check.login = true;
+          check.id = i;
           break;
         }
       }
-      if (reg) {
+      return check;
+    };
+
+    var registerUser = function(user) {
+      var canRegister = !checkLogin(user).login;
+      if (canRegister) {
         user.id = $localStorage.lastId++;
         $localStorage.users.push(user);
         return user;
       } else {
-        return false;
+        return {error: 'Login already in use, please select onother.'};
       }
     };
 
     var loginUser = function(user) {
-      var login = false;
-      for (var i = 0; i < $localStorage.users.length; i++) {
-        if (user.login === $localStorage.users[i].login && user.password === $localStorage.users[i].password) {
-          login = true;
-          user.id = $localStorage.users[i].id;
-          user.email = $localStorage.users[i].email;
-          break;
-        }
+      var checkUser = checkLogin(user);
+      var canLogin = false;
+      if (checkUser.login && user.password === $localStorage.users[checkUser.id].password) {
+        canLogin = true;
       }
-      if (login) {
-        if ($cookies.getObject('UserLogin').login !== user.login) {
-          $cookies.putObject('UserLogin', user);
-          return user;
-        } else {
-          return 'loged';
-        }
+
+      if (canLogin) {
+        $cookies.putObject('UserLogin', user);
+        return user;
       } else {
-        return false;
+        return {error: 'Wrong Login or Password.'};
       }
     };
 
@@ -53,11 +56,21 @@
       return $localStorage.users;
     };
 
+    var getLoginUser = function() {
+      return $cookies.getObject('UserLogin');
+    };
+
+    var userLogout = function() {
+      $cookies.remove('UserLogin');
+    };
+
     return {
       dropUsers: dropUsers,
       registerUser: registerUser,
       loginUser: loginUser,
-      getAllUsers: getAllUsers
+      getAllUsers: getAllUsers,
+      getLoginUser: getLoginUser,
+      userLogout: userLogout
     };
   });
 

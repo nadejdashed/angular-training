@@ -1,36 +1,35 @@
-<form class="form-horizontal" novalidate>
-<fieldset>
+<form class="form-horizontal" novalidate >
+  <fieldset>
+    <!-- Form Name -->
+    <legend>Login</legend>
 
-<!-- Form Name -->
-<legend>Login</legend>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="usr_login_name">User Login</label>
+      <div class="col-md-8">
+      <input id="usr_login_name" name="usr_login_name" type="text" placeholder="login"
+        class="form-control input-md" required ng-model="logUser.login" />
+      </div>
+    </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="usr_login_name">User Login</label>
-  <div class="col-md-8">
-  <input id="usr_login_name" name="usr_login_name" type="text" placeholder="login"
-    class="form-control input-md" required ng-model="logUser.login" />
-  </div>
-</div>
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="usr_login_password">Password</label>
+      <div class="col-md-8">
+        <input id="usr_login_password" name="usr_login_password" type="password" placeholder="password"
+          class="form-control input-md" required ng-model="logUser.password" />
+      </div>
+    </div>
 
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="usr_login_password">Password</label>
-  <div class="col-md-8">
-    <input id="usr_login_password" name="usr_login_password" type="password" placeholder="password"
-      class="form-control input-md" required ng-model="logUser.password" />
-  </div>
-</div>
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="btn_login"></label>
+      <div class="col-md-8">
+        <button id="btn_login" name="btn_login" class="btn btn-success" ng-click="loginUser(logUser)">Login</button>
+        <button id="btn_logout" name="btn_logout" class="btn btn-danger" ng-click="logout()">Logout</button>
+      </div>
+    </div>
 
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="btn_login"></label>
-  <div class="col-md-8">
-    <button id="btn_login" name="btn_login" class="btn btn-success" ng-click="loginUser(logUser)">Login</button>
-    <button id="btn_logout" name="btn_logout" class="btn btn-danger" ng-click="logout()">Logout</button>
-  </div>
-</div>
-
-</fieldset>
+  </fieldset>
 </form>
 <hr/>

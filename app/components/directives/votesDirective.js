@@ -1,5 +1,6 @@
 (function(module) {
-
+    "use strict";
+    
     var ngVote = function () {
 
       return {
