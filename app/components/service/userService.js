@@ -14,7 +14,7 @@ module.service('userService', function ($q, $http, localStorageService, cookiesS
 
             localStorageService.set('token', token);
             cookiesService.setCookie('userData', resp.data.user);
-        })
+        });
     };
 
     this.getToken = function(){

@@ -2,13 +2,6 @@
 
 <div class="container">
 
-    <span ng-show="logoutButtonShow">[ {{ activeUserLogin }} ]</span>
-
-    <br />
-
-    <span ng-show="logoutButtonShow" class="bg-danger cursor btn" ng-click="logout()">Logout</span>
-
-
     <form name="addCatForm" ng-submit="saveCat()" novalidate>
         <p><h2>Cat name:</h2>
         <input type="text" name="catName" ng-model="catName" focus-input required>

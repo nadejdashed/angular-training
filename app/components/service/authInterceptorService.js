@@ -5,7 +5,7 @@ angular.module('app').factory('authInterceptorService', function($injector, $loc
             var token = userService.getToken();
 
             if (token){
-                config.headers['Authorization'] = 'Bearer ' + token;
+                config.headers.Authorization = 'Bearer ' + token; //['Authorization']
             }
             return config;
         },
@@ -15,5 +15,5 @@ angular.module('app').factory('authInterceptorService', function($injector, $loc
             }
             return $q.reject(response); // because waiting promise
         }
-    }
+    };
 });

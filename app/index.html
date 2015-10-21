@@ -31,8 +31,14 @@
 
     <script src="/app/components/directive/imagePreviewDirective.js"></script>
     <script src="/app/components/directive/voteSpinnerDirective.js"></script>
+    <script src="/app/components/directive/activeUserDirective.js"></script>
     <script src="/app/components/directive/addCatNameFocusDirective.js"></script>
     <script src="/app/components/directive/saveCatButtonPressEnterDirective.js"></script>
+
+    <script src="/app/modules/alerts/alerts.module.js"></script>
+    <script src="/app/modules/alerts/alerts.directive.js"></script>
+    <script src="/app/modules/alerts/alerts.interceptor.js"></script>
+    <script src="/app/modules/alerts/alerts.service.js"></script>
 
     <script src="/app/components/filter/clickCountFilter.js"></script>
     <!-- /build -->
@@ -43,6 +49,7 @@
    || <a ui-sref="mainPage">Home</a> ||
     <a ui-sref="addCat">Add Cat</a> ||
     <a ui-sref="authorization">Authorization</a> ||
+    <active-user></active-user>
 
     <div ui-view></div>
 

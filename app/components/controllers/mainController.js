@@ -1,17 +1,10 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catService, userService) { // , mainService  --> add after $scope
+    var mainController = function ($scope, catService, userService) {
         $scope.sort = "-name";
 
         var activeUser = userService.getActiveUser();
-
-        if(activeUser !== null) $scope.activeUserLogin = activeUser.login;
-        $scope.logoutButtonShow = userService.isUserActive(activeUser);
-
-        $scope.logout = function(){
-            userService.logout('userData');
-            $scope.logoutButtonShow = false;
-        };
+        $scope.activeUserLogin = activeUser && activeUser.login;
 
         catService.getCats().then(function(data){
             $scope.cats = data;

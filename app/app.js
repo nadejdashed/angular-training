@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("app", ["ngCookies", "ui.router"])
+    angular.module("app", ["ngCookies", "ui.router", "alertsModule"])
         .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
             $httpProvider.interceptors.push('authInterceptorService');
@@ -16,17 +16,12 @@
                 .state("addCat", {
                     url: "/addCat",
                     templateUrl: "templates/addCat.html",
-                    controller: "addCatController",
-                    resolve: {
-                        getCats: function(catService){
-                            return catService.getCats();
-                        }
-                    }
+                    controller: "addCatController"
                 })
                 .state("authorization", {
                     url: "/authorization",
-                    templateUrl: "templates/login.html",
-                    controller: "isUserActiveController"
+                    templateUrl: "templates/authorizationAndRegistration/login.html"
+                   // controller: "isUserActiveController"
                 })
                 .state("authorization.signIn", {
                     url: "/signIn",

@@ -1,10 +1,9 @@
 var module = angular.module('app');
 
-module.service('catService', function ($q, $http) {
+module.service('catService', function ($q, $http, $filter, userService) {
 
     this.saveCatAfterEdit = function(catId, data){
         $http.put('/cats/' + catId, data).success(function(result) {
-            console.log(result);
             console.log('success');
         }).error(function() {
             console.log("error");
@@ -38,6 +37,24 @@ module.service('catService', function ($q, $http) {
                 deferred.reject(response);
             });
         return deferred.promise;
+    };
+
+    var catObjCreate = function(catName, catUrl){
+        var date = new Date();
+        var user = userService.getActiveUser();
+
+        var data = {
+            'name': catName,
+            'link': catUrl,
+            'clickCount': 0,
+            'view': 0,
+            'addCatTime': $filter('date')(new Date(),'dd-MMM-yyyy'),
+            'creator': user && user.login
+        };
+        return data;
+    };
+    this.saveCat = function(catName, catUrl){
+        this.pushCats(catObjCreate(catName, catUrl));
     };
 
     this.pushCats = function (data) {
