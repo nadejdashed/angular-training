@@ -8,17 +8,92 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular-route.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+<!--    <script src="/app/components/controllers/userController.js"></script>-->
+    <script src="/app/components/controllers/loginController.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/addController.js"></script>
+    <script src="/app/components/controllers/catProfileController.js"></script>
+    <script src="/app/components/services/service.js"></script>
+<!--    <script src="/app/components/services/userService.js"></script>-->
+    <script src="/app/components/services/authService.js"></script>
+    <script src="/app/components/directives/directives.js"></script>
+    <script src="/app/components/directives/imagePreviewDirective.js"></script>
+    <script src="/app/components/services/authInterceptorService.js"></script>
     <!-- /build -->
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
+<div>
+    <h1>TOP OF THE CAT PAGE</h1>
+</div>
+
+<div id="navbar"  ng-controller="loginController">
+    <a href="#/cats">List Of Cats</a>|
+    <a href="#/addCat">Add Cat</a>|
+    <a href="#/about" >About</a>
+    <a href="#/registration" style="position: fixed; right: 0">Registration</a><br>
+    <a href="#/login" ng-show="!isUserLogedIn()" style="position: fixed; right: 0">login</a><br>
+    <a href="" ng-click="logoutUser()" ng-show="isUserLogedIn()" style="position: fixed; right: 0">logout</a><br>
+</div>
+
+<div ng-view></div>
+
+<div><h1>BOTTOM OF THE CAT PAGE</h1></div>
+
+
+
+<!--
+<div ng-controller="mainController" class="container">
+
+    Search: <input ng-model="searchText.name">
+    <input type="text" ng-model="query.name">
+    <button type="button"  ng-click="search()">search</button>
+
+    <select ng-model="order">
+        <option value="name">NAME</option>
+        <option value="-name">-NAME</option>
+    </select>
+
+
+    <div ng-repeat="cat in cats | filter:searchResult | orderBy:order">
+        <span ng-click="chooseCat(cat)">{{cat.name}}</span>
+        {{cat.counter}}
+        <img ng-src="http://img1.ask.fm/assets2/006/656/481/536/thumb/greentickincircle_21335495.jpg" ng-show="cat.checked"/>
+
     </div>
 
-</body>
-</html>
+    <div ng-show="vievedCat">
+        {{vievedCat.name}}
+        {{vievedCat.counter}}
+        <img ng-src="{{vievedCat.src}}" ng-click="counterInrement(vievedCat)">
+
+        <img ng-src="http://images.clipartlogo.com/files/images/18/184310/tango-go-up_t" ng-click="counterInc(vievedCat)">
+        <img ng-src="http://images.clipartlogo.com/files/images/18/184326/tango-go-down_t" ng-click="counterDec(vievedCat)">
+
+    </div>
+
+</div>
+
+<a href="addCat.html">Add Cat</a>
+-->
+
+
+<!--
+    <style type="text/css">
+        .css-form input.ng-invalid.ng-touched {
+            background-color: #FA787E;
+        }
+
+        .css-form input.ng-valid.ng-touched {
+            background-color: #78FA89;
+        }
+    </style>
+-->
+
+
+</body></html>

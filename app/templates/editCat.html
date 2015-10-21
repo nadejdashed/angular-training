@@ -1,0 +1,12 @@
+<form name="catForm">
+
+    Cat Name<input type="text" value="cat.name" name="catName" ng-model="cat.name" required >
+    <span class="error" ng-show="catForm.catName.$error.required">Required!</span><br>
+
+    Image URL<input focus-me type="url" value="cat.src" name="imageURL" ng-model="cat.src">
+    <span ng-show="catForm.imageURL.$error.url">Not valid url!</span><br>
+
+    <input type="submit" value="Add Cat" ng-click="addCat(cat)"
+           ng-disabled="catForm.catName.$dirty && catForm.catName.$invalid ||
+                                                     catForm.imageURL.$dirty && catForm.imageURL.$invalid">
+</form>

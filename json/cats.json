@@ -1,9 +1,1 @@
-{
-  "responses": [
-    {"id": "0", "name": "Alex", "image": "http://thecatapi.com/?id=9ht", "vote": 0},
-    {"id": "1", "name": "Liuba", "image": "http://thecatapi.com/?id=MTg2ODc5Mw", "vote": 2},
-    {"id": "2", "name": "Viktor", "image": "http://thecatapi.com/?id=953", "vote": 3},
-    {"id": "3", "name": "Albert", "image": "http://thecatapi.com/?id=efh", "vote": 0},
-    {"id": "4", "name": "Yaroslav", "image": "http://thecatapi.com/?id=MjAzNjQ3Mw", "vote": 5}
-  ]
-}
+[{"id":1,"name":"Angular","src":"https://angularjs.org/img/AngularJS-large.png","counter":0},{"name":"Catty","src":"http://dreamatico.com/data_images/cat/cat-2.jpg","id":2,"counter":0},{"name":"Lion","src":"https://www.petfinder.com/wp-content/uploads/2012/11/99059361-choose-cat-litter-632x475-253x190.jpg","id":4,"counter":0},{"name":"CatVV","src":"https://www.petfinder.com/wp-content/uploads/2012/11/86525557-general-cat-care-632x475-253x190.jpg","owner":"vv","id":5,"counter":0},{"name":"OneMoreVV","src":"https://www.petfinder.com/wp-content/uploads/2012/11/99059361-choose-cat-litter-632x475-253x190.jpg","owner":"vv","id":7,"counter":0},{"name":"CatVVAgain","src":"https://www.petfinder.com/wp-content/uploads/2012/11/86525557-general-cat-care-632x475-253x190.jpg","owner":"vv","id":8,"counter":0},{"name":"InterceptorCatEdited","src":"http://dreamatico.com/data_images/cat/cat-2.jpg","id":9,"counter":0,"undefined":"","owner":"qq"},{"name":"OneMoreQQCat","src":"https://www.petfinder.com/wp-content/uploads/2012/11/99059361-choose-cat-litter-632x475-253x190.jpg","id":11,"counter":0,"undefined":"","owner":"qq"},{"src":"https://www.petfinder.com/wp-content/uploads/2012/11/99059361-choose-cat-litter-632x475-253x190.jpg","name":"OneMoreVV","id":12,"counter":0,"owner":"qq"}]
