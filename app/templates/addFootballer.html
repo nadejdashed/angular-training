@@ -1,0 +1,9 @@
+<form novalidate>
+    Name: <input type="text" ng-model="new.name" /><br />
+    Image URL: <input type="text" ng-model="new.src" /><br />
+    Image: <br />
+    <img ng-src="{{new.src}}" width="300px" height="200px">
+    <br />
+    <input type="submit" value="Save" ng-click="saveFootballer(new)" />
+    <input type="button" value="Cancel" />
+</form>

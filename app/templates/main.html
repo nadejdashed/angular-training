@@ -1,1 +1,25 @@
-<h1>{{text}}</h1>
+<input ng-model="searchValue"/>
+<button ng-click="searchFootballer(searchValue)">Search</button>
+<select ng-model="sortFootballer">
+    <option value="name">Asc</option>
+    <option value="-name">Desc</option>
+</select>
+<div style="float: left; width: 400px; height: 700px; margin-top: 20px; margin-right: 50px;" >
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="f in footballers | filter:{name:searchName} | orderBy: sortFootballer" ng-click="selectFootballer(f)">
+            <a href="#">{{f.name}}</a>
+            <span ng-show="f.visited" class="glyphicon glyphicon-ok"></span>
+            <button type="button" ng-show="isOwner(f)" ui-sref="editFootballer({id: f.id})">Edit</button>
+            <button type="button" ng-show="isOwner(f)" ng-click="deleteFootballer(f.id)">Delete</button>
+        </li>
+    </ul>
+</div>
+<div style="margin-top: 20px;">
+    <img ng-src="{{selectedFootballer.src}}">
+    <h3>Name: </h3> {{selectedFootballer.name}}
+    <br />
+    <h3>Clicks: </h3> {{selectedFootballer.clicks}}
+    <br />
+    <button type="button" ng-click="likeFootballer(selectedFootballer)">Like</button>
+    <button type="button" ng-click="dislikeFootballer(selectedFootballer)">Dislike</button>
+</div>
