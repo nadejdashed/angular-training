@@ -54,7 +54,7 @@ module.service('userService', function ($q, $http, localStorageService, $cookies
     this.getActiveUser = function(){
         var cookie = $cookies.getObject('userData');
         
-        return (cookie !== undefined ? cookie : null)
+        return (cookie !== undefined ? cookie : null);
     };
 
     this.checkUserPermissions = function(user){

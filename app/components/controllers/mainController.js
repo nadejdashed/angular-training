@@ -3,6 +3,9 @@
     var mainController = function ($scope, catService, userService, getCats) {
         $scope.sort = "-name";
 
+        var user = userService.getActiveUser();
+        $scope.activeUserLogin = user && user.login;
+
         $scope.checkUserPermissions = function(creator){ //need do iniversal service for all permission
             return userService.checkUserPermissions(creator);
         };
