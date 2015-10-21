@@ -1,5 +1,5 @@
 "use strict";
-angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router']).config(function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider){
+angular.module("eventApp", ['ngCookies', 'ngResource', 'ui.router', 'alertsModule']).config(function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
 	$locationProvider.hashPrefix('!');
 
