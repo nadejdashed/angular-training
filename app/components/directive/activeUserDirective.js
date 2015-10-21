@@ -4,16 +4,19 @@ angular.module('app').directive('activeUser', function(userService) {
         templateUrl: '/app/templates/authorizationAndRegistration/activeUser.html',
         scope: { },
         link: function($scope, element) {
-            var activeUser = userService.getActiveUser();
-
-            if(activeUser)$scope.activeUserLogin = activeUser.login;
-
-            $scope.logoutButtonShow = userService.isUserActive();
 
             $scope.logout = function(){
                 userService.logout('userData');
-                $scope.logoutButtonShow = false;
             };
+
+            $scope.$watch(
+                userService.getActiveUser, //chekatsa function
+                function( activeUser ) {
+                    $scope.activeUserLogin = activeUser && activeUser.login;
+                    $scope.logoutButtonShow = userService.isUserActive();
+                },
+                true
+            );
         }
     };
 });
