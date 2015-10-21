@@ -39,12 +39,7 @@
 
     var loginUser = function(user) {
       var checkUser = checkLogin(user);
-      var canLogin = false;
       if (checkUser.login && user.password === $localStorage.users[checkUser.id].password) {
-        canLogin = true;
-      }
-
-      if (canLogin) {
         $cookies.putObject('UserLogin', user);
         return user;
       } else {

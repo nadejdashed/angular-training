@@ -3,7 +3,8 @@
 
     angular.module("reg", ["ngStorage", "ngCookies"]);
 
-    angular.module("app", [ "reg", "ngRoute"]).config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+    angular.module("app", ["reg", "alertsModule", "ngResource", "ngRoute"])
+      .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
         $routeProvider.
             when('/', {templateUrl: 'templates/language-main.html',   controller: 'mainController'}).
             when('/add-language', {templateUrl: 'templates/add-language.html',   controller: 'addLanguageController'}).

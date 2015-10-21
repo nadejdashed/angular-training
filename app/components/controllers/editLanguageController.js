@@ -1,16 +1,16 @@
 (function(module) {
   "use strict";
 
-  var editLanguageController = function ($scope, dataService, $routeParams, $location) {
+  var editLanguageController = function ($scope, resourceService, $routeParams, $location) {
 
     var id = $routeParams.id;
 
-    dataService.getLanguage(id).then(function(data) {
+    resourceService.getLanguage(id).then(function(data) {
        $scope.lang = data;
     });
 
     $scope.saveLanguage = function(language) {
-      dataService.changeLanguage(language).then(function(data) {
+      resourceService.changeLanguage(language).then(function() {
         $location.path('/');
       });
     };

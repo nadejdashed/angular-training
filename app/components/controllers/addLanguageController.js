@@ -1,10 +1,10 @@
 (function(module) {
     "use strict";
 
-    var addLanguageController = function ($scope, dataService, $location) {
+    var addLanguageController = function ($scope, resourceService, $location) {
 
       $scope.saveLanguage = function(lang) {
-        dataService.addLanguage(lang).then(function(data) {
+        resourceService.addLanguage(lang).then(function() {
           $location.path('/');
         });
       };

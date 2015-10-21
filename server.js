@@ -53,6 +53,7 @@ function checkAuth(req, res, next) {
         .send({status: 'error', code: "NOPERMISSION", error: "Session expired"});
     } else {
       if (decoded.login === savedUser.login && decoded.password === savedUser.password) {
+        req.user = decoded;
         next();
       } else {
         res
@@ -93,7 +94,6 @@ app.post('/register', function(req, res){
   };
 
   if (user.login && user.password && user.password === user.password2) {
-
     addUserJson(res, user);
     res.send({status: 'success'});
   } else {
@@ -102,7 +102,7 @@ app.post('/register', function(req, res){
 });
 
 app.get('/auth', checkAuth, function(req, res){
-  res.send({status: 'success'});
+  res.send({status: 'success', user: req.user});
 });
 
 app.post('/auth', function(req, res) {
@@ -144,13 +144,15 @@ app.get(instanceName, function(req, res) {
     var result = require(fileName);
     res.json(result);
 });
+
 app.get(instanceName + '/:id', function(req, res) {
     var result = require(fileName),
       id = req.params.id,
       instance = result.filter(function(el){return el.id == id})[0];
     res.json(instance);
 });
-app.post(instanceName, checkAuth, function(req, res){
+
+app.post(instanceName, checkAuth, function(req, res) {
     var result = require(fileName),
       instances = result,
       lastId = instances[instances.length - 1].id,
@@ -173,38 +175,71 @@ app.post(instanceName, checkAuth, function(req, res){
         }
     });
 });
-app.put(instanceName + '/:id', checkAuth, function(req, res){
+
+app.put(instanceName + '/:id', checkAuth, function(req, res) {
     var id = req.params.id,
       result = require(fileName),
-      instance = result.filter(function(el){return el.id == id})[0],
+      instance = result.filter(function(el){return el[fields.id]  == id})[0],
+      data = req.body;
+
+    if (req.user.login === instance[fields.owner]) {
+      extend(instance, data);
+      fs.writeFile(fileName, JSON.stringify(result), function(err) {
+        console.log(err ? err : "JSON saved to " + fileName);
+        if (err){
+          res.error(err);
+        } else {
+          res.send(result);
+        }
+      });
+    } else  {
+      res
+        .status(405)
+        .send({status: 'error', code: "NOPERMISSION", error: "No permission"});
+    }
+});
+
+app.put(instanceName + '/:id' + '/likes', function(req, res) {
+    var id = req.params.id,
+      result = require(fileName),
+      instance = result.filter(function(el){return el[fields.id]  == id})[0],
       data = req.body;
 
     extend(instance, data);
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
-        console.log(err ? err : "JSON saved to " + fileName);
-        if (err){
-            res.error(err);
-        } else {
-            res.send(result);
-        }
+      console.log(err ? err : "JSON saved to " + fileName);
+      if (err){
+        res.error(err);
+      } else {
+        res.send(result);
+      }
     });
+  
 });
-app.delete(instanceName + '/:id', checkAuth, function(req, res){
+
+app.delete(instanceName + '/:id', checkAuth, function(req, res) {
     var id = req.params.id,
       result = require(fileName),
-      instance = result.filter(function(el){return el.id == id})[0],
+      instance = result.filter(function(el){return el[fields.id] == id})[0],
       instances = result,
       ind = instances.indexOf(instance);
-
-    if (ind >= 0) {instances.splice(ind, 1);}
-    fs.writeFile(fileName, JSON.stringify(result), function(err) {
-        console.log(err ? err : "JSON saved to " + fileName);
-        if (err){
-            res.error(err);
-        } else {
-            res.send(result);
-        }
-    });
+    if (req.user.login === instance[fields.owner]) {
+      if (ind >= 0) {
+        instances.splice(ind, 1);
+      }
+      fs.writeFile(fileName, JSON.stringify(result), function(err) {
+          console.log(err ? err : "JSON saved to " + fileName);
+          if (err){
+              res.error(err);
+          } else {
+              res.send(result);
+          }
+      });
+    } else {
+      res
+        .status(405)
+        .send({status: 'error', code: "NOPERMISSION", error: "No permission"});
+    }
 });
 
 exports = module.exports = app;

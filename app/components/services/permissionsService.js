@@ -1,12 +1,12 @@
 (function(module) {
   "use strict";
-  //usersStorageService
-  module.factory('permissionsService', function($q, $http, usersStorageService) {
+
+  module.factory('permissionsService', function(authService) {
 
     var checkPermissions = function() {
-      var user = usersStorageService.getLoginUser();
+      var user = authService.getUser();
       if (user) {
-        if (user.id === 1) {
+        if (user.id === 0) {
           user.role = 'admin';
         } else {
           user.role = 'loged';
@@ -16,22 +16,29 @@
     };
 
     var canEditPermission = function(language) {
-      var user = checkPermissions();//usersStorageService.getLoginUser();
+      //var user = checkPermissions();
+      var user = authService.getUser();
+
       var canEdit = false;
-      if (user) {
-        if (user.login === language.owner) {
+      if (user && user.login === language.owner) {
           canEdit = true;
-        } else if (user.role === 'admin') {
-          canEdit = true;
-        }
       }
+      // else if (user && user.role === 'admin') {
+      //   canEdit = true;
+      // }
+
       return canEdit;
     };
 
+    function canAddPermission() {
+  		return !!authService.getUser();
+  	}
+
     return {
-      //checkPermissions: checkPermissions,
-      canEditPermission: canEditPermission
+      canEditPermission: canEditPermission,
+      canAddPermission: canAddPermission
     };
+
   });
 
-  }(angular.module("app")));
+}(angular.module("app")));

@@ -1,11 +1,11 @@
 (function(module) {
   "use strict";
-  
-  var votesController = function ($scope, dataService) {
+
+  var votesController = function ($scope, resourceService) {
 
     $scope.votes = function(language, param) {
       language.likes += param;
-      dataService.changeLanguage(language).then(function(data) {
+      resourceService.changeLanguageLikes(language).then(function(data) {
 
       });
     };

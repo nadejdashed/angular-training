@@ -1,7 +1,11 @@
 (function(module) {
   "use strict";
-  //usersStorageService;
-  module.factory('dataService', function($q, $http) {
+
+  module.factory('resourceService', function($q, $http, $resource) {
+
+    var Language = $resource('/languages/:id', {id: '@id'}, {
+  		update: {method:'PUT', isArray:true}
+  	});
 
     var languageProperties = ['id', 'name', 'catImg', 'clicks', 'likes', 'dataAdd', 'owner'];
 
@@ -23,6 +27,7 @@
           deferred.reject("error");
         });
         return deferred.promise;
+        //return Language.query().$promise;
       },
 
       getLanguage: function(id) {
@@ -33,16 +38,13 @@
           deferred.reject("error");
         });
         return deferred.promise;
+        //return Language.get({id: id}).$promise;
       },
 
       addLanguage: function(lang) {
-        var deferred = $q.defer();
         var language = prepareLanguage(lang);
 
-        // var owner = usersStorageService.getLoginUser().login;
-        // if (owner) {
-        //   language.owner = owner;
-        // }
+        var deferred = $q.defer();
 
         $http.post('/languages', language).success(function(data) {
           deferred.resolve(data);
@@ -50,11 +52,17 @@
           deferred.reject("error");
         });
         return deferred.promise;
+        //return language.$save().$promise;
+        //expect(language instanceof Language).toEqual(true);
+        //return language.$save().$promise;
+
+    		//return Language.save(language).$promise;
       },
 
       changeLanguage: function(lang) {
-        var deferred = $q.defer();
         var language = prepareLanguage(lang);
+
+        var deferred = $q.defer();
 
         $http.put('/languages/'+ language.id, language).success(function(data) {
           deferred.resolve(data);
@@ -62,6 +70,22 @@
           deferred.reject("error");
         });
         return deferred.promise;
+
+        //return language.$update().$promise;
+      },
+
+      changeLanguageLikes: function(lang) {
+        var language = prepareLanguage(lang);
+
+        var deferred = $q.defer();
+
+        $http.put('/languages/'+ language.id + '/likes', language).success(function(data) {
+          deferred.resolve(data);
+        }).error(function(data) {
+          deferred.reject("error");
+        });
+        return deferred.promise;
+        //return language.$update().$promise;
       },
 
       deleteLanguage: function(lang) {
@@ -72,6 +96,8 @@
           deferred.reject("error");
         });
         return deferred.promise;
+
+		    //return lang.$remove().$promise;
       }
 
     };
