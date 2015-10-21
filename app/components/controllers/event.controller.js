@@ -6,6 +6,7 @@ angular.module('eventApp').controller('eventController', function($scope, profil
 	$scope.vote = function ($event, event, dif) {
 		$event.stopPropagation();
 		event.vote = event.vote + dif;
+		events.saveEvent(event);
 	};
 
 	$scope.deleteEvent = function($e, event){
