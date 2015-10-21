@@ -4,7 +4,7 @@ var fileName = './json/events.json',
   fields = {
     id: 'id',
     name: 'name',
-    url: 'src',
+    src: 'src',
     vote: 'vote',
     owner: 'owner',
     date: 'date'
@@ -126,24 +126,39 @@ app.post(instanceName, checkAuth, function(req, res){
         if (err){
             res.error(err);
         } else {
-            res.send(result);
+            res.send(data);
         }
     });
 });
-app.put(instanceName + '/:id', checkAuth, function(req, res, user){
+app.put(instanceName + '/:id', checkAuth, function(req, res){
     var id = req.params.id,
       result = require(fileName),
       instance = result.filter(function(el){return el[fields.id] == id})[0],
       data = req.body;
 
-    if (req.user.login === instance[fields.owner]) {
+    var authenticated = false,
+      edited = false;
+    checkAuth(req, res, function(){
+      authenticated = true;
+    });
+    for (var key in fields){
+      if (fields.hasOwnProperty(key)){
+        if (key  == 'vote') continue;
+        if (data[fields[key]] !== instance[fields[key]]){
+          edited = true;
+          break;
+        }
+      }
+    }
+
+    if ((authenticated && req.user.login === instance[fields.owner]) || !edited) {
       extend(instance, data);
       fs.writeFile(fileName, JSON.stringify(result), function (err) {
         console.log(err ? err : "JSON saved to " + fileName);
         if (err) {
           res.error(err);
         } else {
-          res.send(result);
+          res.send(instance);
         }
       });
     } else  {
@@ -153,7 +168,7 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
     }
 
 });
-app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
+app.delete(instanceName + '/:id', checkAuth, function(req, res){
     var id = req.params.id,
       result = require(fileName),
       instance = result.filter(function(el){return el[fields.id] == id})[0],
