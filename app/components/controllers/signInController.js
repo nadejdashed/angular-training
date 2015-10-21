@@ -1,15 +1,11 @@
 (function (module) {
 
-    var signInController = function ($scope, userService, $location) {
+    var signInController = function ($scope, userService) {
 
         $scope.UserAuthentication = function (user) {
             userService.login(user);
-            $location.url('/');
         };
-
     };
 
-
     module.controller("signInController", signInController);
-
 }(angular.module("app")));
