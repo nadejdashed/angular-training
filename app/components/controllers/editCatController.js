@@ -1,7 +1,6 @@
 (function(module) {
 
-    var editCatController = function ($stateParams, catService, $scope, getCatById) {
-        var id = $stateParams.catId;
+    var editCatController = function (catService, $scope, getCatById) {
         $scope.cat = getCatById;
 
         $scope.saveCat = function () {
