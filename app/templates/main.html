@@ -26,9 +26,9 @@
     <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: { name: searchCatNameFilter } | orderBy: sort">
         <h1 class="cursor" ng-click="show(cat)">{{ cat.clickCount | clickCountFilter }} Name: {{ cat.name }} <span ng-show="cat.view">&#8730;</span></h1>
 
-        <div ng-show="cat.creator === activeUserLogin">
+        <div ng-show="checkUserPermissions(cat.creator)">
             <span  class="bg-danger cursor"><a ng-href = "#/edit/{{cat.id}}">Edit</a></span>
-            <span  class="bg-danger cursor" ng-click="deleteCat(cat.id)">Delete</span>
+            <span  class="bg-danger cursor" ng-click="deleteCat(cat)">Delete</span>
         </div>
     </div>
 

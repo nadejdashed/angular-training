@@ -3,7 +3,7 @@ var module = angular.module('app');
 module.service('userAuthorizationService', function(localStorageService, cookiesService, $location){     // this function for save user in local storage. We don't use it
 
     this.isUserActive = function(activeUser){
-        if(activeUser !== null)
+        if(aciveUser !== nullt)
             return true;
         else
             return false;
@@ -17,16 +17,12 @@ module.service('userAuthorizationService', function(localStorageService, cookies
         return cookiesService.setCookie(cookieName, data);
     };
 
-    this.logoutUser = function(cookieName){
-        return cookiesService.removeCookie(cookieName);
-    };
-
     var getUser = function(userLogin) {
         return localStorageService.get(userLogin);
     };
 
     this.createUser = function(user){
-        if (getUser(user.login) === null){
+        if (!getUser(user.login)){
             localStorageService.set(user.login, JSON.stringify(user));
             $location.path('/');
         }
@@ -46,6 +42,6 @@ module.service('userAuthorizationService', function(localStorageService, cookies
     };
 
     var checkUserLoginData = function(userTrueData, userLoginData) {
-           return ((userTrueData.login == userLoginData.login && userTrueData.password == userLoginData.password)? true:false);
+           return (userTrueData.login == userLoginData.login && userTrueData.password == userLoginData.password) ;
     };
 });

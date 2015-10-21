@@ -31,5 +31,5 @@ angular.module('alertsModule').factory('alertsService', function($injector){
 		init: init,
 		addError: addError,
 		handleErrorResponse: handleErrorResponse
-	}
+	};
 });

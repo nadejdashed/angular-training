@@ -1,7 +1,6 @@
 <div ui-view></div>
 
-<div class="container">
-
+<div class="container" ng-show="activeUserLogin">
     <form name="addCatForm" ng-submit="saveCat()" novalidate>
         <p><h2>Cat name:</h2>
         <input type="text" name="catName" ng-model="catName" focus-input required>
@@ -17,5 +16,6 @@
         <!--addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid || addCatForm.catUrl.$error.required-->
         <a ui-sref="mainPage"><span class="bg-primary cursor btn">Cancel</span></a>
     </form>
-
 </div>
+
+<div ng-show="!activeUserLogin">You don't have such permissions!!!</div>

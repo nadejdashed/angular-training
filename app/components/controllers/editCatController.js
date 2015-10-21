@@ -5,7 +5,7 @@
         $scope.cat = getCatById;
 
         $scope.saveCat = function () {
-            catService.saveCatAfterEdit(id, $scope.cat);
+            catService.editCat($scope.cat);
         };
     };
     module.controller("editCatController", editCatController);

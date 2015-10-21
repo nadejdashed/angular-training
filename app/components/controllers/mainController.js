@@ -1,15 +1,14 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catService, userService) {
+    var mainController = function ($scope, catService, userService, getCats) {
         $scope.sort = "-name";
 
-        var activeUser = userService.getActiveUser();
-        $scope.activeUserLogin = activeUser && activeUser.login;
+        $scope.checkUserPermissions = function(creator){ //need do iniversal service for all permission
+            return userService.checkUserPermissions(creator);
+        };
 
-        catService.getCats().then(function(data){
-            $scope.cats = data;
-            $scope.selectedCat = $scope.cats[0];
-        });
+        $scope.cats = getCats;
+        $scope.selectedCat = $scope.cats[0];
 
         $scope.show = function (cat) {
             cat.view = 1;
@@ -22,8 +21,8 @@
             $scope.searchCatNameFilter = searchCatName;
         };
 
-        $scope.deleteCat = function(catId){
-            catService.deleteCat(catId);
+        $scope.deleteCat = function(cat){
+            catService.deleteCat(cat);
         };
 
         $scope.$watch(
@@ -33,8 +32,9 @@
                 if(allCats){
                 var catsCount = allCats.length;
                 for(var i = 0; i < catsCount; i++ )
-                    if(allCats[i].clickCount > 0)
+                    if(allCats[i].clickCount > 0){
                         $scope.goodRatingCats.push(allCats[i].name);
+                    }
                 }
             },
             true

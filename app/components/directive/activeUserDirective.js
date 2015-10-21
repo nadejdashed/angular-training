@@ -8,7 +8,7 @@ angular.module('app').directive('activeUser', function(userService) {
 
             if(activeUser)$scope.activeUserLogin = activeUser.login;
 
-            $scope.logoutButtonShow = userService.isUserActive(activeUser);
+            $scope.logoutButtonShow = userService.isUserActive();
 
             $scope.logout = function(){
                 userService.logout('userData');

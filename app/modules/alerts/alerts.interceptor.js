@@ -4,5 +4,5 @@ angular.module('alertsModule').factory('alertsInterceptor', function($q, alertsS
 			alertsService.handleErrorResponse(response);
 			return $q.reject(response);
 		}
-	}
+	};
 });
