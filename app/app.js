@@ -1,4 +1,30 @@
 (function () {
     "use strict";
-    angular.module("app", ["ui.router", "ngResource"]);
+    angular.module("app", ['ngRoute']).config(function ($locationProvider, $routeProvider) {
+        $locationProvider.html5Mode(true);
+
+        $routeProvider.when('/', {
+            controller: 'mainController',
+            templateUrl: '/templates/main.html'
+        }).when('/addDog', {
+            controller: 'addDogController',
+            templateUrl: '/templates/addDog.html'
+        }).when('/dog/:id', {
+            controller: 'dogPageCtrl',
+            templateUrl: '/templates/addDog.html',
+            resolve: {
+                allDogs: function (dogService) {
+                    return dogService.getDogs();
+                }
+            }
+        }).when('/auth', {
+            controller: 'loginCtrl',
+            templateUrl: 'templates/login.html'
+        }).when('/registration', {
+            controller: 'loginCtrl',
+            templateUrl: 'templates/registration.html'
+        }).when('/about', {
+            template: '<h1>About page</h1>'
+        }).otherwise({redirectTo: '/'});
+    });
 })();
