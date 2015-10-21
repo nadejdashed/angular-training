@@ -1,16 +1,16 @@
 (function(module) {
 
-    var addCatController = function ($scope, $filter, catService, getCats, userAuthorizationService) {
+    var addCatController = function ($scope, $filter, catService, getCats, userService) {
 
-        var activeUser = userAuthorizationService.getActiveUser('userData');
+        var activeUser = userService.getActiveUser();
 
         $scope.cats = getCats;
 
         if(activeUser !== null) $scope.activeUserLogin = activeUser.login;
-        $scope.logoutButtonShow = userAuthorizationService.isUserActive(activeUser);
+        $scope.logoutButtonShow = userService.isUserActive(activeUser);
 
         $scope.logout = function(){
-            userAuthorizationService.logoutUser('userData');
+            userService.logout('userData');
             $scope.logoutButtonShow = false;
         };
 

@@ -1,6 +1,6 @@
 var module = angular.module('app');
 
-module.service('userAuthorizationService', function(localStorageService, cookiesService, $location){
+module.service('userAuthorizationService', function(localStorageService, cookiesService, $location){     // this function for save user in local storage. We don't use it
 
     this.isUserActive = function(activeUser){
         if(activeUser !== null)

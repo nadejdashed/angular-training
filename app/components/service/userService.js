@@ -2,9 +2,9 @@ module.service('userService', function ($q, $http, localStorageService, cookiesS
     var token = localStorageService.get('token');
     var user = cookiesService.getCookie('userData');
 
-    this.logout = function(){
+     this.logout = function(){
         token = undefined;
-        localStorageService.remove('token'); //@todo add removeItem into localStorageService
+        localStorageService.remove('token');
         cookiesService.removeCookie('userData');
     };
 
@@ -47,4 +47,14 @@ module.service('userService', function ($q, $http, localStorageService, cookiesS
         return deferred.promise;
     };
 
+    this.isUserActive = function(activeUser){
+        if(activeUser !== null)
+            return true;
+        else
+            return false;
+    };
+
+    this.getActiveUser = function(){
+        return user;//cookiesService.getCookie(cookieName);
+    };
 });

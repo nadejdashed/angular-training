@@ -2,6 +2,16 @@ var module = angular.module('app');
 
 module.service('catService', function ($q, $http) {
 
+    this.saveCatAfterEdit = function(catId, data){
+        $http.put('/cats/' + catId, data).success(function(result) {
+            console.log(result);
+            console.log('success');
+        }).error(function() {
+            console.log("error");
+        });
+    };
+
+
     this.getCatById = function (id) {
         var deferred = $q.defer();
 

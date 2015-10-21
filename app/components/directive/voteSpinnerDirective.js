@@ -12,7 +12,6 @@ angular.module('app').directive('voteSpinner', function() {
             };
 
             $scope.dislike = function (currentCat) {
-                console.log(currentUser);
                 currentCat.clickCount -= 1;
             };
         }
