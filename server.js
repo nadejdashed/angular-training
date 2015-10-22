@@ -171,7 +171,7 @@ app.post(instanceName, checkAuth, function(req, res) {
         if (err){
             res.error(err);
         } else {
-            res.send(result);
+            res.send(data);
         }
     });
 });
@@ -189,7 +189,7 @@ app.put(instanceName + '/:id', checkAuth, function(req, res) {
         if (err){
           res.error(err);
         } else {
-          res.send(result);
+          res.send(instance);
         }
       });
     } else  {
@@ -211,10 +211,10 @@ app.put(instanceName + '/:id' + '/likes', function(req, res) {
       if (err){
         res.error(err);
       } else {
-        res.send(result);
+        res.send(instance);
       }
     });
-  
+
 });
 
 app.delete(instanceName + '/:id', checkAuth, function(req, res) {
@@ -229,10 +229,10 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res) {
       }
       fs.writeFile(fileName, JSON.stringify(result), function(err) {
           console.log(err ? err : "JSON saved to " + fileName);
-          if (err){
-              res.error(err);
+          if (err) {
+            res.error(err);
           } else {
-              res.send(result);
+            res.send(instance);
           }
       });
     } else {

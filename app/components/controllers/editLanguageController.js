@@ -10,7 +10,7 @@
     });
 
     $scope.saveLanguage = function(language) {
-      resourceService.changeLanguage(language).then(function() {
+      resourceService.changeLanguage($scope.lang).then(function() {
         $location.path('/');
       });
     };

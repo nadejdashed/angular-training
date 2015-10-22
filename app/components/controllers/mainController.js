@@ -1,6 +1,6 @@
 ﻿(function(module) {
     "use strict";
-    
+
     var mainController = function ($scope, $location, resourceService, permissionsService) {
 
       $scope.languagesArray = [];
@@ -20,6 +20,7 @@
 
       $scope.deleteLanguage = function(language) {
         resourceService.deleteLanguage(language).then(function() {
+          console.log(language);
           var index = $scope.languagesArray.indexOf(language);
           $scope.languagesArray.splice(index, 1);
         });

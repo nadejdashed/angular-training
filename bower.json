@@ -23,6 +23,7 @@
     "ngstorage": "latest",
     "angular-cookies": "latest",
     "angular-route": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "angular-bootstrap": "latest"
   }
 }
