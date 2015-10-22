@@ -1,7 +1,7 @@
 ﻿(function(module) {
     "use strict";
 
-    var mainController = function ($scope, $location, resourceService, permissionsService) {
+    var mainController = function ($scope, $location, resourceService, permissionsService, $uibModal) {
 
       $scope.languagesArray = [];
       $scope.currentLanguage = {};
@@ -16,14 +16,6 @@
 
       $scope.editPermission = function(language) {
         return permissionsService.canEditPermission(language);
-      };
-
-      $scope.deleteLanguage = function(language) {
-        resourceService.deleteLanguage(language).then(function() {
-          console.log(language);
-          var index = $scope.languagesArray.indexOf(language);
-          $scope.languagesArray.splice(index, 1);
-        });
       };
 
       $scope.editLanguageShow = function(language) {
@@ -51,6 +43,30 @@
           }
         }
       }, true );
+
+
+      $scope.deleteLanguage = function (language) {
+
+        var modalInstance = $uibModal.open({
+          templateUrl: 'templates/modalDelete.html',
+          controller: 'modalController',
+          resolve: {
+            item: function () {
+              return language;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (lang) {
+          resourceService.deleteLanguage(lang).then(function() {
+            var index = $scope.languagesArray.indexOf(lang);
+            $scope.languagesArray.splice(index, 1);
+          });
+          console.log("Language is deleted");
+        }, function () {
+          console.log('Modal dismissed');
+        });
+      };
 
     };
 

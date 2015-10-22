@@ -1,0 +1,13 @@
+<div>
+  <div class="modal-header bg-primary">
+    <h3 class="modal-title">Delete Language</h3>
+  </div>
+  <div class="modal-body">
+      <h3 class=" "> Are you sure you want delete <span class="text-primary" > {{lang.name}} </span> ?</h3>
+      <p><img ng-src="{{lang.catImg}}" style="width:100px;"/></p>
+  </div>
+  <div class="modal-footer bg-primary">
+      <button class="btn btn-danger" type="button" ng-click="delete()">Delete</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</div>
