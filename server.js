@@ -136,32 +136,6 @@ app.put(instanceName + '/:id', function(req, res){
       instance = result.filter(function(el){return el[fields.id] == id})[0],
       data = req.body;
 
-    var authenticated = false,
-      edited = false, voteEdited = false;
-    checkAuth(req, res, function(){
-      authenticated = true;
-      console.log(authenticated);
-    });
-    for (var key in fields){
-      if (fields.hasOwnProperty(key)){
-        if (key  == 'vote') {
-          if (data[fields[key]] !== instance[fields[key]]){
-            voteEdited = true;
-          }
-          continue;
-        }
-        if (data[fields[key]] !== instance[fields[key]]){
-          edited = true;
-          break;
-        }
-      }
-    }
-    console.log(authenticated);
-  console.log(voteEdited);
-  console.log(edited);
-
-
-    if ((authenticated && req.user.login === instance[fields.owner] && !voteEdited) || !edited) {
       extend(instance, data);
       fs.writeFile(fileName, JSON.stringify(result), function (err) {
         console.log(err ? err : "JSON saved to " + fileName);
@@ -171,11 +145,6 @@ app.put(instanceName + '/:id', function(req, res){
           res.send(instance);
         }
       });
-    } else  {
-      res
-        .status(405)
-        .send({status: 'error', code: "NOPERMISSION", error: "No permission"});
-    }
 
 });
 app.delete(instanceName + '/:id', checkAuth, function(req, res){
