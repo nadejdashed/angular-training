@@ -192,7 +192,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res){
         if (err){
           res.error(err);
         } else {
-          res.send(result);
+          res.send(instance);
         }
       });
     } else {

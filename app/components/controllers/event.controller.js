@@ -1,4 +1,4 @@
-angular.module('eventApp').controller('eventController', function($scope, profile, events, authService, permissionService) {
+angular.module('eventApp').controller('eventController', function($scope, $uibModal, profile, events, authService, permissionService) {
 	$scope.selectEvent = function (event) {
 		profile.selectEvent(event);
 	};
@@ -13,7 +13,21 @@ angular.module('eventApp').controller('eventController', function($scope, profil
 		$e.preventDefault();
 		$e.stopPropagation();
 
-		events.deleteEvent(event);
+		var modalInstance = $uibModal.open({
+			templateUrl: '/templates/modals/delete.html',
+			controller: 'ModalDeleteCtrl',
+			resolve: {
+				item: function () {
+					return event;
+				}
+			}
+		});
+
+		modalInstance.result.then(function () {
+			events.deleteEvent(event);
+		}, function () {
+			console.log('canceled');
+		});
 	};
 
 	$scope.$watch(authService.getUser, function(){
