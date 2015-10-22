@@ -3,8 +3,7 @@ angular.module('app').directive('voteSpinner', function() {
         restrict: 'E',
         templateUrl: '/app/templates/voteSpinner.html',
         scope: {
-            currentCat: '=currentCat',
-            currentUser: '=currentUser'
+            currentCat: '=currentCat'
         },
         controller: function($scope){
             $scope.like = function (currentCat) {
