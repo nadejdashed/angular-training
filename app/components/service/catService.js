@@ -1,6 +1,6 @@
 var module = angular.module('app');
 
-module.service('catService', function ($q, $filter, userService, $injector) {
+module.service('catService', function ($q, $filter, userService, $injector, $http) {
     var resource = $injector.get('$resource'),
         Cats = resource('/cats/:id', {id: '@id'}, {
             update: {method: 'PUT'}
@@ -45,4 +45,12 @@ module.service('catService', function ($q, $filter, userService, $injector) {
         };
         return data;
     };
+
+    this.saveCat = function(data){
+            $http.put('/cats/' + data.id + '/likes', data).success(function(result) {
+                console.log('success');
+            }).error(function() {
+                console.log("error");
+            });
+        };
 });

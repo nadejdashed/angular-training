@@ -45,7 +45,6 @@ module.service('userService', function ($q, $http, localStorageService, $cookies
 
     this.checkUserPermissions = function(user){
         var activeUser = this.getActiveUser();
-
         return (user === (activeUser && activeUser.login)? true: false);
     };
 });

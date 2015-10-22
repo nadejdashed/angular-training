@@ -163,6 +163,25 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
     }
 
 });
+
+app.put(instanceName + '/:id' + '/likes', function(req, res, user){
+    var id = req.params.id,
+        result = require(fileName),
+        instance = result.filter(function(el){return el[fields.id] == id})[0],
+        data = req.body;
+
+        extend(instance, data);
+        fs.writeFile(fileName, JSON.stringify(result), function (err) {
+            console.log(err ? err : "JSON saved to " + fileName);
+            if (err) {
+                res.error(err);
+            } else {
+                res.send(instance);
+            }
+        });
+});
+
+
 app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
     var id = req.params.id,
       result = require(fileName),
