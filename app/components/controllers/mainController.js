@@ -6,9 +6,6 @@
       $scope.languagesArray = [];
       $scope.currentLanguage = {};
 
-      // $scope.languagesArray = resourceService.getLanguages();
-      // $scope.currentLanguage = $scope.languagesArray[0];
-
       resourceService.getLanguages().then(function(data) {
         $scope.languagesArray = data;
         $scope.currentLanguage = $scope.languagesArray[0];

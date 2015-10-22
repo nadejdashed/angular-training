@@ -65,7 +65,7 @@
           <h4>Likes: <span class="color-red"> {{ currentLanguage.likes }} </span></h4>
           <h4>Date add: <span class="color-red"> {{ currentLanguage.dataAdd | date:'dd/MMM/yyyy HH:mm'}} </span></h4>
         </div>
-        <ng-vote lang="currentLanguage"></ng-vote>
+        <ng-vote item="currentLanguage"></ng-vote>
         <img ng-src="{{ currentLanguage.catImg }}" class="img-responsive current-img" ng-click="counter(currentLanguage)" />
       </div>
     </div>

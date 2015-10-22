@@ -1,12 +1,12 @@
 (function(module) {
     "use strict";
-    
+
     var ngVote = function () {
 
       return {
         restrict: 'EA',
         scope: {
-          lang: "="
+          item: "="
         },
         templateUrl: '/templates/votes.html',
         controller: "votesController"
