@@ -20,20 +20,6 @@ module.service('userService', function ($q, $http, localStorageService, $cookies
         return token;
     };
 
-    this.getUser = function () {  // don't need for now
-        var deferred = $q.defer();
-
-        $http.get('/auth')
-            .then(function (response) {
-                // promise is fulfilled
-                deferred.resolve(response.data);
-            }, function (response) {
-                // the following line rejects the promise
-                deferred.reject(response);
-            });
-        return deferred.promise;
-    };
-
     this.createUser = function(user){
         var deferred = $q.defer();
 

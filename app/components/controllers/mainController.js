@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catService, userService, getCats) {
+    var mainController = function ($scope, catService, userService, getCats, $uibModal) {
         $scope.sort = "-name";
 
         $scope.checkUserPermissions = function(creator){ //need do iniversal service for all permission
@@ -8,6 +8,7 @@
         };
 
         $scope.cats = getCats;
+
         $scope.show = function (cat) {
             cat.view = 1;
             $scope.selectedCat = cat;
@@ -20,8 +21,27 @@
         };
 
         $scope.deleteCat = function(cat){
-            catService.deleteCat(cat);
-        };
+
+            var modalInstance = $uibModal.open({
+                templateUrl: 'templates/modalWindow/deleteCatWindow.html',
+                controller: 'deleteCatController',
+         //       size: size
+                resolve: {
+                    cat: function () {
+                        return cat;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (cat) {
+                var index = $scope.cats.indexOf(cat);
+                $scope.cats.splice(index, 1);
+                catService.deleteCat(cat);
+
+            }, function () { // when  cancels
+                console.log('Delete canceled');
+            });
+};
 
         $scope.$watch(
             'cats',

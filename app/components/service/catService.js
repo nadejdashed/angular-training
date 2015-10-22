@@ -1,13 +1,14 @@
 var module = angular.module('app');
 
 module.service('catService', function ($q, $filter, userService, $injector) {
-    var resource = $injector.get('$resource');
-    var Cats = resource('/cats/:id', {id: '@id'}, {
-        update: {method: 'PUT'}
-    });
+    var resource = $injector.get('$resource'),
+        Cats = resource('/cats/:id', {id: '@id'}, {
+            update: {method: 'PUT'}
+        }),
+        cats = Cats.query();
 
     this.getCats = function () {
-        return Cats.query();
+        return cats;
     };
 
     this.getCatById = function (id) {
