@@ -3,15 +3,11 @@
     var mainController = function ($scope, catService, userService, getCats) {
         $scope.sort = "-name";
 
-        var user = userService.getActiveUser();
-        $scope.activeUserLogin = user && user.login;
-
         $scope.checkUserPermissions = function(creator){ //need do iniversal service for all permission
             return userService.checkUserPermissions(creator);
         };
 
         $scope.cats = getCats;
-        $scope.selectedCat = $scope.cats[0];
 
         $scope.show = function (cat) {
             cat.view = 1;
@@ -33,6 +29,8 @@
             function( allCats ) {
                 $scope.goodRatingCats = [];
                 if(allCats){
+                $scope.selectedCat = allCats[0];
+
                 var catsCount = allCats.length;
                 for(var i = 0; i < catsCount; i++ )
                     if(allCats[i].clickCount > 0){
@@ -43,7 +41,14 @@
             true
         );
 
-
+        $scope.$watch(     //voteSpinner same watch -- need ask about move into service
+            userService.getActiveUser, //chekatsa function
+            function( activeUser ) {
+                $scope.activeUserLogin = activeUser && activeUser.login;
+                $scope.logoutButtonShow = userService.isUserActive();
+            },
+            true
+        );
 
 
     };

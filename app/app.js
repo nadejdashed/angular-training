@@ -27,8 +27,14 @@
                     url: "/authorization",
                     templateUrl: "templates/authorizationAndRegistration/login.html",
                     controller: function($scope, userService){
-                        var activeUser = userService.getActiveUser();
-                        $scope.activeUserLogin = activeUser && activeUser.login;
+                        $scope.$watch(     //voteSpinner same watch -- need ask about move into service
+                            userService.getActiveUser, //chekatsa function
+                            function( activeUser ) {
+                                $scope.activeUserLogin = activeUser && activeUser.login;
+                                $scope.logoutButtonShow = userService.isUserActive();
+                            },
+                            true
+                        );
                     }
                 })
                 .state("authorization.signIn", {
