@@ -6,7 +6,8 @@
       return {
         restrict: 'EA',
         scope: {
-          item: "="
+          item: "=",
+          saveVote: "&"
         },
         templateUrl: '/templates/votes.html',
         controller: "votesController"

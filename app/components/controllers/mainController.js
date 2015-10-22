@@ -11,6 +11,10 @@
         $scope.currentLanguage = $scope.languagesArray[0];
       });
 
+      $scope.saveVote = function(lang) {
+        resourceService.changeLanguageLikes(lang).then(function() {});
+      };
+
       $scope.editPermission = function(language) {
         return permissionsService.canEditPermission(language);
       };

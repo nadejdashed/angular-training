@@ -1,7 +1,8 @@
 (function(module) {
   "use strict";
 
-  var votesController = function ($scope, resourceService, $localStorage, authService) {
+  var votesController = function ($scope, $localStorage, authService) {
+    console.log($scope);
 
     $localStorage.$default({
       itemsLiked: []
@@ -53,7 +54,7 @@
       if (canVote) {
         console.log("Vote complited !");
         item.likes += param;
-        resourceService.changeLanguageLikes(item).then(function() {});
+        $scope.saveVote();
       }
 
     };
