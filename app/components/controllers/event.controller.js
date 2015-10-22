@@ -3,9 +3,8 @@ angular.module('eventApp').controller('eventController', function($scope, $uibMo
 		profile.selectEvent(event);
 	};
 
-	$scope.vote = function ($event, event, dif) {
-		$event.stopPropagation();
-		event.vote = event.vote + dif;
+	$scope.saveEvent = function(event, val){
+		event.vote = val;
 		events.saveEvent(event);
 	};
 

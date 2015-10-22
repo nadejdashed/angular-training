@@ -2,8 +2,7 @@
 	<div class="panel-heading" >
 		{{event.name | uppercase}}
 		<div class="pull-right" style="margin-top:-5px; margin-right:-5px;">
-			<button class="btn btn-default btn-sm" ng-click="vote($event, event, 1)"><i class="glyphicon glyphicon-arrow-up"></i></button>
-			<button class="btn btn-default btn-sm" ng-click="vote($event, event, -1)"><i class="glyphicon glyphicon-arrow-down"></i></button>
+			<div vote-spinner="event.vote" fn-update="saveEvent(event, vote)"></div>
 		</div>
 	</div>
 	<div class="panel-body">
