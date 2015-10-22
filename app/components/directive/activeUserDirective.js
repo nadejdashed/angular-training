@@ -10,7 +10,7 @@ angular.module('app').directive('activeUser', function(userService) {
             };
 
             $scope.$watch(
-                userService.getActiveUser, //chekatsa function
+                userService.getActiveUser, //checkcats function
                 function( activeUser ) {
                     $scope.activeUserLogin = activeUser && activeUser.login;
                     $scope.logoutButtonShow = userService.isUserActive();

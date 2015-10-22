@@ -139,6 +139,7 @@ app.post(instanceName, checkAuth, function(req, res){
         }
     });
 });
+
 app.put(instanceName + '/:id', checkAuth, function(req, res, user){
     var id = req.params.id,
       result = require(fileName),
@@ -176,7 +177,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
         if (err){
           res.error(err);
         } else {
-          res.send(result);
+          res.send(instance);
         }
       });
     } else {

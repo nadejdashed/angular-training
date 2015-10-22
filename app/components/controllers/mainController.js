@@ -8,7 +8,6 @@
         };
 
         $scope.cats = getCats;
-
         $scope.show = function (cat) {
             cat.view = 1;
             $scope.selectedCat = cat;
@@ -45,7 +44,6 @@
             userService.getActiveUser, //chekatsa function
             function( activeUser ) {
                 $scope.activeUserLogin = activeUser && activeUser.login;
-                $scope.logoutButtonShow = userService.isUserActive();
             },
             true
         );

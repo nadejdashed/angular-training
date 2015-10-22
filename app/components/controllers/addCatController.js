@@ -12,7 +12,6 @@
             userService.getActiveUser, //chekatsa function
             function( activeUser ) {
                 $scope.activeUserLogin = activeUser && activeUser.login;
-                $scope.logoutButtonShow = userService.isUserActive();
             },
             true
         );
