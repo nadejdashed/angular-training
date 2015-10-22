@@ -1,0 +1,15 @@
+<div  ng-controller="addDogController">
+    <form ng-submit="addDog(dog)">
+        <h2>Add New Dog:</h2>
+        <h2>Enter name:</h2>
+        <input ng-model="dog.name" type="text"/>
+        <h2>Enter image source:</h2>
+        <image-preview source="dog.source"></image-preview>
+        <br/>
+            <button type="submit">Create</button>
+            <a class="clear" ng-click="currentName = null; currentSource = null">
+                <button class="glyphicon glyphicon-remove">Clear fields</button>
+            </a>
+    </form>
+
+</div>
