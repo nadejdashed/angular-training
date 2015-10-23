@@ -2,16 +2,17 @@
   "use strict";
 
   var votesController = function ($scope, $localStorage, authService) {
-    console.log($scope);
 
     $localStorage.$default({
       itemsLiked: []
     });
 
     var userId = authService.getUser();
-    if (userId !== undefined) {
-      $scope.loged = true;
-    }
+    $scope.loged = authService.getToken();
+
+    $scope.$watch( authService.getToken, function(loged) {
+      $scope.loged = loged;
+    });
 
     $scope.votes = function(item, param) {
 
@@ -63,4 +64,4 @@
 
   module.controller("votesController", votesController);
 
-}(angular.module("app")));
+}(angular.module("votes")));

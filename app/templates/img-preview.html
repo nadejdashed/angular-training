@@ -4,10 +4,13 @@
     <div class="has-feedback"
       ng-class="{ 'has-error': myForm.addLangUrl.$dirty && myForm.addLangUrl.$invalid,
         'has-success': myForm.addLangUrl.$dirty && myForm.addLangUrl.$valid }">
-    <input type="text" class="form-control" id="img-url"
-      name="addLangUrl" placeholder="URL"
-      ng-model="source" ng-model-options="{ updateOn: 'blur' }"
-      required="required" pattern="(https?:\/\/.{1,}\.(png|jpg|jpeg|gif|svg)$|\/app\/img\/.{1,}\.(png|jpg|jpeg|gif|svg)$)"
+    <input type="text"
+        class="form-control" id="img-url"
+        name="addLangUrl" placeholder="URL"
+        ng-model="source"
+        ng-model-options="{ updateOn: 'blur' }"
+        required="required"
+        pattern="(https?:\/\/.{1,}\.(png|jpg|jpeg|gif|svg)$|\/app\/img\/.{1,}\.(png|jpg|jpeg|gif|svg)$)"
     />
     <!-- http://ecx.images-amazon.com/images/I/41KcvYbAEOL.png -->
     <!-- /app/img/php_img.jpg -->

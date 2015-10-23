@@ -3,7 +3,11 @@
 
     angular.module("reg", ["ngStorage", "ngCookies"]);
 
-    angular.module("app", ["reg", "alertsModule", "ngResource", "ngRoute", "ui.bootstrap"])
+    angular.module("votes", ["ngStorage"]);
+
+    angular.module("previewImg", []);
+
+    angular.module("app", ["reg", "votes", "previewImg", "alertsModule", "ngResource", "ngRoute", "ui.bootstrap", "ngMessages"])
       .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
         $routeProvider.
             when('/', {templateUrl: 'templates/language-main.html',   controller: 'mainController'}).

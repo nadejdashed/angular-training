@@ -24,6 +24,7 @@
     "angular-cookies": "latest",
     "angular-route": "latest",
     "angular-resource": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "angular-messages": "latest"
   }
 }

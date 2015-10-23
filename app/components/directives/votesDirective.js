@@ -16,4 +16,4 @@
 
     module.directive('ngVote', ngVote);
 
-}(angular.module("app")));
+}(angular.module("votes")));

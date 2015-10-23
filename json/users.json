@@ -1,1 +1,1 @@
-[{"id":0,"login":"admin","password":"123","password2":"123","email":"test@gmail.com"},{"id":1,"login":"yura","password":"123","password2":"123","email":"yura@gmail.com"}]
+[{"id":0,"login":"admin","password":"123","password2":"123","email":"test@gmail.com"},{"id":1,"login":"yura","password":"123","password2":"123","email":"yura@gmail.com"},{"login":"test user","password":"!1Qqqq","password2":"!1Qqqq","email":"qsd@fasf.com","id":2}]

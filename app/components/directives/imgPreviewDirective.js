@@ -13,4 +13,4 @@
 
   module.directive('imgPreview', imgPreview);
 
-}(angular.module("app")));
+}(angular.module("previewImg")));
