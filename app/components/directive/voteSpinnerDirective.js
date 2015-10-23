@@ -6,15 +6,21 @@ angular.module('app').directive('voteSpinner', function() {
             currentCat: '=currentCat',
             updateCatVotes: '&'
         },
-        controller: function($scope){
+        controller: function($scope, userOneVoteService){
             $scope.like = function (currentCat) {
-                currentCat.clickCount += 1;
-                $scope.updateCatVotes({vote: currentCat.clickCount}); // there in {} we have our arguments
+                var canSave = userOneVoteService.saveUserVote(1, currentCat.id);
+                if(canSave){
+                    currentCat.clickCount += 1;
+                    $scope.updateCatVotes(); // there in {} we have our arguments
+                }
             };
 
             $scope.dislike = function (currentCat) {
-                currentCat.clickCount -= 1;
-                $scope.updateCatVotes({vote: currentCat.clickCount});
+                var canSave = userOneVoteService.saveUserVote(-1, currentCat.id);
+                if(canSave){
+                    currentCat.clickCount -= 1;
+                    $scope.updateCatVotes(); // there in {} we have our arguments
+                }
             };
         }
     };

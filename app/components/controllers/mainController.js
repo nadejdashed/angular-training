@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catService, userService, getCats, $uibModal) {
+    var mainController = function ($scope, catService, userService, getCats, $uibModal, userOneVoteService) {
         $scope.sort = "-name";
 
         $scope.checkUserPermissions = function(creator){ //need do iniversal service for all permission
@@ -44,9 +44,9 @@
             });
         };
 
-        $scope.updateCatVotes = function(vote){
-            $scope.selectedCat.clickCount = vote;
-            catService.saveCat($scope.selectedCat);
+        $scope.updateCatVotes = function(){   //передати з директиви
+
+                catService.saveCat($scope.selectedCat);
         };
 
         $scope.$watch(
