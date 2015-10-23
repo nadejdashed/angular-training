@@ -46,7 +46,7 @@ module.service('catService', function ($q, $filter, userService, $injector, $htt
         return data;
     };
 
-    this.saveCat = function(data){
+    this.saveCatLikes = function(data){
             $http.put('/cats/' + data.id + '/likes', data).success(function(result) {
                 console.log('success');
             }).error(function() {

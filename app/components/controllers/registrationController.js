@@ -5,7 +5,6 @@
         $scope.saveUser = function (user) {
             user.catVote = {};
             userService.createUser(user);
-            //userAuthorizationService.createUser(user);
         };
     };
 

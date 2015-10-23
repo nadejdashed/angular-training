@@ -20,6 +20,7 @@
     "angular-ui-router": "latest",
     "angular-resource": "latest",
     "angular-cookies": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "angular-messages": "latest"
   }
 }

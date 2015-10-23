@@ -46,7 +46,7 @@
 
         $scope.updateCatVotes = function(){   //передати з директиви
 
-                catService.saveCat($scope.selectedCat);
+            catService.saveCatLikes($scope.selectedCat);
         };
 
         $scope.$watch(
@@ -54,7 +54,6 @@
             function( allCats ) {
                 $scope.goodRatingCats = [];
                 if(allCats){
-                $scope.selectedCat = allCats[0];
 
                 var catsCount = allCats.length;
                 for(var i = 0; i < catsCount; i++ )
