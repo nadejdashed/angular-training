@@ -1,22 +1,22 @@
 <form  name="loginForm" novalidate>
     <p><h2>Login:</h2>
-    <input type="text" name="userLoginForm" ng-model="userLoginForm.login" required>
-    <!--<span style="color:red" ng-show="addCatForm.catName.$dirty && addCatForm.catName.$invalid">-->
-    <!--<span ng-show="addCatForm.catName.$error.required">Cat name is empty.</span>-->
-    <!--</span>-->
+    <input type="text" name="userLoginForm" ng-model="userLoginForm.login"  required>
+    <div ng-show="loginForm.$submitted || loginForm.userLoginForm.$touched" ng-messages="loginForm.userLoginForm.$error">
+        <div ng-messages-include="templates/error/errorMessenger.html" class="errors"></div>
+    </div>
+
     </p>
 
     <p><h2>Password:</h2>
     <input type="password" name="userLoginPassword"  ng-model="userLoginForm.password" required>
-    <!--<span style="color:red" ng-show="addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid">-->
-    <!--<span ng-show="addCatForm.catUrl.$error.required">Link for cat picture is empty.</span>-->
-    <!--</span>-->
+    <div ng-show="loginForm.$submitted || loginForm.userLoginPassword.$touched" ng-messages="loginForm.userLoginPassword.$error">
+        <div ng-messages-include="templates/error/errorMessenger.html" class="errors"></div>
+    </div>
+
     </p>
 
     <br />
 
     <span class="bg-primary cursor btn" ng-disabled="loginForm.$invalid" ng-click="UserAuthentication(userLoginForm)">Login</span>
-    <!--addCatForm.catName.$error.required || addCatForm.catName.$dirty && addCatForm.catName.$invalid ||-->
-    <!--addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid || addCatForm.catUrl.$error.required-->
     <a ng-href="/"><span class="bg-primary cursor btn">Cancel</span></a>
 </form>

@@ -4,11 +4,11 @@ module.service('catService', function ($q, $filter, userService, $injector, $htt
     var resource = $injector.get('$resource'),
         Cats = resource('/cats/:id', {id: '@id'}, {
             update: {method: 'PUT'}
-        }),
-        cats = Cats.query();
+        });
+        //cats = Cats.query();
 
     this.getCats = function () {
-        return cats;
+        return Cats.query();
     };
 
     this.getCatById = function (id) {

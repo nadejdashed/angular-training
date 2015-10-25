@@ -1,6 +1,6 @@
 <div ng-form name="urlForm">
 <p><h2>Link for picture:</h2>
-    <input type="url" name="url" ng-model-options="{ updateOn: 'blur' }" ng-model="url" required>
+    <input type="url" name="url" pictures-validator ng-model-options="{ updateOn: 'blur' }" ng-model="url" required>
     <span style="color:red" ng-show="urlForm.url.$dirty && urlForm.url.$invalid">
     <span ng-show="form.urlForm.$error.required">Link for cat picture is empty.</span>
 </span>

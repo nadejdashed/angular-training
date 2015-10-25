@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("app", ["ngCookies", "ui.router", "alertsModule", "ngResource", "ui.bootstrap", "ngMessages"])
+    angular.module("app", ["ngCookies", "ui.router", "alertsModule", "ngResource", "ui.bootstrap", "ngMessages", "validation.match"])
         .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
             $httpProvider.interceptors.push('authInterceptorService');

@@ -1,37 +1,35 @@
-<form  name="addUserForm" novalidate>
+<form  name="addUserForm">
 
     <p><h2>Login:</h2>
-    <input type="text" name="userLogin" ng-model="user.login" required>
-    <!--<span style="color:red" ng-show="addCatForm.catName.$dirty && addCatForm.catName.$invalid">-->
-    <!--<span ng-show="addCatForm.catName.$error.required">Cat name is empty.</span>-->
-    <!--</span>-->
+    <input type="text" name="userLogin" ng-model="user.login" ng-minlength="3" ng-maxlength="8" placeholder="login" required>
+    <div ng-show="addUserForm.$submitted || addUserForm.userLogin.$touched" ng-messages="addUserForm.userLogin.$error">
+        <div ng-messages-include="templates/error/errorMessenger.html" class="errors"></div>
+    </div>
     </p>
 
     <p><h2>Email:</h2>
-    <input name="userEmail"  ng-model="user.email" required>
-    <!--<span style="color:red" ng-show="addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid">-->
-    <!--<span ng-show="addCatForm.catUrl.$error.required">Link for cat picture is empty.</span>-->
-    <!--</span>-->
+    <input name="userEmail" type="email"  ng-model="user.email" ng-minlength="5" placeholder="e-mail" required>
+    <div ng-show="addUserForm.$submitted || addUserForm.userEmail.$touched" ng-messages="addUserForm.userEmail.$error">
+        <div ng-messages-include="templates/error/errorMessenger.html" class="errors"></div>
+    </div>
     </p>
 
     <p><h2>Password:</h2>
-    <input type="password" name="userPassword"  ng-model="user.password" required>
-    <!--<span style="color:red" ng-show="addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid">-->
-    <!--<span ng-show="addCatForm.catUrl.$error.required">Link for cat picture is empty.</span>-->
-    <!--</span>-->
+    <input type="password" name="userPassword"  ng-model="user.password" ng-minlength="8" ng-maxlength="16" placeholder="password"  required>
+    <div ng-show="addUserForm.$submitted || addUserForm.userPassword.$touched" ng-messages="addUserForm.userPassword.$error">
+        <div ng-messages-include="templates/error/errorMessenger.html" class="errors"></div>
+    </div>
     </p>
 
     <p><h2>Repeat password:</h2>
-    <input type="password" name="userPassword"  ng-model="user.password2" required>
-    <!--<span style="color:red" ng-show="addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid">-->
-    <!--<span ng-show="addCatForm.catUrl.$error.required">Link for cat picture is empty.</span>-->
-    <!--</span>-->
+    <input type="password" name="userPasswordRepeat"  ng-model="user.password2" ng-minlength="8" ng-maxlength="16" data-match="user.password" placeholder="password repeat" required>
+
+    <div data-ng-show="addUserForm.userPasswordRepeat.$error.match">Passwords do not match!!!</div>
     </p>
+
     <br />
 
     <span class="bg-primary cursor btn" ng-disabled="addUserForm.$invalid" ng-click="saveUser(user)">Registration</span>
-    <!--addCatForm.catName.$error.required || addCatForm.catName.$dirty && addCatForm.catName.$invalid ||-->
-    <!--addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid || addCatForm.catUrl.$error.required-->
     <a ng-href="/"><span class="bg-primary cursor btn">Cancel</span></a>
 </form>
 

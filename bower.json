@@ -21,6 +21,7 @@
     "angular-resource": "latest",
     "angular-cookies": "latest",
     "angular-bootstrap": "latest",
-    "angular-messages": "latest"
+    "angular-messages": "latest",
+    "angular-confirm-field": "~0.1.2"
   }
 }

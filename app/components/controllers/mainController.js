@@ -45,7 +45,6 @@
         };
 
         $scope.updateCatVotes = function(){   //передати з директиви
-
             catService.saveCatLikes($scope.selectedCat);
         };
 
