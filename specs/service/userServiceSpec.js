@@ -35,5 +35,8 @@ describe('userServiceTest', function() {
         $httpBackend.flush();
     });
 
+    it('get token', function(){
+        expect(userService.getToken()).toEqual('123');
+    });
 
 });

@@ -8,21 +8,18 @@ describe("add cat controller", function () {
         catService = {
             saveCat: jasmine.createSpy('saveCat')
         };
-        userService = {
-            getActiveUser: jasmine.createSpy('getActiveUser')
-        };
     });
 
-    //beforeEach(angular.mock.module('app', function($provide){
-    //    $provide.value('userService', {
-    //        getActiveUser: function(){}
-    //    });
-    //}));
+    beforeEach(angular.mock.module('app', function($provide){
+        $provide.value('userService', {
+            getActiveUser: function(){}
+        });
+    }));
 
     beforeEach(inject(function ($controller, $rootScope, $injector) {
-
         sut = $rootScope.$new();
         userService = $injector.get('userService');
+        getUserSpy = spyOn(userService, 'getActiveUser');
         cookies = $injector.get('$cookies');
         $controller("addCatController", {
             $scope: sut,
@@ -30,18 +27,6 @@ describe("add cat controller", function () {
             userService: userService
         });
     }));
-
-    //it('should watcher update', function(){
-    //
-    //    sut.$apply();
-    //    expect(userService.getActiveUser).toEqual(undefined);
-    //    //userService.and.returnValue({ name: 'test' });
-    //    sut.$apply();
-    //    //expect($scope.canAdd).toEqual({ name: 'test' });
-    //    //expect($scope.isAuthenticated).toEqual(true);
-    //
-    //});
-
 
     describe('When you use method save from $scope', function() {
         it("add cat", function () {
@@ -52,47 +37,12 @@ describe("add cat controller", function () {
             expect(catService.saveCat).toHaveBeenCalledWith(cat);
         });
     });
+    
+    it('should watcher update', function(){
+        expect(sut.activeUserLogin).toEqual(undefined);
+        sut.$apply();
+        userService.getActiveUser.and.returnValue({login: 'user'});
+        sut.$apply();
+        expect(sut.activeUserLogin).toEqual('user');
+    });
 });
-
-
-
-
-//describe('mainControllerTest', function(){
-//    var $scope, getUserSpy;
-//
-//    beforeEach(module('eventApp', function($provide){
-//        $provide.value('authService', {
-//            getUser: function(){}
-//        });
-//    }));
-//
-//    beforeEach(inject(function($controller, $rootScope, authService, permissionService, $injector){
-//        getUserSpy = spyOn(authService, 'getUser');
-//        permissionService = $injector.get('permissionService');
-//        spyOn(permissionService, 'checkAddPermission').and.returnValue(null);
-//
-//        $scope = $rootScope.$new();
-//        $controller('mainController', {
-//            $scope: $scope,
-//            $state: {}
-//        });
-//    }));
-//
-//    it('should watcher update', function(){
-//
-//        expect($scope.canAdd).toEqual(undefined);
-//        expect($scope.isAuthenticated).toEqual(undefined);
-//
-//        $scope.$apply();
-//        expect($scope.canAdd).toEqual(null);
-//        expect($scope.isAuthenticated).toEqual(false);
-//
-//        permissionService.checkAddPermission.and.returnValue({ name: 'test' });
-//        getUserSpy.and.returnValue({ name: 'test' });
-//        $scope.$apply();
-//        expect($scope.canAdd).toEqual({ name: 'test' });
-//        expect($scope.isAuthenticated).toEqual(true);
-//
-//    });
-//
-//});
