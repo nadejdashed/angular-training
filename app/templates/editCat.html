@@ -1,17 +1,18 @@
 <div ui-view></div>
 
-<div class="container">
+<div class="container center">
 
-    <form name="addCatForm" ng-submit="saveCat()" novalidate>
+    <form class="black" name="editCatForm" ng-submit="saveCat()" novalidate>
         <p><h2>Cat name:</h2>
         <input type="text" name="catName" ng-model="cat.name" focus-input required>
+        <div class="red" ng-show="editCatForm.catName.$submitted || editCatForm.catName.$touched" ng-messages="editCatForm.catName.$error">
+            <div ng-messages-include='templates/error/errorMessenger.html' class="errors"></div>
+        </div>
         </p>
 
         <image-preview url='cat.link'></image-preview>
-        <!--ng-disabled="addCatForm.$invalid"-->
-        <button class="bg-primary cursor btn" ng-disabled="addCatForm.$invalid">Save</button>
-        <!--addCatForm.catName.$error.required || addCatForm.catName.$dirty && addCatForm.catName.$invalid ||-->
-        <!--addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid || addCatForm.catUrl.$error.required-->
+
+        <button class="bg-primary cursor btn" ng-disabled="editCatForm.$invalid">Save</button>
         <a ui-sref="mainPage"><span class="bg-primary cursor btn">Cancel</span></a>
     </form>
 

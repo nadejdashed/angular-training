@@ -1,11 +1,14 @@
 <div ng-form name="urlForm">
 <p><h2>Link for picture:</h2>
     <input type="url" name="url" pictures-validator ng-model-options="{ updateOn: 'blur' }" ng-model="url" required>
-    <span style="color:red" ng-show="urlForm.url.$dirty && urlForm.url.$invalid">
-    <span ng-show="form.urlForm.$error.required">Link for cat picture is empty.</span>
+    <div class="red" ng-show="urlForm.url.$submitted || urlForm.url.$touched" ng-messages="urlForm.url.$error">
+        <div ng-message="url">Invalid url</div>
+        <div ng-message="picturesValidator">Wrong link for cat picture!</div>
+        <!--<div ng-messages-include='templates/error/errorMessenger.html' class="errors"></div>-->
+    </div>
 </span>
 </p>
 
 <br />
 </div>
-<img ng-src="{{ url }}" />
+<img ng-show="url" class="cat-photo center" ng-src="{{ url }}" />

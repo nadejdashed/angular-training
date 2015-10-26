@@ -4,16 +4,13 @@
     <form class="black" name="addCatForm" ng-submit="saveCat()" novalidate>
         <p><h2 >Cat name:</h2>
         <input type="text" name="catName" ng-model="catName" focus-input required>
-            <span style="color:red" ng-show="addCatForm.catName.$dirty && addCatForm.catName.$invalid">
-            <span ng-show="addCatForm.catName.$error.required">Cat name is empty.</span>
-            </span>
+        <div class="red" ng-show="addCatForm.catName.$submitted || addCatForm.catName.$touched" ng-messages="addCatForm.catName.$error">
+            <div ng-messages-include='templates/error/errorMessenger.html' class="errors"></div>
+        </div>
         </p>
 
         <image-preview url='catUrl'></image-preview>
-        <!--ng-disabled="addCatForm.$invalid"-->
         <button class="bg-primary cursor btn" ng-disabled="addCatForm.$invalid">Save</button>
-        <!--addCatForm.catName.$error.required || addCatForm.catName.$dirty && addCatForm.catName.$invalid ||-->
-        <!--addCatForm.catUrl.$dirty && addCatForm.catUrl.$invalid || addCatForm.catUrl.$error.required-->
         <a ui-sref="mainPage"><span class="bg-primary cursor btn">Cancel</span></a>
     </form>
 </div>
