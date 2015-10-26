@@ -1,17 +1,28 @@
-<legend>Registration</legend>
+<div ng-form name="registrationForm">
+	<legend>Registration</legend>
 
-<div class="form-group">
-	<label for="login">*Name</label>
-	<input ng-model="registerUser.login" required type="text" class="form-control" name="login" id="login">
-</div>
-<div class="form-group">
-	<label for="password">*Password</label>
-	<input ng-model="registerUser.password" required type="password" class="form-control" name="password" id="password">
-</div>
-<div class="form-group">
-	<label for="password2">*Password</label>
-	<input ng-model="registerUser.password2" required type="password" class="form-control" name="password2" id="password2">
-</div>
+	<div class="form-group">
+		<label for="login">*Name</label>
+		<input ng-model="registerUser.login" required type="text" class="form-control" name="login" id="login">
+	</div>
+	<div class="form-group">
+		<label for="password">*Password</label>
+		<input ng-model="registerUser.password" required type="text" class="form-control" name="password" id="password">
+		<div ng-messages="registrationForm.password.$error">
+			<div ng-message="validCharacters">Invalid characters</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="password2">*Password</label>
+		<input ng-model="registerUser.password2" required type="password" password-validation repeat-password="{{registerUser.password}}" class="form-control" name="password2" id="password2">
+		<div ng-messages="registrationForm.password2.$error">
+			<div ng-message="validCharacters">Invalid characters</div>
+			<div ng-message="repeatPassword">Password not the same</div>
+		</div>
+	</div>
 
-<button type="submit" class="btn btn-primary" ng-click="register(registerUser)">Submit</button>
-<button type="button" class="btn btn-danger">Cancel</button>
+	<input type="file" ng-model="file" name="file" file/>
+
+	<button type="submit" class="btn btn-primary" ng-click="register(registerUser)">Submit</button>
+	<button type="button" class="btn btn-danger">Cancel</button>
+</div>

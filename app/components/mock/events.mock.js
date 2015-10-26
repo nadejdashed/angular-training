@@ -34,4 +34,5 @@ angular.module('mockApp', ['ngMockE2E']).run(function($httpBackend){
 	$httpBackend.whenGET(/.html/).passThrough();
 });
 
+
 angular.module('eventApp').requires.push('mockApp');

@@ -1,5 +1,5 @@
 "use strict";
-angular.module("eventApp", ['ui.grid', 'ui.grid.edit', 'ngCookies', 'ngResource', 'ui.router', 'alertsModule', 'ui.bootstrap']).config(function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider){
+angular.module("eventApp", ['ngMessages', 'ngCookies', 'ngResource', 'ui.router', 'alertsModule', 'ui.bootstrap']).config(function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
 	$locationProvider.hashPrefix('!');
 

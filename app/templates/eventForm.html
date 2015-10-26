@@ -9,8 +9,10 @@
 	<div class="form-group" ng-class="{'has-error': addEventForm.trainer.$dirty && addEventForm.trainer.$invalid}">
 		<label for="trainer">*Trainer</label>
 		<input ng-model="event.trainer" required ng-pattern="/^[A-Za-z ]*$/" type="text" class="form-control" name="trainer" id="trainer" placeholder="Nadzeya Shedava">
-		<span ng-show="addEventForm.trainer.$dirty && addEventForm.trainer.$error.required">Trainer is required</span>
-		<span ng-show="addEventForm.trainer.$dirty && addEventForm.trainer.$error.pattern">Trainer should only contains latin characters and spaces</span>
+		<div ng-messages="addEventForm.trainer.$error">
+			<div ng-message="required">Trainer is required</div>
+			<div ng-message="pattern">Trainer should only contains latin characters and spaces</div>
+		</div>
 	</div>
 	<div class="clearfix" image-preview source="event.src"></div>
 

@@ -31,11 +31,10 @@
     "grunt-processhtml": "^0.3.8",
     "jsonwebtoken": "^5.4.0",
     "karma": "~0.12.x",
-    "karma-beep-reporter": "~0.1",
+    "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "~0.2.x",
-    "karma-junit-reporter": "~0.2.x",
     "karma-phantomjs-launcher": "~0.1.x",
-    "karma-super-dots-reporter": "^0.1.0",
+    "karma-phantomjs2-launcher": "^0.3.2",
     "serve-static": ">=1.6.3"
   },
   "scripts": {
