@@ -49,4 +49,4 @@
     	};
   });
 
-}(angular.module("app")));
+}(angular.module("reg")));
