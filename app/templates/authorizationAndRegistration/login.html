@@ -1,10 +1,10 @@
-<div ng-show="!activeUserLogin">
+<div class="center" ng-show="!activeUserLogin">
     <span class="bg-info cursor btn"><a ui-sref="authorization.registration">Registration</a></span>
     <span class="bg-info cursor btn"><a ui-sref="authorization.signIn">Authorization</a></span>
 </div>
 
 <div ui-view></div>
 
-<div ng-show="activeUserLogin">
-   <h1> [{{activeUserLogin}}] </h1>
+<div class="center black" ng-show="activeUserLogin">
+   <h1>User Login: {{activeUserLogin}} </h1>
 </div>

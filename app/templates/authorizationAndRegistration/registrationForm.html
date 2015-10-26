@@ -1,4 +1,4 @@
-<form  name="addUserForm">
+<form class="center black" name="addUserForm">
 
     <p><h2>Login:</h2>
     <input type="text" name="userLogin" ng-model="user.login" ng-minlength="3" ng-maxlength="8" placeholder="login" required>
@@ -24,12 +24,12 @@
     <p><h2>Repeat password:</h2>
     <input type="password" name="userPasswordRepeat"  ng-model="user.password2" ng-minlength="8" ng-maxlength="16" data-match="user.password" placeholder="password repeat" required>
 
-    <div data-ng-show="addUserForm.userPasswordRepeat.$error.match">Passwords do not match!!!</div>
+    <div class="red" data-ng-show="addUserForm.userPasswordRepeat.$error.match">Passwords do not match!!!</div>
     </p>
 
     <br />
 
-    <span class="bg-primary cursor btn" ng-disabled="addUserForm.$invalid" ng-click="saveUser(user)">Registration</span>
+    <span class="bg-primary cursor btn" ng-disabled="addUserForm.$invalid" ng-click="saveUser(user)"><a ng-href="#/authorization/signIn">Registration</a></span>
     <a ng-href="/"><span class="bg-primary cursor btn">Cancel</span></a>
 </form>
 

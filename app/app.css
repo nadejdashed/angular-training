@@ -2,26 +2,40 @@ body {
 	color:red;
 }
 
+.cat-view{
+	color: #00b3ee;
+	border: solid #2e2e2e medium;
 
+}
 .cat-names-list {
-	width: 500px;
-	border-color: #7D9029;
-	border-style: ridge;
-	border-width: 3px;
-	background-color: #245580;
+	width: 25%;
+	/*background-color: #245580;*/
 }
 
-.search-input {
-	width: 350px;
+.pluralize{
+	height: 5%;
+	width: 25%;
+	font-size: 20px;
+	color: #000011;
+}
+input{
+	width: 15%;
 	border-radius: 5px;
-	height: 30px;
+	height: 34px;
+}
+.search-input {
+	float: left;
+	width: 15%;
+	border-radius: 5px;
+	height: 34px;
 }
 .selected-cat {
-	margin-top: -300px;
+	color: #00b3ee;
+	margin-top: -30%;
 	height:500px;
 	width: 500px;
-	margin-left: 550px;
-	border-color: #00ee00;
+	margin-left: 44%;
+	border-color: black;
 	border-style: ridge;
 	border-width: 3px;
 
@@ -32,6 +46,9 @@ body {
 	text-align: center;
 }
 
+.dropdown{
+	width: 5%;
+}
 .main {
 	margin-top: 50px;
 }
@@ -42,4 +59,12 @@ body {
 
 .center{
 	text-align: center;
+}
+
+.black{
+	color: black;
+}
+
+.red{
+	color: red;
 }

@@ -1,38 +1,43 @@
 <div ui-view></div>
 
 <div class="main">
-
     <div class="search">
+        <input class="form-control search-input black" placeholder="search..." ng-model="searchCatName">
+        <span class="bg-primary cursor btn" ng-click="search(searchCatName)">Search</span>
 
-        <select ng-model="sort">
+        <select class="form-control dropdown" ng-model="sort">
             <option value="-name">Ask</option>
             <option value="name">Desk</option>
         </select>
 
-        <input class="search-input" placeholder="search..." ng-model="searchCatName">
-        <span class="bg-primary cursor btn" ng-click="search(searchCatName)">Search</span>
     </div>
 
     <br />
-
-    <ng-pluralize count="goodRatingCats.length"
+<div class="bg-warning pluralize text-center">
+    <ng-pluralize  count="goodRatingCats.length"
         when="{'0': 'No one cat is liked.',
         'one': '1 || {{ goodRatingCats[0] }} || is liked.',
         'other': '{} cats are liked.'}">
     </ng-pluralize>
-
+</div>
     <br />
 
-    <div class="bg-info cat-names-list"  ng-repeat="cat in cats | filter: { name: searchCatNameFilter } | orderBy: sort">
-        <h1 class="cursor" ng-click="show(cat)">{{ cat.clickCount | clickCountFilter }} Name: {{ cat.name }} <span ng-show="cat.view">&#8730;</span></h1>
-
-        <div ng-show="checkUserPermissions(cat.creator)">
-            <span  class="bg-danger cursor"><a ng-href = "#/edit/{{cat.id}}">Edit</a></span>
-            <span  class="bg-danger cursor" ng-click="deleteCat(cat)">Delete</span>
+    <div class="cat-names-list"  ng-repeat="cat in cats | filter: { name: searchCatNameFilter } | orderBy: sort">
+        <div class="bg-success">
+            <uib-accordion>
+                <h1 class="cursor cat-view" ng-click="show(cat)">{{ cat.clickCount | clickCountFilter }} Name: {{ cat.name }} <span ng-show="cat.view">&#8730;</span>
+                    <uib-accordion-group class="text-center" ng-show="checkUserPermissions(cat.creator)" heading="Edit/Delete">
+                        <div>
+                            <span  class="btn btn-info"><a ng-href = "#/edit/{{cat.id}}">Edit</a></span>
+                            <span  class="btn btn-danger" ng-click="deleteCat(cat)">Delete</span>
+                        </div>
+                    </uib-accordion-group>
+                </h1>
+            </uib-accordion>
         </div>
     </div>
 
-    <div class="selected-cat">
+    <div ng-show="selectedCat.name" class="selected-cat">
         <div class="bg-success">
             <h1>Current Name: {{ selectedCat.name }}</h1>
             <h2>Click count: {{ selectedCat.clickCount }}</h2>

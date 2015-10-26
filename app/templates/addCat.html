@@ -1,8 +1,8 @@
 <div ui-view></div>
 
-<div class="container" ng-show="activeUserLogin">
-    <form name="addCatForm" ng-submit="saveCat()" novalidate>
-        <p><h2>Cat name:</h2>
+<div class="container center" ng-show="activeUserLogin">
+    <form class="black" name="addCatForm" ng-submit="saveCat()" novalidate>
+        <p><h2 >Cat name:</h2>
         <input type="text" name="catName" ng-model="catName" focus-input required>
             <span style="color:red" ng-show="addCatForm.catName.$dirty && addCatForm.catName.$invalid">
             <span ng-show="addCatForm.catName.$error.required">Cat name is empty.</span>
@@ -18,4 +18,4 @@
     </form>
 </div>
 
-<div ng-show="!activeUserLogin">You don't have such permissions!!!</div>
+<div class="center" ng-show="!activeUserLogin"><b>You don't have such permissions!!!</b></div>

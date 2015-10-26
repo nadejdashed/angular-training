@@ -50,12 +50,20 @@
 
 <body ng-app="app" ng-cloak>
 
-   || <a ui-sref="mainPage">Home</a> ||
-    <a ui-sref="addCat">Add Cat</a> ||
-    <a ui-sref="authorization">Authorization</a> ||
-    <active-user></active-user>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="mainPage">Home</a></li>
+                <li><a ui-sref="addCat">Add Cat</a></li>
+                <li><a ui-sref="authorization">Authorization</a></li>
+                <li><active-user></active-user></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <div ui-view></div>
+<div ui-view></div>
 
 
 
