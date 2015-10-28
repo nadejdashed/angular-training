@@ -46,6 +46,8 @@
     <script src="/app/components/directives/imagePreview.directive.js"></script>
     <script src="/app/components/directives/vote.directive.js"></script>
     <script src="/app/components/directives/passwordValidation.directive.js"></script>
+    <script src="/app/components/directives/my-transclude.directive.js"></script>
+    <script src="/app/components/directives/tabs.directive.js"></script>
 
     <script src="/app/modules/alerts/alerts.module.js"></script>
     <script src="/app/modules/alerts/alerts.service.js"></script>
@@ -58,28 +60,38 @@
 </head>
 <body ng-app="eventApp" class="ng-cloak">
 
-    <nav class="navbar navbar-default" ng-controller="mainController">
+    <nav class="navbar navbar-default" ng-controller="mainController as main">
         <a class="navbar-brand" href="/">Events</a>
         <ul class="nav navbar-nav">
-            <li ng-class="{active: isSelected('events')}">
+            <li ng-class="{active: main.isSelected('events')}">
                 <a ui-sref="events">Home</a>
             </li>
-            <li ng-show="canAdd" ng-class="{active: isSelected('events.add')}">
+            <li ng-show="main.canAdd" ng-class="{active: main.isSelected('events.add')}">
                 <a ui-sref="events.add">Add Event</a>
             </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
-            <li ng-hide="isAuthenticated" ng-class="{active: isSelected('login')}">
+            <li ng-hide="main.isAuthenticated" ng-class="{active: main.isSelected('login')}">
                 <a ui-sref="login">Login</a>
             </li>
-            <li ng-hide="isAuthenticated" ng-class="{active: isSelected('register')}">
+            <li ng-hide="main.isAuthenticated" ng-class="{active: main.isSelected('register')}">
                 <a ui-sref="register">Registration</a>
             </li>
-            <li ng-show="isAuthenticated">
-                <a href="#" ng-click="logout($event)">Logout</a>
+            <li ng-show="main.isAuthenticated">
+                <a href="#" ng-click="main.logout($event)">Logout</a>
             </li>
         </ul>
     </nav>
+
+    <div ng-init="something = 5; anotherSomething = 'Pavlo'">
+        <my-transclude>{{something}}</my-transclude>
+    </div>
+
+    <my-tabs>
+        <my-tab>
+            <my-tab></my-tab>
+        </my-tab>
+    </my-tabs>
 
     <div class="container">
         <div ui-view="info"></div>

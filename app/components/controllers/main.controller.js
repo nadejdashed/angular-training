@@ -1,20 +1,21 @@
 angular.module('eventApp').controller('mainController', function($scope, authService, permissionService, $state){
+	var vm = this;
 
-	$scope.isSelected = function(stateName){
+	vm.isSelected = function(stateName){
 		return $state.is(stateName);
 	};
 
-	$scope.logout = function($e){
+	vm.logout = function($e){
 		$e.preventDefault();
 
 		authService.logout();
 	};
 
 	$scope.$watch(authService.getUser, function(val){
-		$scope.canAdd = permissionService.checkAddPermission();
-		$scope.isAuthenticated = !!val;
-		console.log($scope.canAdd);
-		console.log($scope.isAuthenticated);
+		vm.canAdd = permissionService.checkAddPermission();
+		vm.isAuthenticated = !!val;
+		console.log(vm.canAdd);
+		console.log(vm.isAuthenticated);
 	});
 
 });
