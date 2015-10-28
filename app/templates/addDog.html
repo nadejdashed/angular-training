@@ -1,15 +1,25 @@
-<div  ng-controller="addDogController">
-    <form ng-submit="addDog(dog)">
-        <h2>Add New Dog:</h2>
+<div class="col-md-12">
+    <form name="newDogForm"
+          ng-submit="addDog(dog)">
+        <h2 ng-hide="editedForm">Add New Dog:</h2>
+        <h2 ng-show="editedForm">Edit {{ dog.name }}:</h2>
+
         <h2>Enter name:</h2>
-        <input ng-model="dog.name" type="text"/>
+        <input name="dogName"
+               ng-model="dog.name"
+               type="text"
+               required/>
+
         <h2>Enter image source:</h2>
         <image-preview source="dog.source"></image-preview>
         <br/>
-            <button type="submit">Create</button>
-            <a class="clear" ng-click="currentName = null; currentSource = null">
-                <button class="glyphicon glyphicon-remove">Clear fields</button>
-            </a>
+        <button type="submit"
+                ng-hide="editedForm"
+                ng-disabled="newDogForm.$invalid">Create
+        </button>
+        <button type="submit"
+                ng-show="editedForm"
+                ng-disabled="newDogForm.$invalid">Change
+        </button>
     </form>
-
 </div>

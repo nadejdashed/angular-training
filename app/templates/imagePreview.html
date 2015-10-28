@@ -1,2 +1,9 @@
-<input ng-model="source" type="url" focus-directive/>
-<img ng-src="{{source}}"/>
+<ng-form name="previewForm">
+<input name="dogPicture"
+       ng-model="source"
+       ng-model-options="{updateOn: 'blur'}"
+       type="url"
+       focus-directive
+       required/>
+<img ng-src="{{source}}" width="300" height="300"/>
+</ng-form>

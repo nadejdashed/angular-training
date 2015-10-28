@@ -1,11 +1,13 @@
 (function(module){
 
-    var addDogController = function ($scope, dogService) {
+    var addDogController = function ($scope, dogsResource) {
+        debugger;
         $scope.addDog = function (dog) {
             console.log(dog);
-            dogService.postDog(dog);
+            dogsResource.postDog(dog);
         };
-    }
+    };
+
     module.controller("addDogController", addDogController);
 
 }(angular.module('app')));

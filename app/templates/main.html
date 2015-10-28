@@ -1,27 +1,32 @@
 <div ng-controller="mainController" class="container">
+    <div class="col-md-6">
+        <h2>Filter by:</h2>
+        <select ng-model="selectedFilter">
+            <option value="">---Please select---</option>
+            <option value="name">Name</option>
+            <option value="-name">-Name</option>
+        </select>
 
-    <h2>Filter by:</h2>
-    <select ng-model="selectedFilter">
-        <option value="">---Please select---</option>
-        <option value="{{name}}">Name</option>
-        <option value="{{-name}}">-Name</option>
-    </select>
-    <input ng-model="filterName.name" type="text"/>
-    <button name="submit" ng-click="setFilter(filterName);">Submit</button>
-    <!-- //TODO filter check-->
-    <div ng-repeat="dog in dogs | filter : filter | orderBy: selectedFilter">
-        <div ng-click="showDog(dog);">{{dog.name}}<span ng-show="dog.view">&#8730;</span></div>
-        <div class="btn-group" role="group" aria-label="...">
-            <button class="btn btn-default"><a ng-href="/dog/{{dog.id}}">Open this dog</a></button>
-            <button ng-click="deleteDog(dog.id)" class="btn btn-default">Delete this dog</button>
+        <form ng-submit="setFilter(filterName)">
+            <input ng-model="filterName.name" type="text"/>
+            <input type="submit" value="Submit filter"/>
+        </form>
+        <div ng-repeat="dog in dogs | filter : submittedFilter | orderBy: selectedFilter" ng-cloak>
+            <div ng-click="showDog(dog);">{{dog.name}}<span ng-show="dog.view">&#8730;</span></div>
+            <div class="btn-group" role="group" aria-label="...">
+                <button class="btn btn-default"
+                        ng-show="ownerOptions(dog)" ng-click="goTo('/dog/' + dog.id)">Open this dog
+                </button>
+                <button ng-click="deleteDog(dog)" class="btn btn-default" ng-show="ownerOptions(dog)">Delete this dog
+                </button>
+            </div>
         </div>
     </div>
-    <div ng-click="increaseClicks(selectedDog);">
+    <div class="col-md-6">
         <img ng-src="{{selectedDog.source}}" width="300" height="300"/>
 
         <h2>Total likes:{{selectedDog.likes}}</h2>
-        <button name="Like" ng-click="inc(selectedDog);">Like!</button>
-        <button name="Unlike" ng-click="dec(selectedDog);">Unlike!</button>
+        <vote-spinner item="selectedDog" inc-vote="inc(selectedDog)" dec-vote="dec(selectedDog)"></vote-spinner>
     </div>
 
 </div>

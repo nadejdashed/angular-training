@@ -1,7 +1,8 @@
 (function () {
     "use strict";
-    angular.module("app", ['ngRoute']).config(function ($locationProvider, $routeProvider) {
+    angular.module("app", ['ngRoute', 'ngResource', 'ui.bootstrap']).config(function ($locationProvider, $routeProvider, $httpProvider) {
         $locationProvider.html5Mode(true);
+        $httpProvider.interceptors.push('authorizationInterceptor');
 
         $routeProvider.when('/', {
             controller: 'mainController',

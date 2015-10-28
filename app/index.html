@@ -12,19 +12,35 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="/bower_components/Chart.js/Chart.js"></script>
+    <script src="/bower_components/angular-chart.js/angular-chart.js"></script>
+
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/addDogController.js"></script>
     <script src="/app/components/controllers/dogPage.js"></script>
     <script src="/app/components/controllers/loginController.js"></script>
+    <script src="/app/components/controllers/modalDelete.js"></script>
+    <script src="/app/components/controllers/voteController.js"></script>
 
     <script src="/app/components/services/dogs.service.js"></script>
     <script src="/app/components/services/login.service.js"></script>
+    <script src="/app/components/services/permission.service.js"></script>
+    <script src="/app/components/services/interceptor.js"></script>
+
+    <script src="/app/components/resources/dogs.resource.js"></script>
 
     <script src="/app/components/directives/focusDirective.js"></script>
-    <script src="/app/components/directives/ngSubmit.js"></script>
+    <script src="/app/components/directives/submitEnter.js"></script>
     <script src="/app/components/directives/imagePreview.js"></script>
+    <script src="/app/components/directives/voteSpinner.directive.js"></script>
 
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
 
@@ -37,6 +53,5 @@
         <div ng-include="'templates/headerMenu.html'"></div>
     </div>
     <ng-view></ng-view>
-
 </body>
 </html>

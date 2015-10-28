@@ -1,19 +1,23 @@
-(function(module) {
+(function (module) {
 
-   var loginCtrl = function($scope, loginService) {
-       $scope.createUser = function (user) {
-           loginService.registerUser(user);
-       };
+    var loginCtrl = function ($scope, loginService, permissionService) {
+        $scope.createUser = function (user) {
+            loginService.registerUser(user);
+        };
 
-       $scope.loginUser = function (user) {
-           loginService.loginUser(user);
-       };
+        $scope.loginUser = function (user) {
+            loginService.loginUser(user);
+        };
 
-       $scope.logoutUser = function () {
-           loginService.logout();
-       }
-   };
+        $scope.logoutUser = function () {
+            loginService.logout();
+        };
 
- module.controller('loginCtrl', loginCtrl);
+        $scope.$watch(permissionService.canAdd, function (newCanAdd) {
+                $scope.canAdd = newCanAdd;
+        })
+    };
+
+    module.controller('loginCtrl', loginCtrl);
 
 })(angular.module('app'));
