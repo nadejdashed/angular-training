@@ -37,7 +37,7 @@ describe("add cat controller", function () {
             expect(catService.saveCat).toHaveBeenCalledWith(cat);
         });
     });
-    
+
     it('should watcher update', function(){
         expect(sut.activeUserLogin).toEqual(undefined);
         sut.$apply();
