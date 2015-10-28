@@ -1,15 +1,14 @@
 <input type="text" ng-model="query.name">
-<button type="button"  ng-click="submitSearch()">search</button>
+<button type="button"  ng-click="submitSearch()" class="btn btn-warning">search</button>
 
 <select ng-model="order">
     <option value="name">NAME</option>
     <option value="-name">-NAME</option>
 </select>
 
-
 <div ng-repeat="cat in cats | filter:searchResult | orderBy:order">
-        <button ng-show="ifCatBelongToUser(cat)" ng-click="deleteCat(cat)">DELETE CAT</button>
-        <button ng-show="ifCatBelongToUser(cat)" ng-click="editCat(cat)">EDIT CAT</button>
+        <button ng-show="ifCatBelongToUser(cat)" ng-click="deleteCat(cat)" class="btn btn-warning">DELETE CAT</button>
+        <button ng-show="ifCatBelongToUser(cat)" ng-click="editCat(cat)" class="btn btn-warning">EDIT CAT</button>
         <span ng-click="showCatProfile(cat)">{{cat.name}}</span>
 
         <img ng-src="http://img1.ask.fm/assets2/006/656/481/536/thumb/greentickincircle_21335495.jpg" ng-show="cat.checked" height="42" width="42"/>

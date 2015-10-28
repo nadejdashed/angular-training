@@ -1,7 +1,8 @@
 <form name="catForm">
+    <h3>Add Cat</h3>
 
     Cat Name<input type="text" name="catName" ng-model="cat.name" required >
-    <span class="error" ng-show="catForm.catName.$error.required">Required!</span><br>
+    <span class="error" ng-show="catForm.catName.$error.required" style="color: red">Required!</span><br>
 
     <div image-preview source="cat.src"></div>
 <!--
@@ -9,14 +10,22 @@
     <span ng-show="catForm.imageURL.$error.url">Not valid url!</span><br>
 -->
 
+<!--
     <input type="submit" value="Add Cat" ng-click="addCat(cat)"
            ng-disabled="catForm.catName.$dirty && catForm.catName.$invalid ||
-                                                     catForm.imageURL.$dirty && catForm.imageURL.$invalid">
+                                                     catForm.imageURL.$dirty && catForm.imageURL.$invalid" class="btn btn-warning">
 
     <input type="submit" value="Edit Cat" ng-click="editCat(cat)"
            ng-disabled="catForm.catName.$dirty && catForm.catName.$invalid ||
-                                                     catForm.imageURL.$dirty && catForm.imageURL.$invalid">
+                                                     catForm.imageURL.$dirty && catForm.imageURL.$invalid" class="btn btn-warning">
+-->
 
+    <input type="submit" value="Add Cat" ng-click="addCat(cat)"
+           ng-disabled="catForm.$invalid" class="btn btn-warning">
+
+
+    <input type="submit" value="Edit Cat" ng-click="editCat(cat)"
+           ng-disabled="catForm.$invalid" class="btn btn-warning">
 
 </form>
 

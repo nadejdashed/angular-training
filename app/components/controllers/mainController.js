@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catFactory, authService, cats, $location) {
+    var mainController = function ($scope, catFactory, authService, cats, $location, $uibModal) {
 /*
         $scope.cats =[
             {name: 'Tom', counter: 1, src: 'https://pbs.twimg.com/media/CN4GOm8WwAAgqy8.jpg'},
@@ -35,9 +35,29 @@
         };
 
         $scope.deleteCat = function(cat)  {
+
+            var modalInstance = $uibModal.open({
+                templateUrl: '/templates/modal/delete.html',
+                controller: 'modalDeleteCtrl',
+                resolve: {
+                    item: function () {
+                        return cat;
+                    }
+                }
+
+            });
+
+            modalInstance.result.then(function() {
+                catFactory.deleteCat(cat);
+            }, function() {
+                console.log('canceled');
+            });
+
+/*
             catFactory.deleteCat(cat).then(function() {
                 alert('Cat Deleted');
             }, function(){});
+*/
         };
 
         $scope.ifCatBelongToUser = function(cat) {

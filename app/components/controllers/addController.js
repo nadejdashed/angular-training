@@ -3,9 +3,16 @@
     var addController = function ($scope, catFactory, authService, $routeParams, $location) {
 
         var id = $routeParams.id;
-        catFactory.getCatById(id).then(function(data) {
+
+        //for $http instead of $resource
+/*      catFactory.getCatById(id).then(function(data) {
             $scope.cat = data;
         }, function() {});
+*/
+        //for $resource instead of $http
+        if (id){
+            $scope.cat = catFactory.getCatById(id);
+        }
 
         $scope.addCat = function(cat) {
 

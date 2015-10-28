@@ -1,4 +1,6 @@
-Image URL<input  ng-model-options="{ updateOn: 'blur' }" focus-me type="url" name="imageURL" ng-model="src">
-<span ng-show="catForm.imageURL.$error.url">Not valid url!</span><br>
+<div ng-form name="imagePreviewForm">
+    Image URL<input  ng-model-options="{ updateOn: 'blur' }" focus-me type="url" name="imageURL" ng-model="src">
+    <span ng-show="imagePreviewForm.imageURL.$dirty && imagePreviewForm.imageURL.$error.patern" style="color: red">Not valid url!</span><br>
 
-<img ng-show="src" ng-src="{{src}}"/>
+    <img ng-show="src" ng-src="{{src}}"/>
+</div>

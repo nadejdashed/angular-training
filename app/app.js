@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("app", ['ngRoute', 'ngCookies']).config(function($routeProvider, $httpProvider) {
+    angular.module("app", ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ngResource']).config(function($routeProvider, $httpProvider) {
 
         $httpProvider.interceptors.push('authInterceptor');
 
@@ -41,7 +41,7 @@
                 template: '<h2>Cat Aplication v1.0</h2>'
             })
             .otherwise({
-                template : '<h1>HELLO<h1>'
+                template : ''
             })
     });
 })();

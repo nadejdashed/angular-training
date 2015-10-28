@@ -1,8 +1,9 @@
-<form name="userRegistration">
-    Name:             <input ng-model="user.login"><br>
-    Password:         <input ng-model="user.password"><br>
-    Confirm Password: <input ng-model="user.password2"><br>
-    Email:            <input ng-model="user.email"><br>
-    <input type="submit" value="Register" ng-click="register(user)">
+<form name="userRegistrationForm">
+    Name:             <input ng-model="user.login" name="name"><br>
+    Password:         <input ng-model="user.password" name="password" password-validation>
+    <span class="error" ng-show="userRegistrationForm.password.$invalid" style="color: red">Invalid Password</span><br>
+    Confirm Password: <input ng-model="user.password2" name="password2"><br>
+    Email:            <input ng-model="user.email" name="email"><br>
+    <input type="submit" value="Register" ng-click="register(user)" class="btn btn-warning" ng-disabled="userRegistrationForm.$invalid">
 
 </form>

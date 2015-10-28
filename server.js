@@ -126,31 +126,25 @@ app.post(instanceName, checkAuth, function(req, res){
         if (err){
             res.error(err);
         } else {
-            res.send(result);
+            res.send(data);
         }
     });
 });
-app.put(instanceName + '/:id', checkAuth, function(req, res, user){
+app.put(instanceName + '/:id', function(req, res, user){
     var id = req.params.id,
         result = require(fileName),
         instance = result.filter(function(el){return el[fields.id] == id})[0],
         data = req.body;
 
-    if (req.user.login === instance[fields.owner]) {
         extend(instance, data);
         fs.writeFile(fileName, JSON.stringify(result), function (err) {
             console.log(err ? err : "JSON saved to " + fileName);
             if (err) {
                 res.error(err);
             } else {
-                res.send(result);
+                res.send(instance);
             }
         });
-    } else  {
-        res
-            .status(405)
-            .send({status: 'error', code: "NOPERMISSION", error: "No permission"});
-    }
 
 });
 app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
@@ -167,7 +161,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
             if (err){
                 res.error(err);
             } else {
-                res.send(result);
+                res.send(instance);
             }
         });
     } else {

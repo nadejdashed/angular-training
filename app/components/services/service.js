@@ -1,8 +1,7 @@
-/**
- * Created by vv on 15.10.2015.
- */
+/*
 angular.module("app").factory('catFactory', function($http) {
    var factory = {};
+*/
 
 /*
     factory.getListOfCats = function() {
@@ -16,6 +15,7 @@ angular.module("app").factory('catFactory', function($http) {
     };
 */
 
+/*
     factory.getListOfCats = function() {
         return $http.get('/cats').then(function(data) {
             return data.data;
@@ -41,4 +41,4 @@ angular.module("app").factory('catFactory', function($http) {
     };
 
     return factory;
-});
+});*/
