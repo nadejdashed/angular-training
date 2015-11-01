@@ -10,7 +10,7 @@
             <a href="#">{{f.name}}</a>
             <span ng-show="f.visited" class="glyphicon glyphicon-ok"></span>
             <button type="button" ng-show="isOwner(f)" ui-sref="editFootballer({id: f.id})">Edit</button>
-            <button type="button" ng-show="isOwner(f)" ng-click="deleteFootballer(f.id)">Delete</button>
+            <button type="button" ng-show="isOwner(f)" ng-click="deleteItem(f)">Delete</button>
         </li>
     </ul>
 </div>
@@ -18,8 +18,7 @@
     <img ng-src="{{selectedFootballer.src}}">
     <h3>Name: </h3> {{selectedFootballer.name}}
     <br />
-    <h3>Clicks: </h3> {{selectedFootballer.clicks}}
+    <h3>Votes: </h3> {{selectedFootballer.clicks}}
     <br />
-    <button type="button" ng-click="likeFootballer(selectedFootballer)">Like</button>
-    <button type="button" ng-click="dislikeFootballer(selectedFootballer)">Dislike</button>
+    <votes object="selectedFootballer" function="someFunction()">AAAAAAAAAAAAAAAAA {{selectedFootballer.clicks}}</votes>
 </div>

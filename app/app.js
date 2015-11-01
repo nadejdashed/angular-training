@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("app", ['ui.router']).config(function($stateProvider, $urlRouterProvider, $httpProvider){
+    angular.module("app", ['ngMessages', 'ui.router', 'ui.bootstrap', 'ngResource']).config(function($stateProvider, $urlRouterProvider, $httpProvider){
         $urlRouterProvider.otherwise("/");
 
         $stateProvider.state('home',{

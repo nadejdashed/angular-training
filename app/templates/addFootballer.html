@@ -1,9 +1,13 @@
-<form novalidate>
-    Name: <input type="text" ng-model="new.name" /><br />
-    Image URL: <input type="text" ng-model="new.src" /><br />
-    Image: <br />
-    <img ng-src="{{new.src}}" width="300px" height="200px">
-    <br />
-    <input type="submit" value="Save" ng-click="saveFootballer(new)" />
+<form name="addForm" style="margin-left: 50px;">
+    Name:
+    <div class="input-group">
+        <input focus required minlength="4" name="name" type="text" class="form-control" placeholder="Footballer Name" ng-model="new.name" />
+    </div>
+    <div ng-messages="addForm.name.$error">
+        <div ng-message="required">Footballer name is required!</div>
+        <div ng-message="minlength">Name is too short! It has to be at least 4 characters.</div>
+    </div>
+    <image-preview preview-src="new.src"></image-preview>
+    <input ng-disabled="addForm.$invalid" type="submit" value="Save" enter-submit ng-click="saveFootballer(new)" />
     <input type="button" value="Cancel" />
 </form>

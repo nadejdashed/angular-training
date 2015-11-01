@@ -1,24 +1,15 @@
-angular.module("app").factory('footballerService', function($q, $timeout, $http){
+angular.module("app").factory('footballerService', function($q, $timeout, $resource, $http){
+    var Footballers = $resource('/footballers/:id', {id:'@id'});
     function getData() {
-        var defer = $q.defer();
-        $http.get('/footballers').then(function(data){
-            defer.resolve(data.data);
-        });
-        return defer.promise;
+        return Footballers.query();
     }
     function getDataById(id){
-        var defer = $q.defer();
-        $http.get('/footballers/' + id).then(function(data){
-            defer.resolve(data.data);
-        });
-        return defer.promise;
+        return Footballers.get({id: id});
     }
     function addData(newFootballer) {
-        var defer = $q.defer();
-        $http.post('/footballers', newFootballer).then(function(data){
-            defer.resolve(data.data);
-        });
-        return defer.promise;
+        var addedFootballer = new Footballers(newFootballer);
+        console.log(addedFootballer.$save());
+        return addedFootballer.$save();
     }
     function editData(newFootballer) {
         var defer = $q.defer();

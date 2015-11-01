@@ -13,6 +13,7 @@ angular.module("app").factory('userService', function($q, $timeout, $http, $wind
         var defer = $q.defer();
         $http.post('/auth', loginUser).then(function(data){
             token = data.data.token;
+            user = loginUser;
             $window.localStorage.setItem('token', token);
             $window.localStorage.setItem('user', JSON.stringify(loginUser));
             defer.resolve(data.data);
@@ -26,6 +27,8 @@ angular.module("app").factory('userService', function($q, $timeout, $http, $wind
         return user;
     }
     function logoutUser() {
+        token = undefined;
+        user = null;
         $window.localStorage.removeItem('token');
         $window.localStorage.removeItem('user');
     }

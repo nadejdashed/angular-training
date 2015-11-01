@@ -1,27 +1,43 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, footballerService, footballers, permissionsService) {
+    var mainController = function ($scope, footballerService, footballers, permissionsService, $uibModal, $location) {
         $scope.selectFootballer = function (footballer) {
             $scope.selectedFootballer = footballer;
             footballer.visited = true;
         }
-        $scope.likeFootballer = function (footballer) {
-            footballer.clicks++;
+        $scope.someFunction = function() {
+            console.log('This is some function!');
         }
-        $scope.dislikeFootballer = function (footballer) {
-            footballer.clicks--;
-        }
+
         $scope.searchFootballer = function (searchValue) {
             $scope.searchName = searchValue;
-        }
-        $scope.deleteFootballer = function (footballerId) {
-            footballerService.deleteData(footballerId);
         }
         $scope.isOwner = function (footballer) {
             return permissionsService.isOwner(footballer);
         }
         $scope.footballers = footballers;
         $scope.selectedFootballer = $scope.footballers[0];
+
+        $scope.deleteItem = function(footballer) {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'templates/deleteWindow.html',
+                controller: 'deleteWindowController',
+                resolve: {
+                    instance: function () {
+                        return footballer;
+                    }
+                }
+            });
+            modalInstance.result.then(function (footballer) {
+                footballerService.deleteData(footballer);
+                var index = footballers.indexOf(footballer);
+                footballers.splice(index, 1);
+            }, function () {
+                $location.path('/');
+            });
+        };
+
+
     };
 
     module.controller("mainController", mainController);

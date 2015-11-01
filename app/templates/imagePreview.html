@@ -1,0 +1,14 @@
+<div ng-form name="addImage">
+    Image URL:
+    <div class="input-group">
+        <input type="text" name="src" class="form-control" placeholder="Image URL" ng-model="src" ng-model-options="{ updateOn: 'blur' }" />
+    </div>
+    <!--<div ng-messages="addImage.src.$error">-->
+        <!--<div ng-message="url">URL is not valid!</div>-->
+    <!--</div>-->
+</div>
+
+<div style="margin-top: 10px; margin-bottom: 10px;">
+    Image Preview: <br />
+    <img ng-src="{{src}}" width="300px" height="200px">
+</div>

@@ -19,5 +19,8 @@
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
     "angular-resource": "latest"
+  },
+  "devDependencies": {
+    "angular-messages": "~1.4.7"
   }
 }

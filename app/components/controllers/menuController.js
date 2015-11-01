@@ -9,8 +9,8 @@
             $location.path('/');
         }
 
-        $scope.$watch(userService.getLoggedInUser, function(){
-
+        $scope.$watch(permissionsService.loggedIn, function(val){
+            $scope.isLogged = val;
         });
     };
 

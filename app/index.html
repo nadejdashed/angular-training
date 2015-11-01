@@ -9,16 +9,25 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
 
     <script src="/app/components/controllers/addController.js"></script>
+    <script src="/app/components/controllers/deleteWindowController.js"></script>
     <script src="/app/components/controllers/editController.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/menuController.js"></script>
     <script src="/app/components/controllers/userController.js"></script>
-    <script src="/app/components/services/footballer.service.js"></script>
+    <script src="/app/components/directives/enterSubmit.directive.js"></script>
+    <script src="/app/components/directives/focus.directive.js"></script>
+    <script src="/app/components/directives/imagepreview.directive.js"></script>
+    <script src="/app/components/directives/passwordValidation.directive.js"></script>
+    <script src="/app/components/directives/votes.directive.js"></script>
+    <script src="/app/components/services/footballerResource.service.js"></script>
     <script src="/app/components/services/authInterceptor.service.js"></script>
     <script src="/app/components/services/permissions.service.js"></script>
     <script src="/app/components/services/user.service.js"></script>
@@ -40,11 +49,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a ui-sref="home">Home</a></li>
-                    <li><a ng-show="isLoggedIn()" ui-sref="addFootballer">Add Footballer</a></li>
+                    <li><a ng-show="isLogged" ui-sref="addFootballer">Add Footballer</a></li>
                     <li><a ui-sref="author">About Author</a></li>
-                    <li><a ng-hide="isLoggedIn()" ui-sref="register">Register</a></li>
-                    <li><a ng-hide="isLoggedIn()" ui-sref="login">Log In</a></li>
-                    <li><a ng-show="isLoggedIn()" ng-click="logout()">Log Out</a></li>
+                    <li><a ng-hide="isLogged" ui-sref="register">Register</a></li>
+                    <li><a ng-hide="isLogged" ui-sref="login">Log In</a></li>
+                    <li><a href="" ng-show="isLogged" ng-click="logout()">Log Out</a></li>
                 </ul>
             </div>
         </div>

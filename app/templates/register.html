@@ -1,6 +1,9 @@
-<form novalidate>
-    Login: <input type="text" ng-model="user.login"><br/>
-    Password: <input type="password" ng-model="user.password"><br />
+<form name="registerUser" novalidate>
+    Login: <input name="login" type="text" ng-model="user.login"><br/>
+    Password: <input name="password" password-validation type="password" ng-model="user.password"><br />
+    <div ng-messages="registerUser.password.$error">
+        <div ng-message="validCharacters">Password should contain an upper-case and lower-case letters and numbers.</div>
+    </div>
     Repeat Password: <input type="password" ng-model="user.password2" /><br />
     <button type="submit" ng-click="register(user)">Register</button>
 </form>
