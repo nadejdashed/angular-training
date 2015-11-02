@@ -1,7 +1,9 @@
 <h1>{{ text }}</h1>
-<div ng-repeat="cat in images">
-    <img ng-src="{{cat}}" alt="click me"  ng-click="incCounterPicture()">
+<div ng-repeat="cat in images track by $index">
+    <h3>{{cat.name}}</h3>
+    <img ng-src="{{cat.img}}" alt="click me"  ng-click="incCounterPicture($index)">
+    <p>this img clicked: {{ cat.clicks }} times</p>
 </div>
 <div>
-    <p>img clicked: {{ counter }}</p>
+    <p>img clicked total: {{ counterTotal }}</p>
 </div>

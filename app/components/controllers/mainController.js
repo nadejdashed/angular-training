@@ -2,14 +2,22 @@
 
     var mainController = function ($scope) {
         $scope.text = "Hello World!";
-        $scope.images = ['http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg',
-                         'http://www.factslides.com/imgs/black-cat.jpg'];
+        $scope.images = [
+            { name: 'stu',
+              img:'http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg',
+              clicks: 0},
 
-        $scope.counter = 0;
-        $scope.incCounterPicture = function(){
-            $scope.counter++;
-            console.log('hit btn',$scope.counter);
-            return $scope.counter;
+            { name: 'dru',
+              img:'http://www.factslides.com/imgs/black-cat.jpg',
+              clicks: 0}];
+
+        $scope.counterTotal = 0;
+        $scope.incCounterPicture = function(_index){
+            $scope.images[_index].clicks++;
+            console.log('hit btn['+_index+']', $scope.counter);
+            //
+            $scope.counterTotal++;
+            return $scope.images[_index].clicks;
         };
     };
 
