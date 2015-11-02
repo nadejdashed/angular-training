@@ -14,11 +14,22 @@
     <script src="/app/components/controllers/mainController.js"></script>
     <!-- /build -->
 </head>
-<body ng-app="app">
+    <body ng-app="app">
+        <div ng-controller="mainController">
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
-    </div>
+                <div ng-repeat="cat in cats track by $index">
+                    <div ng-click="selectCat(cat)">
+                        {{cat.name}}
+                    </div>
+                </div>
 
-</body>
+                <div align="right">
+                    {{cat.name}}
+                </div>
+                <div ng-click="imgClick(cat)">
+                    <img src="{{cat.image}}">
+                    {{cat.clickNumber}}
+                </div>
+        </div>
+    </body>
 </html>
