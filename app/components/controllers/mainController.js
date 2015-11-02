@@ -7,12 +7,12 @@
             {name:'Adam', image:'Artefacts/cat4.jpeg', clickedCount:0},
             {name:'Julie', image:'Artefacts/cat5.jpeg', clickedCount:0}];
         $scope.selectedCat = $scope.cats[0];
-        $scope.catWasClicked = function (cat) {
+        $scope.didClickOnCat = function (cat) {
             cat.clickedCount++;
-        }
-        $scope.catWasSelected = function (cat) {
+        };
+        $scope.didSelectCat = function (cat) {
             $scope.selectedCat = cat;
-        }
+        };
     };
 
     module.controller("mainController", mainController);
