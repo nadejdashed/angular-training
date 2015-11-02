@@ -1,1 +1,7 @@
-<h1>{{text}}</h1>
+<h1>{{ text }}</h1>
+<div ng-repeat="cat in images">
+    <img ng-src="{{cat}}" alt="click me"  ng-click="incCounterPicture()">
+</div>
+<div>
+    <p>img clicked: {{ counter }}</p>
+</div>
