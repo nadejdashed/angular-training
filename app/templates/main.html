@@ -1,1 +1,20 @@
-<h1>{{text}}</h1>
+<div style="position: fixed; left:10px">
+    <label>Cat id: {{selectedCat.id}}</label> </br>
+    <label>Name: {{selectedCat.name}}</label> </br>
+    <label>Vote: {{selectedCat.vote}}</label> </br>
+    <img ng-src="{{selectedCat.src}}" ng-click="incrementClickCount(selectedCat)" style="height: 200px"/>
+
+</div>
+
+<div>
+    <label>List of cats</label>
+        <div ng-repeat="cat in cats">
+            <div style="margin-top: 10px" ng-click="setCatsInfo(cat)">
+                <div style="padding: 15px">
+                    <label>{{cat.name}}</label>
+                    <label>{{cat.vote}}</label>
+                </div>
+            </div>
+        </div>
+</div>
+
