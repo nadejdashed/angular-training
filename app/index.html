@@ -17,8 +17,30 @@
 <body ng-app="app">
 
     <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
+
+        <div class="selected-cat">
+            <div class="usual-text">Name: {{selectedCat.catName}} </div>
+            <div class="usual-text">Clicks count: {{selectedCat.clicksCount}}
+                <div>
+                    <img class="big-image" ng-src={{selectedCat.imageUrl}} alt="{{selectedCat.catName}} picture" ng-click="clickOnCat(selectedCat)">
+                </div>
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-2" ng-repeat="cat in pride">
+            <div class="usual-text" ng-click="clickOnCatName(cat)">Name: {{cat.catName}}</div>
+            <div class="usual-text">Clicks count: {{cat.clicksCount}}</div>
+            <div>
+                <img class="small-image" ng-src={{::cat.imageUrl}} alt="{{::cat.catName}} picture" ng-click="clickOnCat(cat)">
+            </div>
+
+          </div>
+        </div>
     </div>
+
+
 
 </body>
 </html>

@@ -1,3 +1,18 @@
 body {
 	color:red;
 }
+
+.usual-text
+{
+	color: black;
+}
+
+.small-image
+{
+	width: 100px;
+}
+
+.big-image
+{
+	width: 320px;
+}
