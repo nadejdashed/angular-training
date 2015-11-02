@@ -14,10 +14,19 @@
     <script src="/app/components/controllers/mainController.js"></script>
     <!-- /build -->
 </head>
+
 <body ng-app="app">
 
     <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
+        <div ng-repeat="cat in cats track by cat.name">
+
+            <button ng-click="setCurrCat(cat)">{{cat.name}}</button>
+        </div>
+
+        <div>
+            <img src="{{currCat.url}}" ng-click="incrementCounter(currCat)"/>
+            <h2>{{currCat.counter}}</h2>
+        </div>
     </div>
 
 </body>
