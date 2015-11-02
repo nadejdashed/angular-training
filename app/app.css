@@ -4,6 +4,23 @@ h1 {
 p{
 	color: #000011;
 }
+p>span{
+	color: darkgreen;
+}
 img{
 	height: 200px;
+}
+ul>li{
+	width: 46%;
+	list-style: none;
+	border: 1px solid #ccc;
+	padding: 20px;
+}
+ul>li>img{
+	float : left;
+}
+
+.list{
+	float: left;
+	margin-right: 4%;
 }

@@ -17,10 +17,18 @@
             console.log('hit btn['+_index+']', $scope.counter);
             //
             $scope.counterTotal++;
+            //
             return $scope.images[_index].clicks;
         };
     };
 
     module.controller("mainController", mainController);
+
+    /**/
+    var mainControllerUseThis = function () {
+        this.text = "Hello World!";
+    };
+    module.controller("mainControllerUseThis", mainControllerUseThis);
+    /**/
 
 }(angular.module("app")));

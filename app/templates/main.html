@@ -1,9 +1,32 @@
+<!--<div ng-show="selectedCat">
+    <h1>Selected cat:</h1>
+    <ul>
+        <li>
+            <img ng-src="{{cat.img}}">
+            <p>Name {{}}</p>
+            <p>Click numger {{}}</p>
+        </li>
+    </ul>
+</div>-->
 <h1>{{ text }}</h1>
-<div ng-repeat="cat in images track by $index">
-    <h3>{{cat.name}}</h3>
-    <img ng-src="{{cat.img}}" alt="click me"  ng-click="incCounterPicture($index)">
-    <p>this img clicked: {{ cat.clicks }} times</p>
+<div >
+    <ul>
+        <li class="list" ng-repeat="cat in images track by $index">
+            <h3>{{cat.name}}</h3>
+            <img ng-src="{{cat.img}}" alt="click me"  ng-click="incCounterPicture($index)">
+            <p>this img clicked: <span>{{ cat.clicks }}</span> times</p>
+        </li>
+    </ul>
 </div>
+
 <div>
-    <p>img clicked total: {{ counterTotal }}</p>
+    <p>img clicked total: <b>{{ counterTotal }}</b></p>
+</div>
+
+<!--ControllerAs use this-->
+
+<div ng-controller="mainControllerUseThis as catCtrl">
+    <p>Test controller as: <span>{{catCtrl.text}}</span></p>
+
+
 </div>
