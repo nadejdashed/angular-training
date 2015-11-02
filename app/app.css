@@ -10,13 +10,16 @@ p>span{
 img{
 	height: 200px;
 }
-ul>li{
+.container-list > ul > li{
 	width: 46%;
 	list-style: none;
 	border: 1px solid #ccc;
 	padding: 20px;
 }
-ul>li>img{
+.container-list > ul > li:last-child{
+	width: calc(100% - 4%);
+}
+.container-list > ul > li > img{
 	float : left;
 }
 

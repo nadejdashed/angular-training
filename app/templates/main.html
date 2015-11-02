@@ -1,15 +1,16 @@
-<!--<div ng-show="selectedCat">
+<div ng-show="currentCat.name">
     <h1>Selected cat:</h1>
     <ul>
         <li>
-            <img ng-src="{{cat.img}}">
-            <p>Name {{}}</p>
-            <p>Click numger {{}}</p>
+            <img ng-src="{{currentCat.img}}">
+            <p>Name {{currentCat.name}}</p>
+            <p>Click number {{currentCat.clicks}}</p>
         </li>
     </ul>
-</div>-->
+</div>
+
 <h1>{{ text }}</h1>
-<div >
+<div class="container-list">
     <ul>
         <li class="list" ng-repeat="cat in images track by $index">
             <h3>{{cat.name}}</h3>
