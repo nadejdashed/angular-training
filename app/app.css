@@ -8,19 +8,20 @@ p>span{
 	color: darkgreen;
 }
 img{
-	height: 200px;
+	height: 100px;
 }
 .container-list > ul > li{
-	width: 46%;
+	width: 96%;
 	list-style: none;
 	border: 1px solid #ccc;
 	padding: 20px;
 }
 .container-list > ul > li:last-child{
-	width: calc(100% - 4%);
+	//width: calc(100% - 4%);
 }
-.container-list > ul > li > img{
+.container-list > ul > li img{
 	float : left;
+	margin-right: 20px;
 }
 
 .list{

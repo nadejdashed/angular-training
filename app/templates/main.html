@@ -1,9 +1,17 @@
+<!--ControllerAs use this-->
+    <div ng-controller="emoticoneController as catCtrl">
+        <div ng-bind-html="catCtrl.text | widthFilter:{linkTarget:'_blank'}"></div>
+    </div>
+<!--ControllerAs use this END-->
+
+
 <div ng-show="currentCat.name">
     <h1>Selected cat:</h1>
     <ul>
         <li>
             <img ng-src="{{currentCat.img}}">
             <p>Name {{currentCat.name}}</p>
+
             <p>Click number {{currentCat.clicks}}</p>
         </li>
     </ul>
@@ -12,9 +20,15 @@
 <h1>{{ text }}</h1>
 <div class="container-list">
     <ul>
-        <li class="list" ng-repeat="cat in images track by $index">
-            <h3>{{cat.name}}</h3>
-            <img ng-src="{{cat.img}}" alt="click me"  ng-click="incCounterPicture($index)">
+        <li class="list" ng-repeat="cat in images | orderBy: data.singleSelect | filter : search.name">
+            <div>
+                <img ng-src="{{cat.img}}" title="click me"  >
+                <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
+                <button ng-click="addCounterPicture(cat)" class="btn btn-success">add</button>
+                <button ng-click="removeCounterPicture(cat)" class="btn btn-warning">remove</button>
+            </div>
+
+
             <p>this img clicked: <span>{{ cat.clicks }}</span> times</p>
         </li>
     </ul>
@@ -24,10 +38,30 @@
     <p>img clicked total: <b>{{ counterTotal }}</b></p>
 </div>
 
-<!--ControllerAs use this-->
-
-<div ng-controller="mainControllerUseThis as catCtrl">
-    <p>Test controller as: <span>{{catCtrl.text}}</span></p>
 
 
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="col-sm-3 col-md-3 pull-right">
+        <!-- Split button -->
+
+        <form class="navbar-form" role="search">
+            <div class="navbar-form btn-group">
+
+                <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect">
+                    <option value="">---Please select---</option> <!-- not selected / blank option -->
+                    <option value="name">Names</option> <!-- interpolation -->
+                    <option value="clicks">Clicks</option>
+                </select>
+                <!--data.singleSelect= {{data.singleSelect}}-->
+            </div>
+
+            <div class="input-group">
+                <input ng-model="search.name" ng-non-bindable type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                    <button ng-click="sort(search.name)"class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+

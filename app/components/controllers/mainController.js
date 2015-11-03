@@ -15,7 +15,7 @@
             img:'https://statswithcats.files.wordpress.com/2012/07/claws-cool-cat-picture-21-b.jpg',
             clicks: 0},
 
-            { name: 'bro',
+            { name: 'zoo',
               img:'http://media4.popsugar-assets.com/files/2014/09/19/978/n/1922507/4bc5042ee37fa1f9_thumb_temp_cover_file13465311411161397.xxxlarge/i/Funny-Cat-Costumes.jpg',
               clicks: 0},
 
@@ -30,28 +30,50 @@
 
         $scope.counterTotal = 0;
 
-        $scope.incCounterPicture = function(_index){
-            $scope.images[_index].clicks++;
-            console.log('hit btn['+_index+']', $scope.counter);
+        $scope.data = { singleSelect: null }
+
+        $scope.addCounterPicture = function(pet){
+            pet.clicks++;
+            $scope.currentCat = pet;
+
             //
             $scope.counterTotal++;
             //
-            $scope.currentCat = {
-                name: $scope.images[_index].name,
-                img: $scope.images[_index].img,
-                clicks: $scope.images[_index].clicks};
-
-            return $scope.images[_index].clicks;
         };
+
+        $scope.removeCounterPicture = function(pet){
+            pet.clicks--;
+            $scope.currentCat = pet;
+
+            //
+            $scope.counterTotal--;
+            //
+        };
+
+        $scope.sort = function(string){
+            $scope.data.singleSelect = string;
+            console.log('string',string, '\n$scope.sort  click', $scope.data.singleSelect)
+        };
+
+
     };
 
     module.controller("mainController", mainController);
 
     /**/
-    var mainControllerUseThis = function () {
-        this.text = "Hello World!";
+    var emoticoneController = function () {
+        this.text = "Lotus :smile: eleates vix attrahendams luna est.Advenas mori!Fermiums prarere in cubiculum!Cum cacula cantare, omnes stellaesmanifestum azureus, nobilis https://angularjs.org/ acipenseres.Cum orgiamori, omnes rationees <3 experientia alter, regius :heart: mortemes.Devatiospersuadere, tanquam secundus spatii.Heu, barcas!Cedriums observare!A falsis,lacta talis imber. :P Cur eleates peregrinatione?";
     };
-    module.controller("mainControllerUseThis", mainControllerUseThis);
-    /**/
+    module.controller("emoticoneController", emoticoneController);
+
+    var myfilter = function () {
+        return function () {
+
+        }
+    }
+
+    module.filter("myfilter", myfilter);
+
+
 
 }(angular.module("app")));
