@@ -14,22 +14,34 @@
     <script src="/app/components/controllers/mainController.js"></script>
     <!-- /build -->
 </head>
-    <body ng-app="app">
-        <div ng-controller="mainController">
-
-                <div ng-repeat="cat in cats track by $index">
-                    <div ng-click="selectCat(cat)">
-                        {{cat.name}}
-                    </div>
-                </div>
-
-                <div align="right">
-                    {{cat.name}}
-                </div>
-                <div ng-click="imgClick(cat)">
-                    <img src="{{cat.image}}">
-                    {{cat.clickNumber}}
-                </div>
+<body ng-app="app">
+    <div ng-controller="mainController">
+        <div>
+            <input ng-model="inputSearch" name="mySearch" type="text">
+            <button ng-click="doSearch()">GO</button>
+            <img ng-cloak name="spinner" ng-src="ajax-loader.gif" ng-show="showSpinner">
         </div>
-    </body>
+        <div>
+            <select ng-options="option.name for option in options track by option.id" ng-model="selectedOption">
+            </select>
+
+        </div>
+
+        <div ng-repeat="cat in cats | filter : {name:tmpSearchVariable} | orderBy:'name':selectedOption.id track by $index">
+            <div ng-click="selectCat(cat)">
+                <h2>
+                    {{cat.name}}
+                    <span ng-show="cat.viewed">
+                        {{cat.checkmark}}
+                    </span>
+                </h2>
+            </div>
+        </div>
+
+        <div ng-click="imgClick(cat)">
+            <img ng-src="{{cat.image}}">
+            {{cat.clickNumber}}
+        </div>
+    </div>
+</body>
 </html>
