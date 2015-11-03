@@ -8,38 +8,79 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+
+
     <!-- /build -->
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
 
     <div ng-controller="mainController" class="container">
 
         <div class="selected-cat">
             <div class="usual-text">Name: {{selectedCat.catName}} </div>
-            <div class="usual-text">Clicks count: {{selectedCat.clicksCount}}
+            <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                    <button ng-click="unlikeCat(selectedCat)"> - </button>
+                </div>
+
+                <div class="col-md-1">
+                    <div class="usual-text">
+                        {{selectedCat.vote}}
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="likeCat(selectedCat)"> + </button>
+                </div>
+
+            </div>
+            </div>
+
                 <div>
-                    <img class="big-image" ng-src={{selectedCat.imageUrl}} alt="{{selectedCat.catName}} picture" ng-click="clickOnCat(selectedCat)">
+                    <img class="big-image" ng-src={{selectedCat.imageUrl}} alt="{{selectedCat.catName}} picture" ng-click="countClick(selectedCat)">
                 </div>
 
 
         </div>
 
+
         <div class="row">
-          <div class="col-md-2" ng-repeat="cat in pride">
-            <div class="usual-text" ng-click="clickOnCatName(cat)">Name: {{cat.catName}}</div>
+                <div class="col-md-2 usual-text">
+                <input ng-model="searchTerm" /></div>
+            <div class="col-md-1 usual-text"><button ng-click="filterCats(searchTerm)"><span class="glyphicon glyphicon-search"></button></div>
+            <div class="col-md-3 usual-text">
+                <select ng-model = "sortingOrder" ng-options="option.name for option in sortingOrders" ng-change="sortCats(sortingOrder)">
+                </select>
+                 should be first
+                </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2" ng-repeat="cat in pride | filter : {catName : currentSearchTerm} | orderBy : sortingPredicate : reverseOrder" >
+            <div class="usual-text" ng-click="selectCat(cat)">Name: {{cat.catName}} <span class="glyphicon glyphicon-ok" ng-show="cat.wasShown"></span>
+
+            <span ng-if="cat.vote > 0"> :)</span>
+            <span ng-if="cat.vote == 0"> :|</span>
+            <span ng-if="cat.vote < 0"> :(</span>
+            </div>
             <div class="usual-text">Clicks count: {{cat.clicksCount}}</div>
+              <div class="usual-text">Votes: {{cat.vote}}</div>
             <div>
-                <img class="small-image" ng-src={{::cat.imageUrl}} alt="{{::cat.catName}} picture" ng-click="clickOnCat(cat)">
+                <img class="small-image" ng-src={{::cat.imageUrl}} alt="{{::cat.catName}} picture" ng-click="countClick(cat)">
             </div>
 
           </div>
         </div>
     </div>
-
 
 
 </body>
