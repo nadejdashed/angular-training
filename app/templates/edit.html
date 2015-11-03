@@ -1,0 +1,29 @@
+<div class="row well">
+    <div class="col-xs-6">
+        <form name="editCatForm" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label for="edit-name">Name:</label>
+                    <input id="edit-name" type="text" ng-model="catToEdit.name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-url">Image URL:</label>
+                    <input id="edit-url" type="text" ng-model="catToEdit.url" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-clicks">Clicks:</label>
+                    <input ng-disabled="true" id="edit-clicks" type="text" ng-model="catToEdit.clickNum" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="edit-votes">Votes:</label>
+                    <input ng-disabled="true" id="edit-votes" type="text" ng-model="catToEdit.votes" class="form-control">
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary" ng-click="saveCat()" style="width: 100px;">Save</button>
+            <button type="button" class="btn btn-default" ng-click="cancelEdit()" style="width: 100px;">Cancel</button>
+        </form>
+    </div>
+    <div class="col-xs-6">
+        <img ng-src="{{catToEdit.url}}" height="300" style="float: right;"/>
+    </div>
+</div>

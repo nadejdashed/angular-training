@@ -5,20 +5,23 @@
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
     <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/editCatController.js"></script>
+    <script src="/app/components/controllers/newCatController.js"></script>
     <!-- /build -->
 </head>
-<body ng-app="app">
-
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
+<body ng-app="app" ng-cloak>
+    <div ng-controller="mainController" class="container" style="padding-top: 20px;">
+        <div ui-view></div>
     </div>
-
 </body>
 </html>

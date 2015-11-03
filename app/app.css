@@ -1,3 +1,41 @@
-body {
-	color:red;
+.selectedCat{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
+.selectedCat.empty{
+    font-size: 50px;
+    color: #ccc;
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.votingWidget{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.votingButton {
+    cursor: pointer;
+    margin-bottom: -16px;
+    color: #444;
+}
+
+.votingWidget,
+.badge {
+    font-size: 40px;
+}
+
+.cat-list li{
+    line-height: 2em;
+    font-size: 20px;
+}
+
+

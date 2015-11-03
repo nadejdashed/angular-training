@@ -1,1 +1,60 @@
-<h1>{{text}}</h1>
+<div class="well row">
+    <div class="col-xs-6">
+        <label for="filter-by-name">Search:</label>
+        <div class="form-group row">
+            <div class="col-xs-8">
+                <input id="filter-by-name" type="text" ng-model="searchValue" class="form-control" placeholder="Type" style="display: inline-block;">
+            </div>
+            <button class="btn btn-default col-xs-2" ng-click="filterValue=searchValue;">Filter</button>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <label for="sort-by">Order by:</label>
+        <select id="sort-by" class="form-control" ng-model="sortValue">
+            <option value="-name">Name</option>
+            <option value="-clickNum">Clicks</option>
+            <option value="-votes">Votes</option>
+        </select>
+    </div>
+</div>
+<ul class="row well cat-list" style="padding-left: 50px">
+    <div class="col-xs-8">
+        <li ng-class="{bold: cat==selectedCat}" ng-click="selectCat($event, cat)" ng-repeat="cat in data.cats | filter:{name: filterValue} | orderBy:sortValue" style="cursor: pointer; color: green; width: 40%;">
+            {{cat.name}}
+            <i ng-show="cat.viewed" class="glyphicon glyphicon-ok"></i>
+            <a class="btn btn-default" href="#/edit" style="float: right;">Edit</a>
+            <div style="display: table; clear: both;"></div>
+        </li>
+    </div>
+    <div class="col-xs-4">
+        <a class="btn btn-success" href="#/new" style="float: right;">Add new cat</a>
+    </div>
+</ul>
+<div class="row well selectedCat" ng-show="selectedCat">
+    <div class="col-xs-5" >
+        <img ng-src="{{selectedCat.url}}" style="cursor: pointer;" height="250" ng-click="increaseClickNum(selectedCat)"/>
+    </div>
+    <div class="col-xs-6">
+        <h1 style="color: #008000;">{{selectedCat.name}}</h1>
+        <h4>Number of clicks:</h4>
+        <div class="badge badge-inverse" style="background-color: #aaa;">
+            {{selectedCat.clickNum}}
+        </div>
+    </div>
+    <div class="col-xs-1 votingWidget">
+        <div class="votingButton" ng-click="catUpVote()">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </div>
+        <div class="badge badge-inverse">
+            <div>{{selectedCat.votes}}</div>
+        </div>
+        <div class="votingButton" ng-click="catDownVote()">
+            <i class="glyphicon glyphicon-chevron-down"></i>
+        </div>
+    </div>
+</div>
+
+<div class="row selectedCat empty well" ng-hide="selectedCat">
+    No cat selected!
+</div>
+
