@@ -30,7 +30,8 @@
 
         $scope.counterTotal = 0;
 
-        $scope.data = { singleSelect: null }
+        $scope.data = { singleSelect: null,
+                        sortingByText: ''}
 
         $scope.addCounterPicture = function(pet){
             pet.clicks++;
@@ -50,9 +51,13 @@
             //
         };
 
-        $scope.sort = function(string){
-            $scope.data.singleSelect = string;
-            console.log('string',string, '\n$scope.sort  click', $scope.data.singleSelect)
+        $scope.sort = function(searchStringVal){
+            $scope.data.singleSelect = 'name';
+            $scope.data.sortingByText = { name: searchStringVal};
+            console.group()
+            console.info('string',searchStringVal, '\n$scope.sort  click', $scope.data.singleSelect)
+            console.groupEnd();
+
         };
 
 

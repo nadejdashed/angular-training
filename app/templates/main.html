@@ -17,10 +17,10 @@
     </ul>
 </div>
 
-<h1>{{ text }}</h1>
+<h1>Application with cat</h1>
 <div class="container-list">
     <ul>
-        <li class="list" ng-repeat="cat in images | orderBy: data.singleSelect | filter : search.name">
+        <li class="list" ng-repeat="cat in images | filter: data.sortingByText | orderBy: data.singleSelect ">
             <div>
                 <img ng-src="{{cat.img}}" title="click me"  >
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
@@ -34,13 +34,10 @@
     </ul>
 </div>
 
-<div>
-    <p>img clicked total: <b>{{ counterTotal }}</b></p>
-</div>
-
 
 
 <div class="navbar navbar-default navbar-fixed-top">
+    <span>img clicked total: <b>{{ counterTotal }}</b></span>
     <div class="col-sm-3 col-md-3 pull-right">
         <!-- Split button -->
 
@@ -56,9 +53,9 @@
             </div>
 
             <div class="input-group">
-                <input ng-model="search.name" ng-non-bindable type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <input ng-model="search.tmp"  type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                 <div class="input-group-btn">
-                    <button ng-click="sort(search.name)"class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+                    <button ng-click="sort(search.tmp)"class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
                 </div>
             </div>
         </form>
