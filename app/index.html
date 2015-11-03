@@ -8,17 +8,21 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
     <!-- /build -->
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
 
     <div ng-controller="mainController" class="container">
         <div ng-include="'templates/main.html'"></div>
     </div>
-
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <!-- build:js /build/angular-training.js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/components/controllers/mainController.js"></script>
 </body>
 </html>
