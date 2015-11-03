@@ -15,10 +15,26 @@
     <!-- /build -->
 </head>
 <body ng-app="app">
-
     <div ng-controller="mainController" class="container">
         <div ng-include="'templates/main.html'"></div>
-    </div>
 
+        <div ng-repeat="cat in cats">
+
+            <div ng-click="selectCat(cat)"><strong>{{cat.name}}</strong></div>
+
+        </div>
+
+            <div ng-if="currentCat">
+
+                <div><strong>{{currentCat.name}}</strong></div>
+                <img src={{currentCat.imageURL}}
+                     alt="Sweet cat!"
+                     width="400"
+                     ng-click="didClickedCat(currentCat)">
+
+                <div>You clicked this cat <strong>{{currentCat.clicksCount}}</strong> times</div>
+            </div>
+
+    </div>
 </body>
 </html>
