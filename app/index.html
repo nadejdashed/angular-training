@@ -8,33 +8,63 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
-    <!-- /build -->
+
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
+
     <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
 
-        <div ng-repeat="cat in cats">
+        <input ng-model="searchValue"  />
+        <span> <button ng-click="searchCat(searchValue)"><span class="glyphicon glyphicon-search"></button></span>
 
-            <div ng-click="selectCat(cat)"><strong>{{cat.name}}</strong></div>
+        <span> <select ng-model = "sortOrder"
+                       ng-options="option.name for option in sortingOrders">
+        </select> </span>
+
+        <div ng-repeat="cat in cats | filter: {name: searchTerm} | orderBy:sortOrder.orderValue :true">
+
+            <div ng-click="selectCat(cat)">
+                <strong>
+                    {{cat.name}}
+                    <span ng-show="cat.wasShowed">*</span>
+                </strong></div>
 
         </div>
 
             <div ng-if="currentCat">
 
-                <div><strong>{{currentCat.name}}</strong></div>
-                <img src={{currentCat.imageURL}}
-                     alt="Sweet cat!"
-                     width="400"
-                     ng-click="didClickedCat(currentCat)">
+                <div >
 
-                <div>You clicked this cat <strong>{{currentCat.clicksCount}}</strong> times</div>
+                    <div><strong>{{currentCat.name}}</strong></div>
+                    <img ng-src={{currentCat.imageURL}}
+                         alt="Sweet cat!"
+                         width="400"
+                         ng-click="didClickedCat(currentCat)">
+
+                    <div>Cat was clicked <strong>{{currentCat.clicksCount}}</strong> times.</div>
+
+                    <div>Cat was voted <strong>{{currentCat.vote}}</strong> times.</div>
+
+                    <button ng-click="increaseVote(currentCat)"> + </button>
+                    <button ng-click="reduceVote(currentCat)"> - </button>
+
+                </div>
+
             </div>
+    </div>
 
     </div>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <!-- build:js /build/angular-training.js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/components/controllers/mainController.js"></script>
+    <!-- /build -->
 </body>
 </html>
