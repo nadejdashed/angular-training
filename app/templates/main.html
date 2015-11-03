@@ -22,10 +22,10 @@
     <ul>
         <li class="list" ng-repeat="cat in images | filter: data.sortingByText | orderBy: data.singleSelect ">
             <div>
-                <img ng-src="{{cat.img}}" title="click me"  >
+                <img ng-src="{{cat.img}}" title="click me" >
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
-                <button ng-click="addCounterPicture(cat)" class="btn btn-success">add</button>
-                <button ng-click="removeCounterPicture(cat)" class="btn btn-warning">remove</button>
+                <button ng-click="addCounterPicture(cat)" class="btn btn-success">add {{true | checker}}</button>
+                <button ng-click="removeCounterPicture(cat)" class="btn btn-warning">remove {{false | checker}}</button>
             </div>
 
 
