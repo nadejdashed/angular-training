@@ -1,3 +1,5 @@
+<!-- cat filters -->
+
 <div class="well row">
     <div class="col-xs-6">
         <label for="filter-by-name">Search:</label>
@@ -17,6 +19,9 @@
         </select>
     </div>
 </div>
+
+<!-- cat list -->
+
 <ul class="row well cat-list" style="padding-left: 50px">
     <div class="col-xs-8">
         <li ng-class="{bold: cat==selectedCat}" ng-click="selectCat($event, cat)" ng-repeat="cat in data.cats | filter:{name: filterValue} | orderBy:sortValue" style="cursor: pointer; color: green; width: 40%;">
@@ -30,6 +35,9 @@
         <a class="btn btn-success" href="#/new" style="float: right;">Add new cat</a>
     </div>
 </ul>
+
+<!-- selected cat displayed -->
+
 <div class="row well selectedCat" ng-show="selectedCat">
     <div class="col-xs-5" >
         <img ng-src="{{selectedCat.url}}" style="cursor: pointer;" height="250" ng-click="increaseClickNum(selectedCat)"/>
@@ -53,6 +61,8 @@
         </div>
     </div>
 </div>
+
+<!-- Notification message if not cat was selected -->
 
 <div class="row selectedCat empty well" ng-hide="selectedCat">
     No cat selected!
