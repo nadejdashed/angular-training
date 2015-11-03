@@ -11,7 +11,7 @@
     <script src="/bower_components/angular/angular.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
 
 
     <!-- /build -->
@@ -22,6 +22,16 @@
     </style>
 </head>
 <body ng-app="app" ng-cloak>
+<div ng-controller="addCatController" class="usual-text">
+    <div ng-form>
+        <div><label> Cat's name:</label><input ng-model = "newCat.catName" /></div>
+        <div><label> Cat's image URL:</label><input ng-model="newCat.imageUrl" ng-blur="showCatImage()"></div>
+        <div ng-show="newCat.canShow">
+            <img ng-src={{newCat.imageUrl}} />
+        </div>
+    </div>
 
+
+</div>
 </body>
 </html>

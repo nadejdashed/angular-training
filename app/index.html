@@ -25,6 +25,17 @@
 
     <div ng-controller="mainController" class="container">
 
+        <div>
+            <ng-pluralize count="positiveCatsStack.length" offset="1"
+            when="{'0': 'No cat has positive vote.',
+            '1': '{{positiveCatsStack[0].catName}} have positive vote.',
+            'one': '{{positiveCatsStack[0].catName}} and other cat have a positive votes',
+            'other': '{{positiveCatsStack[0].catName}} and {} more cats have a positive votes.'}"></ng-pluralize>
+
+        </div>
+
+
+
         <div class="selected-cat">
             <div class="usual-text">Name: {{selectedCat.catName}} </div>
             <div class="container">
@@ -68,12 +79,14 @@
           <div class="col-md-2" ng-repeat="cat in pride | filter : {catName : currentSearchTerm} | orderBy : sortingPredicate : reverseOrder" >
             <div class="usual-text" ng-click="selectCat(cat)">Name: {{cat.catName}} <span class="glyphicon glyphicon-ok" ng-show="cat.wasShown"></span>
 
-            <span ng-if="cat.vote > 0"> :)</span>
-            <span ng-if="cat.vote == 0"> :|</span>
-            <span ng-if="cat.vote < 0"> :(</span>
             </div>
-            <div class="usual-text">Clicks count: {{cat.clicksCount}}</div>
+            <div class="usual-text">Clicks count: {{cat.clicksCount}}
+                <span ng-if="cat.vote > 0"> :)</span>
+                <span ng-if="cat.vote == 0"> :|</span>
+                <span ng-if="cat.vote < 0"> :(</span>
+            </div>
               <div class="usual-text">Votes: {{cat.vote}}</div>
+              <div class="usual-text">Last voted: {{cat.lastvoted| date:'dd-MMM-yyyy'}} </div>
             <div>
                 <img class="small-image" ng-src={{::cat.imageUrl}} alt="{{::cat.catName}} picture" ng-click="countClick(cat)">
             </div>
