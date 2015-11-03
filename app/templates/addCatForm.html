@@ -1,0 +1,20 @@
+<style>
+    .errorMessage {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<form name="newCatForm" novalidate class="my-form">
+    Cat's name: <input type="text" name="catName" ng-model="cat.name" required/>
+    <span class="errorMessage" ng-show="newCatForm.catName.$error.required">Required!</span>
+    <br>
+    Cat’s picture url: <input type="url" name="catURL" ng-model="cat.url" ng-model-options="{updateOn: 'blur'}" required/>
+    <span class="errorMessage" ng-show="newCatForm.catURL.$error.required">Required!</span>
+    <span class="errorMessage" ng-show="newCatForm.catURL.$error.url">Sorry Not a Valid URL, Don't Forget to Use http://</span>
+    <br>
+    <img ng-src="{{cat.url}}"  height="150" style="border: 1px solid black;"/>
+    <br>
+    <input type="submit" id="submit" value="Save"/>
+    <input type="reset" id="reset" value="Reset"/>
+    <input type="button" id="cancel" value="Cancel"/>
+</form>

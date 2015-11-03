@@ -15,17 +15,15 @@
 </head>
 <body ng-app="app">
 
-    <div ng-controller="voteController" class="container" ng-cloak="">
-        <div ng-include="'templates/vote.html'"></div>
+    <div ng-controller="addCatController" class="container" ng-cloak="">
+        <div ng-include="'templates/addCatForm.html'"></div>
     </div>
-
-    <a href="/addCat.html">Add cat</a>
 
     <!-- /build -->
     <script src="/bower_components/angular/angular.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/voteController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
     <!-- /build -->
 </body>
 </html>
