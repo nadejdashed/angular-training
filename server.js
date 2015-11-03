@@ -27,7 +27,15 @@ app.listen(8000);
 
 // Static request
 app.get('/', function(req, res) {
+    folder='app'
+    console.log(__dirname + '/' + folder + '/index.html')
     res.sendfile(__dirname + '/' + folder + '/index.html');
+});
+app.get('/addCat.html', function(req, res) {
+    folder = 'app/templates';
+    console.log(__dirname + '/' + folder + '/'+'addCat.html')
+
+    res.sendfile(__dirname + '/' + folder + '/'+'addCat.html');
 });
 app.get('/templates/{name}', function(req, res) {
     res.sendfile(__dirname + '/' + folder + '/templates/' + req.name);

@@ -20,19 +20,27 @@
     <script src="bower_components/ng-emoticons/src/ng-emoticons.js"></script>
     <script>
         function newDoc() {
-            window.location.assign("addCat.html")
+            window.location ="http://localhost:8000/"
         }
     </script>
 
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController" class="container" >
-        pageTitle= {{pageTitle}}
-        <div ng-include="'templates/main.html'" style ="top: 60px; position: relative;"></div>
-    </div>
 
-    <input type="button" value="go add pet page" onclick="newDoc()">
+<div ng-controller="formController">
+    <form ng-submit="submit()" class="form-horizontal" novalidate>
+        <label>Firstname</label>
+        <input type="text" ng-model="newCat.name"/>
+        <label>url</label>
+        <input type="text" ng-model="newCat.url"/>
+        <button class="btn">Save</button>
+        <button class="btn">Cancel</button>
+    </form>
+</div>
+
+<input type="button" value="go add pet page" onclick="newDoc()">
 
 </body>
 </html>
+

@@ -1,7 +1,20 @@
 ﻿(function(module) {
 
+
+    /**/
+    /*formCtrl*/
+    /**/
+    var formController = function ($scope) {
+        $scope.newCat ={
+            name: '',
+            img:'',
+            clicks: 0};
+    };
+
+    module.controller("formController", formController);
+    /**/
+
     var mainController = function ($scope) {
-        $scope.text = "Hello World!";
         $scope.images = [
             { name: 'stu',
               img:'http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg',
@@ -78,7 +91,6 @@
     }
 
     module.filter("myfilter", myfilter);
-
 
 
 }(angular.module("app")));
