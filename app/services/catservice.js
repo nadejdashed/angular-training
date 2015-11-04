@@ -3,24 +3,43 @@
  */
 (function(module) {
 
-    var catService = function ($scope, $http) {
+    var catService = function ($http, $q) {
 
-        function getAllCats(){
-            $http({method: 'GET', url: 'http://localhost:8000/cats'}).then(function successCallback(response) {
-                return response.data;
+        function asyncCats() {
+            var deferred = $q.defer();
 
-            }, function errorCallback(response) {
-                alert("Failed loading cats");
+            $http.get('http://localhost:8000/cats').then(function (response) {
+                    deferred.resolve(response.data);
+                    return deferred.promise;
+                }, function (response) {
+                    deferred.reject(errors);
+                    return deferred.promise;
+                });
+
+            return deferred.promise;
+        }
+
+        function getCatById(url){
+            var deferred = $q.defer();
+            $http.get().then(function (response) {
+                deferred.resolve(response.data);
+                return deferred.promise;
+            }, function (response) {
+                deferred.reject(errors);
+                return deferred.promise;
             });
 
+            return deferred.promise;
         }
 
-        return {
-            getAllCats: getAllCats,
-
+        return{
+            cats: asyncCats(),
+            catBiId: getCatById()
         }
+
+
     };
 
-    module.factory("catService", catService);
+    module.service("catService", catService);
 
 }(angular.module("app")));

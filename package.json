@@ -1,5 +1,6 @@
 {
   "name": "angular-training",
+  "license": "ISC",
   "version": "1.0.0",
   "description": "",
   "repository": {
@@ -13,7 +14,7 @@
   "homepage": "https://github.com/nadejdashed/angular-training",
   "devDependencies": {
     "express.io": ">=1.1.0",
-    "grunt": "~0.4.5",
+    "grunt": "^0.4.5",
     "grunt-angular-templates": "~0.5.7",
     "grunt-cli": "~0.1.13",
     "grunt-concurrent": "~2.0.0",

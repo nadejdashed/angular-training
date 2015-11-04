@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http, catService) {
+    var mainController = function ($scope, $q, $http, catService) {
 
         $scope.orderOptions = [{
             "value": "name",
@@ -10,7 +10,9 @@
             "text": "name desc"
         }];
 
-        $scope.cats = catService.getAllCats();
+        catService.cats.then(function(cats) {
+            $scope.cats = cats;
+        });
 
         $scope.optionSelected = function(order){
             $scope.orederValue = order;
