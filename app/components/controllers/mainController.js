@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope) {
+    var mainController = function ($scope, $http) {
 
         $scope.orderOptions = [{
             "value": "name",
@@ -10,27 +10,12 @@
             "text": "name desc"
         }];
 
-        $scope.cats = [{
-            "id": 1,
-            "name": "Alex",
-            "src": "http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg",
-            "vote": 0
-        }, {
-            "id": 2,
-            "name": "Viktor",
-            "src": "http://24.media.tumblr.com/tumblr_lsrk9vhVai1qzopnho1_1280.jpg",
-            "vote": 3
-        }, {
-            "id": 3,
-            "name": "Albert",
-            "src": "http://24.media.tumblr.com/tumblr_m4jgfkIsWU1qjev1to1_500.jpg",
-            "vote": 0
-        }, {
-            "id": 4,
-            "name": "Lia",
-            "src": "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
-            "vote": 5
-        }];
+        $http({method: 'GET', url: 'http://localhost:8000/cats'}).then(function successCallback(response) {
+            $scope.cats = response.data;
+
+        }, function errorCallback(response) {
+            alert("Failed loading cats");
+        });
 
         $scope.optionSelected = function(order){
             $scope.orederValue = order;

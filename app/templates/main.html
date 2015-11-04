@@ -18,7 +18,8 @@
     <button type="button" style="width:50px" class="button" ng-click="setVote(1)">+</button>
     <button type="button" style="width:50px" class="button" ng-click="setVote(0)">-</button>
 
-    <button type="button" style="width:60px" class="button"  ng-click="location.path('/addCat.html/{{selectedCat.id}}')" >Add cat</button>
+    <h1><a  ng-href="addCat.html">Add cat</a></h1>
+    <h1><a  ng-href="addCat.html#?catid={{selectedCat.id}}" >Edit cat</a></h1>
 
 
 </div>
