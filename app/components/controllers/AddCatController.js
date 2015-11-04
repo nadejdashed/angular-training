@@ -3,13 +3,16 @@
  */
 (function(module) {
 
-    var AddCatController = function ($scope, catsService) {
+    var AddCatController = function ($scope, catsService, $window) {
         $scope.newcatname = 'default';
         $scope.newcaturl = 'default';
 
         $scope.addCatClick = function(){
-            $scope.newCat ={cat_name:$scope.newcatname, link: $scope.newcaturl};
-            catsService.addCat($scope.newCat);
+            $scope.newCat ={id:100, name:$scope.newcatname, src: $scope.newcaturl, vote: 0, owner: "Misha"};
+            catsService.addCatClick($scope.newCat).then(function(response){
+                console.log("GOOD");
+                $window.history.back();
+            });
         }
     };
 
