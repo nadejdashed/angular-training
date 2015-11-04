@@ -2,6 +2,14 @@
 
     var mainController = function ($scope) {
 
+        $scope.orderOptions = [{
+            "value": "name",
+            "text": "name asc"
+        }, {
+            "value": "-name",
+            "text": "name desc"
+        }];
+
         $scope.cats = [{
             "id": 1,
             "name": "Alex",
@@ -24,13 +32,30 @@
             "vote": 5
         }];
 
+        $scope.optionSelected = function(order){
+            $scope.orederValue = order;
+        }
+
+        $scope.performSearch = function(val){
+            $scope.searchValue = val;
+        }
+
         $scope.setCatsInfo = function(cat){
             $scope.selectedCat = cat;
+            cat.show = true;
         }
+
         $scope.incrementClickCount = function(selectedCat){
             selectedCat.vote++;
         }
 
+        $scope.setVote = function(vote){
+            if(vote > 0){
+                $scope.selectedCat.vote++;
+            }else{
+                $scope.selectedCat.vote--;
+            }
+        }
 
 
     };

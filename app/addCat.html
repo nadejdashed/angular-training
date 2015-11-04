@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -17,19 +18,18 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
-    </div>
-    <div ng-controller="catController" class="container">
-        <div ng-include="'templates/addCat.html'"></div>
-    </div>
+<div ng-controller="catController">
+    Name: <input type="text"/></br>
+    Cat's url: <input type="text"/></br>
+    <img/>
+</div>
 
-    <script src="/bower_components/angular/angular.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
-    <script src="/app/components/controllers/catController.js"></script>
-    <!-- /build -->
+<script src="/bower_components/angular/angular.js"></script>
+<!-- build:js /build/angular-training.js -->
+<script src="/app/app.js"></script>
+<script src="/app/components/controllers/mainController.js"></script>
+<script src="/app/components/controllers/catController.js"></script>
+<!-- /build -->
 
 </body>
 </html>
