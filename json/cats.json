@@ -1,21 +1,25 @@
-[{
-  "id": 1,
-  "name": "Alex",
-  "src": "http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg",
-  "vote": 0
-}, {
-  "id": 2,
-  "name": "Viktor",
-  "src": "http://24.media.tumblr.com/tumblr_lsrk9vhVai1qzopnho1_1280.jpg",
-  "vote": 3
-}, {
-  "id": 3,
-  "name": "Albert",
-  "src": "http://24.media.tumblr.com/tumblr_m4jgfkIsWU1qjev1to1_500.jpg",
-  "vote": 0
-}, {
-  "id": 4,
-  "name": "Lia",
-  "src": "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
-  "vote": 5
-}]
+[
+  { "id": 1,
+    "name": "Stu",
+    "img":"http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg",
+    "clicks": 0},
+
+  { "id": 2,
+    "name": "Dru",
+    "img":"http://www.factslides.com/imgs/black-cat.jpg",
+    "clicks": 0},
+
+  { "id": 3,
+    "name": "Bru",
+    "img":"https://statswithcats.files.wordpress.com/2012/07/claws-cool-cat-picture-21-b.jpg",
+    "clicks": 0},
+
+  { "id": 4,
+    "name": "Zoo",
+    "img":"http://media4.popsugar-assets.com/files/2014/09/19/978/n/1922507/4bc5042ee37fa1f9_thumb_temp_cover_file13465311411161397.xxxlarge/i/Funny-Cat-Costumes.jpg",
+    "clicks": 0},
+
+  { "id": 5,
+    "name": "Hru",
+    "img":"http://www.andrew.cmu.edu/user/cfperron/cats/images/cat8.jpg",
+    "clicks": 5}]

@@ -14,8 +14,8 @@
     module.controller("formController", formController);
     /**/
 
-    var mainController = function ($scope, $uibModal) {
-        $scope.images = [
+    var mainController = function ($scope, serverCommunication, $uibModal) {
+        /*$scope.images = [
             { name: 'stu',
               img:'http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg',
               clicks: 0},
@@ -35,7 +35,10 @@
             { name: 'hru',
               img:'http://www.andrew.cmu.edu/user/cfperron/cats/images/cat8.jpg',
               clicks: 0}];
-
+*/
+        function initCats() {
+            $scope.allCats = serverCommunication.getData();
+        }
         $scope.currentCat ={
             name: '',
             img:'',
@@ -55,20 +58,27 @@
             //
         };
 
-        $scope.removeCounterPicture = function(pet){
+        $scope.decreaseCounterPicture = function(pet) {
             pet.clicks--;
             $scope.currentCat = pet;
 
             //
             $scope.counterTotal--;
             //
+        }
+
+        $scope.removeCounterPicture = function(pet){
+            //
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'templates/addCat.html',
                 controller: 'ModalInstanceCtrl',
                 resolve: {
+                    itemToDelete: function () {
+                        return pet;
+                    },
                     items: function () {
-                        return $scope.currentCat;
+                        return pet;
                     }
                 }
             });

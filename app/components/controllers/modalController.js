@@ -1,8 +1,8 @@
 //ModalInstanceCtrl
 
-angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, itemToDelete) {
 
-    $scope.items = items;
+    $scope.item = itemToDelete;
     //$scope.selected = {
     //    item: $scope.items[0]
     //};
