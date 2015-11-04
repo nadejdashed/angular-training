@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("app", ["ui.router", "ngResource"])
+    angular.module("app", ["ui.router", "ngResource", "ngCookies"])
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/cats');
             $stateProvider

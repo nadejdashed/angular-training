@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function($scope, catService) {
+    var mainController = function($scope, catService, $cookieStore) {
 
         $scope.data = {};
 
@@ -42,7 +42,14 @@
         };
 
         $scope.catUpVote = function(cat){
-            cat.vote++;
+            if (!$cookieStore.get("upvote_" + cat.id)){
+                cat.vote++;
+                $cookieStore.put("upvote_" + cat.id, true);
+            }
+            else{
+                console.log("You have already upvoted this cat!")
+            }
+
         };
 
         $scope.catDownVote = function(cat){
