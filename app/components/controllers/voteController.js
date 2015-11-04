@@ -1,59 +1,56 @@
 ﻿(function(module) {
 
-    var voteController = function ($scope) {
+    var voteController = function ($scope, $cookies, $filter, catsService) {
         var didSelectcatFunction = function (cat) {
             $scope.selectedCat = cat;
             cat.wasAlreadyViewed = true;
         };
 
-        $scope.cats = [
-            {
-                name:'John',
-                image:'Artefacts/cat1.jpeg',
-                vote:0,
-                wasAlreadyViewed:false
-            },
-            {
-                name:'Mary',
-                image:'Artefacts/cat2.jpeg',
-                vote:0,
-                wasAlreadyViewed:false
-            },
-            {
-                name:'Mike',
-                image:'Artefacts/cat3.jpeg',
-                vote:0,
-                wasAlreadyViewed:false
-            },
-            {
-                name:'Adam',
-                image:'Artefacts/cat4.jpeg',
-                vote:0,
-                wasAlreadyViewed:false
-            },
-            {
-                name:'Julie',
-                image:'Artefacts/cat5.jpeg',
-                vote:0,
-                wasAlreadyViewed:false
-            }
-        ];
+        function putCooke(cat) {
+            var votedCats = $cookies.getObject("votedCats");
+            if (!votedCats) {votedCats = [];}
+            votedCats.push(cat);
+            $cookies.putObject("votedCats", votedCats);
+        }
+
+        $scope.isVoteAvailableForCat = function (cat){
+            var votedCats = $cookies.getObject("votedCats");
+            var filteredVotedCats = $filter("filter")(votedCats, {id:cat.id}, true);
+            return (filteredVotedCats.length>0) ? true : false;
+        }
+
+        catsService.getCatsPromise()
+            .then(function(data){
+                $scope.cats = data;
+                didSelectcatFunction($scope.cats[0]);
+            });
+
+        //$scope.cats = catsService.getCats();
 
         $scope.voteUpForCat = function (cat) {
             cat.vote++;
+            putCooke(cat);
         };
 
         $scope.voteDownForCat = function (cat) {
             cat.vote--;
+            putCooke(cat);
         };
 
         $scope.applyFilter = function (newFilterText) {
             $scope.filterText = newFilterText;
         };
 
+        $scope.deleteCat = function (cat) {
+            catsService.deleteCatPromise(cat)
+                .then(function(cat){
+                    var index = $scope.cats.indexOf(cat);
+                    $scope.cats.splice(index, 1);
+                });
+        };
+
         $scope.didSelectCat = didSelectcatFunction;
 
-        didSelectcatFunction($scope.cats[0]);
     };
 
     module.controller("voteController", voteController);

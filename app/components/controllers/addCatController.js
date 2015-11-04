@@ -1,11 +1,8 @@
 ﻿(function(module) {
 
-    var addCatController = function ($scope) {
-        $scope.submit = function() {
-            if ($scope.text) {
-                $scope.list.push(this.text);
-                $scope.text = '';
-            }
+    var addCatController = function ($scope, catsService) {
+        $scope.submit = function(cat) {
+            catsService.addCatPromise(cat);
         };
     };
 

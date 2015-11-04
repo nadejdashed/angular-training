@@ -115,7 +115,7 @@ app.post(instanceName, checkAuth, function(req, res){
     data[fields.id] = lastId + 1;
     data[fields.vote] = 0;
     data[fields.src] = data[fields.src] || "";
-    data[fields.owner] = savedUser.login;
+    //data[fields.owner] = savedUser.login;
     //data.date = new Date();
 
     result.push(data);
