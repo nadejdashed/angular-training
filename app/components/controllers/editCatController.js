@@ -1,16 +1,18 @@
 (function(module) {
 
-    var editCatController = function ($scope,  $state) {
+    var editCatController = function ($scope, $stateParams, $state, catService) {
 
-        var original = angular.copy($scope.selectedCat);
-        $scope.catToEdit = $scope.selectedCat;
+        catService.getCat($stateParams.id).then(function(response){
+            $scope.catToEdit = response;
+        });
 
         $scope.cancelEdit = function(){
-            angular.extend($scope.catToEdit, original);
             $state.go('cats');
         };
 
         $scope.saveCat = function(){
+            catService.saveCat($scope.catToEdit);
+            $scope.$emit("catListChanged");
             $state.go('cats');
         };
     };

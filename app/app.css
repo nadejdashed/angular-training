@@ -36,6 +36,8 @@
 .cat-list li{
     line-height: 2em;
     font-size: 20px;
+    cursor: pointer;
+    color: green;
 }
 
 

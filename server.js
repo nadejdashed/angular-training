@@ -15,6 +15,7 @@ var savedUser = {}, currentUser = {},
     name: 'name',
     url: 'src',
     vote: 'vote',
+    clickNum: 'clickNum',
     owner: 'owner'
   };
 
@@ -114,6 +115,7 @@ app.post(instanceName, checkAuth, function(req, res){
 
     data[fields.id] = lastId + 1;
     data[fields.vote] = 0;
+    data[fields.clickNum] = 0;
     data[fields.src] = data[fields.src] || "";
     data[fields.owner] = savedUser.login;
     //data.date = new Date();
@@ -136,6 +138,7 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
 
   if (currentUser.login === instance.owner){
     extend(instance, data);
+      console.log(result);
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
       console.log(err ? err : "JSON saved to " + fileName);
       if (err){

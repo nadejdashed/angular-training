@@ -4,13 +4,21 @@
 
         $scope.data = {};
 
-        catService.getAllCats().then(function(response){
-                $scope.data.cats = response;
-            }
-            ,function(error){
-                console.log(error);
-            }
-        );
+        var getAllCats = function(){
+            catService.getAllCats().then(function(response){
+                    $scope.data.cats = response;
+                }
+                ,function(error){
+                    console.log(error);
+                }
+            );
+        };
+
+        getAllCats();
+
+        $scope.$on("catListChanged", function(){
+            getAllCats();
+        });
 
         $scope.selectCat = function(e, cat){
             if (cat != $scope.selectedCat){
@@ -18,26 +26,22 @@
                 cat.viewed = true;
             }
             else {
-                if (!$(e.target).hasClass('btn'))
-                    $scope.selectedCat = null;
+                $scope.selectedCat = null;
             }
         };
 
-        $scope.catUpVote = function(){
-            if ($scope.selectedCat){
-                $scope.selectedCat.votes++;
-            }
+        $scope.catUpVote = function(cat){
+            cat.vote++;
         };
 
-        $scope.catDownVote = function(){
-            if ($scope.selectedCat){
-                $scope.selectedCat.votes--;
-            }
+        $scope.catDownVote = function(cat){
+            cat.vote--;
         };
 
         $scope.increaseClickNum = function(cat){
             cat.clickNum++;
         };
+
     };
 
     module.controller("mainController", mainController);

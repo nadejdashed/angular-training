@@ -1,6 +1,6 @@
 (function(module) {
 
-    var newCatController = function ($scope, $state) {
+    var newCatController = function ($scope, $state, catService) {
 
         $scope.newCat = {};
 
@@ -9,10 +9,10 @@
         };
 
         $scope.addNewCat = function(){
-            $scope.newCat.votes = 0;
+            $scope.newCat.vote = 0;
             $scope.newCat.clickNum = 0;
-            $scope.newCat.viewed = false;
-            $scope.data.cats.push($scope.newCat);
+            catService.addNewCat($scope.newCat);
+            $scope.$emit("catListChanged");
             $state.go('cats');
         };
     };

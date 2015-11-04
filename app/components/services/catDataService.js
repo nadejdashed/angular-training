@@ -1,47 +1,62 @@
 (function(module) {
 
     var catService = function($resource, $q) {
-        var resource = $resource('../../model/cats.json/:id', {id: '@id'});
+        var ResourceConstructor = $resource('/cats/:id', {id: '@id'},
+            {
+                'update': { method:'PUT' }
+            });
         return {
             getAllCats : function() {
                 var deferred = $q.defer();
-                resource
+                ResourceConstructor
                     .query(
                     function (response) {
                         deferred.resolve(response);
                     },
-                    function (response) {
-                        deferred.reject(response);
+                    function (error) {
+                        deferred.reject(error);
                     }
                 );
                 var promise = deferred.promise;
                 return promise;
             },
-            getCat: function () {
+            getCat: function (id) {
                 var deferred = $q.defer();
-                resource
+                ResourceConstructor
                     .get(
-                    {id: 1},
-                    function (response) {
-                        deferred.resolve(response);
+                    {id:id},
+                    function(cat) {
+                        deferred.resolve(cat);
                     },
-                    function (response) {
-                        deferred.reject(response);
+                    function(error) {
+                        deferred.reject(error);
                     }
                 );
                 var promise = deferred.promise;
                 return promise;
             },
-            save: function (cat) {
+            saveCat: function (cat) {
                 var deferred = $q.defer();
-                cat.id = 999;
-                resource.save(
-                    event,
+                ResourceConstructor.update(
+                    cat,
                     function (response) {
                         deferred.resolve(response);
                     },
+                    function (error) {
+                        deferred.reject(error);
+                    }
+                );
+                return deferred.promise;
+            },
+            addNewCat: function (cat) {
+                var deferred = $q.defer();
+                ResourceConstructor.save(
+                    cat,
                     function (response) {
-                        deferred.reject(response);
+                        deferred.resolve(response);
+                    },
+                    function (error) {
+                        deferred.reject(error);
                     }
                 );
                 return deferred.promise;

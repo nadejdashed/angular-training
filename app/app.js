@@ -9,7 +9,7 @@
                     templateUrl: 'templates/main.html'
                 })
                 .state('edit', {
-                    url: '/edit',
+                    url: '/edit/:id',
                     templateUrl: 'templates/edit.html',
                     controller: 'editCatController'
                 })
