@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http) {
+    var mainController = function ($scope, $http, catService) {
 
         $scope.orderOptions = [{
             "value": "name",
@@ -10,12 +10,7 @@
             "text": "name desc"
         }];
 
-        $http({method: 'GET', url: 'http://localhost:8000/cats'}).then(function successCallback(response) {
-            $scope.cats = response.data;
-
-        }, function errorCallback(response) {
-            alert("Failed loading cats");
-        });
+        $scope.cats = catService.getAllCats();
 
         $scope.optionSelected = function(order){
             $scope.orederValue = order;

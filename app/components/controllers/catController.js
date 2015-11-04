@@ -3,7 +3,7 @@
  */
 (function(module) {
 
-    var catController = function ($scope, $http, $location) {
+    var catController = function ($scope, $http, $location$, catservice) {
         var cid = $location.search().catid;
 
 
