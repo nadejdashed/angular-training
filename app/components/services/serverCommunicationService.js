@@ -47,7 +47,8 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
     }
 
     function removeItemHttp(id){
-        return $http.delete('/cats/:id', {customConfig: 'customConfig'})
+        console.log('id',id)
+        return $http.delete('/cats/'+id, {timeout: 10})
     }
     /* using $http END*/
 
@@ -59,3 +60,35 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
     }
 
 });
+
+
+
+/*Default json*/
+
+/*
+ [
+ { "id": 1,
+ "name": "Stu",
+ "img":"http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg",
+ "clicks": 0},
+
+ { "id": 2,
+ "name": "Dru",
+ "img":"http://www.factslides.com/imgs/black-cat.jpg",
+ "clicks": 0},
+
+ { "id": 3,
+ "name": "Bru",
+ "img":"https://statswithcats.files.wordpress.com/2012/07/claws-cool-cat-picture-21-b.jpg",
+ "clicks": 0},
+
+ { "id": 4,
+ "name": "Zoo",
+ "img":"http://media4.popsugar-assets.com/files/2014/09/19/978/n/1922507/4bc5042ee37fa1f9_thumb_temp_cover_file13465311411161397.xxxlarge/i/Funny-Cat-Costumes.jpg",
+ "clicks": 0},
+
+ { "id": 5,
+ "name": "Hru",
+ "img":"http://www.andrew.cmu.edu/user/cfperron/cats/images/cat8.jpg",
+ "clicks": 5}]
+ */
