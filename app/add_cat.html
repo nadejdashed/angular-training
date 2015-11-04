@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Cats application</title>
+    <title>Add Cat</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
@@ -13,17 +13,16 @@
             display: none !important;
         }
     </style>
-    <!-- /build -->
 </head>
 <body ng-app="app" ng-cloak>
-
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
-    </div>
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/services/catsService.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
+<div ng-controller="addCatController" class="container">
+    <div ng-include="'/templates/template_add_cat.html'"></div>
+</div>
+<script src="/bower_components/angular/angular.min.js"></script>
+<!-- build:js /build/angular-training.js -->
+<script src="/app/app.js"></script>
+<script src="/app/components/services/catsService.js"></script>
+<script src="/app/components/variables/vars.js"></script>
+<script src="/app/components/controllers/AddCatController.js"></script>
 </body>
 </html>

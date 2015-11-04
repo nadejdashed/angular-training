@@ -1,0 +1,18 @@
+<div id="content">
+    <div ng-app="app" ng-cloak ng-controller="addCatController" class="container">
+        <div>
+            <a>Cat name </a>
+            <input type="text" class="form-control" id="newcat_name" ng-model="newcatname">
+        </div>
+        <div>
+            <a>Url: </a>
+            <input type="text" class="form-control" id="newcat_url" ng-model="newcaturl">
+        </div>
+        <div>
+            <img ng-src="newcaturl" width="100%">
+        </div>
+
+        <button type="button" ng-show="true" ng-click="addCatClick()">add</button>
+
+    </div>
+</div>
