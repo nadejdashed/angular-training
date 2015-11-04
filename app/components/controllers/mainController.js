@@ -18,9 +18,11 @@
 
         $scope.plusClick = function(cat){
             $scope.countClick(cat);
+            catsService.updateVote(cat);
         }
         $scope.minusClick = function(cat){
             cat.click_num--;
+            catsService.updateVote(cat);
         }
 
         $scope.searchClick = function(search){

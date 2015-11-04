@@ -4,8 +4,8 @@
 (function(module) {
 
     var AddCatController = function ($scope, catsService, $window) {
-        $scope.newcatname = 'default';
-        $scope.newcaturl = 'default';
+        $scope.newcatname = 'Enter cat name';
+        $scope.newcaturl = 'Enter cat url image';
 
         $scope.addCatClick = function(){
             $scope.newCat ={id:100, name:$scope.newcatname, src: $scope.newcaturl, vote: 0, owner: "Misha"};
