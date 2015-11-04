@@ -4,14 +4,14 @@
             <fieldset>
                 <div class="form-group">
                     <label for="new-name">Name:</label>
-                    <input id="new-name" type="text" ng-model="newCat.name" class="form-control">
+                    <input id="new-name" type="text" ng-model="newCat.name" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="new-url">Image URL:</label>
-                    <input id="new-url" type="text" ng-model="newCat.src" class="form-control">
+                    <input id="new-url" type="url" ng-model="newCat.src" class="form-control" required>
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary" ng-click="addNewCat()" style="width: 100px;">Add</button>
+            <button type="submit" ng-disabled="editCatForm.$invalid" class="btn btn-primary" ng-click="addNewCat()" style="width: 100px;">Add</button>
             <button type="button" class="btn btn-default" ng-click="cancel()" style="width: 100px;">Cancel</button>
         </form>
     </div>
