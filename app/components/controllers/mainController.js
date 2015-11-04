@@ -15,30 +15,47 @@
     /**/
 
     var mainController = function ($scope, serverCommunication, $uibModal) {
-        /*$scope.images = [
-            { name: 'stu',
-              img:'http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg',
-              clicks: 0},
+        function initCatsResource() {
+            var deffered = serverCommunication.getDataHttp();
 
-            { name: 'dru',
-              img:'http://www.factslides.com/imgs/black-cat.jpg',
-              clicks: 0},
+            deffered.then(
+                function(resp){
+                    $scope.allCats = resp.data;
+                    console.log('data',data);
+                },
+                function(reject){
+                    Error(reject);
+                },
+                function(progressCallback){
+                    console.log('progressCallback',progressCallback);
+                }
+            );
 
-            {name: 'bru',
-            img:'https://statswithcats.files.wordpress.com/2012/07/claws-cool-cat-picture-21-b.jpg',
-            clicks: 0},
-
-            { name: 'zoo',
-              img:'http://media4.popsugar-assets.com/files/2014/09/19/978/n/1922507/4bc5042ee37fa1f9_thumb_temp_cover_file13465311411161397.xxxlarge/i/Funny-Cat-Costumes.jpg',
-              clicks: 0},
-
-            { name: 'hru',
-              img:'http://www.andrew.cmu.edu/user/cfperron/cats/images/cat8.jpg',
-              clicks: 0}];
-*/
-        function initCats() {
-            $scope.allCats = serverCommunication.getData();
         }
+
+
+
+        function initCatsHttp() {
+            var deffered = serverCommunication.getDataHttp();
+
+            deffered.then(
+                function(resp){
+                    $scope.allCats = resp.data;
+                    console.log('data',data);
+                },
+                function(reject){
+                    Error(reject);
+                },
+                function(progressCallback){
+                    console.log('progressCallback',progressCallback);
+                }
+            );
+
+        }
+        function Error(reject) {
+            console.warn('Error', reject)
+        }
+
         $scope.currentCat ={
             name: '',
             img:'',
@@ -100,6 +117,8 @@
 
         };
 
+
+        initCatsHttp();
 
     };
 
