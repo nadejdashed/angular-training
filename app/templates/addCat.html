@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Cats application</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/ng-emoticons/src/ng-emoticons.css"/>
-    <!-- build:css /build/app.css -->
-    <link rel="stylesheet" type="text/css" href="/app/app.css"/>
-    <!-- /build -->
-    <script src="/bower_components/angular/angular.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
-    <script src="/app/components/filters/widthFilter.js"></script>
-    <!-- /build -->
+<script>
+    function newDoc() {
+        window.location ="http://localhost:8000/"
+    }
+</script>
 
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/ng-emoticons/src/ng-emoticons.js"></script>
-    <script>
-        function newDoc() {
-            window.location ="http://localhost:8000/"
-        }
-    </script>
+<!--modal-->
+<div ng-controller="modalController">
 
-</head>
-<body ng-app="app" ng-cloak>
+    <div class="modal-header">
+        <h3 class="modal-title">I'm a modal!</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="item in items">
+                <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Selected: <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
 
+</div>
+<!--modal END-->
 
 <div ng-controller="formController">
     <form ng-submit="submit()" class="form-horizontal" novalidate>
@@ -39,8 +37,5 @@
     </form>
 </div>
 
-<input type="button" value="go add pet page" onclick="newDoc()">
-
-</body>
-</html>
+<!--<input type="button" value="go add pet page" onclick="newDoc()">-->
 

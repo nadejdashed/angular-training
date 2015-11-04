@@ -1,4 +1,4 @@
 (function () {
     "use strict";
-    angular.module("app", ['ngEmoticons']);
+    angular.module("app", ['ui.bootstrap','ngEmoticons']);
 })();

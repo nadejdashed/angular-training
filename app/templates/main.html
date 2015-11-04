@@ -4,7 +4,6 @@
     </div>
 <!--ControllerAs use this END-->
 
-
 <div ng-show="currentCat.name">
     <h1>Selected cat:</h1>
     <ul>
@@ -21,6 +20,7 @@
 <div class="container-list">
     <ul>
         <li class="list" ng-repeat="cat in images | filter: data.sortingByText | orderBy: data.singleSelect ">
+            <div ng-if="!cat">No cats has positive vote</div>
             <div>
                 <img ng-src="{{cat.img}}" title="click me" >
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
@@ -35,7 +35,7 @@
 </div>
 
 
-
+<!--Search bar-->
 <div class="navbar navbar-default navbar-fixed-top">
     <span>img clicked total: <b>{{ counterTotal }}</b></span>
     <div class="col-sm-3 col-md-3 pull-right">
@@ -61,4 +61,5 @@
         </form>
     </div>
 </div>
+<!--Search bar END-->
 
