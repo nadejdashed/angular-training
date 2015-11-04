@@ -1,64 +1,73 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope) {
-        $scope.cats = [
-            {name: "Kitty", url: "http://i.bigmir.net/img/dnevnik/uploads/cmu_1153/29306/1.jpg", counter: 0, viewed: false},
-            {name: "Pussy", url: "https://upload.wikimedia.org/wikipedia/uk/c/cf/Black-cat.jpg", counter: 0, viewed: false},
-            {name: "Bella", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/9942_4c1047ed74f3c_lg.jpg?itok=8VLsgv-X", counter: 0, viewed: false},
-            {name: "Chloe", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/18770_5096adaa3aca3_lg.jpg?itok=i9r4AAmg", counter: 0, viewed: false},
-            {name: "Jaspr", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat1", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat2", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat3", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat4", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat5", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat6", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Cat7", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp1", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp2", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp3", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp4", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp5", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp6", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp7", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp8", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp9", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Jasp0", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Joh", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Bum", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Vasya", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Behem", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Crunchy", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Meee", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false},
-            {name: "Nav", url: "http://cuteness-test.s3.amazonaws.com/styles/profile_crop/s3/pet-photos/1044_49f4ceb454caa_lg.jpg?itok=B8iibRqw", counter: 0, viewed: false}
-        ];
+    var mainController = function ($scope, catService) {
+        $scope.getCats = function(){
+            catService.getCats().then(function successCallback(response) {
+                $scope.cats = response.data;
+                $scope.setCurrCat($scope.cats[0]);
+            }, function errorCallback(response) {
+                return null;
+            });
+        }();
 
         $scope.incrementCounter = function(cat) {
-            cat.counter++;
+            cat.vote++;
+            catService.updateCat(cat);
         };
 
         $scope.decrementCounter = function(cat) {
-            cat.counter--;
+            cat.vote--;
+            catService.updateCat(cat);
         };
 
         $scope.setCurrCat = function (cat) {
-            cat.viewed = true;
             $scope.currCat = cat;
+            $scope.currCat.viewed = true;
+            catService.updateCat($scope.currCat)
+                .then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log("Update success!")
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("Update failed!")
+            });
         };
 
-        $scope.currCat = $scope.cats[0];
-        $scope.currCat.viewed=true;
+        $scope.deleteCurrCat = function() {
+            debugger;
+            catService.deleteCat($scope.currCat.id)
+                .then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                        debugger;
+                    console.log("Update success!");
+                    $scope.getCats
+                    //$scope.$apply();
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                    debugger;
+                    console.log("Update failed!")
+            });
+        };
+
+        $scope.newCat;
+
+        $scope.addCat = function() {
+            $scope.newCat.vote = 0;
+            $scope.newCat.viewed = false;
+            catService.addCat($scope.newCat);
+        };
 
         $scope.$on('filter', function(event, args) {
             $scope.fltr=args;
-        })
+        });
 
         $scope.$on('ordrBy', function(event, args) {
             $scope.ordrBy=args;
         })
-
-        $scope.status = 0;
-        $scope.$watch('cats', function (){$scope.status++}, true)
     };
 
     module.controller("mainController", mainController);

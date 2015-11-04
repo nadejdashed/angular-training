@@ -13,6 +13,7 @@
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/filterController.js"></script>
+    <script src="/app/components/services/catService.js"></script>
     <!-- /build -->
 </head>
 
@@ -28,22 +29,33 @@
             </label>
         </div>
 
-        <div ng-repeat="cat in cats | filter: {name: fltr} | orderBy: 'name' : (ordrBy==='1') track by cat.name">
-            <div ng-click="setCurrCat(cat)">{{cat.name}}</div><input type="checkbox" disabled = "true" ng-checked="cat.viewed"/><br/>
+        <div ng-repeat="cat in cats | filter: {name: fltr} | orderBy: 'name' : (ordrBy==='1') track by cat.id">
+            <div ng-click="setCurrCat(cat)">{{cat.name}}</div><input type="checkbox" disabled = "true" ng-checked="cat.viewed === true"/><br/>
         </div>
 
         <div>
-            <img ng-src="{{currCat.url}}" /><br/><br/>
+            <img ng-src="{{currCat.src}}" /><br/><br/>
             <h2>{{currCat.name}}</h2>
-            <div type="button" class="btn btn-default btn-lg" ng-click="incrementCounter(currCat)">
+            <button type="button" class="btn btn-default btn-lg" ng-click="incrementCounter(currCat)">
                 <div class="glyphicon glyphicon-menu-up" aria-hidden="true"></div>
-            </div>
-            <h2>{{currCat.counter}}</h2>
-            <div type="button" class="btn btn-default btn-lg" ng-click="decrementCounter(currCat)">
+            </button>
+            <label style="font-size: x-large;">
+                {{currCat.vote}}
+                </label>
+            <button type="button" class="btn btn-default btn-lg" ng-click="decrementCounter(currCat)">
                 <div class="glyphicon glyphicon-menu-down" aria-hidden="true"></div>
-            </div>
+            </button><br/><br/>
 
-        </div>
+            <button ng-click="deleteCurrCat()" >Delete</button><br/>
+
+        </div><br/>
+        <form ng-submit="addCat()">
+            {{newCat.src}}
+            <label>Name:</label><input type="text" ng-model=newCat.name required><br/><br/>
+            <label>ImageURL:</label><input type="url" ng-model=newCat.src required><br/><br/>
+            <input type="submit" value="Add {{newCat.name}}"><br/><br/>
+            <img ng-src="{{newCat.src}}"/><br/>
+        </form>
     </div>
 </body>
 </html>
