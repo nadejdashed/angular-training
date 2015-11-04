@@ -37,7 +37,8 @@
             },
             saveCat: function (cat) {
                 var deferred = $q.defer();
-                ResourceConstructor.update(
+                ResourceConstructor
+                    .update(
                     cat,
                     function (response) {
                         deferred.resolve(response);
@@ -50,8 +51,23 @@
             },
             addNewCat: function (cat) {
                 var deferred = $q.defer();
-                ResourceConstructor.save(
+                ResourceConstructor
+                    .save(
                     cat,
+                    function (response) {
+                        deferred.resolve(response);
+                    },
+                    function (error) {
+                        deferred.reject(error);
+                    }
+                );
+                return deferred.promise;
+            },
+            deleteCat: function (id) {
+                var deferred = $q.defer();
+                ResourceConstructor
+                    .delete(
+                    {id:id},
                     function (response) {
                         deferred.resolve(response);
                     },

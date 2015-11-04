@@ -10,14 +10,6 @@
                     <label for="edit-url">Image URL:</label>
                     <input id="edit-url" type="text" ng-model="catToEdit.src" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="edit-clicks">Clicks:</label>
-                    <input ng-disabled="true" id="edit-clicks" type="text" ng-model="catToEdit.clickNum" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="edit-votes">Votes:</label>
-                    <input ng-disabled="true" id="edit-votes" type="text" ng-model="catToEdit.vote" class="form-control">
-                </div>
             </fieldset>
             <button type="submit" class="btn btn-primary" ng-click="saveCat()" style="width: 100px;">Save</button>
             <button type="button" class="btn btn-default" ng-click="cancelEdit()" style="width: 100px;">Cancel</button>

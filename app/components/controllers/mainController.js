@@ -20,6 +20,17 @@
             getAllCats();
         });
 
+        $scope.deleteCat = function(id){
+            catService.deleteCat(id).then(
+                function(){
+                    getAllCats();
+                }
+                ,function(){
+                    console.log("Cat could not be deleted!")
+                }
+            )
+        };
+
         $scope.selectCat = function(e, cat){
             if (cat != $scope.selectedCat){
                 $scope.selectedCat = cat;
