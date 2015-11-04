@@ -7,9 +7,12 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
+            options: {
+                livereload: 35729,
+            },
             debug: {
                 files: [appPath + '**/*.js', appPath + '**/*.html', appPath + '**/*.css'],
-                tasks: ['build']
+                tasks: ['build'],
             },
             test: {
                 files: [appPath + '**/*.js', appPath + '**/*.html', 'specs/**/*.js'],
