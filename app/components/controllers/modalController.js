@@ -8,8 +8,8 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
     //};
 
     $scope.ok = function () {
-        var id = $scope.item.id;
-        console.log('in OK button id',id)
+        $scope.item.id;
+        console.log('in OK button id',$scope.item.id)
         /*
         var deffered = serverCommunication.removeItemHttp(id);
         deffered.then(
@@ -22,7 +22,7 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
 
                 //update list here END
 
-                $uibModalInstance.close();
+
             },
             function(reject){},
             function(progress){
@@ -30,7 +30,7 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
             }
         );
         */
-
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
