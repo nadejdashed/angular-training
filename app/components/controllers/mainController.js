@@ -33,9 +33,7 @@
                 }
             );
 
-        }
-
-
+        };
 
         function initCatsHttp() {
             var deffered = serverCommunication.getDataHttp();
@@ -59,9 +57,9 @@
         }
 
         $scope.currentCat ={
-            name: '',
-            img:'',
-            clicks: 0};
+                name: '',
+                img:'',
+                clicks: 0};
 
         $scope.counterTotal = 0;
 
@@ -98,11 +96,16 @@
                     },
                     items: function () {
                         return pet;
+                    },
+                    fnDelete:function(){
+                        var deffered = serverCommunication.removeItemHttp(id);
+                        deffered.then();
                     }
                 }
             });
 
             modalInstance.result.then(function (selectedItem) {
+
                 $scope.selected = selectedItem;
             }, function () {
                 console.info('Modal dismissed at: ' + new Date());

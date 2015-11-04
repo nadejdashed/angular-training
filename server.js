@@ -164,7 +164,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
       instances = result,
       ind = instances.indexOf(instance);
 
-  if (currentUser.login === instance.owner){
+  //if (currentUser.login === instance.owner){
     if (ind >= 0) {instances.splice(ind, 1);}
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
         console.log(err ? err : "JSON saved to " + fileName);
@@ -174,9 +174,9 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
             res.send(instance);
         }
     });
-  } else {
+  /*} else {
     res.status(405).send({status: 'error', code: "NOPERMISSION", error: "No permissions"});
-  }
+  }*/
 });
 
 exports = module.exports = app;

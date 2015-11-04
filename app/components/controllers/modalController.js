@@ -10,17 +10,17 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
     $scope.ok = function () {
         var id = $scope.item.id;
         console.log('in OK button id',id)
-
+        /*
         var deffered = serverCommunication.removeItemHttp(id);
         deffered.then(
             function(resp){
                 console.log('remove id', id , 'resp.data' , resp.data);
 
-                /*update list here*/
+                //update list here
 
                 //$scope.allCats = resp.data;
 
-                /*update list here END*/
+                //update list here END
 
                 $uibModalInstance.close();
             },
@@ -29,6 +29,7 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
 
             }
         );
+        */
 
     };
 

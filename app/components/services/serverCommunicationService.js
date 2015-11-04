@@ -1,5 +1,6 @@
 ﻿
 angular.module('app').service("serverCommunication",  function($resource, $http, $templateCache, $timeout, $q){
+    var allCats =[];
     var catsFromServer;
     //var url = '/json/cats.json';
     //var CatsDataBase  = $resource('/json/cats.json');
@@ -35,17 +36,36 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
 
         var deferred = $q.defer();
 
-        $timeout(
-            $http.get('/json/cats.json', {cache: 'none'})
-                .then(function(data){
-                    deferred.resolve(data);
-                    console.log('data in serverCommunication: ',data);}
-            ),10000)
+        $timeout(function(){
+                $http.get('/json/cats.json', {cache: 'none'})
+                    .then(function(data){
+                        deferred.resolve(data);
+                        console.log('data in serverCommunication: ',data);}
+                )
+        },1000)
 
         return deferred.promise;
 
     }
 
+    /**
+     *
+     * @param cat Object
+     * @returns {HttpPromise}
+     */
+    function createItemHttp (cat){
+        return $http.post('/cats', cat);
+    }
+
+    function updateItemHttp (cat){
+        return $http.put('/cats/'+id, cat);
+    }
+
+    /**
+     *
+     * @param id Integer
+     * @returns {HttpPromise}
+     */
     function removeItemHttp(id){
         console.log('id',id)
         return $http.delete('/cats/'+id, {timeout: 10})
@@ -55,7 +75,9 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
     return {
         getDataResource : getDataResource,
 
+        createItemHttp : createItemHttp,
         getDataHttp : getDataHttp,
+        updateItemHttp : updateItemHttp,
         removeItemHttp : removeItemHttp
     }
 
