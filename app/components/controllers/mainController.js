@@ -1,12 +1,11 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http) {
+    var mainController = function($scope, catService) {
 
         $scope.data = {};
 
-        $http.get('../../model/cats.json').then(
-            function(response){
-                $scope.data.cats = response.data;
+        catService.getAllCats().then(function(response){
+                $scope.data.cats = response;
             }
             ,function(error){
                 console.log(error);
