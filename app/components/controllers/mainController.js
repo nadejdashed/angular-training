@@ -14,7 +14,7 @@
     module.controller("formController", formController);
     /**/
 
-    var mainController = function ($scope) {
+    var mainController = function ($scope, $uibModal) {
         $scope.images = [
             { name: 'stu',
               img:'http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg',
@@ -43,7 +43,7 @@
 
         $scope.counterTotal = 0;
 
-        $scope.data = { singleSelect: null,
+        $scope.filterBy = { selectedOption: null,
                         sortingByText: ''}
 
         $scope.addCounterPicture = function(pet){
@@ -62,13 +62,30 @@
             //
             $scope.counterTotal--;
             //
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'templates/addCat.html',
+                controller: 'ModalInstanceCtrl',
+                resolve: {
+                    items: function () {
+                        return $scope.currentCat;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
         };
 
         $scope.sort = function(searchStringVal){
-            $scope.data.singleSelect = 'name';
-            $scope.data.sortingByText = { name: searchStringVal};
+            $scope.filterBy.selectedOption = 'name';
+            $scope.filterBy.filtering = { name: searchStringVal};
             console.group()
-            console.info('string',searchStringVal, '\n$scope.sort  click', $scope.data.singleSelect)
+                console.info('string',searchStringVal, '\n$scope.sort  click', $scope.filterBy.selectedOption)
             console.groupEnd();
 
         };

@@ -5,15 +5,28 @@
 </script>
 
 <!--modal-->
-<div ng-controller="modalController">
+<div>
 
     <div class="modal-header">
         <h3 class="modal-title">I'm a modal!</h3>
     </div>
     <div class="modal-body">
+        <div ng-controller="formController">
+        <form ng-submit="submit()" class="form-horizontal" novalidate>
+            <label>Firstname</label>
+            <input type="text" ng-model="newCat.name"/>
+            <label>url</label>
+            <input type="text" ng-model="newCat.url"/>
+            <button class="btn">Save</button>
+            <button class="btn">Cancel</button>
+        </form>
         <ul>
             <li ng-repeat="item in items">
                 <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+
+
+
+            </div>
             </li>
         </ul>
         Selected: <b>{{ selected.item }}</b>
@@ -26,16 +39,7 @@
 </div>
 <!--modal END-->
 
-<div ng-controller="formController">
-    <form ng-submit="submit()" class="form-horizontal" novalidate>
-        <label>Firstname</label>
-        <input type="text" ng-model="newCat.name"/>
-        <label>url</label>
-        <input type="text" ng-model="newCat.url"/>
-        <button class="btn">Save</button>
-        <button class="btn">Cancel</button>
-    </form>
-</div>
+
 
 <!--<input type="button" value="go add pet page" onclick="newDoc()">-->
 
