@@ -1,42 +1,12 @@
 (function(module) {
 
-	var eventsController = function ($scope, $sce) {
-		var events = [{
-			id: 1,
-			name: 'Angular Training',
-			src: 'https://angularjs.org/img/AngularJS-large.png',
-			trainer: 'Nadzeya Shedava',
-			date: '2015.10.12',
-			tags: ['JS', 'Framework', 'Frontend'],
-			//vote: 0
-		}, {
-			id: 2,
-			name: '.Net intro',
-			src: 'https://upload.wikimedia.org/wikipedia/fr/9/99/Logo_microsoft_net.png',
-			trainer: 'Egor Tichonov',
-			date: '2014.10.12',
-			tags: ['Backend', 'Framework'],
-			//vote: 0
-		}, {
-			id: 3,
-			name: 'PHP in depth',
-			src: 'http://uskov.com.ua/wp-content/uploads/2015/04/php-elephant.png',
-			trainer: 'Alexandr Efimov',
-			date: '2015.09.15',
-			tags: ['Backend'],
-			//vote: 0
-		}, {
-			id: 4,
-			name: 'News in Drupal',
-			src: 'http://www.activemedia.by/i/drupal_1.png',
-			trainer: 'Alexandr Efimov',
-			date: '2014.12.27',
-			tags: ['Backend', 'CMS'],
-			//vote: 0
-		}];
+	var eventsController = function ($uibModal, $log, $scope, $sce, urlValue, eventsService, $rootElement, $compile, $parse, selectedEventsService) {
+		console.log(urlValue);
+		$log.warn('AAAAA');
 
+		$scope.events = eventsService.getData();
+		console.log($scope.events[0]);
 
-		$scope.events = events;
 		$scope.html = $sce.trustAsHtml('<strong style="color: red">{{possitiveEventsCount}}</strong>');
 		$scope.url = 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQppp5tMQwEj6JkqUzTmH0uzgm2EXE4tiObKB_sRqML2IN2jzP2S4bKMw';
 		$scope.date = new Date('2015-12-01');
@@ -61,6 +31,40 @@
 				$scope.possitiveEventsCount = 5;
 			});
 		},1000);*/
+
+		$scope.save = function(cat){
+			var modalInstance = $uibModal.open({
+				templateUrl: '/templates/model.html',
+				controller: 'ModalInstanceCtrl',
+				resolve: {
+					items: function () {
+						return $scope.items;
+					}
+				}
+			});
+
+			modalInstance.result.then(function () {
+				eventsService.saveData(cat);
+			}, function () {
+				$log.info('Modal dismissed at: ' + new Date());
+			});
+
+		};
+
+
+		var elem = $compile('<div>{{2 + 3}}</div>')($scope);
+		$rootElement.append(elem);
+
+		var fn = $parse('url');
+		console.log(fn($scope));
+
+		selectedEventsService.selectEvent('test1');
+		selectedEventsService.selectEvent('test2');
+		selectedEventsService.selectEvent('test3');
+		selectedEventsService.getSelectedEvents();
+		selectedEventsService.selectEvent('test4');
+		selectedEventsService.getSelectedEvents();
+
 	};
 
 	module.controller("eventsController", eventsController);
