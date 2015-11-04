@@ -10,7 +10,7 @@
         $scope.addCatClick = function(){
             $scope.newCat ={id:100, name:$scope.newcatname, src: $scope.newcaturl, vote: 0, owner: "Misha"};
             catsService.addCatClick($scope.newCat).then(function(response){
-                console.log("GOOD");
+                console.log("Cat has been added!!");
                 $window.history.back();
             });
         }
