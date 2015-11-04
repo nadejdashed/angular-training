@@ -16,7 +16,7 @@
 
     var mainController = function ($scope, serverCommunication, $uibModal) {
         function initCatsResource() {
-            var deffered = serverCommunication.getDataHttp();
+            var deffered = serverCommunication.getDataResource();
 
             deffered.then(
                 function(resp){
@@ -41,7 +41,7 @@
             deffered.then(
                 function(resp){
                     $scope.allCats = resp.data;
-                    console.log('data',data);
+                    console.log('data',resp);
                 },
                 function(reject){
                     Error(reject);

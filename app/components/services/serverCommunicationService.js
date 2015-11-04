@@ -1,28 +1,5 @@
-﻿/*
-(function(module) {
-
-    var serverCommunicationOld = function ($scope, $resource) {
-        //$scope.DataBase  = $resource('/json/cats.json');
-        $scope.DataBase = ['halo'];
-
-
-        function getData ($scope){
-            return $scope.DataBase;
-        }
-
-        return {
-            getData : getData
-        }
-
-    };
-
-    module.factory("serverCommunicationOld", serverCommunicationOld);
-
-}(angular.module("app")));
-
-*/
-
-angular.module('app').service("serverCommunication",  function($resource, $http, $templateCache){
+﻿
+angular.module('app').service("serverCommunication",  function($resource, $http, $templateCache, $timeout, $q){
     var catsFromServer;
     //var url = '/json/cats.json';
     //var CatsDataBase  = $resource('/json/cats.json');
@@ -52,14 +29,33 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
 
     /* using $http */
 
-        function getDataHttp (){
-            return $http.get('/json/cats.json', {cache: $templateCache});
-        }
+    function getDataHttp (){
+        //return $http.get('/json/cats.json', {timeout : 5000});
+
+
+        var deferred = $q.defer();
+
+        $timeout(
+            $http.get('/json/cats.json', {cache: 'none'})
+                .then(function(data){
+                    deferred.resolve(data);
+                    console.log('data in serverCommunication: ',data);}
+            ),10000)
+
+        return deferred.promise;
+
+    }
+
+    function removeItemHttp(id){
+        return $http.delete('/cats/:id', {customConfig: 'customConfig'})
+    }
     /* using $http END*/
 
     return {
         getDataResource : getDataResource,
-        getDataHttp : getDataHttp
+
+        getDataHttp : getDataHttp,
+        removeItemHttp : removeItemHttp
     }
 
 });
