@@ -191,7 +191,6 @@
         }
 
         var addCat = function (cat) {
-            debugger;
             return $http.post('/cats/', cat);
         }
 

@@ -53,8 +53,6 @@
             });
         };
 
-        $scope.newCat;
-
         $scope.addCat = function() {
             $scope.newCat.vote = 0;
             $scope.newCat.viewed = false;
