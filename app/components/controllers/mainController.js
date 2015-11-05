@@ -34,8 +34,11 @@
             debugger;
             object.count-=1;
         };
+
+
     };
 
     module.controller("mainController", mainController);
+
 
 }(angular.module("app")));
