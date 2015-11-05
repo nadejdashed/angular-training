@@ -9,14 +9,8 @@
         function putCooke(cat) {
             var votedCats = $cookies.getObject("votedCats");
             if (!votedCats) {votedCats = [];}
-            votedCats.push(cat);
+            votedCats.push(cat.id);
             $cookies.putObject("votedCats", votedCats);
-        }
-
-        $scope.isVoteAvailableForCat = function (cat){
-            var votedCats = $cookies.getObject("votedCats");
-            var filteredVotedCats = $filter("filter")(votedCats, {id:cat.id}, true);
-            return (filteredVotedCats.length>0) ? true : false;
         }
 
         catsService.getCatsPromise()
@@ -25,7 +19,12 @@
                 didSelectcatFunction($scope.cats[0]);
             });
 
-        //$scope.cats = catsService.getCats();
+        $scope.isVoteAvailableForCat = function (cat){
+            var votedCats = $cookies.getObject("votedCats");
+            return votedCats.indexOf(cat.id) > 0;
+            //var filteredVotedCats = $filter("filter")(votedCats, {id:cat.id}, true);
+            //return (filteredVotedCats.length>0) ? true : false;
+        }
 
         $scope.voteUpForCat = function (cat) {
             cat.vote++;
