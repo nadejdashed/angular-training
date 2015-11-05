@@ -29,7 +29,15 @@
             $scope.searchCat = {cat_name:search};
         }
 
-        $scope.addCatClick = function(){
+        $scope.deleteClick = function(){
+            catsService.removeCat($scope.cat).then(function(values){
+
+                catsService.allcats().then(function(values){
+                    $scope.cats =  values;
+                    $scope.cat = cats[0];
+                    $scope.$digest;
+                });
+            });
         }
 
     };

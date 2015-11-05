@@ -6,7 +6,8 @@
 
     var catsService = function ($http, $q, $resource) {
         var Cat = $resource('/cats/:id', {id:'@id'}, {
-            charge: {method:'PUT', params:{id:'@id'}}
+            charge: {method:'PUT', params:{id:'@id'}},
+            remove: {method:'DELETE', params:{id:'@id'}}
         });
         function doParseArray(response){
             var result = [];
@@ -45,12 +46,19 @@
             });
             return def.promise;
         }
-
+        function removeCat(cat){
+            var def  = $q.defer();
+            $http.delete('cats/'+ cat.id).then(function(resp){
+                def.resolve(doParseArray(resp));
+            });
+            return def.promise;
+            //Cat.remove(doMyCatToSave(cat));
+        }
         function updateVote(cat){
             Cat.charge(doMyCatToSave(cat));
         }
 
-        return {allcats:getAllCats, addCatClick:addCat, updateVote:updateVote};
+        return {allcats:getAllCats, addCatClick:addCat, updateVote:updateVote, removeCat:removeCat};
     };
     module.factory("catsService", catsService);
 
