@@ -2,7 +2,7 @@
 
 
 
-    var addCatController = function ($scope) {
+    var addCatController = function ($scope,catService) {
 
         $scope.showCatImage= function()
         {
@@ -10,6 +10,11 @@
         }
 
         $scope.newCat = {};
+
+        $scope.saveCat = function(cat)
+        {
+            catService.saveNewCat(cat);
+        }
 
     };
 

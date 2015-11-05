@@ -12,7 +12,8 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/addCatController.js"></script>
-
+    <script src="/app/components/services/cat.service.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
 
     <!-- /build -->
     <style>
@@ -24,10 +25,13 @@
 <body ng-app="app" ng-cloak>
 <div ng-controller="addCatController" class="usual-text">
     <div ng-form>
-        <div><label> Cat's name:</label><input ng-model = "newCat.catName" /></div>
-        <div><label> Cat's image URL:</label><input ng-model="newCat.imageUrl" ng-blur="showCatImage()"></div>
+        <div><label> Cat's name:</label><input ng-model = "newCat.name" /></div>
+        <div><label> Cat's image URL:</label><input ng-model="newCat.src" ng-blur="showCatImage()"></div>
         <div ng-show="newCat.canShow">
-            <img ng-src={{newCat.imageUrl}} />
+            <img ng-src={{newCat.src}} />
+        </div>
+        <div>
+            <button ng-click="saveCat(newCat)"></button>
         </div>
     </div>
 

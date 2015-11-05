@@ -18,6 +18,8 @@
     "angular-mocks": "latest",
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "angular-ui": "~0.4.0",
+    "angular-cookies": "~1.4.7"
   }
 }
