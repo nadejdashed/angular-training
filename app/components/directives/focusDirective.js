@@ -7,15 +7,8 @@
 
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
-                var model = $parse(attrs.focusDir);
-                scope.$watch(model, function (value) {
-                    if (value === true) {
-                        $timeout(function () {
-                            element[0].focus();
-                        });
-                    }
-                })
+            link: function (scope, element, attrs) {
+                element[0].focus();
             }
         };
     };
