@@ -22,21 +22,20 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
 
 <div class="container-list">
     <ul>
-        <li class="list" ng-repeat="cat in allCats | filter: data.sortingByText | orderBy: data.singleSelect ">
+        <li class="list" ng-repeat="cat in allCats | filter: filterBy.sortingByText | orderBy: filterBy.selectedOption ">
             <div ng-if="!cat">No cats has positive vote</div>
             <div>
                 <img ng-src="{{cat.img}}" title="click me" >
+                <p>{{cat.id}}</p>
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
                 <p>{{cat.time | date : 'HH.mm.dd'}} </p>
 
 
-                 <div vote-spinner > </div>
+                 <div vote-spinner vote-val="cat.vote"> </div>
 
                 <button ng-click="addCat(cat)" class="btn btn-success">add cat{{false | checker}}</button>
                 <button ng-click="removeCat(cat)" class="btn btn-danger">remove cat{{false | checker}}</button>
-
             </div>
-
 
             <p>this img clicked: <span>{{ cat.clicks }}</span> times</p>
         </li>
@@ -53,9 +52,10 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
         <form class="navbar-form" role="search">
             <div class="navbar-form btn-group">
 
-                <select name="singleSelect" id="singleSelect" ng-model="filterBy.option">
+                <select name="singleSelect" id="singleSelect" ng-model="filterBy.selectedOption">
                     <option value="">---Please select---</option> <!-- not selected / blank option -->
-                    <option value="name">Names</option> <!-- interpolation -->
+                    <option value="name">Names</option>
+                    <option value="id">Id</option>
                     <option value="clicks">Clicks</option>
                 </select>
                 <!--data.singleSelect= {{data.singleSelect}}-->

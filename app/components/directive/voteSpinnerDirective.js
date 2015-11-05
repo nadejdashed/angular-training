@@ -9,10 +9,14 @@ angular.module('app')
     .directive('voteSpinner', function(){
         return {
             restrict: 'A',
-            transclude: true,
-            templateUrl: 'components/directive/templatesDirectives/spinnerButtons.html',
-            link: function($scope, elem, attrs, ctrl, transcludeFn) {
-                //console.log('$scope' , $scope,'elem', elem, 'attrs' ,attrs, 'ctrl' ,ctrl);
+            scope: {
+                voteVal: '@'
+            },
+            templateUrl: 'templates/templatesDirectives/spinnerButtons.html',
+            link: function(scope, elem, attrs, ctrl, transcludeFn) {
+                console.log('voteVal is: ', scope.voteVal );
+
+                //console.log('scope' , scope,'elem', elem, 'attrs' ,attrs, 'ctrl' ,ctrl);
             }
         }
     });

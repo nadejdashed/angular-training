@@ -20,10 +20,29 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
                     .then(function(data){
                         deferred.resolve(data);
                         console.log('data in serverCommunication: ',data);
+
                     }
                 )
-        },1000);
+        },500);
 
+      /*  function doParseArray(response){
+            var result = [];
+            for(var i=0; i<response.length; i++){
+                result.push(doParse(response[i]));
+            }
+            return result;
+        }
+        function doParse(response){
+            return {
+                data: response.id,
+
+        };
+    }
+
+
+
+    def.resolve(doParseArray(resp));
+*/
         return deferred.promise;
     }
 

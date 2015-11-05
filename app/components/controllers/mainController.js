@@ -38,7 +38,7 @@
         $scope.counterTotal = 0;
 
         $scope.filterBy = {
-            selectedOption: null,
+            selectedOption: 'id',
             sortingByText: ''
         };
 
@@ -46,7 +46,7 @@
             pet.clicks++;
             $scope.currentCat = pet;
             $scope.counterTotal++;
-
+            console.log('you vote up for:' , pet);
         };
 
         $scope.decreaseCounterPicture = function(pet) {
@@ -147,15 +147,15 @@
 
         $scope.sort = function(searchStringVal){
             $scope.filterBy.selectedOption = 'name';
-            $scope.filterBy.filtering = { name: searchStringVal};
+            $scope.filterBy.sortingByText = { name: searchStringVal};
             console.group()
-                console.info('string',searchStringVal, '\n$scope.sort  click', $scope.filterBy.selectedOption)
+                console.info('serching string',searchStringVal, '\n sort after click. In field: ', $scope.filterBy.selectedOption)
             console.groupEnd();
 
         };
 
 
-        initCatsResource();
+        initCatsHttp();
 
     };
 
