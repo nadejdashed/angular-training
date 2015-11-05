@@ -23,7 +23,14 @@
                 click_num: response.vote
             };
         }
-
+        function doMyCatToSave(cat){
+            return {
+                id: cat.id,
+                name: cat.cat_name,
+                src: cat.link,
+                vote: cat.click_num
+            };
+        }
         function getAllCats(){
             var def  = $q.defer();
             $http.get('cats').success(function(resp){
@@ -40,18 +47,7 @@
         }
 
         function updateVote(cat){
-            Cat.charge(cat);
-
-            //var cats = Cat.query(function(){
-            //     for (var i=0; i<cats.length; i++) {
-            //        if (cat.id === cats[i].id) {
-            //            var returnedcat = cats[i];
-            //        }
-            //    }
-            //    returnedcat.vote = cat.click_num;
-            //    //returnedcat.$save();
-            //    returnedcat.$charge({vote:cat.click_num});
-            //});
+            Cat.charge(doMyCatToSave(cat));
         }
 
         return {allcats:getAllCats, addCatClick:addCat, updateVote:updateVote};
