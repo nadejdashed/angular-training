@@ -1,0 +1,9 @@
+<ng-form name="ipform">
+    <div>
+        <label> Cat's image URL:</label>
+        <input type=url ng-model="imagesrc"  name="sourceimage" ng-model-options="{debounce : 500}" />
+    </div>
+    <div >
+        <img name="imagepreview" ng-src={{imagesrc}} />
+    </div>
+</ng-form>

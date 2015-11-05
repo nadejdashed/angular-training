@@ -14,7 +14,8 @@
     <script src="/app/components/controllers/addCatController.js"></script>
     <script src="/app/components/services/cat.service.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
-
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/app/components/directives/imagePreview.js"></script>
     <!-- /build -->
     <style>
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -23,16 +24,28 @@
     </style>
 </head>
 <body ng-app="app" ng-cloak>
-<div ng-controller="addCatController" class="usual-text">
+<div ng-controller="addCatController" class="usual-text" ng-submit="saveCat(newCat)">
     <div ng-form>
         <div><label> Cat's name:</label><input ng-model = "newCat.name" /></div>
-        <div><label> Cat's image URL:</label><input ng-model="newCat.src" ng-blur="showCatImage()"></div>
-        <div ng-show="newCat.canShow">
-            <img ng-src={{newCat.src}} />
-        </div>
+        <image-preview
+                imagesrc="newCat.src"
+                >
+            This is cat's place
+
+
+        </image-preview>
+
+        <!--<div><label> Cat's image URL:</label><input ng-model="newCat.src" ng-blur="showCatImage()"></div>-->
+        <!--<div ng-show="newCat.canShow">-->
+            <!--<img ng-src={{newCat.src}} />-->
+        <!--</div>-->
         <div>
-            <button ng-click="saveCat(newCat)"></button>
+            <button ng-click="saveCat(newCat)">Save cat</button>
         </div>
+
+
+
+
     </div>
 
 

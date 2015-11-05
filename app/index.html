@@ -15,7 +15,8 @@
     <script src="/app/components/services/cat.service.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-
+    <script src="/app/components/directives/voteSpinner.directive.js"></script>
+    <script src="/app/components/directives/onfocus.directive.js"></script>
     <!-- /build -->
     <style>
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -40,23 +41,11 @@
 
         <div class="selected-cat">
             <div class="usual-text">Name: {{selectedCat.name}} </div>
-            <div class="container">
-            <div class="row">
-                <div class="col-md-1">
-                    <button ng-click="unlikeCat(selectedCat)"> - </button>
-                </div>
+            <vote-spinner vote="{{selectedCat.vote}}"
+                          upvote = "likeCat(selectedCat)"
+                          downvote =  "unlikeCat(selectedCat)"
+                    ></vote-spinner>
 
-                <div class="col-md-1">
-                    <div class="usual-text">
-                        {{selectedCat.vote}}
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <button ng-click="likeCat(selectedCat)"> + </button>
-                </div>
-
-            </div>
-            </div>
 
                 <div>
                     <img class="big-image" ng-src={{selectedCat.src}} alt="{{selectedCat.name}} picture" ng-click="countClick(selectedCat)">
@@ -68,7 +57,7 @@
 
         <div class="row">
                 <div class="col-md-2 usual-text">
-                <input ng-model="searchTerm" /></div>
+                <input ng-model="searchTerm" on-focus> </input> </div>
             <div class="col-md-1 usual-text"><button ng-click="filterCats(searchTerm)"><span class="glyphicon glyphicon-search"></button></div>
             <div class="col-md-3 usual-text">
                 <select ng-model = "sortingOrder" ng-options="option.name for option in sortingOrders">
