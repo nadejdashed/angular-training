@@ -4,14 +4,8 @@
             <a>Cat name </a>
             <input focus-dir type="text" class="form-control" id="newcat_name" ng-model="cat.newcatname" placeholder="Enter cat name">
         </div>
-        <div>
-            <a>Url: </a>
-            <input type="text" class="form-control" id="newcat_url" ng-model="cat.newcaturl" placeholder="Enter cat url image">
-        </div>
-        <div>
-            <img ng-src="{{cat.newcaturl}}" width="100%">
-        </div>
 
+        <im-pre-view-dir url="cat.newcaturl"></im-pre-view-dir>
         <button key-press-dir type="button" ng-show="true" ng-click="addCatClick(cat)">add</button>
 
     </div>
