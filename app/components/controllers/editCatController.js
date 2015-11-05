@@ -12,7 +12,6 @@
 
         $scope.saveCat = function(){
             catService.saveCat($scope.catToEdit);
-            $scope.$emit("catListChanged");
             $state.go('cats');
         };
     };

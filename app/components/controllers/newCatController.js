@@ -12,7 +12,6 @@
             $scope.newCat.vote = 0;
             $scope.newCat.clickNum = 0;
             catService.addNewCat($scope.newCat);
-            $scope.$emit("catListChanged");
             $state.go('cats');
         };
     };

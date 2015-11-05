@@ -16,10 +16,6 @@
 
         getAllCats();
 
-        $scope.$on("catListChanged", function(){
-            getAllCats();
-        });
-
         $scope.deleteCat = function(id){
             catService.deleteCat(id).then(
                 function(){

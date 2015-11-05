@@ -6,7 +6,8 @@
             $stateProvider
                 .state('cats', {
                     url: '/cats',
-                    templateUrl: 'templates/main.html'
+                    templateUrl: 'templates/main.html',
+                    controller: 'mainController'
                 })
                 .state('edit', {
                     url: '/edit/:id',
