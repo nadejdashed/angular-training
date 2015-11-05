@@ -7,14 +7,6 @@
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
-    <!-- /build -->
-    <script src="/bower_components/angular/angular.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
-    <script src="/app/components/controllers/filterController.js"></script>
-    <script src="/app/components/services/catService.js"></script>
-    <!-- /build -->
 </head>
 
 <body ng-app="app">
@@ -50,12 +42,23 @@
 
         </div><br/>
         <form ng-submit="addCat()">
-            {{newCat.src}}
-            <label>Name:</label><input type="text" ng-model=newCat.name required><br/><br/>
+            {{newCat.src}}<br/><br/>
+            <label>Name:</label><input focus type="text" ng-model=newCat.name required><br/><br/>
             <label>ImageURL:</label><input type="url" ng-model=newCat.src required><br/><br/>
-            <input type="submit" value="Add {{newCat.name}}"><br/><br/>
+            <input type="submit" value="Add {{newCat.name}}" submit-by-enter><br/><br/>
             <img ng-src="{{newCat.src}}"/><br/>
         </form>
     </div>
+
+    <!-- /build -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <!-- build:js /build/angular-training.js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/filterController.js"></script>
+    <script src="/app/components/services/catService.js"></script>
+    <script src="/app/components/directives/focusDirective.js"></script>
+    <script src="/app/components/directives/submitByEnterDirective.js"></script>
+    <!-- /build -->
 </body>
 </html>

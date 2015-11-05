@@ -1,14 +1,15 @@
 ﻿(function(module) {
 
     var mainController = function ($scope, catService) {
-        $scope.getCats = function(){
+        function getCats(){
             catService.getCats().then(function successCallback(response) {
                 $scope.cats = response.data;
                 $scope.setCurrCat($scope.cats[0]);
             }, function errorCallback(response) {
                 return null;
             });
-        }();
+        }
+        getCats();
 
         $scope.incrementCounter = function(cat) {
             cat.vote++;
@@ -27,6 +28,7 @@
                 .then(function successCallback(response) {
                     // this callback will be called asynchronously
                     // when the response is available
+                    getCats();
                     console.log("Update success!")
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
@@ -41,9 +43,9 @@
                 .then(function successCallback(response) {
                     // this callback will be called asynchronously
                     // when the response is available
-                        debugger;
+                    //    debugger;
                     console.log("Update success!");
-                    $scope.getCats
+                    getCats();
                     //$scope.$apply();
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
@@ -56,7 +58,13 @@
         $scope.addCat = function() {
             $scope.newCat.vote = 0;
             $scope.newCat.viewed = false;
-            catService.addCat($scope.newCat);
+            catService.addCat($scope.newCat)
+                .then( function(){
+                    debugger;
+                    getCats();
+                }
+
+            );
         };
 
         $scope.$on('filter', function(event, args) {
