@@ -19,9 +19,11 @@
             return deferred.promise;
         }
 
-        function getCatById(url){
+        function getCatById(id){
+
             var deferred = $q.defer();
-            $http.get().then(function (response) {
+
+            $http.get('http://localhost:8000/cats/' + id).then(function (response) {
                 deferred.resolve(response.data);
                 return deferred.promise;
             }, function (response) {
@@ -33,8 +35,8 @@
         }
 
         return{
-            cats: asyncCats(),
-            catBiId: getCatById()
+            cats: asyncCats,
+            getCatById: getCatById
         }
 
 

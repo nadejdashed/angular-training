@@ -1,7 +1,7 @@
 <div style="left:10px; padding-top: 30px">
     <input type="text" ng-model="searchText"/>
     <button type="button" class="button" ng-click="performSearch(searchText)">Search</button>
-    <select ng-model="selected" ng-change="optionSelected(selected)" ng-options="obj.value as obj.text for obj in orderOptions">
+    <select ng-model="selected" ng-options="obj.value as obj.text for obj in orderOptions">
         <option value="">select a type</option>
     </select>
 
@@ -9,7 +9,7 @@
 
 <div style="display: inline-block; float:left">
     <label style="padding-top: 30px">List of cats</label>
-    <div ng-repeat="cat in cats | filter:{name: searchValue} | orderBy:orederValue">
+    <div ng-repeat="cat in cats | filter:{name: searchValue} | orderBy:selected">
         <div style="margin-top: 10px" ng-click="setCatsInfo(cat);">
             <div >
                 <span ng-show="cat.show">&#10004;</span>
@@ -30,8 +30,8 @@
     </div>
 
     <br>
-    <button type="button" style="width:50px" class="button" ng-click="setVote(1)">+</button>
-    <button type="button" style="width:50px" class="button" ng-click="setVote(0)">-</button>
+    <button type="button" style="width:50px" class="button" ng-click="setVote(selectedCat, 1)">+</button>
+    <button type="button" style="width:50px" class="button" ng-click="setVote(selectedCat, 0)">-</button>
 
 
 </div>

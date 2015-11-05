@@ -10,13 +10,9 @@
             "text": "name desc"
         }];
 
-        catService.cats.then(function(cats) {
+        catService.cats().then(function(cats) {
             $scope.cats = cats;
         });
-
-        $scope.optionSelected = function(order){
-            $scope.orederValue = order;
-        }
 
         $scope.performSearch = function(val){
             $scope.searchValue = val;
@@ -31,11 +27,11 @@
             selectedCat.vote++;
         }
 
-        $scope.setVote = function(vote){
+        $scope.setVote = function(cat, vote){
             if(vote > 0){
-                $scope.selectedCat.vote++;
+                cat.vote++;
             }else{
-                $scope.selectedCat.vote--;
+                cat.vote--;
             }
         }
 
