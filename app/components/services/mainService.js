@@ -35,10 +35,10 @@
             object.count-=1;
         };
 
-        var getCat = function(id) {
+        var getCat = function() {
             return $http({
                 method : 'GET',
-                url : '/cats/' + id
+                url : '/cats'
                 }).then(function successCallback(response) {
 
                 }, function errorCallback(response) {
@@ -46,8 +46,19 @@
                 });
         }
 
-        var saveCat = function() {
-            $http.post('/cats/', data, config).then(function successCallback(response) {
+        var getCats = function(id) {
+            return $http({
+                method : 'GET',
+                url : '/cats/' + id
+            }).then(function successCallback(response) {
+
+            }, function errorCallback(response) {
+
+            });
+        }
+
+        var saveCat = function(catId) {
+            $http.post('/cats/'+ catId, data, config).then(function successCallback(response) {
 
             }, function errorCallback(response) {
 
@@ -55,7 +66,7 @@
         }
 
         var killCat = function(catId) {
-            $http.post('/cats/'+ catId, config).then(function successCallback(response) {
+            $http.delete('/cats/'+ catId, config).then(function successCallback(response) {
 
             }, function errorCallback(response) {
 
