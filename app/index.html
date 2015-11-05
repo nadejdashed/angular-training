@@ -16,11 +16,36 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController">
-        <div ng-include="'/templates/main.html'"></div>
-    </div>
-    <div ng-controller="mainController">
-        <div ng-include="'/templates/main.html'"></div>
+    <div ng-controller="mainController" class="container">
+
+        <grandparent text="{{text}}">
+            <parent>
+                <child>aaa
+                </child>
+            </parent>
+            <parent></parent>
+        </grandparent>
+
+        <div ng-form name="myForm">
+            <input type="radio" required name="radio"/>a
+            <input type="radio" required name="radio"/>b
+            <button ng-disabled="myForm.$invalid">Submit</button>
+        </div>
+
+        --------------------------
+
+        <div test-directive
+             value="{{text}}"
+             text2="obj.name"
+             value2="obj"
+             fn="consoleLog()"
+          >
+            {{text}}, {{obj | json}}
+        </div>
+
+        <div ng-include="'templates/main.html'"></div>
+        {{obj.name}}
+
     </div>
 
 
@@ -71,6 +96,7 @@
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="/bower_components/angular-messages/angular-messages.js"></script
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
@@ -81,6 +107,9 @@
     <script src="/app/components/services/events.service.js"></script>
     <script src="/app/components/services/selectedEvents.service.js"></script>
     <script src="/app/components/services/constant.service.js"></script>
+	<script src="/app/components/directives/test.directive.js"></script>
+    <script src="/app/components/directives/lifecycle.directive.js"></script>
+    <script src="/app/components/directives/validator.directive.js"></script>
     <!-- /build -->
 
 </body>
