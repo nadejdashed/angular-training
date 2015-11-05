@@ -8,17 +8,41 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
-    <!-- /build -->
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
-<body ng-app="app">
-
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
+<body ng-cloak  ng-app="app">
+<div ng-controller="mainController">
+    <label>Search: <input ng-model="searchText.name"></label> <button ng-click="searchClickHandler(searchText)"> Do search! </button><select ng-model="selected" ng-options="f.name for f in orders"></select>
+    <div ng-repeat="item in cats | filter:searchTerm | orderBy:selected.type" type="button" ng-click="clickHandler(item)">
+        <button style="width: 100px; height: 30px"><span>{{item.name}}</span>
+        <span ng-if="item.isshowed == true">
+            &#10004;
+        </span></button>
     </div>
 
+    <img src="{{selectedCat.image}}" ng-click = "imageClickHandler(selectedCat)" widht = "400" height = "300" style = "border:1px solid #000;">
+    <p>Clicks: {{selectedCat.count}}</p>
+    <p>Name: {{selectedCat.name}}</p>
+    <p>Url: {{selectedCat.image}} </p>
+    <button ng-click="imageClickHandlerUp(selectedCat)">up</button><button ng-click="imageClickHandlerDown(selectedCat)">down</button>
+    <br>
+    <br>
+    <form>
+        <p>Edit name:<input ng-model="selectedCat.name" type="text" size="40">
+        </p>
+        <p>Edit image url:<input ng-model="selectedCat.image" type="text" size="100">
+        </p>
+    </form>
+
+</div>
+<script src="/bower_components/angular/angular.js"></script>
+<!-- build:js /build/angular-training.js -->
+<script src="/app/app.js"></script>
+<script src="/app/components/controllers/mainController.js"></script>
+<!-- /build -->
 </body>
 </html>
