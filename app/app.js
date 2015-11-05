@@ -1,4 +1,8 @@
 (function () {
     "use strict";
-    angular.module("app", ['ngResource','ui.bootstrap','ngEmoticons']);
+    angular.module("app", [
+        'ngResource',
+        'ui.bootstrap',
+        'ngEmoticons'
+    ]);
 })();

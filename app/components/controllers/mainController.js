@@ -3,11 +3,14 @@
     var mainController = function ($scope, serverCommunication, $uibModal) {
         $scope.allCats =[];
 
-        /*Resource try*/
+        /* try load data using Resource */
         function initCatsResource() {
-            var deffered = serverCommunication.getDataResource()
-        };
+            $scope.allCats = serverCommunication.getDataResource();
+            //$scope.allCats.$promise.then(function(){});
+            console.log('$scope.allCats: ',$scope.allCats);
+        }
 
+        /* try load data using Http */
         function initCatsHttp() {
             var deffered = serverCommunication.getDataHttp();
 
@@ -34,8 +37,10 @@
 
         $scope.counterTotal = 0;
 
-        $scope.filterBy = { selectedOption: null,
-                        sortingByText: ''}
+        $scope.filterBy = {
+            selectedOption: null,
+            sortingByText: ''
+        };
 
         $scope.addCounterPicture = function(pet){
             pet.clicks++;
@@ -50,41 +55,83 @@
             $scope.counterTotal--;
         }
 
-        $scope.removeCounterCat = function(pet){
+        $scope.addCat = function(pet){
+            console.log('addCatLocal:  id', pet.id, 'add pet.timestamp', pet.time );
+            function addCatLocal (){
+                var promise = serverCommunication.createItemHttp(pet);
+                promise.then(function (resp) {
+                        console.log('addCatLocal:  id', pet.id, 'pet.time',pet.time, 'resp', resp);
+                        //update list here
+                        $scope.allCats = resp.data;
+                        //update list here END
+                    },
+                    function (reject) {
+                        Error(reject);
+                    }
+                );
+                return promise
+            }
+
+            var modalInstance;
+            modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'templates/addCat.html',
+                controller: 'ModalInstanceCtrl',
+                resolve: {
+                    // need for modalController
+                    itemToDelete: function () {
+                        console.info('inside itemToAdd: pet', pet);
+                        return pet;
+                    },
+                    currentAction: function () {
+                        return addCatLocal
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+                console.info('$scope.selected',$scope.selected);
+            }, function () {
+                console.info('Modal dismissed at: ' + new Date());
+            });
+
+        };
+
+        $scope.removeCat = function(pet){
             //
+            function fnDeleteLocal (){
+                var promise = serverCommunication.removeItemHttp(pet);
+                promise.then(function (resp) {
+                            pet.time *= 1000;
+                            console.log('remove id', pet.id, 'pet.time',pet.time, 'resp', resp);
+                                //update list here
+                                $scope.allCats = resp.data;
+                                //update list here END
+                        },
+                        function (reject) {
+                            Error(reject);
+                        },
+                        function (progress) {
+                            console.info('progress: ', progress);
+                        }
+                    );
+                return promise
+            }
+
             var modalInstance;
             modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'templates/deleteCat.html',
                 controller: 'ModalInstanceCtrl',
                 resolve: {
+                    // need for modalController
                     itemToDelete: function () {
                         console.info('inside itemToDelete: pet', pet);
                         return pet;
                     },
-                    items: function () {
-                        return pet;
-                    },
-                    fnDelete: function () {
-                        //This DELETE all cats
-                        var deffered = serverCommunication.removeItemHttp(pet);
-                        deffered.then(function (resp) {
-                                pet.time *= 1000;
-                                console.log('remove id', pet.id, 'pet.time',pet.time, 'resp', resp);
-
-                                //update list here
-                                $scope.allCats = resp.data;
-                                //update list here END
-
-
-                            },
-                            function (reject) {
-                                Error(reject);
-                            },
-                            function (progress) {
-
-                            }
-                        );
+                    currentAction: function () {
+                        return fnDeleteLocal
                     }
                 }
             });
@@ -108,43 +155,10 @@
         };
 
 
-        initCatsHttp();
+        initCatsResource();
 
     };
 
     module.controller("mainController", mainController);
-
-
-
-
-    /**/
-    var emoticoneController = function () {
-        this.text = "Lotus :smile: eleates vix attrahendams luna est.Advenas mori!Fermiums prarere in cubiculum!Cum cacula cantare, omnes stellaesmanifestum azureus, nobilis https://angularjs.org/ acipenseres.Cum orgiamori, omnes rationees <3 experientia alter, regius :heart: mortemes.Devatiospersuadere, tanquam secundus spatii.Heu, barcas!Cedriums observare!A falsis,lacta talis imber. :P Cur eleates peregrinatione?";
-    };
-    module.controller("emoticoneController", emoticoneController);
-
-    var myfilter = function () {
-        return function () {
-
-        }
-    }
-
-    module.filter("myfilter", myfilter);
-
-
-
-    /**/
-    /*formCtrl*/
-    /**/
-    var formController = function ($scope) {
-        $scope.newCat ={
-            name: '',
-            img:'',
-            clicks: 0};
-    };
-
-    module.controller("formController", formController);
-    /**/
-
 
 }(angular.module("app")));

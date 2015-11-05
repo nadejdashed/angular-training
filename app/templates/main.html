@@ -17,6 +17,9 @@
 </div>
 
 <h1>Application with cat</h1>
+
+Focus test: <input focus-on-load type="text" name="focusDirective">
+
 <div class="container-list">
     <ul>
         <li class="list" ng-repeat="cat in allCats | filter: data.sortingByText | orderBy: data.singleSelect ">
@@ -24,9 +27,14 @@
             <div>
                 <img ng-src="{{cat.img}}" title="click me" >
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
-                <button ng-click="addCounterPicture(cat)" class="btn btn-success">add vote {{true | checker}}</button>
-                <button ng-click="decreaseCounterPicture(cat)" class="btn btn-warning">decrease vote{{false | checker}}</button>
-                <button ng-click="removeCounterCat(cat)" class="btn btn-danger">remove cat{{false | checker}}</button>
+                <p>{{cat.time | date : 'HH.mm.dd'}} </p>
+
+
+                 <div vote-spinner > </div>
+
+                <button ng-click="addCat(cat)" class="btn btn-success">add cat{{false | checker}}</button>
+                <button ng-click="removeCat(cat)" class="btn btn-danger">remove cat{{false | checker}}</button>
+
             </div>
 
 

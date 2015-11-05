@@ -1,54 +1,30 @@
 ﻿
 angular.module('app').service("serverCommunication",  function($resource, $http, $templateCache, $timeout, $q){
-
-    //var url = '/json/cats.json';
-    //var CatsDataBase  = $resource('/json/cats.json');
-    //
-    //var cat = CatsDataBase.get( function() {
-    //    console.info('DataBase',catsFromServer);
-    //    //user.abc = true;
-    //    //user.$save();
-    //});
-
-    //DataBase = ['halo'];
-    /*
-    var User = $resource('/user/:userId', {userId:'@id'});
-
-    var user = User.get({userId:123}, function() {
-        user.abc = true;
-        user.$save();
-    });
-    */
+    var CatsDataBase  = $resource('/cats/:id');
 
     function getDataResource (){
-        return CatsDataBase
+        var cats = CatsDataBase.query( function(data) {
+            console.info('info array',data);
+        });
+        return cats;
     }
 
     /* using $http */
 
     function getDataHttp (){
-        //return $http.get('/json/cats.json', {timeout : 5000});
-
 
         var deferred = $q.defer();
 
-        /*
-        deferred.then(function(data){
-                    deferred.resolve(['wait... data loading']);
-                    console.log('wait');
-                }
-            );*/
-
         $timeout(function(){
-                $http.get('/json/cats.json', {cache: 'none'})
+                $http.get('/cats', {cache: 'none'})
                     .then(function(data){
                         deferred.resolve(data);
-                        console.log('data in serverCommunication: ',data);}
+                        console.log('data in serverCommunication: ',data);
+                    }
                 )
-        },1000)
+        },1000);
 
         return deferred.promise;
-
     }
 
     /**
@@ -57,6 +33,7 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
      * @returns {HttpPromise}
      */
     function createItemHttp (cat){
+        console.log('adding... /cats/'+cat.id , 'pet.time',cat.time)
         return $http.post('/cats', cat);
     }
 
@@ -65,13 +42,12 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
     }
 
     /**
-     *
      * @param id Integer
      * @returns {HttpPromise}
      */
-    function removeItemHttp(pet){
-        console.log('deleteing... /cats/'+pet.id , 'pet.time',pet.time)
-        return $http.delete('/cats/'+pet.id, {timeout: 10})
+    function removeItemHttp(cat){
+        console.log('deleteing... /cats/'+cat.id , 'pet.time',cat.time);
+        return $http.delete('/cats/'+cat.id, {timeout: 10})
     }
     /* using $http END*/
 
