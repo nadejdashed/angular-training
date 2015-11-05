@@ -3,10 +3,21 @@
  */
 (function (module) {
 
-    var focusPocus = function () {
+    var focusPocus = function ($parse, $timeout) {
 
-
-        return {};//{saveVotes:saveVoteCookies, removeVotes:removeVoteCookies};
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.focusDir);
+                scope.$watch(model, function (value) {
+                    if (value === true) {
+                        $timeout(function () {
+                            element[0].focus();
+                        });
+                    }
+                })
+            }
+        };
     };
     module.directive("focusDir", focusPocus);
 
