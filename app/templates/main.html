@@ -50,17 +50,7 @@
             {{selectedCat.clickNum}}
         </div>
     </div>
-    <div class="col-xs-1 votingWidget">
-        <div class="votingButton" ng-click="catUpVote(selectedCat)">
-            <i class="glyphicon glyphicon-chevron-up"></i>
-        </div>
-        <div class="badge badge-inverse">
-            <div>{{selectedCat.vote}}</div>
-        </div>
-        <div class="votingButton" ng-click="catDownVote(selectedCat)">
-            <i class="glyphicon glyphicon-chevron-down"></i>
-        </div>
-    </div>
+    <vote-spinner vote-number="{{selectedCat.vote}}" down-vote="catDownVote(selectedCat)" up-vote="catUpVote(selectedCat)"></vote-spinner>
 </div>
 
 <!-- Notification message if not cat was selected -->

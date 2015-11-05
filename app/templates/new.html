@@ -1,21 +1,15 @@
 <div class="row well">
-    <div class="col-xs-6">
-        <form name="editCatForm">
-            <fieldset>
-                <div class="form-group">
-                    <label for="new-name">Name:</label>
-                    <input id="new-name" type="text" ng-model="newCat.name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="new-url">Image URL:</label>
-                    <input id="new-url" type="url" ng-model="newCat.src" class="form-control" required>
-                </div>
-            </fieldset>
-            <button type="submit" ng-disabled="editCatForm.$invalid" class="btn btn-primary" ng-click="addNewCat()" style="width: 100px;">Add</button>
+    <form name="editCatForm" style="width: 50%;position: relative; margin: 0 auto;">
+        <fieldset style="margin-bottom: 20px;">
+            <div class="form-group">
+                <label for="new-name">Name:</label>
+                <input id="new-name" type="text" ng-model="newCat.name" class="form-control" required set-focus>
+            </div>
+            <image-preview cat="newCat"></image-preview>
+        </fieldset>
+        <div style="text-align: center">
+            <button type="submit" listen-enter ng-disabled="editCatForm.$invalid" class="btn btn-primary" ng-click="addNewCat()" style="width: 100px;">Add</button>
             <button type="button" class="btn btn-default" ng-click="cancel()" style="width: 100px;">Cancel</button>
-        </form>
-    </div>
-    <div class="col-xs-6">
-        <img ng-src="{{newCat.src}}" height="300" style="float: right;"/>
-    </div>
+        </div>
+    </form>
 </div>
