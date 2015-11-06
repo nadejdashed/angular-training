@@ -7,7 +7,7 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
     $urlRouterProvider.otherwise('/');
 
     $stateProvider.state('catslist', {
-        url: '/',
+        url: 'about',
         views: {
             about: {
                 template: 'About me page'
@@ -34,8 +34,13 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
     }).state('cats', {
         url: '/',
         templateUrl: '/templates/main_cats_page.html',
-        controller: 'mainController'
-    }).state('about', {
+        controller: 'mainController',
+        resolve: {
+            cat: function($state, $stateParams, eventsService){
+               // return catsService.getEventById($stateParams.id);
+            }
+        }
+    }).state('aboutme', {
         url: '/aboutme',
         template: 'About me page'
     });
