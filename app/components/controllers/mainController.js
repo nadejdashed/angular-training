@@ -1,6 +1,8 @@
 ﻿(function(module) {
 
     var mainController = function ($scope, serverCommunication, $uibModal , errorHandler, $state) {
+        console.log("$state",$state );
+
         $scope.allCats =[];
 
         /* try load data using Resource */
