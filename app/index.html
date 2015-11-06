@@ -7,9 +7,13 @@
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            visibility: hidden !important;
+        }
+    </style>
 </head>
-
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
 
     <div ng-controller="mainController" class="container">
         <div ng-controller="filterController">
@@ -38,16 +42,9 @@
                 <div class="glyphicon glyphicon-menu-down" aria-hidden="true"></div>
             </button><br/><br/>
 
-            <button ng-click="deleteCurrCat()" >Delete</button><br/>
+            <button ng-click="deleteCurrCat()" ng-controller="deleteCatController" >Delete</button><br/>
 
         </div><br/>
-        <form ng-submit="addCat()">
-            {{newCat.src}}<br/><br/>
-            <label>Name:</label><input focus type="text" ng-model=newCat.name required><br/><br/>
-            <label>ImageURL:</label><input type="url" ng-model=newCat.src required><br/><br/>
-            <input type="submit" value="Add {{newCat.name}}" submit-by-enter><br/><br/>
-            <img ng-src="{{newCat.src}}"/><br/>
-        </form>
     </div>
 
     <!-- /build -->
@@ -56,6 +53,7 @@
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/filterController.js"></script>
+    <script src="/app/components/controllers/deleteCatController.js"></script>
     <script src="/app/components/services/catService.js"></script>
     <script src="/app/components/directives/focusDirective.js"></script>
     <script src="/app/components/directives/submitByEnterDirective.js"></script>

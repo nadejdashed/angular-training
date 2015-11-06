@@ -176,40 +176,64 @@
                 viewed: false
             }]*/;
 
-        var getData = function () {
-            return $http({
+        var valid = false;
+
+        var getCats = function () {
+            var promise = $http({
                 method: 'GET',
                 url: '/cats'
             });
-        }
+            promise.then(
+                function() {
+                    valid = true;
+                }, {});
+            return promise;
+        };
 
         var getCat = function (id) {
             return $http({
                 method: 'GET',
-                url: '/cats/' + id,
+                url: '/cats/' + id
             });
-        }
+        };
 
         var addCat = function (cat) {
-            return $http.post('/cats/', cat);
-        }
+            return $http.post('/cats/', cat)
+                .then(
+                function() {
+                    valid = true;
+                }, {});
+        };
 
         var updateCat = function (cat) {
-            return $http.put('/cats/'  + cat.id, cat);
-        }
+            var promise = $http.put('/cats/'  + cat.id, cat);
+            promise.then(
+                function() {
+                    valid = true;
+                }, {});
+            return promise;
+        };
 
         var deleteCat = function (id) {
-            return $http.delete('/cats/'  + id);
-        }
+            return $http.delete('/cats/'  + id)
+                .then( function() {
+                    valid = false;
+                });
+        };
+
+        var isValid  = function() {
+            return valid;
+        };
 
         return {
-            getCats: getData,
+            getCats: getCats,
             getCat: getCat,
             updateCat: updateCat,
             addCat: addCat,
             deleteCat:deleteCat,
+            isValid: isValid
         };
-    }
+    };
 
     module.service("catService", catService);
 

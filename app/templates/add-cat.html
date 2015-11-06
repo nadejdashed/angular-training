@@ -1,0 +1,7 @@
+<form ng-submit="addCat()" ng-controller="addCatController">
+    {{newCat.src}}<br/><br/>
+    <label>Name:</label><input focus type="text" ng-model=newCat.name required><br/><br/>
+    <label>ImageURL:</label><input type="url" ng-model=newCat.src required><br/><br/>
+    <input type="submit" value="Add {{newCat.name}}" submit-by-enter><br/><br/>
+    <img ng-src="{{newCat.src}}"/><br/>
+</form>
