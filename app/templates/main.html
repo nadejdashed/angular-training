@@ -22,20 +22,20 @@
 
 <!-- cat list -->
 
-<ul class="row well cat-list" style="padding-left: 50px">
-    <div class="col-xs-5">
-        <li ng-class="{bold: cat==selectedCat}" ng-repeat="cat in data.cats | filter:{name: filterValue} | orderBy:sortValue">
-            <span ng-click="selectCat($event, cat)">{{cat.name}}</span>
-            <i ng-show="cat.viewed" class="glyphicon glyphicon-ok"></i>
-            <a class="btn btn-danger" ng-click="deleteCat(cat.id)" style="float: right; margin-left: 10px;">Delete</a>
-            <a class="btn btn-info" ui-sref="edit({id: cat.id})" style="float: right;">Edit</a>
-            <div style="display: table; clear: both;"></div>
-        </li>
-    </div>
-    <div class="col-xs-7">
-        <a class="btn btn-success" ui-sref="new" style="float: right;">Add new cat</a>
-    </div>
-</ul>
+<div style="position: relative">
+    <ul class="row well cat-list" style="padding-left: 50px; max-height: 260px; overflow: auto;">
+        <div class="col-xs-5">
+            <li ng-class="{bold: cat==selectedCat}" ng-repeat="cat in data.cats | filter:{name: filterValue} | orderBy:sortValue">
+                <span ng-click="selectCat($event, cat)">{{cat.name}}</span>
+                <i ng-show="cat.viewed" class="glyphicon glyphicon-ok"></i>
+                <a class="btn btn-danger" ng-click="deleteCat(cat.id)" style="float: right; margin-left: 10px;">Delete</a>
+                <a class="btn btn-info" ui-sref="edit({id: cat.id})" style="float: right;">Edit</a>
+                <div style="display: table; clear: both;"></div>
+            </li>
+        </div>
+    </ul>
+    <a class="btn btn-success" ui-sref="new" style="position: absolute; top: 25px; right: 35px;">Add new cat</a>
+</div>
 
 <!-- selected cat displayed -->
 

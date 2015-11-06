@@ -42,6 +42,11 @@ img {
     font-size: 20px;
     cursor: pointer;
     color: green;
+    margin-bottom: 8px;
+}
+
+.cat-list li:last-of-type{
+    margin-bottom: -5px;
 }
 
 .form-control.ng-invalid.ng-dirty {
