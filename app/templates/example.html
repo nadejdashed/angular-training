@@ -1,0 +1,31 @@
+<div class="container">
+
+	<grandparent text="{{text}}">
+		<parent>
+			<child>aaa
+			</child>
+		</parent>
+		<parent></parent>
+	</grandparent>
+
+	<div ng-form name="myForm">
+		<input type="radio" required name="radio"/>a
+		<input focus type="radio" required name="radio"/>b
+		<button ng-disabled="myForm.$invalid">Submit</button>
+	</div>
+
+	--------------------------
+
+	<div test-directive
+			 value="{{text}}"
+			 text2="obj.name"
+			 value2="obj"
+			 fn="consoleLog()"
+		>
+		{{text}}, {{obj | json}}
+	</div>
+
+	<div ng-include="'templates/main.html'"></div>
+	{{obj.name}}
+
+</div>

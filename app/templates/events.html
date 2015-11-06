@@ -1,0 +1,45 @@
+<div class="container">
+	<!--<h1>{{possitiveEventsCount}}</h1>
+	<h2 ng-bind="possitiveEventsCount"></h2>
+	<h2 ng-bind-template="template {{possitiveEventsCount}}"></h2>
+	<div ng-bind-html="html"></div>-->
+
+	<ng-pluralize count="possitiveEventsCount"
+								when="{'0': 'No event is +.',
+                     'one': 'One event is +.',
+                     'other': '{}  events are selected.'}">
+	</ng-pluralize>
+	<img ng-src="{{url}}"/>
+	<div>{{ date | date:'dd-MMM-yyyy' }}</div>
+
+	<input ng-model="eventFilter.name">
+	<div ng-repeat="event in events | filter:eventFilter | orderBy: '-name'">
+		<a ui-sref="events.edit({id : event.id})">Edit</a>
+		<div class="panel panel-default" ng-class="{'panel-success': event.vote > 0}" ng-controller="eventController">
+			{{text}}
+			<input ng-disabled="event.vote > 0"/>
+			<div class="panel-heading">
+				{{event.name}}
+				<button ng-click="upVote(event)" class="btn btn-default">+</button>
+				<button ng-click="downVote(event)" class="btn btn-default">-</button>
+				<button ng-click="save(event)" class="btn btn-default">Save</button>
+
+			</div>
+			<div class="panel-body">
+				<div class="pull-left" style="margin:10px">
+					<img height="50px"/>
+				</div>
+				<div class="clearfix">
+					<div><strong>Trainer name:</strong>{{event.trainer}}</div>
+					<div><strong>Date:</strong>{{event.date}}</div>
+					<div><strong>Vote:</strong>{{event.vote}}</div>
+					<div>{{event.vote | myFilter:5 }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="temp"></div>
+</div>
+
+<ui-view></ui-view>

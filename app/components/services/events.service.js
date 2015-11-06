@@ -1,6 +1,6 @@
 (function(module) {
 
-	var eventsService = function ($q, $timeout, $resource, numberFilter) {
+	var eventsService = function ($q, $timeout, $resource, $http, numberFilter) {
 		var events = [{
 			id: 1,
 			name: 'Angular Training',
@@ -43,11 +43,17 @@
 		console.log(str);
 
 		function getData(){
-			var cats = Cat.query();
+			/*var cats = Cat.query();
 			console.log(cats);
-			return cats;
+			return cats;*/
 
 			return $http.get('/cats').then(function(resp){
+				return resp.data;
+			});
+		}
+
+		function getEventById(id){
+			return $http.get('/cats/'+id).then(function(resp){
 				return resp.data;
 			});
 		}
@@ -59,6 +65,7 @@
 
 		return {
 			getData: getData,
+			getEventById: getEventById,
 			saveData: saveData
 		};
 	};

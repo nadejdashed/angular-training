@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    angular.module("app", ["ngSanitize", "ngResource", 'ui.bootstrap', 'ngMessages'])
+    angular.module("app", ["ngSanitize", "ngResource", 'ui.bootstrap', 'ngMessages', 'ui.router'])
       .config(function(selectedEventsServiceProvider, constants, $provide){
           constants.COUNT_SELECTED = 5;
           selectedEventsServiceProvider.setCountSelectedEvents(constants.COUNT_SELECTED);

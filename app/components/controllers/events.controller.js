@@ -1,10 +1,11 @@
 (function(module) {
 
-	var eventsController = function ($uibModal, $log, $scope, $sce, urlValue, eventsService, $rootElement, $compile, $parse, selectedEventsService) {
+	var eventsController = function ($uibModal, $log, $scope, $sce, events, urlValue, eventsService, $rootElement, $compile, $parse, selectedEventsService) {
 		console.log(urlValue);
+		console.log(events);
 		$log.warn('AAAAA');
 
-		$scope.events = eventsService.getData();
+		$scope.events = events;
 		console.log($scope.events[0]);
 
 		$scope.html = $sce.trustAsHtml('<strong style="color: red">{{possitiveEventsCount}}</strong>');

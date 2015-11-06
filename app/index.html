@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Cats application</title>
+    <base href="/"/>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
@@ -16,93 +17,42 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController" class="container">
+    <nav class="navbar navbar-default">
+        <a class="navbar-brand" href="/">Events</a>
+        <ul class="nav navbar-nav">
+            <li class="">
+                <a ui-sref="events">Home</a>
+            </li>
+            <li class="">
+                <a ui-sref="examples">Example</a>
+            </li>
+            <li class="">
+                <a ui-sref="about">About</a>
+            </li>
+        </ul>
+    </nav>
 
-        <grandparent text="{{text}}">
-            <parent>
-                <child>aaa
-                </child>
-            </parent>
-            <parent></parent>
-        </grandparent>
+    <!--<ng-view></ng-view>-->
+    <ui-view name="about"></ui-view>
+    <ui-view></ui-view>
 
-        <div ng-form name="myForm">
-            <input type="radio" required name="radio"/>a
-            <input type="radio" required name="radio"/>b
-            <button ng-disabled="myForm.$invalid">Submit</button>
-        </div>
-
-        --------------------------
-
-        <div test-directive
-             value="{{text}}"
-             text2="obj.name"
-             value2="obj"
-             fn="consoleLog()"
-          >
-            {{text}}, {{obj | json}}
-        </div>
-
-        <div ng-include="'templates/main.html'"></div>
-        {{obj.name}}
-
-    </div>
-
-
-    <div ng-controller="eventsController" class="container">
-        <h1>{{possitiveEventsCount}}</h1>
-        <h2 ng-bind="possitiveEventsCount"></h2>
-        <h2 ng-bind-template="template {{possitiveEventsCount}}"></h2>
-        <div ng-bind-html="html"></div>
-
-        <ng-pluralize count="possitiveEventsCount"
-                      when="{'0': 'No event is +.',
-                     'one': 'One event is +.',
-                     'other': '{}  events are selected.'}">
-        </ng-pluralize>
-        <img ng-src="{{url}}"/>
-        <div>{{ date | date:'dd-MMM-yyyy' }}</div>
-
-        <input ng-model="eventFilter.name">
-        <div ng-repeat="event in events | filter:eventFilter | orderBy: '-name'">
-            <div class="panel panel-default" ng-class="{'panel-success': event.vote > 0}" ng-controller="eventController">
-                {{text}}
-                <input ng-disabled="event.vote > 0"/>
-                <div class="panel-heading">
-                    {{event.name}}
-                    <button ng-click="upVote(event)" class="btn btn-default">+</button>
-                    <button ng-click="downVote(event)" class="btn btn-default">-</button>
-                    <button ng-click="save(event)" class="btn btn-default">Save</button>
-
-                </div>
-                <div class="panel-body">
-                    <div class="pull-left" style="margin:10px">
-                        <img height="50px"/>
-                    </div>
-                    <div class="clearfix">
-                        <div><strong>Trainer name:</strong>{{event.trainer}}</div>
-                        <div><strong>Date:</strong>{{event.date}}</div>
-                        <div><strong>Vote:</strong>{{event.vote}}</div>
-                        <div>{{event.vote | myFilter:5 }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="temp"></div>
-    </div>
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-	<script src="/bower_components/angular-messages/angular-messages.js"></script
+	<script src="/bower_components/angular-messages/angular-messages.js"></script>
+	<!--<script src="/bower_components/angular-route/angular-route.js"></script>-->
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <!--<script src="/app/components/config/route.config.js"></script>-->
+    <script src="/app/components/config/uiroute.config.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/events.controller.js"></script>
     <script src="/app/components/controllers/event.controller.js"></script>
     <script src="/app/components/controllers/modal.controller.js"></script>
+    <script src="/app/components/controllers/edit.controller.js"></script>
     <script src="/app/components/filters/myfilter.filter.js"></script>
     <script src="/app/components/services/events.service.js"></script>
     <script src="/app/components/services/selectedEvents.service.js"></script>
