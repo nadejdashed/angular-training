@@ -3,16 +3,28 @@
  */
 (function(module) {
 
-    var catController = function ($scope, $q, $http, $location, catService) {
+    var catController = function ($scope, $q, $http, $location, $routeParams , catService) {
 
-        var cid = $location.search().catid;
+        var cid = $routeParams.id;
 
         catService.getCatById(cid).then(function (data) {
             $scope.cat = data;
         });
 
         $scope.showAlert = function(){
-            alert("Save clicked");
+            if(cid != undefined){
+                saveCat($scope.cat);
+            }else{
+                addNewCat($scope.cat);
+            }
+
+        }
+
+        function saveCat(cat){
+            catService.saveCat(cat);
+        }
+        function addNewCat(cat){
+            catService.addNewCat(cat);
         }
 
     };

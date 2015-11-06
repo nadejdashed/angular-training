@@ -1,0 +1,6 @@
+<div ng-controller="catController" ng-model="cat">
+    Name: <input type="text" ng-model="cat.name"/></br>
+    Cat's url: <input type="text" focus-control="focusInput" ng-model="cat.src"/></br>
+    <img ng-src="{{cat.src}}"/></br>
+    <button class="button" enter-press ng-click="showAlert()">Save</button>
+</div>

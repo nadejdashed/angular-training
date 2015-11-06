@@ -17,19 +17,21 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main.html'"></div>
-    </div>
-    <div ng-controller="catController" class="container">
-        <div ng-include="'templates/addCat.html'"></div>
-    </div>
+    <ng-view class="container">
+
+    </ng-view>
 
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/catController.js"></script>
     <script src="/app/components/services/catservice.js"></script>
+    <script src="/app/components/routing/routeConfig.js"></script>
+    <script src="/app/components/directives/focus.directive.js"></script>
+    <script src="/app/components/directives/btnsave.directive.js"></script>
+
     <!-- /build -->
 
 </body>

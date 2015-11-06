@@ -13,13 +13,13 @@
         <div style="margin-top: 10px" ng-click="setCatsInfo(cat);">
             <div >
                 <span ng-show="cat.show">&#10004;</span>
-                <a href="#">{{cat.name}}</a>
+                <a ng-click="setCatsInfo(cat);">{{cat.name}}</a>
                 <label style="float: right">{{cat.vote}}</label>
             </div>
         </div>
     </div>
-    <h1><a  ng-href="addCat.html">Add cat</a></h1>
-    <h1><a  ng-href="addCat.html#?catid={{selectedCat.id}}" >Edit cat</a></h1>
+    <h1><a  ng-href="#/addcat">Add cat</a></h1>
+    <h1><a  ng-href="#/cat/{{selectedCat.id}}" >Edit cat</a></h1>
 </div>
 <div style="display: inline-block; padding-left:110px; padding-top: 30px" ng-cloak>
     <label ng-cloak>Cat id: {{selectedCat.id}}</label> </br>
