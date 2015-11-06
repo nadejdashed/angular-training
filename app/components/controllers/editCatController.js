@@ -1,10 +1,8 @@
 (function(module) {
 
-    var editCatController = function ($scope, $stateParams, $state, catService) {
+    var editCatController = function ($scope, $stateParams, $state, catService, catData) {
 
-        catService.getCat($stateParams.id).then(function(response){
-            $scope.catToEdit = response;
-        });
+        $scope.catToEdit = catData;
 
         $scope.cancelEdit = function(){
             $state.go('cats');

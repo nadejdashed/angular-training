@@ -27,7 +27,15 @@
     <!-- /build -->
 </head>
 <body ng-app="app" ng-cloak>
-    <div class="container" style="padding-top: 20px;">
+    <div class="container">
+        <nav class="row navbar navbar-default">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="cats">Home</a></li>
+                    <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+                </ul>
+            </div>
+        </nav>
         <div ui-view></div>
     </div>
 </body>

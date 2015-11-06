@@ -1,25 +1,18 @@
 ﻿(function(module) {
 
-    var mainController = function($scope, catService, $cookieStore) {
+    var mainController = function($scope, catService, $cookieStore, catData) {
 
         $scope.data = {};
-
-        var getAllCats = function(){
-            catService.getAllCats().then(function(response){
-                    $scope.data.cats = response;
-                }
-                ,function(error){
-                    console.log(error);
-                }
-            );
-        };
-
-        getAllCats();
+        $scope.data.cats = catData;
 
         $scope.deleteCat = function(id){
             catService.deleteCat(id).then(
                 function(){
-                    getAllCats();
+                    catService.getAllCats().then(
+                        function(response){
+                            $scope.data.cats = response;
+                        }
+                    )
                 }
                 ,function(){
                     console.log("Cat could not be deleted!")
