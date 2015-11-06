@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
-    <base/>
+    <base href="/"/>
     <style>
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
             visibility: hidden !important;
@@ -20,13 +20,13 @@
         <a class="navbar-brand" href="/">Cat voter</a>
         <ul class="nav navbar-nav">
             <li class="">
-                <a ui-sref="cats">Home</a>
+                <a ng-href="/cat-voter">Home</a>
             </li>
             <li class="">
-                <a ui-sref="add-cat">Add cat</a>
+                <a ng-href="/add-cat">Add cat</a>
             </li>
             <li class="">
-                <a ui-sref="About">About</a>
+                <a ng-href="/about">About</a>
             </li>
         </ul>
     </nav>
@@ -39,8 +39,10 @@
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <script src="/app/components/config/route.config.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/filterController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
     <script src="/app/components/controllers/deleteCatController.js"></script>
     <script src="/app/components/services/catService.js"></script>
     <script src="/app/components/directives/focusDirective.js"></script>

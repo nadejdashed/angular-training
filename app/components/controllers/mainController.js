@@ -31,13 +31,13 @@
 
         $scope.setCurrCat = function (cat) {
             $scope.currCat = cat;
+            debugger;
             if(cat.viewed !== true) {
                 $scope.currCat.viewed = true;
                 catService.updateCat($scope.currCat)
                     .then(function successCallback(response) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        getCats();
                         console.log("mainController - Update success!")
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs

@@ -5,7 +5,6 @@
 
     var deleteCatController = function($scope, catService) {
         $scope.deleteCurrCat = function() {
-            debugger;
             catService.deleteCat($scope.currCat.id)
                 .then(function successCallback(response) {
                     // this callback will be called asynchronously

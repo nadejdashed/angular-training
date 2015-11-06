@@ -5,17 +5,20 @@ angular.module("app").config(function($routeProvider, $locationProvider){
     $routeProvider.when('/', {
         controller: 'mainController',
         templateUrl: '/templates/main.html',
+/*
         resolve: {
             events: function(catService, $q, $timeout){
+                debugger;
                 var defer = $q.defer();
                 $timeout(function(){
-                    catService.getData().then(function(data){
+                    catService.getCats().then(function(data){
                         defer.resolve(data);
                     });
                 }, 2000);
                 return defer.promise;
             }
         }
+*/
     }).when('/add-cat', {
         controller: 'addCatController',
         templateUrl: '/templates/add-cat.html'

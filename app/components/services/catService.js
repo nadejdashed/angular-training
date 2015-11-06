@@ -179,15 +179,14 @@
         var valid = false;
 
         var getCats = function () {
-            var promise = $http({
+            return $http({
                 method: 'GET',
                 url: '/cats'
-            });
-            promise.then(
-                function() {
+            }).then(
+                function(data) {
                     valid = true;
+                    return data;
                 }, {});
-            return promise;
         };
 
         var getCat = function (id) {
@@ -200,24 +199,25 @@
         var addCat = function (cat) {
             return $http.post('/cats/', cat)
                 .then(
-                function() {
+                function(data) {
                     valid = true;
+                    return data;
                 }, {});
         };
 
         var updateCat = function (cat) {
-            var promise = $http.put('/cats/'  + cat.id, cat);
-            promise.then(
-                function() {
+            return $http.put('/cats/'  + cat.id, cat).then(
+                function(data) {
                     valid = true;
+                    return data;
                 }, {});
-            return promise;
         };
 
         var deleteCat = function (id) {
             return $http.delete('/cats/'  + id)
-                .then( function() {
+                .then( function(data) {
                     valid = false;
+                    return data;
                 });
         };
 

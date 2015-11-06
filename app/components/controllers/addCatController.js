@@ -2,14 +2,16 @@
  * Created by Artem_Lazurenko on 06.11.2015.
  */
 (function(module) {
-    var addCatController = function (){
+    var addCatController = function ($scope, catService){
 
         $scope.addCat = function() {
-            $scope.newCat.vote = 0;
-            $scope.newCat.viewed = false;
-            catService.addCat($scope.newCat)
-                .then( function(){
-                    getCats();
+            var newCat = $scope.newCat;
+            debugger;
+            newCat.vote = 0;
+            newCat.viewed = false;
+            catService.addCat(newCat)
+                .then( function(response){
+                    $scope.cats = response.data;
                 }
 
             );
