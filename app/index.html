@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <base href="/">
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/ng-emoticons/src/ng-emoticons.css"/>
     <!-- build:css /build/app.css -->
@@ -11,13 +12,18 @@
     <!-- /build -->
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+
+    <script src="/app/components/config/configRoute.js"></script>
+
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/ModalInstanceController.js"></script>
     <script src="/app/components/controllers/emotionController.js"></script>
 
     <script src="/app/components/services/serverCommunicationService.js"></script>
+    <script src="/app/components/services/errorHandlerServisec.js"></script>
 
     <script src="/app/components/directive/focusOnLoadDirective.js"></script>
     <script src="/app/components/directive/enterPressedDirective.js"></script>
@@ -33,16 +39,28 @@
 
 
 </head>
-<body ng-app="app" ng-cloak>
+<body ng-app="app" ng-cloak class="container">
 
-    <div ng-controller="mainController" class="container" ng-init="pageTitle = 'main'">
-        pageTitle= {{pageTitle}}
-        <div ng-include="'templates/main.html'" style ="top: 60px; position: relative;"></div>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="/">Quick Start</a>
+            <ul class="nav">
+                <li><a ui-sref="route1">Main</a></li>
+                <li><a ui-sref="route2">About</a></li>
+            </ul>
+        </div>
     </div>
 
-    <!--<div ng-controller="mainController" class="container" ng-init="pageTitle = 'addCat'">-->
+    <div class="row">
+        <div class="span12">
+            <div class="well" ui-view></div>
+            <div class="well" ui-view = 'viewA'></div>
+        </div>
+    </div>
+
+    <!--<div ng-controller="mainController" class="container" ng-init="pageTitle = 'main'">-->
         <!--pageTitle= {{pageTitle}}-->
-        <!--<div ng-include="'templates/addCat.html'" style ="top: 60px; position: relative;"></div>-->
+        <!--<div ng-include="'templates/main.html'" style ="top: 60px; position: relative;"></div>-->
     <!--</div>-->
 
 </body>

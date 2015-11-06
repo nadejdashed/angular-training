@@ -1,8 +1,28 @@
-<!--ControllerAs use this-->
-    <div ng-controller="emoticoneController as catCtrl">
-        <div ng-bind-html="catCtrl.text | widthFilter:{linkTarget:'_blank'}"></div>
+<div class="navbar navbar-default">
+    <span>img clicked total: <b>{{ counterTotal }}</b></span>
+    <div class="col-sm-3 col-md-3 pull-right">
+        <form class="navbar-form" role="search">
+            <div class="navbar-form btn-group">
+
+                <select name="singleSelect" id="singleSelect" ng-model="filterBy.selectedOption">
+                    <option value="">---Please select---</option>
+                    <option value="name">Names</option>
+                    <option value="id">Id</option>
+                    <option value="clicks">Clicks</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <input ng-model="search.tmp"  type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                    <button ng-click="sort(search.tmp)"class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
+                </div>
+            </div>
+        </form>
     </div>
-<!--ControllerAs use this END-->
+</div>
+
+<ui-view name="emotionText" >
 
 <div ng-show="currentCat.name">
     <h1>Selected cat:</h1>
@@ -30,8 +50,8 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
                 <p>{{cat.time | date : 'HH.mm.dd'}} </p>
 
-
-                 <div vote-spinner vote-val="cat.vote"> </div>
+                 <!--<div vote-spinner cat="cat"> </div>-->
+                 <div vote-spinner vote-val="cat.clicks" vote-callback="updateClicks(cat, voteInd)"></div>
 
                 <button ng-click="addCat(cat)" class="btn btn-success">add cat{{false | checker}}</button>
                 <button ng-click="removeCat(cat)" class="btn btn-danger">remove cat{{false | checker}}</button>
@@ -42,33 +62,4 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
     </ul>
 </div>
 
-
-<!--Search bar-->
-<div class="navbar navbar-default navbar-fixed-top">
-    <span>img clicked total: <b>{{ counterTotal }}</b></span>
-    <div class="col-sm-3 col-md-3 pull-right">
-        <!-- Split button -->
-
-        <form class="navbar-form" role="search">
-            <div class="navbar-form btn-group">
-
-                <select name="singleSelect" id="singleSelect" ng-model="filterBy.selectedOption">
-                    <option value="">---Please select---</option> <!-- not selected / blank option -->
-                    <option value="name">Names</option>
-                    <option value="id">Id</option>
-                    <option value="clicks">Clicks</option>
-                </select>
-                <!--data.singleSelect= {{data.singleSelect}}-->
-            </div>
-
-            <div class="input-group">
-                <input ng-model="search.tmp"  type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                <div class="input-group-btn">
-                    <button ng-click="sort(search.tmp)"class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes"></i></button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!--Search bar END-->
 

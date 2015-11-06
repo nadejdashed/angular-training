@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, serverCommunication, $uibModal) {
+    var mainController = function ($scope, serverCommunication, $uibModal , errorHandler, $state) {
         $scope.allCats =[];
 
         /* try load data using Resource */
@@ -17,17 +17,16 @@
             deffered.then(
                 function(resp){
                     $scope.allCats = resp.data;
-                    console.log('data',resp);
+                    //var time = new Date();
+                    //console.log('***mainController data',resp , time.getSeconds());
                 },
-                function(reject){Error(reject);},
+                function(reject){
+                    errorHandler.connectionError(reject)
+                },
                 function(progressCallback){
                     console.log('progressCallback',progressCallback);
                 }
             );
-
-        }
-        function Error(reject) {
-            console.warn('Error', reject)
         }
 
         $scope.currentCat ={
@@ -42,17 +41,9 @@
             sortingByText: ''
         };
 
-        $scope.addCounterPicture = function(pet){
-            pet.clicks++;
-            $scope.currentCat = pet;
-            $scope.counterTotal++;
-            console.log('you vote up for:' , pet);
-        };
-
-        $scope.decreaseCounterPicture = function(pet) {
-            pet.clicks--;
-            $scope.currentCat = pet;
-            $scope.counterTotal--;
+        $scope.updateClicks = function(currentCat, voteInt){
+            currentCat.clicks = voteInt;
+            console.log('update for cat:' ,currentCat, '\n clicks', voteInt);
         }
 
         $scope.addCat = function(pet){
@@ -151,7 +142,6 @@
             console.group()
                 console.info('serching string',searchStringVal, '\n sort after click. In field: ', $scope.filterBy.selectedOption)
             console.groupEnd();
-
         };
 
 

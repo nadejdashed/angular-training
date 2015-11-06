@@ -19,7 +19,7 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
                 $http.get('/cats', {cache: 'none'})
                     .then(function(data){
                         deferred.resolve(data);
-                        console.log('data in serverCommunication: ',data);
+                        //console.log('data in serverCommunication: ',data);
 
                     }
                 )

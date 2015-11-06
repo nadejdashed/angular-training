@@ -10,13 +10,27 @@ angular.module('app')
         return {
             restrict: 'A',
             scope: {
-                voteVal: '@'
+                //cat: '=',
+                voteCallback: '&',
+                voteVal: '=', //не понятно на каком коте нажато
             },
+            controller :'mainController',
             templateUrl: 'templates/templatesDirectives/spinnerButtons.html',
             link: function(scope, elem, attrs, ctrl, transcludeFn) {
-                console.log('voteVal is: ', scope.voteVal );
+                console.log('voteVal is: ', scope.voteVal);
 
-                //console.log('scope' , scope,'elem', elem, 'attrs' ,attrs, 'ctrl' ,ctrl);
+                scope.decVote = function decVote(voteInt){
+                    voteInt -= 1;
+                    scope.voteCallback( {voteInd: voteInt} );
+                    console.log('decVote ', voteInt);
+                };
+
+                scope.incVote = function incVote(voteInt){
+                    voteInt += 1;
+                    console.log('incVote pressed ', voteInt);
+                    scope.voteCallback( {voteInd: voteInt} );
+                };
+
             }
         }
     });
