@@ -3,7 +3,7 @@
  */
 (function(module) {
 
-    var AddCatController = function ($scope, catsService, $window) {
+    var addCatController = function ($scope, catsService, $window) {
 
         $scope.addCatClick = function(cat){
             console.log("CAT - " + cat);
@@ -15,6 +15,6 @@
         }
     };
 
-    module.controller("addCatController", AddCatController);
+    module.controller("addCatController", addCatController);
 
 }(angular.module("app")));

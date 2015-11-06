@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <base href="/"/>
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
@@ -19,10 +20,6 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <!--<div ng-controller="mainController" class="container">-->
-        <!--&lt;!&ndash;<div ng-include="'templates/main_cats_page.html'"></div>&ndash;&gt;-->
-    <!--</div>-->
-
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
@@ -30,9 +27,13 @@
     <ui-view></ui-view>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <script src="/app/components/directives/focusDirective.js"></script>
+    <script src="/app/components/directives/keyButtonDirective.js"></script>
+    <script src="/app/components/directives/imagePreviewDirective.js"></script>
     <script src="/app/components/services/catsService.js"></script>
     <script src="/app/components/services/cookiesService.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
     <script src="/app/components/routes/configs.js"></script>
 </body>
 </html>

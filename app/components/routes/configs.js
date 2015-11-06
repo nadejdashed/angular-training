@@ -6,42 +6,20 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
 
     $urlRouterProvider.otherwise('/');
 
-    $stateProvider.state('catslist', {
-        url: 'about',
-        views: {
-            about: {
-                template: 'About me page'
-            },
-            "": {
-                templateUrl: '/templates/main_cats_page.html',
-                controller: 'mainController',
-                resolve: {
-                    events: function(catsService){
-                        return catsService.getData();
-                    }
-                }
-            }
-        }
-    }).state('events.edit', {
-        url: 'edit/:id',
-        templateUrl: '/templates/edit.html',
-        controller: 'editController',
-        resolve: {
-            cat: function($state, $stateParams, eventsService){
-                return catsService.getEventById($stateParams.id);
-            }
-        }
+    $stateProvider.state('addcat', {
+        url: '/add_cat',
+        templateUrl: '/templates/template_add_cat.html',
+        controller: 'addCatController',
     }).state('cats', {
         url: '/',
         templateUrl: '/templates/main_cats_page.html',
         controller: 'mainController',
         resolve: {
-            cat: function($state, $stateParams, eventsService){
-               // return catsService.getEventById($stateParams.id);
+            cats: function($state, $stateParams, catsService){
+                return catsService.allcats().then(function(values){
+                    return values;
+                })
             }
         }
-    }).state('aboutme', {
-        url: '/aboutme',
-        template: 'About me page'
     });
 });

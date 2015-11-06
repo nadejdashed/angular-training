@@ -1,12 +1,12 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catsService, $q) {
+    var mainController = function ($scope, catsService, $q, cats) {
         $scope.orderBySelected= null;
         $scope.cat = null;
 
-        catsService.allcats().then(function(values){
-             $scope.cats =  values;
-        });
+        //catsService.allcats().then(function(values){
+             $scope.cats =  cats;
+        //});
 
         $scope.countClick = function(cat){
             cat.click_num++;
