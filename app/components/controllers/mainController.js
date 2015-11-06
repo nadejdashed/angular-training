@@ -1,9 +1,21 @@
 ﻿(function(module) {
 
     var mainController = function ($scope) {
-        $scope.quantity = 1;
-        $scope.getIncrement = function () {
-            $scope.quantity += 1;
+        var picPath = './pic/';
+        $scope.cats = [
+            {
+                name: 'Pushok',
+                src:  picPath + '1.jpg',
+                clickQuantity: 0
+            },
+            {
+                name: 'Dymok',
+                src: picPath + '2.jpg',
+                clickQuantity: 0
+            }
+        ];
+        $scope.getIncrement = function (obj) {
+            return obj.clickQuantity += 1;
         };
     };
 

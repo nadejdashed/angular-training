@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" ng-repeat="cat in cats">
             <div class="panel-heading">
-                <h2>Click me on <span class="badge pull-right">{{quantity}}</span></h2>
+                <h2>{{cat.name}}<span class="badge pull-right">{{cat.clickQuantity}}</span></h2>
             </div>
-            <div class="panel-body"><img ng-click="getIncrement()" ng-src="./pic/1.jpg" alt="cat" class="img-responsive img-thumbnail center-block"/></div>
+            <div class="panel-body"><img ng-click="getIncrement(cat)" ng-src="{{cat.src}}" alt="cat" class="img-responsive img-thumbnail center-block"/></div>
         </div>
     </div>
 </div>
