@@ -1,3 +1,6 @@
 body {
-	color:red;
+	color: red;
+}
+.panel {
+    display: inline-block;
 }

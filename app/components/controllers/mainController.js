@@ -1,8 +1,10 @@
 ﻿(function(module) {
 
     var mainController = function ($scope) {
-        $scope.text = "Hello World!";
-        $scope.i = 1;
+        $scope.quantity = 1;
+        $scope.getIncrement = function () {
+            $scope.quantity += 1;
+        };
     };
 
     module.controller("mainController", mainController);

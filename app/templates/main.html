@@ -1,13 +1,10 @@
 <div class="row">
     <div class="col-xs-12">
-        <div class="well">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h2>Click me <span class="badge pull-right">{{i}}</span></h2>
-
-                </div>
-                <div class="panel-body"><img ng-src="./pic/1.jpg" alt="" class="img-responsive img-thumbnail"/></div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2>Click me on <span class="badge pull-right">{{quantity}}</span></h2>
             </div>
+            <div class="panel-body"><img ng-click="getIncrement()" ng-src="./pic/1.jpg" alt="cat" class="img-responsive img-thumbnail center-block"/></div>
         </div>
     </div>
 </div>
