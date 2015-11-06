@@ -11,7 +11,7 @@
                     <input id="edit-url" type="url" ng-model="catToEdit.src" class="form-control" required>
                 </div>
             </fieldset>
-            <button type="submit" listen-enter ng-disabled="editCatForm.$invalid" class="btn btn-primary" listen-enter ng-click="saveCat()" style="width: 100px;">Save</button>
+            <button type="submit" listen-enter ng-disabled="editCatForm.$invalid" class="btn btn-primary" ng-click="saveCat()" style="width: 100px;">Save</button>
             <button type="button" class="btn btn-default" ng-click="cancelEdit()" style="width: 100px;">Cancel</button>
         </form>
     </div>

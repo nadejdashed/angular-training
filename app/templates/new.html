@@ -5,7 +5,7 @@
                 <label for="new-name">Name:</label>
                 <input id="new-name" type="text" ng-model="newCat.name" class="form-control" required set-focus>
             </div>
-            <image-preview cat="newCat"></image-preview>
+            <image-preview url="newCat.src"></image-preview>
         </fieldset>
         <div style="text-align: center">
             <button type="submit" listen-enter ng-disabled="editCatForm.$invalid" class="btn btn-primary" ng-click="addNewCat()" style="width: 100px;">Add</button>

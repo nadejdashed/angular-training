@@ -5,7 +5,7 @@
             restrict: "E",
             templateUrl: "templates/imagePreview.html",
             scope: {
-                cat: '='
+                url: '='
             }
         };
     };
