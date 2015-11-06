@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Cats application</title>
+    <title>Cats vouting application</title>
+    <base href="/"/>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
@@ -15,20 +16,22 @@
 </head>
 <body ng-app="app">
 
-    <div ng-controller="voteController" class="container" ng-cloak="">
-        <div ng-include="'templates/vote.html'"></div>
-    </div>
-
-    <a href="/addCat.html">Add cat</a>
+    <ui-view></ui-view>
 
     <!-- /build -->
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/voteController.js"></script>
+    <script src="/app/components/config/uiroute.config.js"></script>
+    <script src="/app/components/controllers/listCats.controller.js"></script>
+    <script src="/app/components/controllers/addCat.controller_old.js"></script>
+    <script src="/app/components/controllers/editCat.controller.js"></script>
+    <script src="/app/components/controllers/voteCat.controller.js"></script>
     <script src="/app/components/services/cats.service.js"></script>
     <!-- /build -->
 </body>

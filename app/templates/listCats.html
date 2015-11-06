@@ -1,0 +1,37 @@
+<div class="container" style="border: 1px solid grey">
+    <div class="col col-sm-3">
+        <div class="row">
+            <input type="text" ng-model="newFilterText"/>
+            <button ng-click="applyFilter(newFilterText)">
+                <img ng-src="Artefacts/search.png" width="20"/>
+            </button>
+        </div>
+        <br>
+        <div class="row">
+            Sort order:
+            <select ng-model="sortExpression" ng-init="sortExpression='+name'">
+                <option value="+name">Asc</option>
+                <option value="-name">Desc</option>
+            </select>
+        </div>
+        <br>
+        <div class="row" style="border: 1px solid black;">
+            <ul>
+                <li ng-repeat="cat in cats | filter:{name:filterText} | orderBy:sortExpression" ng-click="didSelectCat(cat)" style="cursor: pointer"/>
+                {{cat.name}}
+                <img ng-src="Artefacts/tickSign.jpg" height="15" ng-show="cat.wasAlreadyViewed"/>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="btn-group">
+                <button type="button" ui-sref="editCat({id: selectedCat.id})" ng-click="editCat(selectedCat)">Edit</button>
+                <button type="button" ui-sref="addCat">Add</button>
+                <button type="button" ng-click="deleteCat(selectedCat)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-9">
+        <ui-view></ui-view>
+    </div>
+</div>

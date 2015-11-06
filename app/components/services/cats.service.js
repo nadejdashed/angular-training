@@ -52,7 +52,10 @@
         };
 
         function addCatPromise(cat) {
-            return $http.post('/cats', cat);
+            return $http.post('/cats', cat)
+                .then(function(resp) {
+                    return resp.data;
+                });
         };
 
         function deleteCatPromise(cat) {

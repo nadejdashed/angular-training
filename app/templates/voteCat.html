@@ -1,0 +1,15 @@
+<div class="panel-default">
+    <div class="panel-heading">
+        {{selectedCat.name}}
+    </div>
+    <div class="panel-body">
+        <img ng-src="{{selectedCat.src}}" height="300" style="border: 1px solid black; cursor: pointer"/>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group">
+            <button type="button" ng-click="voteUpForCat(selectedCat)" ng-disabled="isVoteAvailableForCat(selectedCat)">+</button>
+            <button type="button" ng-click="voteDownForCat(selectedCat)" ng-disabled="isVoteAvailableForCat(selectedCat)">-</button>
+        </div>
+        vote: {{selectedCat.vote}}
+    </div>
+</div>
