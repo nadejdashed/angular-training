@@ -1,1 +1,31 @@
-<h1>{{text}}</h1>
+<div ng-controller="mainController" class="container">
+    <div ng-controller="filterController">
+        <label>Search: <input ng-model="searchText"></label>
+        <label>OrderBy: <select ng-model="ordrBy">
+            <option value = 0>Name asc</option>
+            <option value = 1>Name desc</option>
+        </select>
+        </label>
+    </div>
+
+    <div ng-repeat="cat in cats | filter: {name: fltr} | orderBy: 'name' : (ordrBy==='1') track by cat.id">
+        <div ng-click="setCurrCat(cat)">{{cat.name}}</div><input type="checkbox" disabled = "true" ng-checked="cat.viewed === true"/><br/>
+    </div>
+
+    <div>
+        <img ng-src="{{currCat.src}}" /><br/><br/>
+        <h2>{{currCat.name}}</h2>
+        <button type="button" class="btn btn-default btn-lg" ng-click="incrementCounter(currCat)">
+            <div class="glyphicon glyphicon-menu-up" aria-hidden="true"></div>
+        </button>
+        <label style="font-size: x-large;">
+            {{currCat.vote}}
+        </label>
+        <button type="button" class="btn btn-default btn-lg" ng-click="decrementCounter(currCat)">
+            <div class="glyphicon glyphicon-menu-down" aria-hidden="true"></div>
+        </button><br/><br/>
+
+        <button ng-click="deleteCurrCat()" ng-controller="deleteCatController" >Delete</button><br/>
+
+    </div><br/>
+</div>
