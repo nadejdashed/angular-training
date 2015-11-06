@@ -4,3 +4,6 @@ body {
 .panel {
     display: inline-block;
 }
+img {
+    cursor: pointer;
+}
