@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <!-- /build -->
     <style>
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -17,12 +21,11 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'templates/main_cats_page.html'"></div>
-    </div>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <!--<div ng-controller="mainController" class="container">-->
+        <!--<div ng-include="'templates/main_cats_page.html'"></div>-->
+    <!--</div>-->
+    <ui-view></ui-view>
+
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/services/catsService.js"></script>
