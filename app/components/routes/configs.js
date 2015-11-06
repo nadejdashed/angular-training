@@ -21,5 +21,14 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
                 })
             }
         }
+    }).state('cats.preview', {
+        url: 'edit/:id',
+        templateUrl: '/templates/cat_image.html',
+        controller: 'mainController',
+        //resolve: {
+        //    cat: function($state, $stateParams, eventsService){
+        //        return eventsService.getEventById($stateParams.id);
+        //    }
+        //}
     });
 });
