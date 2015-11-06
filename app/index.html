@@ -24,6 +24,7 @@
     <script src="/app/components/directives/enterDirective.js"></script>
     <script src="/app/components/directives/imagePreview.js"></script>
     <script src="/app/components/directives/voteSpinner.js"></script>
+    <script src="/app/components/configuration/errorHandler.js"></script>
     <!-- /build -->
 </head>
 <body ng-app="app" ng-cloak>
@@ -37,6 +38,7 @@
             </div>
         </nav>
         <div ui-view></div>
+        <div class="well row" id="display-error" style="margin-top: 20px; display: none;"></div>
     </div>
 </body>
 </html>

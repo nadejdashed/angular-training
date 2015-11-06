@@ -1,7 +1,13 @@
 (function () {
     "use strict";
     angular.module("app", ["ui.router", "ngResource", "ngCookies"])
-        .config(function($stateProvider, $urlRouterProvider) {
+        .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });
+
             $urlRouterProvider.otherwise('/cats');
             $stateProvider
                 .state('cats', {
