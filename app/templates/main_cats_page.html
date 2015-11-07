@@ -1,11 +1,12 @@
 <div id="content">
 
     <ui-view > </ui-view>
+
     <div class="col col-lg-6">
         <div >
             <input type="text" class="form-control" id="search" ng-model="search">
             <div>
-                <button ui-sref="cats.preview" type="button" ng-click="searchClick(search)">Search</button>
+                <button type="button" ng-click="searchClick(search)">Search</button>
             </div>
             <select name="singleSelect" id="singleSelect" ng-model="orderBySelected" >
                 <option value="cat_name">---Please order---</option> <!-- not selected / blank option -->
@@ -17,8 +18,11 @@
         </div>
         <div ng-repeat="cat in cats | orderBy:orderBySelected | filter:searchCat" >
             <div ng-include="'templates/cat_item.html'"></div>
+
         </div>
     </div>
+
+
     <div class="col col-lg-6">
 
         <a ui-sref="addcat">Add CAT!</a>

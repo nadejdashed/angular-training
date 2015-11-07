@@ -1,45 +1,28 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catsService, $q, cats) {
+    var mainController = function ($scope, catsService, $q, cats, $state) {
         $scope.orderBySelected= null;
         $scope.cat = null;
 
-        //catsService.allcats().then(function(values){
-             $scope.cats =  cats;
-        //});
+        $scope.cats =  cats;
 
-        $scope.countClick = function(cat){
-            cat.click_num++;
-        }
+        $scope.$watch(catsService.getIsValid, function(newValue, oldValue){
+            if(newValue === false){
+                catsService.allcats().then(function(values) {
+                    $scope.cats = values;
+                });
+            }
+        })
+
         $scope.selectCat = function(cat){
             $scope.cat = cat;
             $scope.cat.is_viewed = true;
-        }
-
-        $scope.plusClick = function(cat){
-            $scope.countClick(cat);
-            catsService.updateVote(cat);
-        }
-        $scope.minusClick = function(cat){
-            cat.click_num--;
-            catsService.updateVote(cat);
+            $state.go('cats.preview', {id:$scope.cat.id});
         }
 
         $scope.searchClick = function(search){
             $scope.searchCat = {cat_name:search};
         }
-
-        $scope.deleteClick = function(){
-            catsService.removeCat($scope.cat).then(function(values){
-
-                catsService.allcats().then(function(values){
-                    $scope.cats =  values;
-                    $scope.cat = cats[0];
-                    $scope.$digest;
-                });
-            });
-        }
-
     };
 
     module.controller("mainController", mainController);

@@ -1,8 +1,8 @@
 <div id="content">
     <div ng-cloak class="container">
-        <div>
+        <div ng-form="myForm">
             <a>Cat name </a>
-            <input focus-dir type="text" class="form-control" id="newcat_name" ng-model="cat.newcatname" placeholder="Enter cat name">
+            <input focus-dir type="text" class="form-control" id="newcat_name" ng-model="cat.newcatname" placeholder="Enter cat name" required>
         </div>
 
         <im-pre-view-dir url="cat.newcaturl"></im-pre-view-dir>

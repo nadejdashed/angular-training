@@ -2,7 +2,7 @@
  * Created by Mykhaylo_Tauzhniansk on 11/6/2015.
  */
 angular.module("app").config(function($stateProvider, $urlRouterProvider, $locationProvider){
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise('/');
 
@@ -22,13 +22,15 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
             }
         }
     }).state('cats.preview', {
-        url: 'edit/:id',
+        url: ':id',
         templateUrl: '/templates/cat_image.html',
-        controller: 'mainController',
-        //resolve: {
-        //    cat: function($state, $stateParams, eventsService){
-        //        return eventsService.getEventById($stateParams.id);
-        //    }
-        //}
+        controller: 'previewController',
+        resolve: {
+            catt: function($state, $stateParams, catsService){
+                return catsService.get1cat($stateParams.id).then(function(value) {
+                    return value;
+                })
+            }
+        }
     });
 });
