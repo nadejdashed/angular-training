@@ -1,7 +1,14 @@
 (function () {
     "use strict";
-    angular.module("app", ["ngSanitize", "ngResource", 'ui.bootstrap', 'ngMessages', 'ui.router'])
-      .config(function(selectedEventsServiceProvider, constants, $provide){
+    angular.module("app", [
+        "ngSanitize",
+        "ngResource",
+        'ui.bootstrap',
+        'ngMessages',
+        'ui.router',
+        'alertsModule'
+    ])
+      .config(function(selectedEventsServiceProvider, constants, $provide, $httpProvider){
           constants.COUNT_SELECTED = 5;
           selectedEventsServiceProvider.setCountSelectedEvents(constants.COUNT_SELECTED);
 
@@ -17,6 +24,8 @@
 
               return $delegate;
           });
+
+          $httpProvider.interceptors.push('authInterceptor');
 
       });
 })();

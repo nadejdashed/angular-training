@@ -63,10 +63,17 @@
 			cat.$update();
 		}
 
+		function editData(cat){
+			return $http.put('/cats/'+cat.id, cat).then(function(resp){
+				return resp.data;
+			});
+		}
+
 		return {
 			getData: getData,
 			getEventById: getEventById,
-			saveData: saveData
+			saveData: saveData,
+			editData: editData
 		};
 	};
 

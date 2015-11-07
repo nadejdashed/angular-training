@@ -37,7 +37,7 @@ app.use(expressIO.static(__dirname + '/' + folder));
 
 // Authorization
 function checkAuth(req, res, next) {
-  /*var strToken = req.headers["authorization"],
+  var strToken = req.headers["authorization"],
     token;
 
   currentUser = {};
@@ -57,8 +57,8 @@ function checkAuth(req, res, next) {
           .send({status: 'error', code: "NOPERMISSION", error: "No authorized"});
       }
     }
-  });*/
-  next();
+  });
+  //next();
 }
 app.post('/register', function(req, res){
   var login = req.body.login,
@@ -128,13 +128,13 @@ app.post(instanceName, checkAuth, function(req, res){
         }
     });
 });
-app.put(instanceName + '/:id', checkAuth, function(req, res, user){
+app.put(instanceName + '/:id', checkAuth, function(req, res){
     var id = req.params.id,
       result = require(fileName),
       instance = result.filter(function(el){return el[fields.id] == id})[0],
       data = req.body;
 
-  if (currentUser.login === instance.owner){
+  //if (currentUser.login === instance.owner){
     extend(instance, data);
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
       console.log(err ? err : "JSON saved to " + fileName);
@@ -144,12 +144,12 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
         res.send(result);
       }
     });
-  } else {
+  /*} else {
     res.status(405).send({status: 'error', code: "NOPERMISSION", error: "No permissions"});
-  }
+  }*/
 
 });
-app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
+app.delete(instanceName + '/:id', checkAuth, function(req, res){
     var id = req.params.id,
       result = require(fileName),
       instance = result.filter(function(el){return el[fields.id] == id})[0],

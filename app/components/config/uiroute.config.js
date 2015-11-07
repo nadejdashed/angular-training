@@ -1,6 +1,6 @@
 angular.module("app").config(function($stateProvider, $urlRouterProvider, $locationProvider ){
 
-	$locationProvider.html5Mode(true);
+	//$locationProvider.html5Mode(true);
 
 	$urlRouterProvider.otherwise('/');
 
@@ -29,6 +29,15 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
 				return eventsService.getEventById($stateParams.id);
 			}
 		}
+	}).state('edit', {
+		url: 'edit/:id/temp/:tempid',
+		templateUrl: '/templates/edit.html',
+		controller: 'editController',
+		resolve: {
+			cat: function($state, $stateParams, eventsService){
+				return eventsService.getEventById($stateParams.id);
+			}
+		}
 	}).state('examples', {
 		url: '/example',
 		templateUrl: '/templates/example.html',
@@ -36,6 +45,10 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
 	}).state('about', {
 		url: '/aboutme',
 		template: 'About me page'
+	}).state('login', {
+		url: '/login',
+		templateUrl: '/templates/login.html',
+		controller: 'loginController'
 	});
 
 });

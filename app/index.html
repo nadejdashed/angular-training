@@ -24,10 +24,13 @@
                 <a ui-sref="events">Home</a>
             </li>
             <li class="">
-                <a ui-sref="examples">Example</a>
+                <a ui-sref="edit({id: 'testId', tempid: 1})">Example</a>
             </li>
             <li class="">
                 <a ui-sref="about">About</a>
+            </li>
+            <li class="">
+                <a ui-sref="login">Login</a>
             </li>
         </ul>
     </nav>
@@ -53,13 +56,22 @@
     <script src="/app/components/controllers/event.controller.js"></script>
     <script src="/app/components/controllers/modal.controller.js"></script>
     <script src="/app/components/controllers/edit.controller.js"></script>
+    <script src="/app/components/controllers/login.controller.js"></script>
     <script src="/app/components/filters/myfilter.filter.js"></script>
     <script src="/app/components/services/events.service.js"></script>
     <script src="/app/components/services/selectedEvents.service.js"></script>
     <script src="/app/components/services/constant.service.js"></script>
+    <script src="/app/components/services/authentification.service.js"></script>
+    <script src="/app/components/services/user.service.js"></script>
+    <script src="/app/components/interseptors/auth.interseptor.js"></script>
 	<script src="/app/components/directives/test.directive.js"></script>
     <script src="/app/components/directives/lifecycle.directive.js"></script>
     <script src="/app/components/directives/validator.directive.js"></script>
+
+    <script src="/app/modules/alerts/alerts.module.js"></script>
+    <script src="/app/modules/alerts/alerts.interceptor.js"></script>
+    <script src="/app/modules/alerts/alerts.directive.js"></script>
+    <script src="/app/modules/alerts/alerts.service.js"></script>
     <!-- /build -->
 
 </body>
