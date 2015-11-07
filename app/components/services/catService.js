@@ -208,6 +208,7 @@
         var updateCat = function (cat) {
             return $http.put('/cats/'  + cat.id, cat).then(
                 function(data) {
+
                     valid = true;
                     return data;
                 }, {});

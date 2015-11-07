@@ -1,0 +1,6 @@
+<form ng-submit="updateCat(cat)" ng-model="cat">
+    Id: {{cat.id}}<br/>
+    Name: <input type="text" ng-model="cat.name" required><br/>
+    ImageURL: <input type="url" ng-model="cat.src" required><br/>
+    <button type="submit">Update {{cat.name}}</button>
+</form>

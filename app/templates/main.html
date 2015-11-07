@@ -9,8 +9,9 @@
     </div>
 
     <div ng-repeat="cat in cats | filter: {name: fltr} | orderBy: 'name' : (ordrBy==='1') track by cat.id">
-        <div ng-click="setCurrCat(cat)">{{cat.name}}</div><input type="checkbox" disabled = "true" ng-checked="cat.viewed === true"/><br/>
-    </div>
+        <input type="checkbox" disabled = "true" ng-checked="cat.viewed === true"/>  <span ng-click="setCurrCat(cat)">{{cat.name}}</span>
+        <button ng-click="editCat(cat)">Edit {{cat.name}}</button><br/><br/>
+    </div><br/>
 
     <div>
         <img ng-src="{{currCat.src}}" /><br/><br/>

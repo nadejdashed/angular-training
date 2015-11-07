@@ -22,6 +22,9 @@ angular.module("app").config(function($routeProvider, $locationProvider){
     }).when('/add-cat', {
         controller: 'addCatController',
         templateUrl: '/templates/add-cat.html'
+    }).when('/edit-cat/:id', {
+        controller: 'editCatController',
+        templateUrl: '/templates/edit-cat.html'
     }).when('/about', {
         template: 'My about'
     }).otherwise({

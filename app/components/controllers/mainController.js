@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catService) {
+    var mainController = function ($scope, $location, catService) {
         $scope.$watch(catService.isValid, function(newValue, oldValue) {
             if(newValue != oldValue) {
                 getCats();
@@ -31,7 +31,6 @@
 
         $scope.setCurrCat = function (cat) {
             $scope.currCat = cat;
-            debugger;
             if(cat.viewed !== true) {
                 $scope.currCat.viewed = true;
                 catService.updateCat($scope.currCat)
@@ -46,6 +45,10 @@
                     });
             }
         };
+
+        $scope.editCat = function(cat) {
+            $location.path('/edit-cat/' + cat.id);
+        }
 
         $scope.$on('filter', function(event, args) {
             $scope.fltr=args;
