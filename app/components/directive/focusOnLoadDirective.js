@@ -10,10 +10,7 @@ angular.module('app')
        return{
            restrict: 'A',
            link: function(scope,elem,attr,ctrl){
-               console.log('focus elem',elem);
                elem[0].focus();
-
            }
        }
-
     });

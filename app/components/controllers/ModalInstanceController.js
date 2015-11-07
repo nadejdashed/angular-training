@@ -6,10 +6,22 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
     $scope.item = itemToDelete;
 
 
-    $scope.ok = function () {
-        console.log('in currentAction button id',$scope.item.id)
+    $scope.okSave = function (item) {
+        console.log('in currentAction button id',item)
             //debugger;
-        currentAction().then(
+        currentAction(item).then(
+            function(){
+                $uibModalInstance.close()
+            },
+            function (){
+                console.log('error');
+            });
+    };
+
+    $scope.okDelete = function () {
+        console.log('in currentAction button id',itemToDelete , ' $scope.item', $scope.item)
+        //debugger;
+        currentAction(itemToDelete).then(
             function(){
                 $uibModalInstance.close()
             },

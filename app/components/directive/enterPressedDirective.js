@@ -16,10 +16,10 @@ angular.module('app')
             link: function($scope, elem, attrs, ctrl, transcludeFn) {
 
                 var abstractFn = $parse(attrs.ngClick);
-                console.log('abstractFn(that parse ngClick) ', abstractFn  );
+                //console.log('abstractFn(that parse ngClick) ', abstractFn  );
 
                 $document.on('keypress', function(event){
-                    console.log('keypresseed "elem.on" evnet: ',event );
+                    //console.log('keypresseed "elem.on" evnet: ',event );
                     event.preventDefault();
                     if(event.keyCode === 32 || event.keyCode === 13 ){
                         abstractFn ($scope);

@@ -49,7 +49,7 @@ angular.module('app').service("serverCommunication",  function($resource, $http,
      * @returns {HttpPromise}
      */
     function createItemHttp (cat){
-        console.log('adding... /cats/'+cat.id , 'pet.time',cat.time)
+        console.log('adding...'+cat)
         return $http.post('/cats', cat);
     }
 

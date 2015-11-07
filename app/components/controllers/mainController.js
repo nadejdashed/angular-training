@@ -47,22 +47,24 @@
             console.log('update for cat:' ,currentCat, '\n clicks', voteInt);
         }
 
+        function addCatLocal (pet){
+            var promise = serverCommunication.createItemHttp(pet);
+            promise.then(function (resp) {
+                    console.log('addCatLocal:  id', pet.id, 'pet.time',pet.time, 'resp', resp);
+                    //update list here
+                    $scope.allCats.push(resp.data);
+                    //update list here END
+                },
+                function (reject) {
+                    Error(reject);
+                }
+            );
+            return promise
+        }
+
         $scope.addCat = function(pet){
             console.log('addCatLocal:  id', pet.id, 'add pet.timestamp', pet.time );
-            function addCatLocal (){
-                var promise = serverCommunication.createItemHttp(pet);
-                promise.then(function (resp) {
-                        console.log('addCatLocal:  id', pet.id, 'pet.time',pet.time, 'resp', resp);
-                        //update list here
-                        $scope.allCats = resp.data;
-                        //update list here END
-                    },
-                    function (reject) {
-                        Error(reject);
-                    }
-                );
-                return promise
-            }
+
 
             var modalInstance;
             modalInstance = $uibModal.open({
@@ -84,32 +86,34 @@
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
                 console.info('$scope.selected',$scope.selected);
+                console.warn('****** $scope.allCats ********* should be Array here', $scope.allCats);
             }, function () {
                 console.info('Modal dismissed at: ' + new Date());
             });
 
         };
 
+        function fnDeleteLocal (pet){
+            var promise = serverCommunication.removeItemHttp(pet);
+            promise.then(function (resp) {
+                    pet.time *= 1000;
+                    console.log('remove id', pet.id, 'pet.time',new Date().getDate(), 'resp', resp);
+                    //update list here
+                    //$scope.allCats = resp.data;
+                    $scope.allCats.splice(-1,1);
+                    //update list here END
+                },
+                function (reject) {
+                    Error(reject);
+                },
+                function (progress) {
+                    console.info('progress: ', progress);
+                }
+            );
+            return promise
+        }
+
         $scope.removeCat = function(pet){
-            //
-            function fnDeleteLocal (){
-                var promise = serverCommunication.removeItemHttp(pet);
-                promise.then(function (resp) {
-                            pet.time *= 1000;
-                            console.log('remove id', pet.id, 'pet.time',pet.time, 'resp', resp);
-                                //update list here
-                                $scope.allCats = resp.data;
-                                //update list here END
-                        },
-                        function (reject) {
-                            Error(reject);
-                        },
-                        function (progress) {
-                            console.info('progress: ', progress);
-                        }
-                    );
-                return promise
-            }
 
             var modalInstance;
             modalInstance = $uibModal.open({
@@ -128,9 +132,10 @@
                 }
             });
 
-            modalInstance.result.then(function (selectedItem) {
-                $scope.selected = selectedItem;
-                console.info('$scope.selected',$scope.selected);
+            modalInstance.result.then(function (itemToDelete) {
+                $scope.selected = itemToDelete;
+                console.info('$scope.selected',$scope.selected ,'$scope.allCats:', $scope.allCats);
+
             }, function () {
                 console.info('Modal dismissed at: ' + new Date());
             });

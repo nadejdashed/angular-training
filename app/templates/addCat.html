@@ -1,4 +1,4 @@
-<!--modal-->
+<!--modal current controller is mainController-->
 <div>
 
     <div class="modal-header">
@@ -6,24 +6,20 @@
     </div>
     <div class="modal-body">
 
-        <div ng-controller="formController">
-
         <form class="form-inline">
             <div class="form-group">
                 <label for="exampleInputName2">Cat name</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                <input ng-model='newCat.name'type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">Img url</label>
-                <input type="url" class="form-control" id="exampleInputEmail2" placeholder="http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg">
+                <input ng-model='newCat.img' type="url" class="form-control" id="exampleInputEmail2" placeholder="http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg">
             </div>
         </form>
 
-        </div>
-
     </div>
     <div class="modal-footer">
-        <button enter-pressed class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-primary" type="button" ng-click="okSave(newCat)">OK</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
 

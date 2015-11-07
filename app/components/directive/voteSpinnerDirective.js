@@ -17,17 +17,17 @@ angular.module('app')
             controller :'mainController',
             templateUrl: 'templates/templatesDirectives/spinnerButtons.html',
             link: function(scope, elem, attrs, ctrl, transcludeFn) {
-                console.log('voteVal is: ', scope.voteVal);
+                //console.log('voteVal is: ', scope.voteVal);
 
                 scope.decVote = function decVote(voteInt){
                     voteInt -= 1;
                     scope.voteCallback( {voteInd: voteInt} );
-                    console.log('decVote ', voteInt);
+                    //console.log('decVote ', voteInt);
                 };
 
                 scope.incVote = function incVote(voteInt){
                     voteInt += 1;
-                    console.log('incVote pressed ', voteInt);
+                    //console.log('incVote pressed ', voteInt);
                     scope.voteCallback( {voteInd: voteInt} );
                 };
 
