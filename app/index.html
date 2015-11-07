@@ -8,14 +8,15 @@
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/viewController.js"></script>
     <!-- /build -->
     <script src="//localhost:35729/livereload.js"></script>
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
 
     <div ng-controller="mainController" class="container">
         <div ng-include="'templates/main.html'"></div>

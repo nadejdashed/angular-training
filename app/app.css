@@ -1,9 +1,23 @@
-body {
-	color: red;
-}
 .panel {
     display: inline-block;
 }
 img {
+    cursor: pointer;
+    max-width: 640px;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+h3  {
+    color: #fff;
+}
+.green {
+    color: #85e98a;
+}
+.cats-list {
+    padding-top: 20px;
+}
+.glyphicon-chevron-up,
+.glyphicon-chevron-down {
     cursor: pointer;
 }
