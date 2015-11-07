@@ -1,0 +1,35 @@
+<div ng-form name="editForm">
+
+    <div><label>Change the cat name:</label>
+
+        <span> <input name="nameForm"
+                      required
+                      ng-pattern="/([A-Z])\w+/"
+                      focus-directive ng-model="selectedCat.name"/></span>
+
+    </div>
+
+    <div ng-show="editForm.nameForm.$error.required">Required*</div>
+    <div ng-show="editForm.nameForm.$error.pattern">Pattern</div>
+
+    <div><label>Change a cat picture url:</label>
+
+        <span> <input name="srcForm"
+                      type="url"
+                      required
+                      ng-model="selectedCat.src"/></span>
+
+    </div>
+
+    <div ng-show="editForm.srcForm.$error.required">Required*</div>
+    <div ng-show="editForm.srcForm.$error.url">Url pattern</div>
+
+    <div>
+        <img ng-show="selectedCat.src" ng-src={{selectedCat.src}} alt="No image!" width="90%"/>
+    </div>
+
+    <div>
+        <button ng-disabled="editForm.$invalid" ng-click="saveChanges(selectedCat)"> <strong>SAVE</strong> </button>
+        <span><button ng-click="cancel(selectedCat)"> <strong>CANCEL</strong> </button></span>
+    </div>
+</div>

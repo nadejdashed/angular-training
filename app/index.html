@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Cats application</title>
+    <base href="/"/>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- build:css /build/app.css -->
@@ -18,63 +19,34 @@
 </head>
 <body ng-app="app" ng-cloak>
 
-    <div ng-controller="mainController" class="container">
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li class="">
+                <a ui-sref="cats">Cats</a>
+            </li>
+            <li class="">
+                <a ui-sref="adding">Cat adding</a>
+            </li>
+            <li class="">
+                <a ui-sref="about">About</a>
+            </li>
+        </ul>
+    </nav>
 
-        <input ng-model="searchValue"  />
-        <span> <button ng-click="searchCat(searchValue)"><span class="glyphicon glyphicon-search"></button></span>
 
-        <span> <select ng-model = "sortOrder"
-                       ng-options="option.name for option in sortingOrders">
-        </select> </span>
-
-        <div ng-repeat="cat in cats | filter: {name: searchTerm} | orderBy:sortOrder.orderValue :true">
-
-            <div ng-click="selectCat(cat)">
-                <strong> {{cat.name}}</strong></div>
-        </div>
-
-            <div ng-if="currentCat">
-
-                <div><strong>{{currentCat.name}}</strong></div>
-                <img ng-src={{currentCat.src}}
-                     alt="Sweet cat!"
-                     width="400">
-
-                <div>Cat was voted <strong>{{currentCat.vote}}</strong> times.</div>
-
-                <vote-spinner-directive object="currentCat"
-                                        increase-fn="increaseVote(currentCat)"
-                                        reduce-fn="reduceVote(currentCat)"></vote-spinner-directive>
-            </div>
-    </div>
-
-    </div>
-
-    <div ng-controller="addNewCatController" class="container">
-
-        <div><strong>ADD NEW CAT</strong></div>
-
-        <div><label>Enter the cat name:</label>
-
-        <span> <input focus-directive ng-model="catForSaving.name"/></span>
-
-        </div>
-
-        <image-preview-directive image-url="catForSaving.src"></image-preview-directive>
-
-        <div>
-            <button ng-click="saveNewCat(catForSaving)"> <strong>SAVE</strong> </button>
-            <span><button ng-click="cancelEditing(catForSaving)"> <strong>CANCEL</strong> </button></span>
-        </div>
-
-    </div>
+    <ui-view></ui-view>
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <script src="/app/components/configs/uirouteConfig.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/addNewCatController.js"></script>
+    <script src="/app/components/controllers/previewController.js"></script>
+    <script src="/app/components/controllers/editController.js"></script>
+    <script src="/app/components/controllers/loginController.js"></script>
     <script src="/app/components/services/catsService.js"></script>
     <script src="/app/components/directives/focusDirective.js"></script>
     <script src="/app/components/directives/imagePreviewDirective.js"></script>

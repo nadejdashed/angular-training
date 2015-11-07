@@ -1,0 +1,19 @@
+<div ng-form name="addForm" class="container">
+
+    <div><strong>ADD NEW CAT</strong></div>
+
+    <div><label>Enter the cat name:</label>
+
+        <span> <input name="catName" required ng-pattern="/([A-Z])\w+/" focus-directive ng-model="catForSaving.name"/></span>
+
+        <div ng-show="addForm.catName.$error.required">Required*</div>
+        <div ng-show="addForm.catName.$error.pattern">Pattern</div>
+    </div>
+
+    <image-preview-directive image-url="catForSaving.src"></image-preview-directive>
+
+    <div>
+        <button ng-disabled="addForm.$invalid" ng-click="saveNewCat(catForSaving)"> <strong>SAVE</strong> </button>
+        <span><button ng-click="cancelEditing(catForSaving)"> <strong>CANCEL</strong> </button></span>
+    </div>
+</div>

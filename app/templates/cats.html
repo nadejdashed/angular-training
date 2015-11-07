@@ -1,0 +1,22 @@
+<div class="container">
+
+    <div class="col col-sm-4">
+        <input ng-model="searchValue"  />
+        <span> <button ng-click="searchCat(searchValue)"><span class="glyphicon glyphicon-search"></button></span>
+
+        <span> <select ng-model = "sortOrder"
+                       ng-options="option.name for option in sortingOrders">
+        </select> </span>
+
+        <div ng-repeat="cat in cats | filter: {name: searchTerm} | orderBy:sortOrder.orderValue :true">
+
+            <div ui-sref="cats.preview({id:cat.id})">
+                <strong> {{cat.name}}</strong></div>
+        </div>
+    </div>
+
+    <div class="col col-sm-8">
+        <ui-view></ui-view>
+    </div>
+
+</div>

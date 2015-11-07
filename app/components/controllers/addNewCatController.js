@@ -7,12 +7,14 @@
 
         $scope.saveNewCat = function (newCat) {
 
-            newCat.vote = 0;
-            catsService.saveCat(newCat).then(function () {
+            if ($scope.addForm.$valid) {
+                newCat.vote = 0;
+                catsService.saveCat(newCat).then(function () {
 
-                $scope.catForSaving = {};
+                    $scope.catForSaving = {};
 
-            });
+                });
+            }
         }
 
         $scope.cancelEditing = function (newCat) {

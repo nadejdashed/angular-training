@@ -1,9 +1,17 @@
-<div><label>Enter a cat picture url:</label>
+<div ng-form name="urlForm">
+    <div><label>Enter a cat picture url:</label>
 
-    <span> <input ng-model="imageURL"/></span>
+        <span> <input name="pictureUrl"
+                      type="url"
+                      required
+                      ng-model="imageURL"/></span>
 
-</div>
+    </div>
 
-<div>
-    <img ng-show="imageURL" ng-src={{imageURL}} alt="No image!" width="400"/>
+    <div ng-show="urlForm.pictureUrl.$error.required">Required*</div>
+    <div ng-show="urlForm.pictureUrl.$error.url">Url pattern</div>
+
+    <div>
+        <img ng-show="imageURL" ng-src={{imageURL}} alt="No image!" width="400"/>
+    </div>
 </div>

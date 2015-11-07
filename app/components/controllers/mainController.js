@@ -1,15 +1,24 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, catsService, $filter) {
+    var mainController = function ($scope, catsService, $filter, cats) {
 
-        catsService.getCats().then (function (data) {
-            $scope.cats = $filter ("orderBy")(data, $scope.sortOrder.orderValue, true);
-            $scope.currentCat = $scope.cats[0];
-        })
+        $scope.sortingOrders = [
+            {name: "Sort by name", orderValue: "-name"},
+            {name: "Sort by vote", orderValue: "-vote"}];
 
-        $scope.selectCat = function (cat) {
-            $scope.currentCat = cat;
-        }
+        $scope.sortOrder = $scope.sortingOrders[0];
+
+
+        $scope.cats = $filter ("orderBy")(cats, $scope.sortOrder.orderValue, true);
+
+        $scope.$watch(catsService.getValid, function (newValue) {
+
+            if (newValue === false) {
+                var newCats = catsService.getCats().then(function (data) {
+                    $scope.cats = $filter ("orderBy")(data, $scope.sortOrder.orderValue, true);
+                });
+            }
+        });
 
         $scope.increaseVote = function (cat) {
 
@@ -27,12 +36,6 @@
 
             $scope.searchTerm = searchValue;
         }
-
-        $scope.sortingOrders = [
-            {name: "Sort by name", orderValue: "-name"},
-            {name: "Sort by vote", orderValue: "-vote"}];
-
-        $scope.sortOrder = $scope.sortingOrders[0];
     };
 
     module.controller("mainController", mainController);

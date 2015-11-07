@@ -1,0 +1,29 @@
+<div ng-if="currentCat">
+
+    <div class="col col-sm-6">
+
+        <div><strong>{{currentCat.name}}</strong></div>
+        <img ng-src={{currentCat.src}}
+             alt="Sweet cat!"
+             width="90%">
+
+        <div>Cat was voted <strong>{{currentCat.vote}}</strong> times.</div>
+
+        <vote-spinner-directive object="currentCat"
+                                increase-fn="increaseVote(currentCat)"
+                                reduce-fn="reduceVote(currentCat)"></vote-spinner-directive>
+
+
+        <br/>
+
+        <button ng-click="deleteCat(currentCat)"> <strong>DELETE</strong> </button>
+
+        <button ng-click="editCat(currentCat)"> <strong>EDIT</strong> </button>
+
+    </div>
+
+    <div class="col col-sm-6">
+        <ui-view></ui-view>
+    </div>
+
+</div>
