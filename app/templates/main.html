@@ -1,20 +1,4 @@
-<!--not show-->
-<div class="well" ui-view="emotionText"></div>
-
 <div ng-include=" 'templates/searchBar.html' "></div>
-
-
-<div ng-show="currentCat.name">
-    <h1>Selected cat:</h1>
-    <ul>
-        <li>
-            <img ng-src="{{currentCat.img}}">
-            <p>Name {{currentCat.name}}</p>
-
-            <p>Click number {{currentCat.clicks}}</p>
-        </li>
-    </ul>
-</div>
 
 <h1>Application with cat</h1>
 
@@ -25,23 +9,29 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
         <li class="list" ng-repeat="cat in allCats | filter: filterBy.sortingByText | orderBy: filterBy.selectedOption ">
             <div ng-if="!cat">No cats has positive vote</div>
             <div>
-                <a ui-sref="route1.detail">Show Detail</a>
 
                 <img ng-src="{{cat.img}}" title="click me" >
                 <p>{{cat.id}}</p>
                 <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
                 <p>{{cat.time | date : 'HH.mm.dd'}} </p>
 
-                 <!--<div vote-spinner cat="cat"> </div>-->
                  <div vote-spinner vote-val="cat.clicks" vote-callback="updateClicks(cat, voteInd)"></div>
-
+                <hr>
                 <button ng-click="addCat(cat)" class="btn btn-success">add cat{{false | checker}}</button>
+                <button ng-click="editCat(cat)" class="btn btn-warning">edit cat{{false | checker}}</button>
                 <button ng-click="removeCat(cat)" class="btn btn-danger">remove cat{{false | checker}}</button>
+
             </div>
 
             <p>this img clicked: <span>{{ cat.clicks }}</span> times</p>
         </li>
     </ul>
+</div>
+
+<!--ui-view-->
+<div>
+    <a ui-sref="route1.detail">Show all cats detail </a>
+    <div class="well" ui-view></div>
 </div>
 
 

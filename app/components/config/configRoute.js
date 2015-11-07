@@ -18,7 +18,7 @@
 angular.module("app")
 
     .config(function($stateProvider, $urlRouterProvider , $locationProvider){
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
 
         // For any unmatched url, send to /route1
         $urlRouterProvider.otherwise("/");
@@ -27,43 +27,40 @@ angular.module("app")
             .state('index', {
                 url: "/",
                 views: {
-                    "viewA": {
+                    "": {
                         template: "<h1>Welcome message</h1>"
-                    }/*,
-                    "index.emotionText": {
-                        template: "<h1>index.emotionText</h1>"
-                        //templateUrl: "/templates/textEmoticons.html"
-                    }*/
+                    }
                 }
             })
             .state('route1', {
                 url: "/main",
-                templateUrl: "/templates/main.html",
-                controller: 'mainController'
-
-                /* views  create isolete controller, so need to resolve data*/
-
-                /*views: {
+                views: {
                     "":{
                         templateUrl: "/templates/main.html",
+                        controller: 'mainController',
                     },
                     "emotionText": {
-                        //templateUrl: "/templates/textEmoticons.html"
-                        template: "<h1>index.emotionText</h1>"
+                        templateUrl: "/templates/textEmoticons.html",
+                        controller: 'emoticoneController'
                     }
                 },
-                resolve: {
-                    resolveList: function($stateParams ){
-                        console.log('satteparams resolve', $stateParams)
-                    }
-                }*/
-                }).state('route1.detail', {
+
+                })
+                .state('route1.detail', {
                     url: "/detail",
                     templateUrl: "/templates/detailCat.html",
-                    controller: function($scope){
-                        $scope.items = ["A", "List", "Of", "Items"];
+                    controller: function($scope , $state){
+                        $scope.items = 'This cats is fine. ';
+                        $scope.currentPagename = $state.current.name;
+                    },
+                    resolve: {
+                        resolveList: function($state){
+                            console.log('$state: ',$state.current.name);
+                            return $state.current.name;
+                        }
                     }
             })
+
             .state('route2', {
                 url: "/about",
                 template: "<h1>about</h1>"

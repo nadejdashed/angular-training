@@ -41,20 +41,29 @@
 </head>
 <body ng-app="app" ng-cloak class="container">
 
-    <div class="navbar">
-        <div class="navbar-inner">
-            <a class="brand" href="/">Quick Start</a>
-            <ul class="nav">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- go to welcome page -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">Brand</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
                 <li><a ui-sref="route1">Main</a></li>
                 <li><a ui-sref="route2">About</a></li>
             </ul>
         </div>
     </div>
+</nav>
+
 
     <div class="row">
         <div class="span12">
-            <div class="well" ui-view ></div>
-            <!--<div class="well" ui-view = 'viewA'></div>-->
+            <div class="well" ui-view = 'emotionText' ng-if="'emotionText'"></div>
+
+            <div class="well" ui-view =''></div>
+
             <!--<div class="well" ui-view = 'about'></div>-->
         </div>
     </div>
