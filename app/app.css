@@ -21,3 +21,6 @@ h3  {
 .glyphicon-chevron-down {
     cursor: pointer;
 }
+.dropdown-menu {
+    display: block;
+}

@@ -8,12 +8,11 @@
             obj.clickQuantity = obj.clickQuantity ? obj.clickQuantity +1 :  1;
         };
         $scope.vote = function (obj, bool) {
-            if (obj.votes) {
-                bool ? obj.votes = obj.votes + 1 : obj.votes = obj.votes - 1;
+            if (bool) {
+                obj.votes += 1;
             } else {
-                obj.votes === 0;
+                obj.votes -= 1 || 0;
             }
-
-        }
+        };
     });
 })(angular.module('app'));

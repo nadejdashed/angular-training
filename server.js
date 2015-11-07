@@ -23,7 +23,7 @@ app.use(expressIO.cookieParser());
 app.use(expressIO.bodyParser());
 
 app.http().io();
-app.listen(8000);
+app.listen(8001);
 
 // Static request
 app.get('/', function(req, res) {

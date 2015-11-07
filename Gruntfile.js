@@ -72,14 +72,14 @@ module.exports = function (grunt) {
             app: {
                 options: {
                     bases: [path.resolve('app')],
-                    port: 8000,
+                    port: 8001,
                     server: path.resolve(__dirname, 'server.js')
                 }
             },
             debug: {
                 options: {
                     bases: [path.resolve('app')],
-                    port: 8000,
+                    port: 8001,
                     server: path.resolve(__dirname, 'server.js') + ' debug'
                 }
             }
@@ -167,4 +167,5 @@ module.exports = function (grunt) {
 
     grunt.registerTask('release', ['build', 'uglify:release']);
     grunt.registerTask('server', ['watch:debug', 'express-keepalive:app']);
+    grunt.registerTask('default', ['debug', 'server']);
 };
