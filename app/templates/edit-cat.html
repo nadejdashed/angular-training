@@ -1,6 +1,15 @@
-<form ng-submit="updateCat(cat)" ng-model="cat">
+<form ng-submit="updateCat(cat)" ng-model="cat" name="myForm" novalidate>
     Id: {{cat.id}}<br/>
-    Name: <input type="text" ng-model="cat.name" required><br/>
-    ImageURL: <input type="url" ng-model="cat.src" required><br/>
-    <button type="submit">Update {{cat.name}}</button>
+    Name: <input ng-model="cat.name" required name="name">
+    <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+    <span ng-show="myForm.name.$error.required">Cat name is required.</span>
+    </span><br/>
+
+    ImageURL: <input ng-model="cat.src" type="url" required name="url">
+    <span style="color:red" ng-show="myForm.url.$dirty && myForm.url.$invalid">
+    <span ng-show="myForm.url.$error.required">URL is required.</span>
+    <span ng-show="myForm.url.$error.url">Invalid URL address.</span>
+    </span><br/>
+    <button type="submit" ng-disabled="myForm.name.$dirty && myForm.name.$invalid
+            || myForm.url.$dirty && myForm.url.$invalid">Update {{cat.name}}</button>
 </form>

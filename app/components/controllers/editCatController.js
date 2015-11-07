@@ -23,6 +23,10 @@
                     return response;
                 });
         };
+
+        $scope.isValid = function() {
+
+        }
     };
 
     module.controller("editCatController", editCatController);
