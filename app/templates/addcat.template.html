@@ -1,0 +1,26 @@
+    <div ng-form name="addCatForm">
+        <div><label> Cat's name:</label><input ng-model = "newCat.name" name="catName" required/></div>
+        <div ng-show="addCatForm.catName.$error.required"> cat's name is required.</div>
+        <image-preview
+                imagesrc="newCat.src"
+
+                >
+            This is cat's place
+
+
+        </image-preview>
+
+        <!--<div><label> Cat's image URL:</label><input ng-model="newCat.src" ng-blur="showCatImage()"></div>-->
+        <!--<div ng-show="newCat.canShow">-->
+            <!--<img ng-src={{newCat.src}} />-->
+        <!--</div>-->
+        <div>
+            <button ng-click="saveCat(newCat)" ng-disabled="addCatForm.$invalid">Save cat</button>
+        </div>
+
+
+
+
+    </div>
+
+

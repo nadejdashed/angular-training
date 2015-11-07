@@ -1,1 +1,57 @@
-<h1>{{text}}</h1>
+
+
+<div>
+    <ng-pluralize count="positiveCatsStack.length" offset="1"
+                  when="{'0': 'No cat has positive vote.',
+        '1': '{{positiveCatsStack[0].name}} have positive vote.',
+        'one': '{{positiveCatsStack[0].name}} and other cat have a positive votes',
+        'other': '{{positiveCatsStack[0].name}} and {} more cats have a positive votes.'}"></ng-pluralize>
+
+</div>
+
+
+
+
+<div class="selected-cat">
+    <a ui-sref="edit({id :selectedCat.id})">Edit cat</a>
+    <div class="usual-text">Name: {{selectedCat.name}} </div>
+    <vote-spinner vote="{{selectedCat.vote}}"
+                  upvote = "likeCat(selectedCat)"
+                  downvote =  "unlikeCat(selectedCat)"
+            ></vote-spinner>
+
+
+    <div>
+        <img class="big-image" ng-src={{selectedCat.src}} alt="{{selectedCat.name}} picture" ng-click="countClick(selectedCat)">
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-2 usual-text">
+        <input ng-model="searchTerm" on-focus> </input> </div>
+    <div class="col-md-1 usual-text"><button ng-click="filterCats(searchTerm)"><span class="glyphicon glyphicon-search"></button></div>
+    <div class="col-md-3 usual-text">
+        <select ng-model = "sortingOrder" ng-options="option.name for option in sortingOrders">
+        </select>
+        should be first
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2" ng-repeat="cat in pride | filter : {name : currentSearchTerm} | orderBy : sortingOrder.predicate : sortingOrder.reverse" >
+        <div class="usual-text" ng-click="selectCat(cat)">Name: {{cat.name}} <span class="glyphicon glyphicon-ok" ng-show="cat.wasShown"></span>
+
+        </div>
+        <div class="usual-text"><span>{{cat.vote | smileFilter }}</span>
+        </div>
+        <div class="usual-text">Votes: {{cat.vote}}</div>
+        <div class="usual-text">Last voted: {{cat.lastvoted| date:'dd-MMM-yyyy'}} </div>
+        <div>
+            <img class="small-image" ng-src={{::cat.src}} alt="{{::cat.name}} picture" ng-click="countClick(cat)">
+        </div>
+
+    </div>
+</div>

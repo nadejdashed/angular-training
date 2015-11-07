@@ -4,6 +4,7 @@
 
     var catService = function ($q,$resource,$cookies) {
 
+
         var CatsResource = $resource('/cats/:id',{id:'@id'}, {
             update: {method: 'PUT'}
         });
@@ -53,12 +54,33 @@
             vote(cat, -1);
         }
 
+
+        var getCatByID = function(catID)
+        {
+
+            return CatsResource.get({id: catID});
+        }
+
+
+        var deleteCat = function(cat)
+        {
+            return CatsResource.delete({id: cat.id});
+        }
+
+
+        var editCat = function(cat)
+        {
+            return CatsResource.update({id: cat.id},cat);
+        }
+
         return {
             getAllPromise: getAll,
             saveNewCat:saveCat,
             positiveVote: positiveVoteCat,
-            negativeVote: negativeVoteCat
-
+            negativeVote: negativeVoteCat,
+            getCatByID:getCatByID,
+            deleteCat:deleteCat,
+            editCat:editCat
         }
 
     };

@@ -1,0 +1,22 @@
+    <div ng-form>
+        {{cat.name}}
+        <div><label> Cat's name:</label><input ng-model = "cat.name" value="{{cat.name}}"/></div>
+        <image-preview
+                imagesrc="cat.src"
+                >
+        </image-preview>
+
+
+        <div>
+            <button ng-click="saveCat(cat)">Edit cat</button>
+        </div>
+
+        <div>
+            <button ng-click="deleteCat(cat)">Delete cat</button>
+        </div>
+
+
+
+    </div>
+
+
