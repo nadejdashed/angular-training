@@ -11,6 +11,8 @@
         };
 
         $scope.consoleLog = function(){
+            $scope.text = "Hello AAAAAA!";
+
             /*console.log($scope.obj.name);
             console.log($scope.obj.temp);*/
             $timeout(function(){
