@@ -1,6 +1,6 @@
 (function(module) {
 
-    var listCatsController = function ($scope, $cookies, $filter, $parse, catsService, $state) {
+    var listCatsController = function ($scope, $cookies, $filter, catsService, $state) {
 
         var didSelectCatFunction = function (cat) {
             $scope.selectedCat = cat;
