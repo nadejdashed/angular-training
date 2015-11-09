@@ -38,7 +38,7 @@ app.use(expressIO.static(__dirname + '/' + folder));
 
 // Authorization
 function checkAuth(req, res, next) {
-  /*var strToken = req.headers["authorization"],
+  var strToken = req.headers["authorization"],
     token;
 
   currentUser = {};
@@ -47,7 +47,7 @@ function checkAuth(req, res, next) {
     if (err) {
       res
         .status(403)
-        .send({status: 'error', code: "NOPERMISSION", error: "Session expired"});
+        .send({status: 'error', code: "NOPERMISSION", error: "Not authorized. Please, log in"});
     } else {
       if (decoded.login === savedUser.login && decoded.password === savedUser.password) {
         currentUser = decoded;
@@ -55,10 +55,10 @@ function checkAuth(req, res, next) {
       } else {
         res
           .status(401)
-          .send({status: 'error', code: "NOPERMISSION", error: "No authorized"});
+          .send({status: 'error', code: "NOPERMISSION", error: "Not authorized"});
       }
     }
-  });*/
+  });
   next();
 }
 app.post('/register', function(req, res){
@@ -71,7 +71,7 @@ app.post('/register', function(req, res){
     savedUser.password = password;
     res.send({status: 'success'});
   } else {
-    res.error({status: 'error'});
+    res.send({status: 'error'});
   }
 });
 app.get('/auth', checkAuth, function(req, res){
@@ -124,7 +124,7 @@ app.post(instanceName, checkAuth, function(req, res){
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
         console.log(err ? err : "JSON saved to " + fileName);
         if (err){
-            res.error(err);
+            res.send(err);
         } else {
             res.send(data);
         }
@@ -142,7 +142,7 @@ app.put(instanceName + '/:id', checkAuth, function(req, res, user){
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
       console.log(err ? err : "JSON saved to " + fileName);
       if (err){
-        res.error(err);
+        res.send(err);
       } else {
         res.send(instance);
       }
@@ -164,7 +164,7 @@ app.delete(instanceName + '/:id', checkAuth, function(req, res, user){
     fs.writeFile(fileName, JSON.stringify(result), function(err) {
         console.log(err ? err : "JSON saved to " + fileName);
         if (err){
-            res.error(err);
+            res.send(err);
         } else {
             res.send(instance);
         }

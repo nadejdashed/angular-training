@@ -1,12 +1,12 @@
 (function () {
     "use strict";
     angular.module("app", ["ui.router", "ngResource", "ngCookies"])
-        .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+        .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
-            $locationProvider.html5Mode({
+            /*$locationProvider.html5Mode({
                 enabled: true,
                 requireBase: false
-            });
+            });*/
 
             $urlRouterProvider.otherwise('/cats');
             $stateProvider
@@ -38,7 +38,14 @@
                 .state('about', {
                     url: '/about',
                     template: '<div class="well row"><h1 style="text-align: center; color: #a1a1a1;">This SPA was created by monkey lover!</h1></div>'
+                }).state('login', {
+                    url: '/login',
+                    templateUrl: '/templates/login.html',
+                    controller: 'authenticationController'
                 });
+
+            $httpProvider.interceptors.push('authenticationInterceptor');
+
         }
     )
 })();

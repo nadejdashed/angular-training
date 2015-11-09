@@ -1,0 +1,37 @@
+<div class="row well">
+    <!-- registration -->
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="reg-login">Enter your login:</label>
+            <input id="reg-login" type="text" ng-model="newuser.login" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="reg-password">Password:</label>
+            <input id="reg-password" type="text" ng-model="newuser.password" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="reg-password2">Repeat your password:</label>
+            <input id="reg-password2" type="text" ng-model="newuser.password2" class="form-control">
+        </div>
+        <div style="text-align: center">
+            <button class="btn btn-success" ng-click="registration(newuser)" style="width: 100px;">Register</button>
+            <button class="btn btn-default" ng-click="cancel()" style="width: 100px;">Cancel</button>
+        </div>
+    </div>
+    <!-- log in -->
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="login">Enter your login:</label>
+            <input id="login" type="text" ng-model="user.login" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" type="text" ng-model="user.password" class="form-control">
+        </div>
+        <div style="text-align: center">
+            <button type="submit" class="btn btn-primary" ng-click="login(user)" style="width: 100px;">Log In</button>
+            <button type="button" class="btn btn-default" ng-click="cancel()" style="width: 100px;">Cancel</button>
+        </div>
+    </div>
+</div>
+

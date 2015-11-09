@@ -17,28 +17,34 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/services/catDataService.js"></script>
+    <script src="/app/components/services/authenticationService.js"></script>
+    <script src="/app/components/services/tokenService.js"></script>
+    <script src="/app/components/services/displayExceptionService.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/editCatController.js"></script>
     <script src="/app/components/controllers/newCatController.js"></script>
+    <script src="/app/components/controllers/authentificationController.js"></script>
     <script src="/app/components/directives/focusDirective.js"></script>
     <script src="/app/components/directives/enterDirective.js"></script>
     <script src="/app/components/directives/imagePreview.js"></script>
     <script src="/app/components/directives/voteSpinner.js"></script>
+    <script src="/app/components/interceptors/authenticationInteceptor.js"></script>
     <script src="/app/components/configuration/errorHandler.js"></script>
     <!-- /build -->
 </head>
 <body ng-app="app" ng-cloak>
+    <div class="well row" id="display-error"></div>
     <div class="container" style="padding-top: 20px">
         <nav class="row navbar navbar-default">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li ui-sref-active="active"><a ui-sref="cats">Home</a></li>
                     <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+                    <li ui-sref-active="active"><a ui-sref="login">Log in</a></li>
                 </ul>
             </div>
         </nav>
         <div ui-view></div>
-        <div class="well row" id="display-error" style="margin-top: 20px; display: none;"></div>
     </div>
 </body>
 </html>

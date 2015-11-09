@@ -6,13 +6,13 @@
 
         $scope.cancelEdit = function(){
             $state.go('cats');
-            throw "Edit was cancelled";
+            //throw "Edit was cancelled";
         };
 
         $scope.saveCat = function(){
             catService.saveCat($scope.catToEdit);
             $state.go('cats');
-            throw "Cat was edited";
+            //throw "Cat was edited";
         };
     };
 
