@@ -24,11 +24,14 @@
     "grunt-contrib-uglify": "~0.6.0",
     "grunt-contrib-watch": ">=0.5.3",
     "grunt-express": "1.2.1",
-    "grunt-karma": "~0.9.0",
+    "grunt-karma": "^0.12.1",
     "grunt-newer": ">=0.6.0",
     "grunt-ng-annotate": ">=0.4.0",
     "grunt-processhtml": "^0.3.8",
     "jsonwebtoken": "^5.4.0",
+    "karma": "^0.13.15",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
     "serve-static": ">=1.6.3"
   },
   "scripts": {

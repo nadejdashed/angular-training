@@ -14,7 +14,7 @@
 
         $scope.deleteCat = function(catForDeleting) {
 
-            catsService.deleteCat(cat).then(function () {
+            catsService.deleteSelectedCat(cat).then(function () {
 
                 $state.go('cats');
             });

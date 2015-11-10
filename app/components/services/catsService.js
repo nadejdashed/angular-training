@@ -1,6 +1,6 @@
 (function(module) {
 
-    var catsService = function ($q, $http, $resource) {
+    var catsService = function ($q, $http) {
 
         var isValidData = false;
 
@@ -31,15 +31,19 @@
 
             return $http.put('/cats/'+ cat.id , cat).then(function (response) {
 
+                return response.data;
             });
         }
 
-        var deleteCat = function (cat) {
+        var deleteSelectedCat = function (cat) {
 
             isValidData = false;
 
             return $http.delete('/cats/'+ cat.id , cat).then(function (response) {
 
+                console.log(response.data);
+
+                return response.data;
             });
         }
 
@@ -55,7 +59,7 @@
             getCats: getCats,
             saveCat: saveCat,
             updateCat: updateCat,
-            deleteCat: deleteCat,
+            deleteSelectedCat: deleteSelectedCat,
             getCatById: getCatById
         };
 
