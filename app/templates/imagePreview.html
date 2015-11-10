@@ -1,1 +1,7 @@
-sfsfewewrfewrew
+<ng-form name="imageView" novalidate>
+    {{urlTitle}}<input type="url" name="imageUrl" ng-model="image.url" ng-model-options="{updateOn: 'blur'}" required/>
+    <span class="errorMessage" ng-show="imageView.imageUrl.$error.required">Required!</span>
+    <span class="errorMessage" ng-show="imageView.imageUrl.$error.url">Sorry Not a Valid URL, Don't Forget to Use http://</span>
+    <br><br>
+    <img name="imageView" ng-model="image.view" ng-src="{{image.url}}" err-src="Artefacts/noimageicon.jpg" height="300" style="border: 1px solid black;"/>
+</ng-form>

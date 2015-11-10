@@ -10,7 +10,6 @@
                 }
             }
         }
-
     };
 
     module.directive("autofocusDirective", autofocusDirective);
