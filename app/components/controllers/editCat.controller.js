@@ -1,13 +1,15 @@
-(function(module) {
+angular.module("app").controller("editCatController",
+    function($scope, $uibModalInstance, catsService, cat) {
+        $scope.cat=cat;
 
-    var editCatController = function ($scope, $state, catsService) {
-        $scope.submit = function(cat) {
-            //catsService.addCatPromise(cat).then(function(cat) {
-            //    $state.go('listView.vote', {id : cat.id});
-            //});
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
         };
-    };
 
-    module.controller("editCatController", editCatController);
-
-}(angular.module("app")));
+        $scope.submit = function (cat) {
+            catsService.updateCatPromise(cat).then(function(cat) {
+                $uibModalInstance.close();
+            });
+        };
+    }
+);

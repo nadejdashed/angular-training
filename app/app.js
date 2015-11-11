@@ -1,4 +1,9 @@
 (function () {
     "use strict";
-    angular.module("app", ["ngResource", 'ngCookies', 'ui.router']);
+    angular.module("app", [
+        "ngResource",
+        'ngCookies',
+        'ngMessages',
+        'ui.router',
+        'ui.bootstrap']);
 })();

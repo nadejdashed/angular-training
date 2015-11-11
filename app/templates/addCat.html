@@ -4,21 +4,33 @@
         font-weight: bold;
     }
 </style>
-<form name="newCatForm" novalidate style="border: 1px solid grey" autofocus-directive="catName">
-    Cat's name: <input type="text" name="catName" ng-model="cat.name" required/>
-    <span class="errorMessage" ng-show="newCatForm.catName.$error.required">Required!</span>
-    <br>
-    <br>
-    Cat’s picture url: <input type="url" name="catUrl" ng-model="cat.src" ng-model-options="{updateOn: 'blur'}" required/>
-    <span class="errorMessage" ng-show="newCatForm.catUrl.$error.required">Required!</span>
-    <span class="errorMessage" ng-show="newCatForm.catUrl.$error.url">Sorry Not a Valid URL, Don't Forget to Use http://</span>
-    <br>
-    <br>
-    <img src="Artefacts/noimageicon.jpg" ng-src="{{cat.src}}" onerror="src='Artefacts/noimageicon.jpg'"  height="150" style="border: 1px solid black;"/>
-    <br>
-    <br>
-    <input type="submit" id="submit" value="Save" ng-disabled="newCatForm.$invalid" ng-click="submit(cat)" enter-key-detector-directive/>
-    <input type="reset" id="reset" value="Reset"/>
-    <input type="button" id="cancel" value="Cancel" ui-sref="listView.vote"/>
-    <image-preview></image-preview>
-</form>
+<div class="modal-header">
+    <h3 class="modal-title">Add cat</h3>
+</div>
+<div class="modal-body">
+    <form name="newCatForm" novalidate style="border: 1px solid grey" autofocus-directive="catName">
+        Cat's name: <input type="text" name="catName" ng-model="cat.name" required minlength="4"/>
+        <div ng-messages="newCatForm.catName.$error">
+            <div ng-messages-include="templates/messages.html" />
+        </div>
+        <br>
+        <image-preview image-title="Cat’s picture url:" image-src="{{cat.src}}" image-err-src='Artefacts/noimageicon.jpg'></image-preview>
+
+        <!--<br>-->
+        <!--Cat’s picture url: <input type="url" name="catUrl" ng-model="cat.src" ng-model-options="{updateOn: 'blur'}" required/>-->
+        <!--<span class="errorMessage" ng-show="newCatForm.catUrl.$error.required">Required!</span>-->
+        <!--<span class="errorMessage" ng-show="newCatForm.catUrl.$error.url">Sorry Not a Valid URL, Don't Forget to Use http://</span>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<img src="Artefacts/noimageicon.jpg" ng-src="{{cat.src}}" onerror="src='Artefacts/noimageicon.jpg'"  height="150" style="border: 1px solid black;"/>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<input type="submit" id="submit" value="Save" ng-disabled="newCatForm.$invalid" ng-click="submit(cat)" enter-key-detector-directive/>-->
+        <!--<input type="reset" id="reset" value="Reset"/>-->
+        <!--<input type="button" id="cancel" value="Cancel" ui-sref="listView.vote"/>-->
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-disabled="newCatForm.$invalid" ng-click="submit(cat)" enter-key-detector-directive>OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

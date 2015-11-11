@@ -1,7 +1,8 @@
 <ng-form name="imageView" novalidate>
-    {{urlTitle}}<input type="url" name="imageUrl" ng-model="image.url" ng-model-options="{updateOn: 'blur'}" required/>
-    <span class="errorMessage" ng-show="imageView.imageUrl.$error.required">Required!</span>
-    <span class="errorMessage" ng-show="imageView.imageUrl.$error.url">Sorry Not a Valid URL, Don't Forget to Use http://</span>
+    {{urlTitle}} <input type="url" name="imageUrl" ng-model="imageUrl" ng-model-options="{updateOn: 'blur'}" required size="50"/>
+    <div ng-messages="imageView.imageUrl.$error">
+        <div ng-messages-include="templates/messages.html" />
+    </div>
     <br><br>
-    <img name="imageView" ng-model="image.view" ng-src="{{image.url}}" err-src="Artefacts/noimageicon.jpg" height="300" style="border: 1px solid black;"/>
+    <img class="displayed" name="imageView" ng-model="imageView" ng-src="{{imageUrl}}" err-src="Artefacts/noimageicon.jpg" height="300"/>
 </ng-form>

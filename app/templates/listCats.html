@@ -25,13 +25,15 @@
         </div>
         <div class="row">
             <div class="btn-group">
-                <button type="button" ui-sref="editCat({id: selectedCat.id})" ng-click="editCat(selectedCat)">Edit</button>
+                <button type="button" ui-sref="editCat({id: selectedCat.id})">Edit</button>
                 <button type="button" ui-sref="addCat">Add</button>
                 <button type="button" ng-click="deleteCat(selectedCat)">Delete</button>
             </div>
         </div>
     </div>
     <div class="col col-sm-9">
-        <ui-view></ui-view>
+        <ui-view name="voteCat"></ui-view>
     </div>
+    <!--<a ui-sref="about">About</a>-->
+    <!--<ui-view name="about"></ui-view>-->
 </div>

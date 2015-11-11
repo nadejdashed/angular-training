@@ -1,79 +1,115 @@
-(function (module) {
+angular.module("app").service("catsService", function ($http, $q, $timeout, $resource, $cookies) {
 
-    var catsService = function ($http, $q, $timeout, $resource) {
-
-         var catsMuckup = [
-            {
-                name:'John',
-                src:'Artefacts/cat1.jpeg',
-                vote:0
-            },
-            {
-                name:'Mary',
-                src:'Artefacts/cat2.jpeg',
-                vote:0
-            },
-            {
-                name:'Mike',
-                src:'Artefacts/cat3.jpeg',
-                vote:0
-            },
-            {
-                name:'Adam',
-                src:'Artefacts/cat4.jpeg',
-                vote:0
-            },
-            {
-                name:'Julie',
-                src:'Artefacts/cat5.jpeg',
-                vote:0
-            }
-        ];
-
-        var catsResource = $resource("/cats/:id", {"id": "@id"}, {
-            'update': { method: "PUT"}
-        });
-
-        function getCats() {
-            return catsResource.query();
+     var catsMuckup = [
+        {
+            name:'John',
+            src:'Artefacts/cat1.jpeg',
+            vote:0
+        },
+        {
+            name:'Mary',
+            src:'Artefacts/cat2.jpeg',
+            vote:0
+        },
+        {
+            name:'Mike',
+            src:'Artefacts/cat3.jpeg',
+            vote:0
+        },
+        {
+            name:'Adam',
+            src:'Artefacts/cat4.jpeg',
+            vote:0
+        },
+        {
+            name:'Julie',
+            src:'Artefacts/cat5.jpeg',
+            vote:0
         }
+    ];
 
-        function getCatsPromise() {
-            //var defer = $q.defer();
-            //$timeout(function(){
-            //    defer.resolve(catsMuckup);
-            //}, 1000);
-            //return defer.promise;
+    var catsResource = $resource("/cats/:id", {"id": "@id"}, {
+        'update': { method: "PUT"}
+    });
 
-            return $http.get('/cats')
-                .then(function(resp) {
-                    return resp.data;
-                });
-        };
+    function getCats() {
+        return catsResource.query();
+    }
 
-        function addCatPromise(cat) {
-            return $http.post('/cats', cat)
-                .then(function(resp) {
-                    return resp.data;
-                });
-        };
-
-        function deleteCatPromise(cat) {
-            return $http.delete('/cats/'+cat.id)
-                .then(function(resp) {
-                    return resp.data;
-                });
-        };
-
-        return {
-            getCatsPromise: getCatsPromise,
-            getCats: getCats,
-            addCatPromise: addCatPromise,
-            deleteCatPromise: deleteCatPromise
-        };
-
+    function getCatPromiseById(id) {
+        return $http.get('/cats/'+id)
+            .then(function(resp) {
+                return resp.data;
+            });
     };
 
-    module.service("catsService", catsService)
+    function getCatsPromise() {
+        //var defer = $q.defer();
+        //$timeout(function(){
+        //    defer.resolve(catsMuckup);
+        //}, 1000);
+        //return defer.promise;
 
-}(angular.module("app")));
+        return $http.get('/cats')
+            .then(function(resp) {
+                return resp.data;
+            });
+    };
+
+    function addCatPromise(cat) {
+        return $http.post('/cats', cat)
+            .then(function(resp) {
+                return resp.data;
+            });
+    };
+
+    function updateCatPromise(cat) {
+        return $http.put('/cats/'+cat.id, cat)
+            .then(function(resp) {
+                return resp.data;
+            });
+    };
+
+    function deleteCatPromise(cat) {
+        return $http.delete('/cats/'+cat.id)
+            .then(function(resp) {
+                return resp.data;
+            });
+    };
+
+    function isVoteAvailableForCat(cat){
+        var votedCats = $cookies.getObject("votedCats");
+        return cat && votedCats.indexOf(cat.id) > 0;
+    }
+
+    function putCooke(cat) {
+        var votedCats = $cookies.getObject("votedCats");
+        if (!votedCats) {votedCats = [];}
+        votedCats.push(cat.id);
+        $cookies.putObject("votedCats", votedCats);
+    }
+
+    function voteUpForCat(cat) {
+        cat.vote++;
+        putCooke(cat);
+    };
+
+    function voteDownForCat(cat) {
+        cat.vote--;
+        putCooke(cat);
+    };
+
+
+    return {
+        getCatsPromise: getCatsPromise,
+        getCatPromiseById: getCatPromiseById,
+        getCats: getCats,
+        addCatPromise: addCatPromise,
+        updateCatPromise: updateCatPromise,
+        deleteCatPromise: deleteCatPromise,
+        voteUpForCat: voteUpForCat,
+        voteDownForCat: voteDownForCat,
+        isVoteAvailableForCat: isVoteAvailableForCat
+    };
+
+});

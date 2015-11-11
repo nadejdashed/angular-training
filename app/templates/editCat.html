@@ -1,26 +1,18 @@
-<style>
-    .errorMessage {
-        color: red;
-        font-weight: bold;
-    }
-</style>
-<form name="editCatForm" novalidate style="border: 1px solid grey" autofocus-directive="catName">
-    Cat's ID: <a>{{cat.id}}</a>
-    Cat's name: <input type="text" name="catName" ng-model="cat.name" required minlength="4"/>
-    <span class="errorMessage" ng-show="editCatForm.catName.$error.required">Required!</span>
-    <span class="errorMessage" ng-show="editCatForm.catName.$error.minlength">Cat's name is too short.</span>
-    <br>
-    <br>
-    <!--Cat’s picture url: <input type="url" name="catUrl" ng-model="cat.src" ng-model-options="{updateOn: 'blur'}" required/>-->
-    <!--<span class="errorMessage" ng-show="editCatForm.catUrl.$error.required">Required!</span>-->
-    <!--<span class="errorMessage" ng-show="editCatForm.catUrl.$error.url">Sorry Not a Valid URL, Don't Forget to Use http://</span>-->
-    <!--<br>-->
-    <!--<br>-->
-    <!--<img src="Artefacts/noimageicon.jpg" ng-src="{{cat.src}}" onerror="src='Artefacts/noimageicon.jpg'"  height="150" style="border: 1px solid black;"/>-->
-    <image-preview urlTitle="Cat’s picture url:" errorImageUrl = 'Artefacts/noimageicon.jpg'></image-preview>
-    <br>
-    <br>
-    <input type="submit" id="submit" value="Save" ng-disabled="editCatForm.$invalid" ng-click="submit(cat)" enter-key-detector-directive/>
-    <input type="button" id="cancel" value="Cancel" ui-sref="listView.vote({id: cat.id})"/>
-    <br>
-</form>
+<div class="modal-header">
+    <h3 class="modal-title">Edit cat #{{cat.id}}</h3>
+</div>
+<div class="modal-body">
+    <form name="editCatForm" novalidate style="border: 1px solid grey" autofocus-directive="catName">
+        Cat's name: <input type="text" name="catName" ng-model="cat.name" required minlength="4"/>
+        <div ng-messages="editCatForm.catName.$error">
+            <div ng-messages-include="templates/messages.html" />
+        </div>
+        <br>
+        <br>
+        <image-preview image-title="Cat’s picture url:" image-src="{{cat.src}}" image-err-src='Artefacts/noimageicon.jpg'></image-preview>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-disabled="editCatForm.$invalid" ng-click="submit(cat)" enter-key-detector-directive>OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
