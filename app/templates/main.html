@@ -12,10 +12,10 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
 
                 <img ng-src="{{cat.img}}" title="click me" >
                 <p>{{cat.id}}</p>
-                <h3>{{cat.name | uppercase }} <span ng-if="cat.clicks>0" ng-class="{'glyphicon glyphicon-ok':cat.clicks>0}"></span> </h3>
+                <h3>{{cat.name | uppercase }} <span ng-if="cat.vote>0" ng-class="{'glyphicon glyphicon-ok':cat.vote>0}"></span> </h3>
                 <p>{{cat.time | date : 'HH.mm.dd'}} </p>
 
-                 <div vote-spinner vote-val="cat.clicks" vote-callback="updateClicks(cat, voteInd)"></div>
+                 <div vote-spinner vote-val="cat.vote" vote-callback="updateClicks(cat, voteInd)"></div>
                 <hr>
                 <button ng-click="addCat(cat)" class="btn btn-success">add cat{{false | checker}}</button>
                 <button ng-click="editCat(cat)" class="btn btn-warning">edit cat{{false | checker}}</button>
@@ -23,7 +23,7 @@ Focus test: <input focus-on-load type="text" name="focusDirective">
 
             </div>
 
-            <p>this img clicked: <span>{{ cat.clicks }}</span> times</p>
+            <p>this img clicked: <span>{{ cat.vote }}</span> times</p>
         </li>
     </ul>
 </div>

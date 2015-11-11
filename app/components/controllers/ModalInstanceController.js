@@ -1,9 +1,9 @@
 //ModalInstanceCtrl
 
-angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, itemToDelete, currentAction) {
+angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, itemCurrent, currentAction) {
     // $currentActionProvider override itself depending on what btn pressed( Del/Add )
 
-    $scope.item = itemToDelete;
+    $scope.item = itemCurrent;
 
 
     $scope.okSave = function (item) {
@@ -18,10 +18,22 @@ angular.module('app').controller('ModalInstanceCtrl', function ($scope, $uibModa
             });
     };
 
+    $scope.okEdit = function () {
+        console.log('in currentAction button id',itemToDelete , ' $scope.item', $scope.item)
+        //debugger;
+        currentAction(itemCurrent).then(
+            function(){
+                $uibModalInstance.close()
+            },
+            function (){
+                console.log('error');
+            });
+    };
+
     $scope.okDelete = function () {
         console.log('in currentAction button id',itemToDelete , ' $scope.item', $scope.item)
         //debugger;
-        currentAction(itemToDelete).then(
+        currentAction(itemCurrent).then(
             function(){
                 $uibModalInstance.close()
             },

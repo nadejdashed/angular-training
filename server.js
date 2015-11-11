@@ -45,6 +45,10 @@ app.use(expressIO.static(__dirname + '/' + folder));
 
 // Authorization
 function checkAuth(req, res, next) {
+    console.log('start checkAuth');
+    next();
+}
+function checkAuthOk(req, res, next) {
   /*var strToken = req.headers["authorization"],
     token;
 

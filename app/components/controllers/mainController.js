@@ -33,7 +33,7 @@
         $scope.currentCat ={
                 name: '',
                 img:'',
-                clicks: 0};
+                vote: 0};
 
         $scope.counterTotal = 0;
 
@@ -43,20 +43,18 @@
         };
 
         $scope.updateClicks = function(currentCat, voteInt){
-            currentCat.clicks = voteInt;
-            console.log('update for cat:' ,currentCat, '\n clicks', voteInt);
+            currentCat.vote = voteInt;
+            console.log('vote click :' ,currentCat.name, '\t vote', voteInt);
         }
 
-        function addCatLocal (pet){
+        function addCatLocal(pet){
             var promise = serverCommunication.createItemHttp(pet);
             promise.then(function (resp) {
-                    console.log('addCatLocal:  id', pet.id, 'pet.time',pet.time, 'resp', resp);
-                    //update list here
-                    $scope.allCats.push(resp.data);
-                    //update list here END
+                    console.log('addCatLocal:', pet, 'resp', resp);
+                    $scope.allCats.push(resp.data);//update list
                 },
                 function (reject) {
-                    Error(reject);
+                    errorHandler(reject);
                 }
             );
             return promise
@@ -64,8 +62,6 @@
 
         $scope.addCat = function(pet){
             console.log('addCatLocal:  id', pet.id, 'add pet.timestamp', pet.time );
-
-
             var modalInstance;
             modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -73,7 +69,8 @@
                 controller: 'ModalInstanceCtrl',
                 resolve: {
                     // need for modalController
-                    itemToDelete: function () {
+                    itemCurrent: function () {
+                        pet.vote = 0; //set vote=0
                         console.info('inside itemToAdd: pet', pet);
                         return pet;
                     },
@@ -83,28 +80,59 @@
                 }
             });
 
-            modalInstance.result.then(function (selectedItem) {
+            /*modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
                 console.info('$scope.selected',$scope.selected);
                 console.warn('****** $scope.allCats ********* should be Array here', $scope.allCats);
             }, function () {
                 console.info('Modal dismissed at: ' + new Date());
             });
+*/
+        };
+        function fnEditLocal(pet){
+            var promise = serverCommunication.removeItemHttp(pet);
+            promise.then(function (resp) {
+                    //pet.time *= 1000;
+                    console.log('cat updated id:', pet.id,'resp', resp);
+                    //$scope.allCats.splice(-1,1); //update list
+                },
+                function (reject) {
+                    errorHandler(reject);
+                },
+                function (progress) {
+                    console.info('progress: ', progress);
+                }
+            );
+            return promise
+        }
 
+        $scope.editCat = function(pet){
+            $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'templates/editCat.html',
+                controller: 'ModalInstanceCtrl',
+                resolve: {
+                    // need for modalController
+                    itemCurrent: function () {
+                        console.info('inside itemToDelete: pet', pet);
+                        return pet;
+                    },
+                    currentAction: function () {
+                        return fnEditLocal
+                    }
+                }
+            });
         };
 
-        function fnDeleteLocal (pet){
+        function fnDeleteLocal(pet){
             var promise = serverCommunication.removeItemHttp(pet);
             promise.then(function (resp) {
                     pet.time *= 1000;
                     console.log('remove id', pet.id, 'pet.time',new Date().getDate(), 'resp', resp);
-                    //update list here
-                    //$scope.allCats = resp.data;
-                    $scope.allCats.splice(-1,1);
-                    //update list here END
+                    $scope.allCats.splice(-1,1); //update list
                 },
                 function (reject) {
-                    Error(reject);
+                    errorHandler(reject);
                 },
                 function (progress) {
                     console.info('progress: ', progress);
@@ -114,15 +142,13 @@
         }
 
         $scope.removeCat = function(pet){
-
-            var modalInstance;
-            modalInstance = $uibModal.open({
+            $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'templates/deleteCat.html',
                 controller: 'ModalInstanceCtrl',
                 resolve: {
                     // need for modalController
-                    itemToDelete: function () {
+                    itemCurrent: function () {
                         console.info('inside itemToDelete: pet', pet);
                         return pet;
                     },
@@ -131,15 +157,6 @@
                     }
                 }
             });
-
-            modalInstance.result.then(function (itemToDelete) {
-                $scope.selected = itemToDelete;
-                console.info('$scope.selected',$scope.selected ,'$scope.allCats:', $scope.allCats);
-
-            }, function () {
-                console.info('Modal dismissed at: ' + new Date());
-            });
-
         };
 
         $scope.sort = function(searchStringVal){

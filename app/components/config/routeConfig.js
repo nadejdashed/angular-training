@@ -16,7 +16,6 @@
  */
 
 angular.module("app")
-
     .config(function($stateProvider, $urlRouterProvider , $locationProvider){
         //$locationProvider.html5Mode(true);
 
@@ -32,6 +31,7 @@ angular.module("app")
                     }
                 }
             })
+
             .state('route1', {
                 url: "/main",
                 views: {
@@ -43,8 +43,7 @@ angular.module("app")
                         templateUrl: "/templates/textEmoticons.html",
                         controller: 'emoticoneController'
                     }
-                },
-
+                }
                 })
                 .state('route1.detail', {
                     url: "/detail",
@@ -66,6 +65,12 @@ angular.module("app")
                 template: "<h1>about</h1>"
 
             })
+            .state('login', {
+                url: "/login",
+                templateUrl: "/templates/login.html",
+                controller: 'autentificationController'
+            })
+
     }
 
 );
