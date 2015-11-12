@@ -2,8 +2,8 @@
     function ($scope, $cookies, $filter, catsService) {
         //$scope.selectedCat = selectedCat;
 
-        $scope.isVoteAvailableForCat = function (cat) {
-            return catsService.isVoteAvailableForCat(cat);
+        $scope.isNotAvailableVoteForCat = function (cat) {
+            return catsService.isNotAvailableVoteForCat(cat);
         };
 
         $scope.voteUpForCat = function (cat) {

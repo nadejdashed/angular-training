@@ -12,3 +12,22 @@ ng-message.errorMessage {
      color: red;
      font-weight: bold;
 }
+
+li.list-group-item {
+    cursor: pointer
+}
+
+li.list-group-item:hover,
+li.list-group-item:focus {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
+li.list-group-item[enabled=true] {
+    color: darkgrey;
+}
+
+li.list-group-item[selectedItem=true] {
+    text-decoration: underline;
+}

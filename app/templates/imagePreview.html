@@ -1,5 +1,5 @@
 <ng-form name="imageView" novalidate>
-    {{urlTitle}} <input type="url" name="imageUrl" ng-model="imageUrl" ng-model-options="{updateOn: 'blur'}" required size="50"/>
+    {{urlTitle}} <input type="url" name="imageUrl" ng-model="imageUrl" ng-model-options="{debounce: 1000}" required size="50"/>
     <div ng-messages="imageView.imageUrl.$error">
         <div ng-messages-include="templates/messages.html" />
     </div>

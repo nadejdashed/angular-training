@@ -77,26 +77,30 @@ angular.module("app").service("catsService", function ($http, $q, $timeout, $res
             });
     };
 
-    function isVoteAvailableForCat(cat){
+    function isNotAvailableVoteForCat(cat){
         var votedCats = $cookies.getObject("votedCats");
-        return cat && votedCats.indexOf(cat.id) > 0;
+        return cat!=undefined && votedCats!=undefined && votedCats.indexOf(cat.id) >= 0;
     }
 
     function putCooke(cat) {
         var votedCats = $cookies.getObject("votedCats");
         if (!votedCats) {votedCats = [];}
-        votedCats.push(cat.id);
-        $cookies.putObject("votedCats", votedCats);
+        if (votedCats.indexOf(cat.id)<0) {
+            votedCats.push(cat.id);
+            $cookies.putObject("votedCats", votedCats);
+        }
     }
 
     function voteUpForCat(cat) {
         cat.vote++;
         putCooke(cat);
+        updateCatPromise(cat);
     };
 
     function voteDownForCat(cat) {
         cat.vote--;
         putCooke(cat);
+        updateCatPromise(cat);
     };
 
 
@@ -109,7 +113,7 @@ angular.module("app").service("catsService", function ($http, $q, $timeout, $res
         deleteCatPromise: deleteCatPromise,
         voteUpForCat: voteUpForCat,
         voteDownForCat: voteDownForCat,
-        isVoteAvailableForCat: isVoteAvailableForCat
+        isNotAvailableVoteForCat: isNotAvailableVoteForCat
     };
 
 });

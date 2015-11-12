@@ -6,10 +6,16 @@
         <img class="displayed" ng-src="{{selectedCat.src}}" err-src='Artefacts/noimageicon.jpg' height="300"/>
     </div>
     <div class="panel-footer">
-        <div class="btn-group">
-            <button type="button" ng-click="voteUpForCat(selectedCat)" ng-disabled="isVoteAvailableForCat(selectedCat)">+</button>
-            <button type="button" ng-click="voteDownForCat(selectedCat)" ng-disabled="isVoteAvailableForCat(selectedCat)">-</button>
+        <!--glyphicons-->
+        <!--glyphicons-circle-plus-->
+        <div class="btn-group-sm" role="group">
+            <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-up" ng-click="voteUpForCat(selectedCat)" ng-disabled="isNotAvailableVoteForCat(selectedCat)">
+            </button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-down" ng-click="voteDownForCat(selectedCat)" ng-disabled="isNotAvailableVoteForCat(selectedCat)">
+            </button>
+            <span class="badge">
+                {{selectedCat.vote}}
+            </span>
         </div>
-        vote: {{selectedCat.vote}}
     </div>
 </div>
