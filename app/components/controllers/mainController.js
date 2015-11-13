@@ -54,7 +54,7 @@
                     $scope.allCats.push(resp.data);//update list
                 },
                 function (reject) {
-                    errorHandler(reject);
+                    errorHandler.connectionError(reject);
                 }
             );
             return promise
@@ -97,7 +97,7 @@
                     //$scope.allCats.splice(-1,1); //update list
                 },
                 function (reject) {
-                    errorHandler(reject);
+                    errorHandler.connectionError(reject);
                 },
                 function (progress) {
                     console.info('progress: ', progress);
@@ -132,7 +132,7 @@
                     $scope.allCats.splice(-1,1); //update list
                 },
                 function (reject) {
-                    errorHandler(reject);
+                    errorHandler.connectionError(reject);
                 },
                 function (progress) {
                     console.info('progress: ', progress);
