@@ -1,5 +1,5 @@
 angular.module("app").controller("listCatsController",
-    function ($scope, $cookies, $filter, $uibModal, catsService, selectedCat) {
+    function ($scope, $cookies, $filter, $uibModal, catsService, voteService, selectedCat) {
 
         var didSelectCatFunction = function (cat) {
             $scope.selectedCat = cat;
@@ -16,6 +16,10 @@ angular.module("app").controller("listCatsController",
         var clearFilter = function () {
             $scope.newFilterText="";
             applyFilter("");
+        };
+
+        $scope.isCatVoted = function (cat) {
+            return voteService.isCatVoted(cat);
         };
 
         clearFilter();

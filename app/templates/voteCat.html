@@ -9,13 +9,10 @@
         <!--glyphicons-->
         <!--glyphicons-circle-plus-->
         <div class="btn-group-sm" role="group">
-            <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-up" ng-click="voteUpForCat(selectedCat)" ng-disabled="isNotAvailableVoteForCat(selectedCat)">
+            <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-up" ng-click="voteUpForCat(selectedCat)" ng-disabled="isCatVoted(selectedCat)">
             </button>
-            <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-down" ng-click="voteDownForCat(selectedCat)" ng-disabled="isNotAvailableVoteForCat(selectedCat)">
+            <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-down" ng-click="voteDownForCat(selectedCat)" ng-disabled="isCatVoted(selectedCat)">
             </button>
-            <span class="badge">
-                {{selectedCat.vote}}
-            </span>
         </div>
     </div>
 </div>

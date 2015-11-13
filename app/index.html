@@ -14,8 +14,15 @@
         }
     </style>
 </head>
-<body ng-app="app">
-
+<body ng-app="app" ng-cloak>
+    <nav class="navbar navbar-default" ng-controller="indexController">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text">{{login}}</p></li>
+                <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
     <ui-view></ui-view>
 
     <!-- /build -->
@@ -29,16 +36,28 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/config/uiroute.config.js"></script>
+    <script src="/app/components/services/cats.service.js"></script>
+    <script src="/app/components/services/vote.service.js"></script>
+    <script src="/app/components/services/login.service.js"></script>
+    <script src="/app/components/services/user.service.js"></script>
     <script src="/app/components/controllers/listCats.controller.js"></script>
     <script src="/app/components/controllers/addCat.controller.js"></script>
     <script src="/app/components/controllers/editCat.controller.js"></script>
     <script src="/app/components/controllers/voteCat.controller.js"></script>
     <script src="/app/components/controllers/modalMessage.controller.js"></script>
-    <script src="/app/components/services/cats.service.js"></script>
+    <script src="/app/components/controllers/login.controller.js"></script>
+    <script src="/app/components/controllers/indexController.js"></script>
     <script src="/app/components/directives/imagePreview.directive.js"></script>
     <script src="/app/components/directives/autofocus.directive.js"></script>
     <script src="/app/components/directives/enterKeyDetector.directive.js"></script>
     <script src="/app/components/directives/imageValidator.directive.js"></script>
+    <script src="/app/components/interseptors/auth.interseptor.js"></script>
     <!-- /build -->
+
+    <script src="/app/modules/alerts/alerts.module.js"></script>
+    <script src="/app/modules/alerts/alerts.interceptor.js"></script>
+    <script src="/app/modules/alerts/alerts.directive.js"></script>
+    <script src="/app/modules/alerts/alerts.service.js"></script>
+
 </body>
 </html>

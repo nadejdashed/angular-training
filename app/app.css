@@ -31,3 +31,7 @@ li.list-group-item[enabled=true] {
 li.list-group-item[selectedItem=true] {
     text-decoration: underline;
 }
+
+span.badge.voted {
+    background-color: green;
+}

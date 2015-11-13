@@ -65,5 +65,9 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
                 });
 
         }
+    }).state('login', {
+        url: '/login',
+        templateUrl: '/templates/login.html',
+        controller: 'loginController'
     });
 });

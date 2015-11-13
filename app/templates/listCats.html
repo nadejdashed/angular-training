@@ -38,9 +38,16 @@
                     <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" ng-show="cat==selectedCat"></span>
                     {{cat.name}}
                     <span class="badge">
-                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" ng-show="cat.vote>0"></span>
-                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" ng-show="cat.vote<0"></span>
-                        {{cat.vote}}
+                        <div class="animate-switch-container" ng-switch on="ddd">
+                            <div class="animate-switch" ng-switch-when="true">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" ng-show="cat.vote>0"></span>
+                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" ng-show="cat.vote<0"></span>
+                                {{cat.vote}}
+                            </div>
+                            <div class="animate-switch" ng-switch-default>
+                                ?
+                            </div>
+                        </div>
                     </span>
                     <span class="badge" style="font-size: smaller" ng-hide="cat.wasAlreadyViewed">
                         new!

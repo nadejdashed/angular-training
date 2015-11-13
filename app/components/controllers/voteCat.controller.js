@@ -1,17 +1,17 @@
 ﻿angular.module("app").controller("voteCatController",
-    function ($scope, $cookies, $filter, catsService) {
+    function ($scope, voteService) {
         //$scope.selectedCat = selectedCat;
 
-        $scope.isNotAvailableVoteForCat = function (cat) {
-            return catsService.isNotAvailableVoteForCat(cat);
+        $scope.isCatVoted = function (cat) {
+            return voteService.isCatVoted(cat);
         };
 
         $scope.voteUpForCat = function (cat) {
-            catsService.voteUpForCat(cat);
+            voteService.voteUpForCat(cat);
         };
 
         $scope.voteDownForCat = function (cat) {
-            catsService.voteDownForCat(cat);
+            voteService.voteDownForCat(cat);
         };
     }
 );
