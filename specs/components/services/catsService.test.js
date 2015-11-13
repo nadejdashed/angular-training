@@ -6,6 +6,7 @@ describe('catsServiceTest', function () {
         newUpdatedData,
         dataAfterDeleting,
         dataAfterAdding,
+        catForDeleting,
         $rootScope;
 
 
@@ -61,18 +62,18 @@ describe('catsServiceTest', function () {
 
         // Deleting
         dataAfterDeleting = returnedData.slice();
-        var catForDeleting = returnedData[3];
+        catForDeleting = returnedData[3];
         dataAfterDeleting.pop();
 
-        $httpBackend.whenDELETE('/cats/4', catForDeleting).respond(dataAfterDeleting);
+        $httpBackend.whenDELETE('/cats/4', catForDeleting).respond(catForDeleting);
 
         // Saving
         dataAfterAdding = dataAfterDeleting.slice();
-        var catForAdding = returnedData[3];
-        dataAfterAdding.push(catForAdding);
+        dataAfterAdding.push(catForDeleting);
 
-        $httpBackend.whenPOST('/cats', catForAdding).respond(dataAfterAdding);
+        $httpBackend.whenPOST('/cats', catForDeleting).respond(dataAfterAdding);
 
+        console.log(catForDeleting);
     }));
 
     afterEach(function() {
@@ -125,12 +126,12 @@ describe('catsServiceTest', function () {
 
     it('Should remove cat!', function(){
 
-        var catForRemoving = returnedData[3];
+        console.log(catForDeleting);
 
-        $httpBackend.expectDELETE('/cats/4', catForRemoving);
+        $httpBackend.expectDELETE('/cats/4', catForDeleting);
 
-        catsService.deleteSelectedCat(catForRemoving).then(function (data) {
-            expect(data).toEqual(dataAfterDeleting);
+        catsService.deleteSelectedCat(catForDeleting).then(function (data) {
+            expect(data).toEqual(catForDeleting);
 
             var isValid = catsService.getValid()
             expect(isValid).toEqual(false);
@@ -141,11 +142,9 @@ describe('catsServiceTest', function () {
 
     it('Should add removed cat!', function(){
 
-        var catForPosting = returnedData[3];
+        $httpBackend.expectPOST('/cats', catForDeleting);
 
-        $httpBackend.expectPOST('/cats', catForPosting);
-
-        catsService.saveCat(catForPosting).then(function (response) {
+        catsService.saveCat(catForDeleting).then(function (response) {
             expect(response.data).toEqual(dataAfterAdding);
 
             var isValid = catsService.getValid()

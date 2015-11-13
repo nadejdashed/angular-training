@@ -8,8 +8,7 @@
 
             if ($scope.editForm.$valid) {
 
-                catsService.updateCat(cat).then(function () {
-
+                catsService.updateCat(cat).then(function (data) {
                     $state.go('cats.preview', {id: cat.id});
                 });
             }

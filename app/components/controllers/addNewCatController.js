@@ -1,6 +1,6 @@
 (function(module) {
 
-    var addNewCatController = function ($scope, catsService) {
+    var addNewCatController = function ($scope, catsService, $state) {
 
 
         $scope.catForSaving = {};
@@ -12,6 +12,7 @@
                 catsService.saveCat(newCat).then(function () {
 
                     $scope.catForSaving = {};
+                    $state.go('cats');
 
                 });
             }

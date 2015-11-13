@@ -1,0 +1,56 @@
+<div align="center" class="col col-sm-4" ng-form name="authForm" class="container">
+
+    <div class="registrationHeader"><strong>Registration</strong></div>
+
+    <div><label>Enter login name:</label>
+
+        <span> <input name="authName" required ng-pattern="/([A-Z])\w+/" focus-directive ng-model="registrationData.login"/></span>
+
+        <div ng-show="authForm.authName.$error.required">Required*</div>
+        <div ng-show="authForm.authName.$error.pattern">Pattern</div>
+    </div>
+
+    <div><label>Enter password:</label>
+
+        <span> <input name="authPassword" type=password required ng-model="registrationData.password"/></span>
+
+        <div ng-show="authForm.authPassword.$error.required">Required*</div>
+    </div>
+
+    <div><label>Confirm password:</label>
+
+        <span> <input name="authPasswordConfirm" required type=password ng-model="registrationData.password2"/></span>
+
+        <div ng-show="authForm.authPasswordConfirm.$error.required">Required*</div>
+    </div>
+
+    <div>
+        <button ng-disabled="authForm.$invalid" ng-click="registerNewUser(registrationData)"> <strong>SIGN UP</strong> </button>
+        <span><button ng-click="cancelRegistration(registrationData)"> <strong>CANCEL</strong> </button></span>
+    </div>
+</div>
+
+<div align="center" class="col col-sm-4" ng-form name="loginForm" class="container">
+
+    <div class="registrationHeader"><strong>Login</strong></div>
+
+    <div><label>Enter login name:</label>
+
+        <span> <input name="loginName" required ng-pattern="/([A-Z])\w+/" focus-directive ng-model="loginData.login"/></span>
+
+        <div ng-show="loginForm.loginName.$error.required">Required*</div>
+        <div ng-show="loginForm.loginName.$error.pattern">Pattern</div>
+    </div>
+
+    <div><label>Enter password:</label>
+
+        <span> <input name="loginPassword" type=password required ng-model="loginData.password"/></span>
+
+        <div ng-show="loginForm.loginPassword.$error.required">Required*</div>
+    </div>
+
+    <div>
+        <button ng-disabled="loginForm.$invalid" ng-click="loginUser(loginData)"> <strong>LOGIN</strong> </button>
+        <span><button ng-click="cancelLogin(loginData)"> <strong>CANCEL</strong> </button></span>
+    </div>
+</div>

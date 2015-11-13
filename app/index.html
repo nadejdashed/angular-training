@@ -19,18 +19,28 @@
 </head>
 <body ng-app="app" ng-cloak>
 
+
     <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-            <li class="">
-                <a ui-sref="cats">Cats</a>
-            </li>
-            <li class="">
-                <a ui-sref="adding">Cat adding</a>
-            </li>
-            <li class="">
-                <a ui-sref="about">About</a>
-            </li>
-        </ul>
+        <div class="col col-sm-11">
+
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a ui-sref="cats">Cats</a>
+                </li>
+                <li class="">
+                    <a ui-sref="adding">Cat adding</a>
+                </li>
+                <li class="">
+                    <a ui-sref="about">About</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col col-sm-1">
+            <button class="loginBtn" ui-sref="login"><strong> Log in </strong></button>
+        </div>
+
     </nav>
 
 
@@ -48,6 +58,9 @@
     <script src="/app/components/controllers/editController.js"></script>
     <script src="/app/components/controllers/loginController.js"></script>
     <script src="/app/components/services/catsService.js"></script>
+    <script src="/app/components/services/userService.js"></script>
+    <script src="/app/components/services/authService.js"></script>
+    <script src="/app/components/interceptors/authInterceptor.js"></script>
     <script src="/app/components/directives/focusDirective.js"></script>
     <script src="/app/components/directives/imagePreviewDirective.js"></script>
     <script src="/app/components/directives/voteSpinnerDirective.js"></script>

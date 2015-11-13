@@ -43,7 +43,8 @@ angular.module("app").config(function($stateProvider, $urlRouterProvider, $locat
         template: 'I am learning Angular!'
     }).state('login', {
         url: '/login',
-        template: ''
+        templateUrl: '/templates/login.html',
+        controller: 'loginController'
     });
 
 });

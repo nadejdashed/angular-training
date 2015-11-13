@@ -1,6 +1,6 @@
 (function(module) {
 
-    var catsService = function ($q, $http) {
+    var catsService = function ($q, $http, userService) {
 
         var isValidData = false;
 
@@ -25,11 +25,24 @@
             return $http.post('/cats', cat);
         }
 
+        var updateAfterLogin = function (cat) {
+            $http.put('/cats/'+ cat.id , cat).then(function (response) {
+                return response.data;
+            });
+        }
+
         var updateCat = function (cat) {
 
             isValidData = false;
 
+            var dCat = cat;
+            dCat.toString();
+
+            userService.setCatForDelay(dCat);
+
             return $http.put('/cats/'+ cat.id , cat).then(function (response) {
+
+                userService.setCatForDelay({});
 
                 return response.data;
             });
@@ -40,9 +53,6 @@
             isValidData = false;
 
             return $http.delete('/cats/'+ cat.id , cat).then(function (response) {
-
-                console.log(response.data);
-
                 return response.data;
             });
         }
