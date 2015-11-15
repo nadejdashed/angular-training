@@ -59,8 +59,9 @@
             <ul class="nav navbar-nav">
                 <li><a ui-sref="route1">Main</a></li>
                 <li><a ui-sref="route2">About</a></li>
-                <li><a ui-sref="login">Login</a></li>
+                <li ng-controller = "loginController"><a ui-sref="login">Login</a> </li>
             </ul>
+            <span>welcome {{userCurrent}}</span>
         </div>
     </div>
 </nav>

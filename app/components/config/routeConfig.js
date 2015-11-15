@@ -5,11 +5,11 @@
 
  Add all the corresponding routes.
 
- Create a route that requires no template or controller, such as a “site version” page or simple
+ Create a route that requires no template or controller, such as a ï¿½site versionï¿½ page or simple
 
- “about” page.  (i.e. Use ‘template’ instead of ‘templateUrl’).
+ ï¿½aboutï¿½ page.  (i.e. Use ï¿½templateï¿½ instead of ï¿½templateUrlï¿½).
 
- Add a ‘resolve’ property of /cats and /cat/:id so that the page doesn’t load until the events
+ Add a ï¿½resolveï¿½ property of /cats and /cat/:id so that the page doesnï¿½t load until the events
 
  have been loaded.
 
@@ -62,13 +62,19 @@ angular.module("app")
 
             .state('route2', {
                 url: "/about",
-                template: "<h1>about</h1>"
-
+                templateUrl: "/templates/about.html"
             })
             .state('login', {
                 url: "/login",
                 templateUrl: "/templates/login.html",
-                controller: 'autentificationController'
+                controller: 'loginController',
+                resolve: {
+                    userCurrent: function(){
+                        //$scope.userCurrent =  'resolve'
+                        console.log('resolve userCurrent: ');
+                    //return $scope.userCurrent ;
+                    }
+                }
             })
 
     }

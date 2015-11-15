@@ -1,4 +1,4 @@
-<!--modal current controller is mainController-->
+<!--modal current controller is mainController, loginController-->
 <div>
 
     <div class="modal-header">
@@ -9,17 +9,17 @@
         <ng-form class="form-inline">
             <div class="form-group">
                 <label for="exampleInputName2">User name</label>
-                <input ng-model='userNew.name'type="text" class="form-control" id="exampleInputName2" placeholder="Name">
+                <input ng-model='newUser.name'type="text" class="form-control" id="exampleInputName2" placeholder="Name">
             </div>
             <div class="form-group">
                 <label for="password">User password</label>
-                <input ng-model='user.pass' type="url" class="form-control" id="password" placeholder="password">
+                <input ng-model='newUser.pass' type="password" class="form-control" id="password" placeholder="password">
             </div>
             <div class="form-group">
                 <label for="password-repeat">User password</label>
-                <input ng-model='user.repeatPass' type="url" class="form-control" id="password-repeat" placeholder="password">
+                <input ng-model='newUser.repeatPass' type="password" class="form-control" id="password-repeat" placeholder="password">
             </div>
-            <button class="btn btn-warning" type="button" ng-click="register(user)">Register</button>
+            <button class="btn btn-warning" type="button" ng-click="register(newUser)">Register</button>
 
         </ng-form>
     </div>
@@ -37,10 +37,11 @@
             </div>
             <div class="form-group">
                 <label for="password">User password</label>
-                <input ng-model='user.pass' type="url" class="form-control" id="password" placeholder="password">
+                <input ng-model='user.pass' type="password" class="form-control" id="password" placeholder="password">
             </div>
             <button class="btn btn-primary" type="button" ng-click="login(user)">Login</button>
-
+            <button class="btn btn-primary" type="button" ng-click="logout()">logout</button>
+            <span> welcome: {{userCurrent}}</span>
         </ng-form>
     </div>
 

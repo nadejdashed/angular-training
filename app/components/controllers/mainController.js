@@ -4,7 +4,7 @@
 
         $scope.allCats =[];
 
-        /* try load data using Resource */
+        /* load data using Resource */
         function initCatsResource() {
             $scope.allCats = serverCommunication.getDataResource();
             //$scope.allCats.$promise.then(function(){});
@@ -89,6 +89,7 @@
             });
 */
         };
+
         function fnEditLocal(pet){
             var promise = serverCommunication.removeItemHttp(pet);
             promise.then(function (resp) {

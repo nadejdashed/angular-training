@@ -44,12 +44,12 @@ app.use(expressIO.static(__dirname + '/'));
 app.use(expressIO.static(__dirname + '/' + folder));
 
 // Authorization
+//function checkAuth(req, res, next) {
+//    console.log('start checkAuth');
+//    next();
+//}
 function checkAuth(req, res, next) {
-    console.log('start checkAuth');
-    next();
-}
-function checkAuthOk(req, res, next) {
-  /*var strToken = req.headers["authorization"],
+  var strToken = req.headers["authorization"],
     token;
 
   currentUser = {};
@@ -69,7 +69,7 @@ function checkAuthOk(req, res, next) {
           .send({status: 'error', code: "NOPERMISSION", error: "No authorized"});
       }
     }
-  });*/
+  });
   next();
 }
 app.post('/register', function(req, res){
@@ -82,18 +82,22 @@ app.post('/register', function(req, res){
     savedUser.password = password;
     res.send({status: 'success'});
   } else {
-    res.error({status: 'error'});
+    res.send({status: 'error'});
   }
 });
-app.get('/auth', checkAuth, function(req, res){
-  res.send({status: 'success'});
-});
+
+//not worked
+//app.get('/auth', checkAuth, function(req, res){
+//  res.send({status: 'success'});
+//});
+
 app.post('/auth', function(req, res) {
   var user = {
       login: req.body.login,
       password: req.body.password
     },
     token;
+    console.log('---app.post(/auth)--- : user' ,user,'token',token);
 
   if (user.login && user.password && user.login === savedUser.login && user.password === savedUser.password) {
     token = jwt.sign(user, securityCode);

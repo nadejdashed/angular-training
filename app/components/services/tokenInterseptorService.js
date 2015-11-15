@@ -1,7 +1,7 @@
 /**
  * Created by Pavlo_Oliinyk1 on 11/10/2015.
  */
-angular.module('app').service('tokenInjector', function($location, $injector) {
+angular.module('app').service('tokenInjector', function($location, $injector, $q) {
 
     //cookieStore = $injector.get('$cookieStore');
     //it throw error:  Unknown provider: $cookieStoreProvider <- $cookieStore <- tokenInjector <- $http <- $templateRequest <- $compile
@@ -32,11 +32,11 @@ angular.module('app').service('tokenInjector', function($location, $injector) {
     };*/
     var tokenInjector = {
         request: function(config){
-            var autentificationSrv = $injector.get('authService');
-            var token = autentificationSrv.getToken();
+            var authenticationSrv = $injector.get('authenticationSrv');
+            var token = authenticationSrv.getToken();
 
             if (token){
-                config.headers['Authorization'] = 'Bearer ' + token;
+                config.headers['authorization'] = '************Pasha ' + token;
             }
             return config;
         },
