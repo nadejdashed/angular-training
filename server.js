@@ -41,7 +41,7 @@ function checkAuth(req, res, next) {
     token;
 
   currentUser = {};
-  token = strToken ? req.headers["authorization"].replace('Bearer ', '') : '';
+  token = strToken ? strToken.replace('Bearer ', '') : '';
   jwt.verify(token, securityCode, function(err, decoded) {
     if (err) {
       res
@@ -58,7 +58,7 @@ function checkAuth(req, res, next) {
       }
     }
   });
-  next();
+  //next();
 }
 app.post('/register', function(req, res){
   var login = req.body.login,

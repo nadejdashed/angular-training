@@ -1,5 +1,5 @@
 angular.module("app").service("catsService",
-    function ($http, $q, $timeout, $resource, $cookies) {
+    function ($http, $q, $timeout, $resource, $cookies, catsFactoryService) {
 
         var catsMuckup = [
             {
@@ -40,14 +40,16 @@ angular.module("app").service("catsService",
         function getCatPromiseById(id) {
             return $http.get('/cats/'+id)
                 .then(function(resp) {
-                    return resp.data;
+                    return catsFactoryService.catItemForResp(resp.data);
+                    //return resp.data;
                 });
         };
 
         function getCatsPromise() {
             return $http.get('/cats')
                 .then(function(resp) {
-                    return resp.data;
+                    return catsFactoryService.catsArrayForResp(resp.data);
+                    //return resp.data;
                 });
         };
 

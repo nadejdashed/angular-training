@@ -7,7 +7,8 @@
         };
 
         $scope.voteUpForCat = function (cat) {
-            voteService.voteUpForCat(cat);
+            cat.voteUp();
+            //voteService.voteUpForCat(cat);
         };
 
         $scope.voteDownForCat = function (cat) {

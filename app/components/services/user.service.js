@@ -1,5 +1,5 @@
 angular.module("app").service("userService",
-    function($window) {
+    function($window, $rootScope) {
         var login = $window.sessionStorage.getItem("login");
         var token = $window.sessionStorage.getItem("token");
 
@@ -15,6 +15,12 @@ angular.module("app").service("userService",
                 token = newToken;
                 $window.sessionStorage.setItem("login", login);
                 $window.sessionStorage.setItem("token", token);
+            },
+            clearLoginWithToken: function() {
+                login = "";
+                token = "";
+                $window.sessionStorage.removeItem("login");
+                $window.sessionStorage.removeItem("token");
             }
         }
     }

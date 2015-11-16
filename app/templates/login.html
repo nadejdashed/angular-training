@@ -1,12 +1,12 @@
-<input ng-model="newuser.login"/>
-<input ng-model="newuser.password"/>
-<input ng-model="newuser.password2"/>
+<input ng-model="newuser.login" ng-init="newuser.login='user1'"/>
+<input ng-model="newuser.password" ng-init="newuser.password='user1'"/>
+<input ng-model="newuser.password2" ng-init="newuser.password2='user1'"/>
 
 <button ng-click="signUpUser(newuser)">Sign Up</button>
 
 <br/>
 
-<input ng-model="user.login"/>
-<input ng-model="user.password"/>
+<input ng-model="user.login" ng-init="user.login='user1'"/>
+<input ng-model="user.password" ng-init="user.password='user1'"/>
 
 <button ng-click="loginUser(user)">Login</button>
