@@ -11,6 +11,7 @@ angular.module("app").factory("authInterceptor",
             responseError: function(resp) {
                 var  $state = $injector.get("$state");
                 if (resp.status === 403 || resp.status === 401) {
+                    userService.clearLoginWithToken();
                     $state.go("login");
                 }
                 return $q.reject(resp);

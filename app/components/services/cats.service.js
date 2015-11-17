@@ -40,7 +40,8 @@ angular.module("app").service("catsService",
         function getCatPromiseById(id) {
             return $http.get('/cats/'+id)
                 .then(function(resp) {
-                    return catsFactoryService.catItemForResp(resp.data);
+                    return new catsFactoryService(resp.data);
+                    //return catsFactoryService.catItemForResp(resp.data);
                     //return resp.data;
                 });
         };
@@ -48,20 +49,26 @@ angular.module("app").service("catsService",
         function getCatsPromise() {
             return $http.get('/cats')
                 .then(function(resp) {
-                    return catsFactoryService.catsArrayForResp(resp.data);
+                    var catsArray = [];
+                    angular.forEach(resp.data, function(itemData) {
+                        catsArray.push(new catsFactoryService(itemData));
+                    });
+                    return catsArray;
+
+                    //return catsFactoryService.catsArrayForResp(resp.data);
                     //return resp.data;
                 });
         };
 
         function addCatPromise(cat) {
-            return $http.post('/cats', cat)
+            return $http.post('/cats', cat.getJSONData())
                 .then(function(resp) {
                     return resp.data;
                 });
         };
 
         function updateCatPromise(cat) {
-            return $http.put('/cats/'+cat.id, cat)
+            return $http.put('/cats/'+cat.id, cat.getJSONData())
                 .then(function(resp) {
                     return resp.data;
                 });

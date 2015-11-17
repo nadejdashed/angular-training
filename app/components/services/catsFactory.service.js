@@ -1,84 +1,82 @@
-angular.module("app").service("catsFactoryService",
-    function ($cookies, $injector) {
+angular.module("app").factory("catsFactoryService",
+    function ($cookies, userService) {
 
-        function isVotedCatWithId(id){
-            var votedCats = $cookies.getObject("votedCats");
+        function checkCooke(key, id){
+            var votedCats = $cookies.getObject(key);
             return votedCats!=undefined && votedCats.indexOf(id) >= 0;
-        };
+        }
 
-       var putCooke = function(id) {
-            var votedCats = $cookies.getObject("votedCats");
-            if (!votedCats) {votedCats = [];}
-            if (votedCats.indexOf(id)<0) {
-                votedCats.push(id);
-                $cookies.putObject("votedCats", votedCats);
+        function putCooke(key,id) {
+            var values = $cookies.getObject(key);
+            if (!values) {values = [];}
+            if (values.indexOf(id)<0) {
+                values.push(id);
+                $cookies.putObject(key, values);
             }
-        };
+        }
 
-        var isVoted = false;
-
-        var voteUp = function()
-        {
-            var catsService = $injector.get('catsService');
-
-            var updateCat = angular.copy(this);
-            updateCat.vote++;
-            catsService.updateCatPromise(updateCat.getJSONData())
-                .then(function(data) {
-                    this.vote = data.vote;
-                    putCooke(id);
-                    isVoted = true;
-                })
-        };
-
-        var getJSONData = function(){
-            return {
-                id: this.id,
-                name: this.name,
-                src: this.src,
-                vote: this.vote,
-                owner: this.owner
+        function deleteCooke(key, id) {
+            var values = $cookies.getObject(key);
+            if (!values) {values = [];}
+            var index = values.indexOf(this.id);
+            if (index >= 0) {
+                values.slice(index, 1);
+                $cookies.putObject(key, values);
             }
-        };
+        }
 
-        var voteDown = function()
-        {
-            isVoted = true;
-        };
+        function Cat(jsonData) {
+            this.setData(jsonData);
+        }
 
-        var catItemForResp = function (resp) {
-            isVoted = isVotedCatWithId(resp.id);
-            return {
-                id: resp.id,
-                name: resp.name,
-                src: resp.src,
-                vote: resp.vote,
-                owner: resp.owner,
-                voteUp: voteUp,
-                voteDown: voteDown,
-                get isVoted() {
-                    return isVoted;
-                },
-                getJSONData: getJSONData
-
-            }
-        };
-
-        var catsArrayForResp = function (resp) {
-            var catsArray = [];
-            angular.forEach(resp, function(catResp) {
-                catsArray.push(catItemForResp(catResp));
-            });
-            return catsArray;
-        };
-
-        return {
-            catItemForResp: function (resp) {
-                return catItemForResp(resp);
+        Cat.prototype = {
+            setData: function(jsonData) {
+                //angular.extend(this, jsonData);
+                this.id = jsonData ? jsonData.id : -1;
+                this.name = jsonData ? jsonData.name : "";
+                this.src = jsonData ? jsonData.src : "";
+                this.vote = jsonData ? jsonData.vote : 0;
+                this.owner = jsonData ? jsonData.owner : userService.getLogin();
+                this._isVoted = checkCooke("votedCats", this.id);
+                this._isVisited = checkCooke("visitedCats", this.id);
             },
-            catsArrayForResp: function (resp) {
-                return catsArrayForResp(resp);
+            get isVoted() {
+                return this._isVoted;
+            },
+            set isVoted(newValue) {
+                if (this.id >=0 ) {
+                    if (newValue) {
+                        putCooke("votedCats", this.id);
+                    } else {
+                        deleteCooke("votedCats", this.id);
+                    }
+                    this._isVoted = newValue;
+                }
+            },
+            get isVisited() {
+                return this._isVisited;
+            },
+            set isVisited(newValue) {
+                if (this.id >=0 ) {
+                    if (newValue) {
+                        putCooke("visitedCats", this.id);
+                    } else {
+                        deleteCooke("visitedCats", this.id);
+                    }
+                    this._isVisited = newValue;
+                }
+            },
+            getJSONData: function() {
+                return {
+                    id: this.id,
+                    name: this.name,
+                    src: this.src,
+                    vote: this.vote,
+                    owner: this.owner
+                };
             }
         };
+
+        return Cat;
     }
 );

@@ -13,7 +13,7 @@ var savedUser = {}, currentUser = {},
   fields = {
     id: 'id',
     name: 'name',
-    url: 'src',
+    src: 'src',
     vote: 'vote',
     owner: 'owner'
   };

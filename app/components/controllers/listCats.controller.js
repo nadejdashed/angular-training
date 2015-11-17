@@ -4,7 +4,7 @@ angular.module("app").controller("listCatsController",
         var didSelectCatFunction = function (cat) {
             $scope.selectedCat = cat;
             if (cat) {
-                cat.wasAlreadyViewed = true;
+                cat.isVisited = true;
             }
             //$state.go('listView.vote', {id : cat.id});
         };
