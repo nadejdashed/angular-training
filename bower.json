@@ -1,10 +1,6 @@
 {
   "name": "angular-training",
   "version": "1.0.0",
-  "authors": [
-    "Viktor Pishuk"
-  ],
-  "homepage": "https://github.com/vpishuk/angular-training",
   "ignore": [
     "**/.*",
     "node_modules",
