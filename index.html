@@ -5,24 +5,28 @@
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 
     <!-- build:css /build/app.css -->
-    <link rel="stylesheet" type="text/css" href="/app/app.css"/>
+    <link rel="stylesheet" type="text/css" href="./app/app.css"/>
     <!-- /build -->
 
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
 
     <!-- build:js /build/angular-training.js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/components/controllers/mainController.js"></script>
     <!-- /build -->
 
+    <!-- Catclicker item directive -->
+    <script src="./app/templates/cat/cat.directive.js"></script>
+
+    <!-- Catclicker list directive -->
+    <script src="./app/templates/cat-list/cat-clicker.directive.js"></script>
 </head>
 <body ng-app="app">
-
     <div ng-controller="mainController" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
+        <cat-clicker ng-model='cats'></cat-clicker>
     </div>
 
 </body>

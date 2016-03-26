@@ -1,3 +1,83 @@
 body {
 	color:red;
 }
+
+.filters {
+	display: flex;
+	justify-content: space-around;
+	padding: 25px 0;
+}
+
+.filters .order select{
+	height: 30px;
+}
+
+.cat-list {
+	width: 40%;
+	float: left;
+}
+
+.cat{
+	box-sizing: border-box;
+	overflow: hidden;
+	border: 5px solid red;
+	border-radius: 10px;
+	margin: 10px;
+	padding: 10px;
+	position: relative;
+	text-align: center;
+	-webkit-user-select: none;
+}
+
+.cat img {
+	display: block;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.cat span {
+	display: inline-block;
+	text-align: center;
+}
+
+span.up-arrow {
+	border: solid;
+	border-width: 0 10px 10px 10px;
+	border-color: transparent transparent red transparent;
+}
+
+span.down-arrow {
+	border-style: solid;
+	border-width: 10px 10px 0 10px;
+	border-color: #007bff transparent transparent transparent;
+}
+
+.selected-cat {
+	width: 50%;
+	position: fixed;
+	right: 0;
+}
+
+span.view {
+    width: 10px;
+    height: 10px;
+    position: relative;
+}
+
+span.view:before, span.view:after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 1px;
+    background-color: red;
+    top: 1px;
+}
+
+span.view:before {
+    transform: rotate(45deg);
+    left: 1px;
+}
+span.view:after {
+    transform: rotate(-45deg);
+    right: 1px;
+}

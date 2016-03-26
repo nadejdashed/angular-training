@@ -1,0 +1,34 @@
+<div class="cat-clicker">
+	<div class="filters">
+		<div class="order">
+			<span>Order:</span>
+			<select name="" id="" ng-model='orderType'>
+				<option value='name'>Name ascending</option>
+				<option value='-name'>Name discending</option>
+				<option value='vote'>Vote ascending</option>
+				<option value='-vote'>Vote discending</option>
+			</select>
+		</div>
+		<div class="filter">
+			<span>Filter:</span>
+			<input type="text" ng-model='filterText'>
+		</div>
+	</div>
+	<div class="general-information">
+		<ul>
+			<li>{{formattedRating.positive}}</li>
+			<li>{{formattedRating.negative}}</li>
+			<li>{{formattedRating.neutral}}</li>
+		</ul>
+	</div>
+	<div class="cat-list-wrapper">
+		<div class="cat-list">
+			<div class="cat" ng-repeat='cat in cats | orderBy: orderType | filter: filterText' ng-click='selectCat(cat.id - 1)'>
+				<cat ng-model='cat'></cat>
+			</div>
+		</div>
+		<div class="selected-cat cat" ng-if='!!selected'>
+			<cat ng-model='selected'></cat>
+		</div>
+	</div>
+</div>
