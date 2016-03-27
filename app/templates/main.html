@@ -1,1 +1,100 @@
-<h1>{{text}}</h1>
+<style>
+    li.none-list-item {
+        list-style-type: none;
+    }
+    .menu {
+        margin-top: 20px;
+        position: fixed;
+        width: 25%;
+        top: 0;
+        left: 0;
+    }
+    .menu * {
+        font-size: 16px;
+    }
+    .menu li {
+         margin: 10px 0;
+    }
+    .profile {
+    	position: fixed;
+    	max-width: 50%;
+    	top: 0;
+    	left: 0;
+    	right: 0;
+    	padding: 20px 0 0 20px;
+    	margin: 0 auto;
+    }
+    .new > div {
+    	margin: 5px 0;
+    }
+    .clickable:hover {
+    	cursor: pointer;
+    	text-decoration: underline;
+    }
+    .red {
+    	border-color: red;
+    	background-color: #fee;
+    	outline-color: red;
+    	border-radius: 5px;
+    }
+	  .spinner {
+  		width: 50px;
+  	}
+</style>
+<div class="menu">
+  <ul>
+    <li class="none-list-item">
+       <button class="red" ng-click="action='new'">New</button>
+    </li>
+    <li class="none-list-item">
+      <form ng-submit="filterCatName=searchText">
+        Cat Name: <input type="text" ng-model="searchText"/>
+        <input type="submit" value="Search" class="red"/>
+        <select ng-model="reverse" class="red">
+          <option value="0">Asc</option>
+          <option value="1">Desc</option>
+        </select>
+      </form>
+    </li>
+    <li class="none-list-item">
+      <ng-pluralize count="positiveVotes" offset=1
+        when="{'0': 'No cat has positive votes.',
+               '1': 'Only Tom have positive votes.',
+               'one': 'Tom and one more cat have positive votes.',
+               'other': 'Tom and {} more cats have positive votes.'}">
+      </ng-pluralize>
+    </li>
+    <li ng-repeat="cat in cats | filter:{name:filterCatName} | orderBy:'name':reverse==1 track by $index">
+        <span class="clickable" ng-click="selectCat(cat)">{{cat.name}}</span>
+        <i ng-show="cat.viewed">&#10003;</i>
+    </li>
+  </ul>
+</div>
+<div class="profile">
+  <div class="new" ng-show="action=='new'">
+    <div>
+      <button class="red" ng-click="action='view'">Save</button>
+      <button class="red" ng-click="action='view'">Cancel</button>
+    </div>
+    <div>
+      <label for="cat-name">Cat Name:</label> <input id="cat-name" type="text" ng-pattern="'[a-zA-Z]+'" ng-model="newCat.name"/>
+    </div>
+    <div>
+      <label for="cat-image-url">Image URL:</label> <input id="cat-image-url" type="text" ng-model="imgsrc" ng-blur="newCat.imgsrc=imgsrc"/>
+    </div>
+    <img ng-src="{{newCat.imgsrc}}"/>
+  </div>
+  <div ng-show="action=='view' && selectedCat">
+    <h1>
+      {{selectedCat.name}}, 
+      {{selectedCat.clicks}} clicks, 
+      {{selectedCat.votes}} votes
+			<span ng-show="selectedCat.votes>0">:)</span>
+			<span ng-show="selectedCat.votes<0">:(</span>
+			<span ng-show="selectedCat.votes==0">:\</span>
+      <button class="red spinner" ng-click="selectedCat.votes=selectedCat.votes+1">+</button>
+      <button class="red spinner" ng-click="selectedCat.votes=selectedCat.votes-1">-</button>
+    </h1>
+    <img ng-src="{{selectedCat.imgsrc}}" ng-click="selectedCat.clicks=selectedCat.clicks+1"></img>
+  </div>
+</div>
