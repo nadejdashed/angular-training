@@ -3,4 +3,5 @@
 <img ng-src="{{cat.src}}">
 <span class="up-arrow" ng-click="increaseVote(cat.id - 1)"></span>
 <span ng-bind='cat.vote'></span>
+<span>{{cat.vote < 0 ? ":(" : ":)"}}</span>
 <span class="down-arrow" ng-click="decreaseVote(cat.id - 1)"></span>
