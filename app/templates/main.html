@@ -1,1 +1,21 @@
-<h1>{{text}}</h1>
+<label for="search">Search</label>
+<input ng-model="inputText" type="text" id="search"/>
+<input type="button" value="Go!" ng-click="filterCats(inputText)"/>
+
+<div style="display: inline-block" ng-repeat="cat in cats | filter: {name:searchString}">
+    <span ng-click="showCat(cat)">{{cat.name}}</span>
+    <span ng-show="cat.isViewed">V</span>
+    &nbsp;
+</div>
+
+<div  id="cat-display" ng-show="selectedCat.display">
+    <div>
+        <span>{{selectedCat.cat.name}}</span>
+        <br/>
+        <img src="{{selectedCat.cat.src}}"/>
+        <br/>
+        <a href="#" ng-click="decreaseVoteForCat(selectedCat.cat)">-</a>
+        <span ng-bind="selectedCat.cat.vote"></span>
+        <a href="#" ng-click="increaseVoteForCat(selectedCat.cat)">+</a>
+    </div>
+</div>
