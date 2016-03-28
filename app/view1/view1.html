@@ -1,1 +1,23 @@
-<p>This is the partial for view 1.</p>
+<p>Cats list</p>
+<input ng-model="searchText"><button ng-click="doSearch()">Search</button>
+<input type="checkbox" ng-model="orderAsc" >Descending</input>
+<p>Now selected</p>
+<div>
+    <p>Name: {{selected.name}}</p>
+    <p>Clicks: {{selected.clicks}}</p>
+    <img ng-src="{{selected.image}}" ng-click="incr(selected)">
+</div>
+<p>###################</p>
+<div ng-repeat="cat in cats | filter:searchSubmitted | orderBy:'name':orderAsc track by $index">
+
+    <h2>
+        <span>{{cat.wasSelected ? '✓' : ''}}</span>
+        <span ng-click="select(cat)">{{cat.name + " has " + cat.clicks + " clicks"}}</span>
+        <button ng-click="incr(cat)">+</button>
+        <button ng-click="decr(cat)">-</button>
+    </h2>
+    <img ng-src="{{cat.image}}">
+
+</div>
+
+

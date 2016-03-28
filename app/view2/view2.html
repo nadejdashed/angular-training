@@ -1,5 +1,14 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<p>New Cat</p>
+<div ng-form="catForm">
+  <p>Name:
+    <input name="catName" ng-model="newCat.name" required>
+    <span ng-show="catForm.catName.$invalid && catForm.catName.$dirty">required</span>
+  </p>
+  <p>Picture:
+    <input type="url" name="catPic" ng-model="newCat.image" required>
+    <span ng-show="catForm.catPic.$error.required && catForm.catPic.$dirty">required</span>
+    <span ng-show="catForm.catPic.$error.url && catForm.catPic.$dirty">invalid pic url</span>
+  </p>
+  <button ng-click="addNew(newCat)" ng-disabled="catForm.$invalid">Add</button>
+</div>
+
