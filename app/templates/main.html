@@ -1,1 +1,20 @@
-<h1>{{text}}</h1>
+<div>
+	<div class="master">
+		<ul>
+			<li ng-repeat="cat in ctrl.cats">
+				<a ng-click="ctrl.onCatSelected(cat)">{{cat.name}}</a>
+			</li>
+		</ul>
+	</div>
+	<div class="details" ng-show="ctrl.selectedCat">
+		<div>Name: {{ctrl.selectedCat.name}}</div>
+		<div>
+			<img ng-src="{{ctrl.selectedCat.imgSrc}}" ng-click="ctrl.onCatClicked(ctrl.selectedCat)" />	
+		</div>
+		<div>
+			Cat clicked: {{ ctrl.selectedCat.clicked }} times
+		</div>		
+	</div>
+</div>
+
+
