@@ -16,14 +16,65 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/catCntr.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
+    <div ng-controller="catCntr" class="container" >
+        <div ng-show="mode !== 'edit'">
+        <ng-pluralize count="positiveCats.length" offset=1
+                 when="{'0': 'No cat has positive vote.',
+                    '1': '{{positiveCats[0].name}} has positive vote.',
+                    'one': '{{positiveCats[0].name}} and one other cat have positive votes.',
+                    'other': '{{positiveCats[0].name}} and {} more cats have positive votes.'}">
+        </ng-pluralize>
+        <div ng-cloak class="search">
+        <input type="text" ng-model="searchString"></input>
+        <button ng-click="doSearch()">search</button>
+        <select ng-model="order">
+          <option selected>asc</option>
+          <option>desc</option>  
+        </select>
+        </div>
+        <ul ng-cloak>
+            <li ng-repeat="cat in cats | filter:{name:searchText}| orderBy:['-vote',order === 'desc'?'name':'-name']" ng-class="{red: cat.id === selectedCat.id, 'cat-viewed':cat.viewed === true}">
+            <span ng-click="selectCat($event,cat)">{{cat.name}}: {{cat.vote}}</span>
+            </li>
+        </ul>
+        <button ng-click="doEditCat()">Add New</button>
+        <div ng-cloak ng-show="selectedCat">
+            <h2>{{selectedCat.name}}</h2> 
+            <div class="spiner">
+                <button ng-click="downVote(selectedCat)">-</button> {{selectedCat.vote}}
+                <button ng-click="upVote(selectedCat)">+</button>
+            </div>
+            <img ng-click="upVote(selectedCat)" ng-src="{{selectedCat.src}}"/>
+        </div>
+        </div>
+        <div ng-show="mode === 'edit'">
+        <div class="editForm" ng-form name="editForm">
+        <span class="error" ng-show="editForm.catName.$error.required">Name required!</span><br>
+        <span class="error" ng-show="editForm.catImg.$error.required">Url required!</span>
+        <span class="error"ng-show="editForm.catImg.$error.url">Invalid url!</span>
+        <div>
+        <label>Name:</label>
+        <input name="catName" type="text" ng-model="selectedCat.name" required></input>
+        </div>
+        <div>
+        <label>Url:</label>
+        <input name="catImg" type="url" ng-model="selectedCat.src" ng-model-options="{ updateOn: 'blur'}" required>
+        </div>
+        <div>
+        <button ng-disabled="editForm.catName.$invalid || editForm.catImg.$invalid" ng-click="save(selectedCat)">Save</button>
+        <button ng-click="cancel()">Cancel</button>
+        </div>
+        <div>
+            <img ng-show="editForm.catImg.$valid" ng-src="{{selectedCat.src}}" />
+        </div>
+        </div>
+        </div>
     </div>
-
 </body>
 </html>

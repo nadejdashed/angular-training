@@ -1,3 +1,61 @@
 body {
+	
+}
+ul {
+	padding: 30px;
+}
+li, img {
+	cursor: pointer;
+	padding:10px;
+}
+
+.cat-viewed:after{
+	content:'✓';
+}
+.red {
+	color: red;
+}
+
+.search {
+	padding-top: 50px;
+}
+button {
+	margin: 0 20px;
+	width: 100px;
+	height: 30px;
+}
+select, input{
+	height: 30px;
+}
+
+table{
+	margin: 30px 0px;
+}
+
+.editForm label {
+	width: 70px;
+}
+.editForm div {
+	margin: 20px 0px;
+}
+.editForm input {
+	width: 400px;
+}
+
+.editForm button {
+	width: 100px;
+	height: 30px;
+	margin: 0px 10px;
+}
+input.ng-invalid {
+	border-color: red;
+}
+.error {
 	color:red;
+}
+
+.spiner button{
+	height: 30px;
+	width: 25px;
+	margin: 5px;
 }
