@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new cat</title>
+
+
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+
+    <!-- build:css /build/app.css -->
+    <link rel="stylesheet" type="text/css" href="/app/app.css"/>
+    <!-- /build -->
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+
+    <!-- build:js /build/angular-training.js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/catsController.js"></script>
+
+</head>
+<body ng-app="app">
+
+<div ng-controller="catsCtrl" class="container">
+
+{{text}}
+
+    <form name="newCatForm" class="has-error" >
+
+    <h1>Add new Cat</h1>
+
+    <label style="display: block">Cat name: <input ng-model="newCatName" ng-required required><span ng-hide="newCatName">Field is required</span></label>
+    <label style="display: block">Cat image URL:<input name="newCatUrl" type="url" ng-model="newCatImgUrl" ng-blur="setNewCatImgFinal(newCatImgUrl)" ng-required><span ng-hide="newCatImgUrl">Field is required</span></label>
+    <img  ng-src="{{newCatImgFinal}}">
+
+
+    <button ng-disabled="newCatForm.$invalid  || newCatForm.$pending">Save</button>
+    <button>Cancel</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -16,10 +16,42 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/catsController.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
+    <div ng-controller="catsCtrl" class="container">
+
+        Search: <input  ng-model="searchFilter"><button ng-click="setActiveSearchFilter(searchFilter)">Search</button>Group by:<select ng-model="catsOrderBy">
+        <option selected value="+catName">Cat Name Asc</option>
+        <option selected value="-catName">Cat Name Desc</option>
+        <option selected value="+votes">Votes Asc</option>
+        <option selected value="-votes">Votes Desc</option>
+    </select>
+        <div ng-repeat="cat in cats | filter:activeSearchFilter | orderBy: catsOrderBy">
+            <a href="#" ng-click="selectCat(cat)">{{cat.catName}}</a><img ng-show="cat.visited" src="/images/visited.png">
+
+        </div>
+
+        <div>
+            <div ><img ng-click="selectedCat.noClicks = selectedCat.noClicks + 1;" ng-src="/images/{{selectedCat.catImg}}"></div>
+            <div ng-show="selectedCat">{{selectedCat.catName}} Votes: {{selectedCat.votes}}</div>
+            <button ng-show="selectedCat" ng-click="addVote(selectedCat)">Vote +</button>
+            <button ng-show="selectedCat" ng-click="removeVote(selectedCat)">Vote -</button>
+        </div>
+
+<!-- TASK2
+        <div ng-repeat="cat in cats">
+            <div ><img ng-click="cat.noClicks = cat.noClicks + 1;" ng-src="/images/{{cat.catImg}}"></div>
+            <div>{{cat.catName}} Clicks: {{cat.noClicks}}</div>
+
+        </div>
+
+-->
+
+
+    </div>
 
     <div ng-controller="mainController" class="container">
         <div ng-include="'/app/templates/main.html'"></div>
