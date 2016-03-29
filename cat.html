@@ -15,15 +15,14 @@
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
-    <script src="/app/components/filters/smileFilter.js"></script>
+    <script src="/app/components/controllers/catController.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController as ctrl" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
+    <div ng-controller="catController as ctrl" class="container">
+        <div ng-include="'/app/templates/cat.html'"></div>
     </div>
 
 </body>

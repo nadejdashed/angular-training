@@ -1,19 +1,40 @@
 <div>
 	<div class="master">
-		<ul>
-			<li ng-repeat="cat in ctrl.cats">
-				<a ng-click="ctrl.onCatSelected(cat)">{{cat.name}}</a>
+		<div class="item">
+			
+		</div>
+
+		<div class="item">
+			<input type="text" ng-model="ctrl.searchText"> <button ng-click="ctrl.onSearchClicked()">Search</button>
+		</div>
+		<div class="item">
+			<b>Order By: </b>
+			<select ng-model="ctrl.orderBy">
+				<option value="name">Asc</option>
+				<option vlaue="-name">Desc</option>
+			</select>
+		</div>
+		<ul class="item">
+			<li ng-repeat="cat in ctrl.cats | filter:ctrl.searchQuery | orderBy:ctrl.orderBy">
+				<a ng-click="ctrl.onCatSelected(cat)">{{cat.name}} <span ng-show="cat.visited">✓</span></a>
 			</li>
 		</ul>
 	</div>
 	<div class="details" ng-show="ctrl.selectedCat">
-		<div>Name: {{ctrl.selectedCat.name}}</div>
-		<div>
+		<div class="item"><b>Name:</b> {{ctrl.selectedCat.name}}</div>
+		<div class="item"><b>Birthday:</b> {{ctrl.selectedCat.birthday | date:'dd-MMM-yyyy'}}</div>
+		<div class="item">
 			<img ng-src="{{ctrl.selectedCat.imgSrc}}" ng-click="ctrl.onCatClicked(ctrl.selectedCat)" />	
 		</div>
-		<div>
-			Cat clicked: {{ ctrl.selectedCat.clicked }} times
-		</div>		
+		<div class="item">
+			<b>Cat clicked:</b> {{ ctrl.selectedCat.clicked }} times
+		</div>	
+		<div class="item">
+			<b>Votes:</b> {{ctrl.selectedCat.votes}}
+			<button ng-click="ctrl.onVoteUpClicked(ctrl.selectedCat)">+</button>
+			<button ng-click="ctrl.onVoteDownClicked(ctrl.selectedCat)">-</button>
+			<span> {{ ctrl.selectedCat.votes | smile }}</span>
+		</div>	
 	</div>
 </div>
 

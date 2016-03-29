@@ -1,8 +1,21 @@
+a {
+	cursor: pointer;
+}
+
+body {
+	margin: 40px;
+}
+
 .master {
+	vertical-align: top;
 	display: inline-block;
-	width: 400px;
+	width: 350px;
 }
 
 .details {
 	display: inline-block;
+}
+
+.item {
+	margin-bottom: 10px;
 }
