@@ -1,7 +1,7 @@
 ﻿(function(module) {
 
     var mainController = function ($scope) {
-        $scope.text = "Hello World?";
+        $scope.text = "Hello Cats";
     };
 
     module.controller("mainController", mainController);
