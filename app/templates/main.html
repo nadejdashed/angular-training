@@ -1,7 +1,13 @@
 <div>
 	<div class="master">
 		<div class="item">
-			
+			<ng-pluralize count="ctrl.catsWithPositiveVotes.length" offset="1" when="{
+				'0': 'No cat has positive vote',
+				'1': '{{ctrl.catsWithPositiveVotes[0].name}} has positive vote',
+				'one': '{{ctrl.catsWithPositiveVotes[0].name}} and one more cat have positive votes.',
+				'other': '{{ctrl.catsWithPositiveVotes[0].name}} and {} more cats have positive votes.'
+			}">
+			</ng-pluralize>
 		</div>
 
 		<div class="item">
