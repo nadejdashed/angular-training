@@ -1,3 +1,73 @@
 body {
-	color:red;
+	text-align: center;
+}
+
+h2 {
+	margin: 0;
+}
+
+ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+img {
+	max-height: 400px;
+	border-radius: 50px;
+}
+
+.list li {
+	font-size: 24px;
+}
+
+.counter {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	line-height: 70px;
+	background: rgba(255,255,255,0.5);
+	font-size: 60px;
+	color: white;
+	text-shadow: 0 0 30px rgba(0,0,0,1);
+}
+
+.search input {
+	padding: 5px 10px;
+	vertical-align: top;
+	border-radius: 5px;
+	border: 1px solid gray;
+	font-size: 20px;
+}
+.search button {
+	height: 40px;
+}
+
+.view {
+	padding: 20px;
+}
+.view li {
+	position: relative;
+	margin-bottom: 20px;
+	padding: 10px;
+	text-align: center;
+	border: 10px solid #EAEAEA;
+	border-radius: 50px;
+}
+.view input {
+	width: 100px;
+	padding: 5px 10px;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+
+.viewed::after {
+	position: absolute;
+	margin-top: -8px;
+	margin-left: 5px;
+	content: '✓';
+	color: green;
+	font-size: 30px;
+	font-weight: bold;
 }
