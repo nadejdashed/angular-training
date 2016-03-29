@@ -7,7 +7,7 @@
   "id": 2,
   "name": "Viktor",
   "src": "http://24.media.tumblr.com/tumblr_lsrk9vhVai1qzopnho1_1280.jpg",
-  "vote": 3
+  "vote": 0
 }, {
   "id": 3,
   "name": "Albert",
@@ -17,5 +17,13 @@
   "id": 4,
   "name": "Lia",
   "src": "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
-  "vote": 5
-}]
+  "vote": 0
+},
+
+  {
+    "id": 5,
+    "name": "Unknown",
+    "src": "http://goodnewsanimal.ru/_nw/37/00118217.jpg",
+    "vote": 0
+  }
+]

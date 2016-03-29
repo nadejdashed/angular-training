@@ -1,0 +1,22 @@
+<h2>Cat Task</h2>
+
+<form name="catForm">
+    <label>Name:</label>
+    <input name="catName" type="text" ng-model="cat.name" ng-minlength="3" required ng-class="{error:!catForm.catName.$valid}"/><br />
+
+    <label>Img Url:</label>
+
+    <input ng-class="{error:!catForm.catPicture.$valid}" name="catPicture" type="url" ng-minlength="7" ng-pattern="/.+(png|jpg|jpeg)$/"
+           ng-model="cat.url" required ng-model-options="{ updateOn: 'blur'}"/>
+    <br/>
+
+    <img ng-src="{{cat.url}}" ng-show="cat.url"/>
+    <img ng-hide="cat.url"/>
+
+    <div>
+        <button ng-class="{disabled:!catForm.$valid}" ng-click="saveCat(cat)" ng-disabled="!catForm.$valid">Save</button>
+        <button  ng-click="clearForm()">Cancel</button>
+    </div>
+</form>
+<br>
+<a href="index.html">Back</a>

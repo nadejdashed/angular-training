@@ -1,0 +1,59 @@
+<h2>Cat Task: {{currentDate| date:'dd-MMM-yyyy'}} </h2>
+
+<p>
+
+    <ng-pluralize count="positiveCatCount" offset=1
+                  when="{'0': 'No cat has positive vote.',
+                  '1': '{{firstPositiveCatName}} has positive vote.',
+                  'one': '{{firstPositiveCatName}} and one other cat hpositive votes.',
+                  'other': '{{firstPositiveCatName}} and {} more cats have positive votes.'}">
+    </ng-pluralize>
+
+</p>
+
+<div class="searchArea" ng-cloak>
+    <input type="text" ng-model="mySearch.name"/><button ng-click="searchByName(mySearch.name)">Search</button>
+
+    <label>Vote Filter:</label>
+    <select ng-model="votesFilter">
+        <option value="1">:)</option>
+        <option value="2">:|</option>
+        <option value="3">:(</option>
+        <option value="all">All</option>
+    </select>
+
+    <label>Order by:</label>
+    <select ng-model="sortBy">
+        <option value="name">Name Asc</option>
+        <option value="-name">Name Desc</option>
+        <option value="vote">Vote Asc</option>
+        <option value="-vote">Vote Desc</option>
+    </select>
+</div>
+
+<div ng-cloak><!--ng-show="selectedCat" -->
+    <p><label>Name:</label> {{selectedCat.name}}</p>
+    <img src="{{selectedCat.src}}"/>
+    <br/>
+    <button ng-click="selectedCat.vote=selectedCat.vote+1" ng-disabled="!selectedCat">+</button>
+
+    &nbsp;{{selectedCat.vote}}
+    <span ng-if="selectedCat.vote>0">:)</span>
+    <span ng-if="selectedCat.vote<0">:(</span>
+    <span ng-if="selectedCat.vote==0">:|</span>
+    &nbsp;
+    <button ng-click="selectedCat.vote=selectedCat.vote-1"  ng-disabled="!selectedCat">-</button>
+</div>
+
+
+<ul ng-cloak class="cats">
+    <li ng-repeat="cat in cats | filter: search:cat |filter: filterByVotes('vote',votesFilter) | orderBy:sortBy">
+        <p ng-click="selectCat(cat)"><b>{{cat.name}}
+            <span ng-show="cat.wasDisplayed"> &#10003;</span>
+        </b>
+        </p>
+    </li>
+</ul>
+
+<a href="add.html">Add a Cat</a>
+

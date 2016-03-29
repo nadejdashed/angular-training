@@ -2,11 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Cats application</title>
+    <title>Add a Cat</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
 
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
@@ -17,13 +16,13 @@
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/utilites/JsonLib.js"></script>
-    <script src="/app/components/controllers/catsVotingController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
-      <div class="container" ng-controller="catsVotingController">
-        <div ng-include="'/app/templates/catsVoting.html'"></div>
-    </div>
+<div class="container" ng-controller="addCatController">
+    <div ng-include="'/app/templates/addCat.html'"></div>
+</div>
 </body>
 </html>
