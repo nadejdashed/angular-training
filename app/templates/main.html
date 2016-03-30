@@ -1,1 +1,26 @@
-<h1>{{text}}</h1>
+<img ng-src="{{chosenCat.src}}" height=250px width=250px alt={{chosenCat.name}} />
+<p ng-cloak>
+    {{chosenCat.name}} - Votes:
+    <button ng-click="decreaseVote(chosenCat)">&#8595;</button>
+    {{chosenCat.vote}}
+    <button ng-click="addVote(chosenCat)">&#8593;</button>
+</p>
+
+<label>
+    <button ng-click=setFilter(searchText)>Search</button>
+    <input ng-model="searchText">
+</label>
+
+<label>
+    <select name="order" ng-model="order">
+        <option value="+name">asc</option>
+        <option value="-name">desc</option>
+    </select>
+</label>
+
+<div class="catList">
+    <div ng-repeat="cat in cats | filter:catFilter | orderBy:order">
+        <span class="tick" ng-hide="cat.id != chosenCat.id">&#10004;</span>
+        <span ng-click="chooseCat(cat)">{{cat.name}}</span>
+    </div>
+</div>
