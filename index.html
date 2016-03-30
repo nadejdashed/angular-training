@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
@@ -9,9 +9,10 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
 
 </head>
-<body ng-app="app">
 
-<div class="container" ng-cloak>
+<body ng-app="app" role="document" ng-cloak="">
+
+<div class="container" role="main">
     <div ng-controller="mainController">
         <div ng-include="'/app/templates/main.html'"></div>
     </div>
@@ -24,8 +25,10 @@
 
 <script src="/bower_components/angular/angular.min.js"></script>
 <script src="/app/app.js"></script>
+<!--controllers -->
 <script src="/app/components/controllers/mainController.js"></script>
 <script src="/app/components/controllers/catsController.js"></script>
+<!---->
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 

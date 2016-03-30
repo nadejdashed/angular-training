@@ -4,6 +4,7 @@
         //read json with cats
         $http.get('json/cats.json').success(function (data) {
             $scope.cats = data;
+            $scope.cat = data[0];
         });
 
         //process selected cat
