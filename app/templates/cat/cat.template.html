@@ -5,3 +5,7 @@
 <span ng-bind='cat.vote'></span>
 <span>{{cat.vote < 0 ? ":(" : ":)"}}</span>
 <span class="down-arrow" ng-click="decreaseVote(cat.id - 1)"></span>
+<button ng-click="editCat(cat.id - 1)">Edit</button>
+<div class="cat-edit">
+	<cat-edit ng-model='edited'></cat-edit>
+</div>

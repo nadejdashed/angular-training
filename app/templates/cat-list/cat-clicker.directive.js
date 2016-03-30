@@ -25,6 +25,8 @@
 				scope.selectCat = function(id) {
 					scope.selected = scope.cats[id];
 					scope.selected.viewed = true;
+
+					scope.edited = scope.selected;
 				}
 
 				scope.formatRating = function() {

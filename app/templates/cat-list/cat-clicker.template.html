@@ -24,11 +24,11 @@
 	<div class="cat-list-wrapper">
 		<div class="cat-list">
 			<div class="cat" ng-repeat='cat in cats | orderBy: orderType | filter: filterText' ng-click='selectCat(cat.id - 1)'>
-				<cat ng-model='cat'></cat>
+				<cat ng-model='cat' mode='list-item'></cat>
 			</div>
 		</div>
 		<div class="selected-cat cat" ng-if='!!selected'>
-			<cat ng-model='selected'></cat>
+			<cat ng-model='selected' mode='select'></cat>
 		</div>
 	</div>
 </div>
