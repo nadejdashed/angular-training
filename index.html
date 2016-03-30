@@ -15,15 +15,64 @@
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/catController.js"></script>
+    <script type="text/javascript" src="/json/cats.json"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
-    </div>
+    <div ng-controller="catController as catcon" class="container">
+        <fieldset>
+            <legend>Cat List</legend>
+            <p>
+                <input type="text" ng-model="catcon.inputSearch" />
+                <button ng-click="catcon.searchCat()">Search</button>
+            </p>
 
+            <select ng-model="catcon.orderProperty" name="orderProperty" id="orderProperty">
+                <option ng-repeat="option in catcon.availableOptions" value="{{option.value}}">{{option.name}}</option>
+            </select>
+
+            <ul id="catList" class="" ng-repeat="catModel in catcon.catList | filter:{name:catcon.searchCriteria} | orderBy:catcon.orderProperty">
+
+                <li id="{{catModel.id}}">
+                    <h3>{{catModel.name}} <span ng-show="catModel.wasDisplaied">✓</span></h3>
+                    
+                    <ng-pluralize count="catModel.vote"
+                                when="{'0': 'Nobody has voted.',    
+                                'one': '1 person has voted.',
+                                'other': '{} people has voted.'}">
+                    </ng-pluralize>
+
+                    <button ng-click="catcon.voteCat(catModel)">Vote for this cat</button>
+                    <button ng-click="catcon.showCat(catModel)">
+                        <span ng-show="catModel.display">Hide cat</span>
+                        <span ng-show="!catModel.display">Show cat</span>
+                    </button>
+                    <img style="width: 100px; height: 100px;" ng-src="{{catModel.src}}" ng-show="catModel.display">
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>Add new cat</legend>
+            <div ng-form name="addCatForm">
+                <p>
+                    <label>Name:</label>
+                    <input name="tmpName" ng-model="catcon.tempCat.name" type="text" required />
+                    <span ng-show="addCatForm.tmpName.$error.required">{{addCatForm.tmpName.$error|json}}</span>
+                </p>
+                <p>
+                    <label>Src:</label>
+                    <input name="tmpSrc" ng-model="catcon.tempCat.src" type="url" required/>
+                    <span ng-show="addCatForm.tmpSrc.$errors.length > 0">addCatForm.$errors</span>
+                </p>
+                <img style="width: 100px; height: 100px;" ng-src="{{catcon.tempCat.src}}">
+                <button ng-click="catcon.save(catcon.tempCat)">Save</button>
+                <br/>
+                <button ng-click="catcon.cancel(catcon.tempCat)">Cancel</button>
+            </div>
+        </fieldset>
+    </div>
 </body>
 </html>
