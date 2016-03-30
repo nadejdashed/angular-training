@@ -13,7 +13,12 @@ ul {
 
 img {
 	max-height: 400px;
+	min-height: 120px;
 	border-radius: 50px;
+}
+
+.float-left {
+	float: left;
 }
 
 .list li {
@@ -25,6 +30,7 @@ img {
 	left: 0;
 	width: 100%;
 	line-height: 70px;
+	border-radius: 50px 50px 0 0;
 	background: rgba(255,255,255,0.5);
 	font-size: 60px;
 	color: white;
@@ -45,21 +51,77 @@ img {
 .view {
 	padding: 20px;
 }
+.view h2 {
+	margin: -70px 0 118px;
+	height: 0;
+	font-size: 60px;
+	color: white;
+	text-shadow: 0 0 30px rgba(0,0,0,1);
+}
 .view li {
 	position: relative;
 	margin-bottom: 20px;
 	padding: 10px;
 	text-align: center;
-	border: 10px solid #EAEAEA;
+	border: 10px solid #D6D6D6;
 	border-radius: 50px;
 }
+.view li::before {
+	position: absolute;
+	content: '';
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: url("https://s-media-cache-ak0.pinimg.com/236x/1d/55/31/1d5531352607a1bcd9d83399cf52b087.jpg");
+	opacity: 0.2;
+	z-index: -1;
+}
+.view .control {
+	position: absolute;
+	padding: 0 8px;
+	height: 40px;
+	bottom: 8px;
+	left: 0;
+	right: 0;
+}
 .view input {
-	width: 100px;
+	width: 100%;
 	padding: 5px 10px;
 	font-size: 20px;
 	text-align: center;
 	border-radius: 5px;
 	border: 1px solid gray;
+}
+.view .draft-name {
+	margin-left: -128px;
+	padding: 0 8px 0 136px;
+	width: 36%;
+}
+.view .draft-url {
+	margin-right: -220px;
+	padding-right: 228px;
+	width: 64%;
+}
+.view .vote {
+	margin-right: 8px;
+	width: 100px;
+}
+.view .btn-reset,
+.view .btn-submit {
+	width: 120px;
+	height: 40px;
+	background: #D6D6D6;
+	border: 1px solid #D6D6D6;
+	font-size: 20px;
+	color: white;
+}
+.view .btn-reset {
+	position: relative;
+	border-radius: 0 30px 0 30px;
+}
+.view .btn-submit {
+	border-radius: 30px 0 30px 0;
 }
 
 .viewed::after {

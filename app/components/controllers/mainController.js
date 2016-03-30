@@ -49,6 +49,15 @@
                 $scope.searchResults.reverse();
             }
         };
+
+        $scope.resetForm = function(currentCat) {
+            currentCat.draftName = currentCat.draftPictUrl = '';
+        };
+
+        $scope.saveForm = function(currentCat) {
+            currentCat.name = currentCat.draftName;
+            currentCat.src = currentCat.draftPictUrl;
+        };
     };
 
     module.controller("mainController", mainController);

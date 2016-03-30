@@ -21,40 +21,56 @@
 </head>
 <body ng-app="app" ng-cloak="">
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
+<div ng-controller="mainController" class="container">
+    <div ng-include="'/app/templates/main.html'"></div>
 
-        <ul class="list">
-            <li ng-repeat="cat in cats">
-                <a href="#" ng-click="showCat(cat)" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
-            </li>
-        </ul>
+    <ul class="list">
+        <li ng-repeat="cat in cats">
+            <a href="#" ng-click="showCat(cat)" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
+        </li>
+    </ul>
 
-        <form class="search" ng-submit="search(searchText)">
-            <p>
-                <input type="text" ng-model="searchText" />
-                <button type="submit">Search</button>
-            </p>
-            <p>
-                <label>
-                    <span>Sort by </span>
-                    <select ng-options="label as label for label in sorting"
-                            ng-model="selected"
-                            ng-init="selected = sorting[0]"
-                            ng-change="sortResults()"></select>
-                </label>
-            </p>
-        </form>
+    <form class="search" ng-submit="search(searchText)">
+        <p>
+            <input type="text" ng-model="searchText" />
+            <button type="submit">Search</button>
+        </p>
+        <p>
+            <label>
+                <span>Sort by </span>
+                <select ng-options="label as label for label in sorting"
+                        ng-model="selected"
+                        ng-init="selected = sorting[0]"
+                        ng-change="sortResults()">
+                </select>
+            </label>
+        </p>
+    </form>
 
-        <ul class="view">
-            <li ng-repeat="currentCat in searchResults">
+    <ul class="view">
+        <li ng-repeat="currentCat in searchResults">
+            <form ng-submit="saveForm(currentCat)">
                 <img ng-click="count(currentCat)" ng-src="{{currentCat.src}}"/>
                 <span class="counter">{{currentCat.counter ? currentCat.counter : 0}}</span>
                 <h2>{{currentCat.name}}</h2>
-                <input type="number" ng-model="currentCat.vote"/>
-            </li>
-        </ul>
-    </div>
+
+                <div class="control">
+                    <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
+
+                    <div class="draft-name float-left">
+                        <input type="text" placeholder="Cat name" ng-model="currentCat.draftName" />
+                    </div>
+                    <div class="draft-url float-left">
+                        <input type="url" placeholder="Picture Url" ng-model="currentCat.draftPictUrl" />
+                    </div>
+
+                    <input class="vote float-left" type="number" ng-model="currentCat.vote"/>
+                    <button class="btn-submit float-left" type="submit">Save</button>
+                </div>
+            </form>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>
