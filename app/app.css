@@ -1,4 +1,5 @@
 body {
+	min-width: 768px;
 	text-align: center;
 }
 
@@ -11,12 +12,6 @@ ul {
 	list-style-type: none;
 }
 
-img {
-	max-height: 400px;
-	min-height: 120px;
-	border-radius: 50px;
-}
-
 .float-left {
 	float: left;
 }
@@ -27,6 +22,7 @@ img {
 
 .counter {
 	position: absolute;
+	top: 0;
 	left: 0;
 	width: 100%;
 	line-height: 70px;
@@ -40,12 +36,18 @@ img {
 .search input {
 	padding: 5px 10px;
 	vertical-align: top;
-	border-radius: 5px;
-	border: 1px solid gray;
+	border-radius: 5px 0 0 5px;
+	border: 1px solid #D6D6D6;
 	font-size: 20px;
 }
 .search button {
+	width: 120px;
 	height: 40px;
+	background: #D6D6D6;
+	border: 1px solid #D6D6D6;
+	border-radius: 0 5px 5px 0;
+	font-size: 20px;
+	color: white;
 }
 
 .view {
@@ -58,7 +60,7 @@ img {
 	color: white;
 	text-shadow: 0 0 30px rgba(0,0,0,1);
 }
-.view li {
+.view > li {
 	position: relative;
 	margin-bottom: 20px;
 	padding: 10px;
@@ -76,6 +78,33 @@ img {
 	background: url("https://s-media-cache-ak0.pinimg.com/236x/1d/55/31/1d5531352607a1bcd9d83399cf52b087.jpg");
 	opacity: 0.2;
 	z-index: -1;
+}
+.view .picture {
+	position: relative;
+	display: inline-block;
+	max-width: 70%;
+}
+.view .picture img {
+	max-width: 100%;
+	max-height: 400px;
+	min-height: 120px;
+	border-radius: 50px;
+	border: 10px solid rgba(0,0,0,0.3);
+}
+.view .message {
+	float: right;
+	margin-bottom: 30px;
+	padding: 10px;
+	max-width: 30%;
+	vertical-align: top;
+	background: rgba(255,255,255,0.6);
+	border-radius: 30px;
+	text-align: left;
+	font-size: 22px;
+	color: #B50000;
+}
+.view .message li {
+	margin-bottom: 10px;
 }
 .view .control {
 	position: absolute;

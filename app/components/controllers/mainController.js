@@ -51,12 +51,17 @@
         };
 
         $scope.resetForm = function(currentCat) {
+            currentCat.isMessageVisible = false;
             currentCat.draftName = currentCat.draftPictUrl = '';
         };
 
-        $scope.saveForm = function(currentCat) {
-            currentCat.name = currentCat.draftName;
-            currentCat.src = currentCat.draftPictUrl;
+        $scope.saveForm = function(currentCat, isValid) {
+            if (isValid) {
+                currentCat.name = currentCat.draftName;
+                currentCat.src = currentCat.draftPictUrl;
+            } else {
+                currentCat.isMessageVisible = true;
+            }
         };
     };
 

@@ -48,24 +48,40 @@
     </form>
 
     <ul class="view">
-        <li ng-repeat="currentCat in searchResults">
-            <form ng-submit="saveForm(currentCat)">
-                <img ng-click="count(currentCat)" ng-src="{{currentCat.src}}"/>
-                <span class="counter">{{currentCat.counter ? currentCat.counter : 0}}</span>
-                <h2>{{currentCat.name}}</h2>
+        <li ng-repeat="currentCat in searchResults track by $index">
+            <form name="form[$index]" class="clearfix">
+                <div class="picture">
+                    <img ng-click="count(currentCat)" ng-src="{{currentCat.src}}"/>
+                    <span class="counter">{{currentCat.counter ? currentCat.counter : 0}}</span>
+                    <h2>{{currentCat.name}}</h2>
+                </div>
+
+                <ul class="message" ng-if="currentCat.isMessageVisible">
+                    <li ng-if="!form[$index].catName.$valid">
+                        Please, insert name consisting of english letters and/or numbers
+                    </li>
+                    <li ng-if="!form[$index].pictUrl.$valid">
+                        Please, insert a real URL-address
+                    </li>
+                </ul>
 
                 <div class="control">
                     <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
 
                     <div class="draft-name float-left">
-                        <input type="text" placeholder="Cat name" ng-model="currentCat.draftName" />
+                        <input type="text" name="catName" placeholder="Cat name" required
+                               ng-change="currentCat.isMessageVisible = false"
+                               ng-model="currentCat.draftName"
+                               ng-pattern="/^\w+$/" />
                     </div>
                     <div class="draft-url float-left">
-                        <input type="url" placeholder="Picture Url" ng-model="currentCat.draftPictUrl" />
+                        <input type="url" name="pictUrl" placeholder="Picture Url"
+                               ng-change="currentCat.isMessageVisible = false"
+                               ng-model="currentCat.draftPictUrl" />
                     </div>
 
                     <input class="vote float-left" type="number" ng-model="currentCat.vote"/>
-                    <button class="btn-submit float-left" type="submit">Save</button>
+                    <button class="btn-submit float-left" type="submit" ng-click="saveForm(currentCat, form[$index].$valid)">Save</button>
                 </div>
             </form>
         </li>
