@@ -11,18 +11,60 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
 
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/eventsController.js"></script>
+    <script src="/app/components/services/eventsService.js"></script>
+    <script src="/app/components/services/eventsSelectionProvider.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
+    <div ng-controller="mainController as main" class="container">
+        <button ng-click="main.flag = !main.flag">Hide/show</button>
+        <div ng-if="main.flag">
+            <div  ng-controller="eventsController as ev" id="controller">
+            <input ng-model="ev.searchName"/>
+            <button ng-click="ev.doSearch()">Search</button>
+
+            {{ev.selectedEvents.length}}
+                        
+            <div ng-repeat="event in ev.events | filter:{name:ev.didSearchName} track by event.id" ng-click="ev.selectEvent(event)">
+                <div class="panel panel-default" ng-class="{'panel-success': event.id===ev.event.id}" >
+                    <div class="panel-heading">
+                        {{event.name}}
+                        <div style="float:right;">
+                            <button ng-click="ev.incVote(event)">+</button>
+                            <button ng-click="ev.decVote(event)">-</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="pull-left" style="margin:10px">
+                            <img height="50px"/>
+                        </div>
+                        <div class="clearfix">
+                            <div><strong>Trainer name:{{event.trainer}}</strong></div>
+                            <div><strong>Date:</strong>{{event.date|myDate}}</div>
+                            <div><strong>Vote:</strong>{{event.vote}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        </div>
+        <div ng-form name="myForm">
+            <input ng-model="surname" name="surname" required/>
+            <input ng-model="name" name="name" ng-pattern="main.regex"/>
+            <div ng-show="myForm.name.$invalid">Error</div>
+            <button>Submit</button>
+        </div>
+
     </div>
 
 </body>

@@ -1,7 +1,12 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope) {
-        $scope.text = "Hello World?";
+    var mainController = function ($scope, $timeout) {
+        this.text = "Hello World?";
+        this.regex = '\\d+';
+        
+        $timeout(function(){
+            $scope.$broadcast('event1');
+        }, 0);        
     };
 
     module.controller("mainController", mainController);
