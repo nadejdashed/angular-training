@@ -16,6 +16,13 @@ ul {
 	float: left;
 }
 
+.selection {
+	margin: 0 20px;
+	padding: 10px;
+	border: 10px solid #D6D6D6;
+	border-radius: 50px;
+}
+
 .list li {
 	font-size: 24px;
 }
@@ -36,16 +43,16 @@ ul {
 .search input {
 	padding: 5px 10px;
 	vertical-align: top;
-	border-radius: 5px 0 0 5px;
+	border-radius: 5px;
 	border: 1px solid #D6D6D6;
 	font-size: 20px;
 }
 .search button {
-	width: 120px;
+	width: 160px;
 	height: 40px;
 	background: #D6D6D6;
 	border: 1px solid #D6D6D6;
-	border-radius: 0 5px 5px 0;
+	border-radius: 5px;
 	font-size: 20px;
 	color: white;
 }

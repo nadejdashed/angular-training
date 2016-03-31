@@ -24,28 +24,31 @@
 <div ng-controller="mainController" class="container">
     <div ng-include="'/app/templates/main.html'"></div>
 
-    <ul class="list">
-        <li ng-repeat="cat in cats">
-            <a href="#" ng-click="showCat(cat)" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
-        </li>
-    </ul>
+    <div class="selection">
+        <ul class="list">
+            <li ng-repeat="cat in cats">
+                <a href="#" ng-click="showCat(cat)" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
+            </li>
+        </ul>
 
-    <form class="search" ng-submit="search(searchText)">
-        <p>
-            <input type="text" ng-model="searchText" />
-            <button type="submit">Search</button>
-        </p>
-        <p>
-            <label>
-                <span>Sort by </span>
-                <select ng-options="label as label for label in sorting"
-                        ng-model="selected"
-                        ng-init="selected = sorting[0]"
-                        ng-change="sortResults()">
-                </select>
-            </label>
-        </p>
-    </form>
+        <form class="search" ng-submit="search(searchText)">
+            <p>
+                <button type="button" ng-click="addCat()">Add a new cat</button>
+                <input type="text" ng-model="searchText" placeholder="Search text" />
+                <button type="submit">Search</button>
+            </p>
+            <p>
+                <label>
+                    <span>Sort by </span>
+                    <select ng-options="label as label for label in sorting"
+                            ng-model="selected"
+                            ng-init="selected = sorting[0]"
+                            ng-change="sortResults()">
+                    </select>
+                </label>
+            </p>
+        </form>
+    </div>
 
     <ul class="view">
         <li ng-repeat="currentCat in searchResults track by $index">
@@ -77,7 +80,8 @@
                     <div class="draft-url float-left">
                         <input type="url" name="pictUrl" placeholder="Picture Url"
                                ng-change="currentCat.isMessageVisible = false"
-                               ng-model="currentCat.draftPictUrl" />
+                               ng-model="currentCat.draftPictUrl"
+                               ng-blur="saveUrl(currentCat)" />
                     </div>
 
                     <input class="vote float-left" type="number" ng-model="currentCat.vote"/>

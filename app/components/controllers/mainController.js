@@ -11,8 +11,20 @@
         $scope.text = "Cats";
         $scope.sorting = ['ascending', 'descending'];
 
+        $scope.addCat = function() {
+            $scope.searchResults = [
+                {
+                    id: $scope.cats.length + 1,
+                    name: '',
+                    src: 'http://f.tqn.com/y/webclipart/1/S/9/9/5/No-cats.png',
+                    vote: 0,
+                    viewed: true
+                }
+            ]
+        };
+
         $scope.sortCats = function(cat1, cat2) {
-            if (cat1.name > cat2.name) return 1;
+            if (cat1.name.toLowerCase() > cat2.name.toLowerCase()) return 1;
         };
 
         $scope.count = function(cat) {
@@ -58,10 +70,20 @@
         $scope.saveForm = function(currentCat, isValid) {
             if (isValid) {
                 currentCat.name = currentCat.draftName;
-                currentCat.src = currentCat.draftPictUrl;
+                currentCat.src = currentCat.draftPictUrl ? currentCat.draftPictUrl : 'http://f.tqn.com/y/webclipart/1/S/9/9/5/No-cats.png';
+
+                if (currentCat.id > $scope.cats.length) {
+                    $scope.cats.push(currentCat);
+                    event.preventDefault();
+                }
+                $scope.resetForm(currentCat);
             } else {
                 currentCat.isMessageVisible = true;
             }
+        };
+
+        $scope.saveUrl = function(currentCat) {
+            currentCat.src = currentCat.draftPictUrl
         };
     };
 
