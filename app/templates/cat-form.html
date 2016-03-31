@@ -7,7 +7,8 @@
     <label for="cat-name">Cat Name:</label> <input id="cat-name" type="text" ng-pattern="'[a-zA-Z]+'" ng-model="newCat.name"/>
   </div>
   <div>
-    <label for="cat-image-url">Image URL:</label> <input id="cat-image-url" type="text" ng-model="imgsrc" ng-blur="newCat.imgsrc=imgsrc"/>
+    <label for="cat-image-url">Image URL:</label> <input id="cat-image-url" type="text" ng-model="imgsrc" ng-blur="newCat.imgsrc=imgsrc"/> <!-- TODO use ng-model-options that will the same as ng-blur -->
   </div>
   <img ng-src="{{newCat.imgsrc}}"/>
+  <!-- TODO output error messages -->
 </div>

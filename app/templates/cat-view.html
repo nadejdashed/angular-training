@@ -4,12 +4,13 @@
       {{selectedCat.name}}, 
       {{selectedCat.clicks}} clicks, 
       {{selectedCat.votes}} votes
-			<span ng-show="selectedCat.votes>0">:)</span>
+			<span ng-show="selectedCat.votes>0">:)</span> <!-- TODO please create your own filter -->
 			<span ng-show="selectedCat.votes<0">:(</span>
 			<span ng-show="selectedCat.votes==0">:\</span>
       <button class="red spinner" ng-click="selectedCat.votes=selectedCat.votes+1">+</button>
       <button class="red spinner" ng-click="selectedCat.votes=selectedCat.votes-1">-</button>
     </h1>
     <img ng-src="{{selectedCat.image}}" ng-click="selectedCat.clicks=selectedCat.clicks+1"></img>
+    <!-- TODO better move all functions in controller -->
   </div>
 </div>

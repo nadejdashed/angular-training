@@ -4,7 +4,7 @@
        <button class="red">New</button>
     </li>
     <li class="none-list-item">
-      <form ng-submit="filterCatName=searchText">
+      <form ng-submit="filterCatName=searchText"> <!-- TODO move function better to controller --> 
         Cat Name: <input type="text" ng-model="searchText"/>
         <input type="submit" value="Search" class="red"/>
         <select ng-model="reverse" class="red">
@@ -21,7 +21,7 @@
                'other': 'Tom and {} more cats have positive votes.'}">
       </ng-pluralize>
     </li>
-    <li ng-repeat="cat in cats | filter:{name:filterCatName} | orderBy:'name':reverse==1 track by $index">
+    <li ng-repeat="cat in cats | filter:{name:filterCatName} | orderBy:'name':reverse==1 track by $index"> <!-- TODO reverse==1 better to wrap by (), change to ===, check string and change reverse to boolean value? -->
         <span class="clickable" ng-click="selectCat(cat)">{{cat.name}}</span>
         <i ng-show="cat.viewed">&#10003;</i>
     </li>
