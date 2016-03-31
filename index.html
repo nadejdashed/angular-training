@@ -68,7 +68,7 @@
                     </li>
                 </ul>
 
-                <div class="control">
+                <div class="control smile" ng-class="currentCat.vote == 0 ? '' : currentCat.vote > 0 ? 'happy' : 'sad'">
                     <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
 
                     <div class="draft-name float-left">
