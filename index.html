@@ -21,7 +21,7 @@
 
 </head>
 <body ng-app="app">
-
+    <!-- TODO difficult to read, don't forget intends. one more intend span inside div, etc. -->
     <div ng-controller="catCntr" class="container" >
         <div ng-show="mode !== 'edit'">
         <ng-pluralize count="positiveCats.length" offset=1
@@ -52,7 +52,7 @@
             </div>
             <img ng-click="upVote(selectedCat)" ng-src="{{selectedCat.src}}"/>
         </div>
-        </div>
+        </div> <!-- TODO try to avoid everything in one controller. You could create 3 controllers: cats, addCat, main with mode functionality -->
         <div ng-show="mode === 'edit'">
         <div class="editForm" ng-form name="editForm">
         <span class="error" ng-show="editForm.catName.$error.required">Name required!</span><br>
@@ -67,7 +67,7 @@
         <input name="catImg" type="url" ng-model="selectedCat.src" ng-model-options="{ updateOn: 'blur'}" required>
         </div>
         <div>
-        <button ng-disabled="editForm.catName.$invalid || editForm.catImg.$invalid" ng-click="save(selectedCat)">Save</button>
+        <button ng-disabled="editForm.catName.$invalid || editForm.catImg.$invalid" ng-click="save(selectedCat)">Save</button> <!-- TODO Check validity of form editForm.$invalid -->
         <button ng-click="cancel()">Cancel</button>
         </div>
         <div>

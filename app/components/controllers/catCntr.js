@@ -3,7 +3,7 @@
     var catController = function ($scope, $http) {
         $scope.cats = [];
         $scope.order = 'asc';
-        $scope.mode = 'view';
+        $scope.mode = 'view'; // TODO try to escape 
         $scope.positiveCats = [];
 
         var checkPositiveCats = function(cat) {
@@ -15,7 +15,7 @@
           }
         }
 
-        $scope.selectCat = function(clickEvent,cat){
+        $scope.selectCat = function(clickEvent,cat){ // TODO why it's necessary clickEvent?
           cat.viewed = true;
           $scope.selectedCat = cat;
         }
