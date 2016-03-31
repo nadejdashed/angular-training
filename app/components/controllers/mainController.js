@@ -1,4 +1,4 @@
-﻿(function(module) {
+?(function(module) {
 
     var mainController = function ($scope,$http) {
       $http.get('json/cats.json')
@@ -10,7 +10,7 @@
         $scope.selectedCat = cat;
         cat.viewed = true;
       };
-      $scope.text = "Cats?";
+      $scope.text = "Cats?"; // TODO remove unnecessary code
 
       $scope.onSave = function() {
 

@@ -12,6 +12,7 @@
   <span>{{selectedCat.name}}  </span>
   <span class="glyphicon glyphicon-heart" ng-click="selectedCat.vote = selectedCat.vote+1">{{selectedCat.vote}}</span>
   <img ng-click="selectedCat.vote = selectedCat.vote+1" src="{{selectedCat.src}}" alt="{{selectedCat.name}}">
+  <!-- TODO better to move ng-click function in controller -->
 </div>
 <ul ng-show="cats" class="list-group">
   <li ng-repeat="cat in cats | filter: {name:filterText} |orderBy: order" class="list-group-item" ng-click="selectCat(cat)">

@@ -1,6 +1,7 @@
 <h1>{{text}}</h1>
 
 <form name="addCat" class="form">
+  <!-- TODO better to use model as object. it helps avoid take field one by one and you can use full object from the beginning: newCat.filterText, newCat.catImageUrl -->
   <input type="text" required name="name" class="form-control" placeholder="cat's name" ng-model="filterText">
   <input type="url" required name="imgUrl" class="form-control" placeholder="Image url" ng-model-options="{ updateOn: 'blur'}" ng-model="catImageUrl">
   <img ng-show="addCat.imgUrl.$valid" class="big" src="{{catImageUrl}}">
