@@ -1,6 +1,7 @@
-﻿(function(module) {
+(function(module) {
     "use strict";
 
+    // TODO everything is very great!!! Few things only - be careful with intends
     var mainController = function () {
     	this.cats = [
     		{
@@ -8,7 +9,7 @@
     			imgSrc: "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
     			clicked: 0,
     			name: "Murzik",
-                visited: false,
+                visited: false, // TODO you could not add this value in array, undefined is false by default
                 votes: 0,
                 birthday: new Date(2014, 4, 11)
     		}, {
