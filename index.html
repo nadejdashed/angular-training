@@ -39,7 +39,7 @@
                 <li id="{{catModel.id}}">
                     <h3>{{catModel.name}} <span ng-show="catModel.wasDisplaied">✓</span></h3>
                     
-                    <ng-pluralize count="catModel.vote"
+                    <ng-pluralize count="catModel.vote" <!-- TODO task was a little bit different. it's necessary to output how many cats have positives marks -->
                                 when="{'0': 'Nobody has voted.',    
                                 'one': '1 person has voted.',
                                 'other': '{} people has voted.'}">
@@ -64,7 +64,7 @@
                 </p>
                 <p>
                     <label>Src:</label>
-                    <input name="tmpSrc" ng-model="catcon.tempCat.src" type="url" required/>
+                    <input name="tmpSrc" ng-model="catcon.tempCat.src" type="url" required/> <!--TODO make change model only on blur-->
                     <span ng-show="addCatForm.tmpSrc.$errors.length > 0">addCatForm.$errors</span>
                 </p>
                 <img style="width: 100px; height: 100px;" ng-src="{{catcon.tempCat.src}}">

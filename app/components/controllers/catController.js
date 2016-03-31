@@ -4,7 +4,7 @@
     	
     	var vm = this;
 
-    	vm.catList = catList;
+    	vm.catList = catList; // TODO don't use global variables
     	vm.availableOptions = [
     		{
     			"value": "id",
@@ -29,8 +29,8 @@
 			"name": "",
 			"src": "",
 			"vote": 0,
-			"display": false,
-			"wasDisplaied": false
+			"display": false, // TODO better to save selected cat in separate object than add display to every cat 
+			"wasDisplaied": false // TODO could be skipped initialization because undefined is false
 		}
 
     	vm.voteCat = function (catModel) {
@@ -39,7 +39,7 @@
 
     	vm.showCat = function (catModel) {
     		catModel.display = !catModel.display;
-    		if (catModel.display) {
+    		if (catModel.display) { // TODO is it unnecessary if
     			catModel.wasDisplaied = true;
     		}
     	}
