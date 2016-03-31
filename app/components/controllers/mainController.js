@@ -2,7 +2,7 @@
 
 	function Cat(name, imgsrc) {
 		this.name = name;
-		this.imgsrc = imgsrc;
+		this.image = imgsrc;
 		this.viewed = false;
 		this.clicks = 0;
 		this.votes = 0;
@@ -20,16 +20,14 @@
     		cat.viewed = true;
     		$scope.selectedCat = cat;
     	};
-    	$scope.reverse = '1';
-        $scope.positiveVotes = 0;
-        // $scope.$watch(
-        //     "cats",
-        //     function( newValue, oldValue ) {
-        //         addLogItem( $scope.watchLog );
-        //     }
-        // );
-        $scope.action = 'view';
-        $scope.newCat = new Cat();
+    	$scope.reverse = '0';
+      $scope.positiveVotes = 0;
+      // $scope.$watch(
+      //     "cats",
+      //     function( newValue, oldValue ) {
+      //         addLogItem( $scope.watchLog );
+      //     }
+      // );
     };
 
     module.controller("mainController", mainController);

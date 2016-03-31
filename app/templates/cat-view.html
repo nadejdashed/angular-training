@@ -1,0 +1,15 @@
+<div class="profile">
+  <div ng-show="selectedCat">
+    <h1>
+      {{selectedCat.name}}, 
+      {{selectedCat.clicks}} clicks, 
+      {{selectedCat.votes}} votes
+			<span ng-show="selectedCat.votes>0">:)</span>
+			<span ng-show="selectedCat.votes<0">:(</span>
+			<span ng-show="selectedCat.votes==0">:\</span>
+      <button class="red spinner" ng-click="selectedCat.votes=selectedCat.votes+1">+</button>
+      <button class="red spinner" ng-click="selectedCat.votes=selectedCat.votes-1">-</button>
+    </h1>
+    <img ng-src="{{selectedCat.image}}" ng-click="selectedCat.clicks=selectedCat.clicks+1"></img>
+  </div>
+</div>

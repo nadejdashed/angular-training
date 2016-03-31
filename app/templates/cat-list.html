@@ -1,0 +1,29 @@
+<div class="menu">
+  <ul>
+    <li class="none-list-item">
+       <button class="red">New</button>
+    </li>
+    <li class="none-list-item">
+      <form ng-submit="filterCatName=searchText">
+        Cat Name: <input type="text" ng-model="searchText"/>
+        <input type="submit" value="Search" class="red"/>
+        <select ng-model="reverse" class="red">
+          <option value="0">Asc</option>
+          <option value="1">Desc</option>
+        </select>
+      </form>
+    </li>
+    <li class="none-list-item">
+      <ng-pluralize count="positiveVotes" offset=1
+        when="{'0': 'No cat has positive votes.',
+               '1': 'Only Tom have positive votes.',
+               'one': 'Tom and one more cat have positive votes.',
+               'other': 'Tom and {} more cats have positive votes.'}">
+      </ng-pluralize>
+    </li>
+    <li ng-repeat="cat in cats | filter:{name:filterCatName} | orderBy:'name':reverse==1 track by $index">
+        <span class="clickable" ng-click="selectCat(cat)">{{cat.name}}</span>
+        <i ng-show="cat.viewed">&#10003;</i>
+    </li>
+  </ul>
+</div>
