@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('myApp')
-.service('CatService', ['$http', function($http){
-    
-    this.getCats = function(a) {        
-        return $http.get('/cats');
+.service('CatService', ['$resource', function($resource){
+    var Cats = $resource('/cats', {}, {
+        save: {
+            url: '/cat',
+            method: 'POST'
+        }
+    });
+
+
+    this.getCats = function() {
+        return Cats.query();
     };
     
     this.save = function (cat) {
-        $http.post('/cat', cat);
+        Cats.save(cat);
     }
 }]);

@@ -10,11 +10,14 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', ['$scope', 'CatService', function($scope, CatService) {
+  $scope.newCat = {
+    name: 'Default Cat',
+    image: 'http://localhost:8000/app/img/bengal.jpg',
+    clicks: 0,
+    wasSelected: false
+  };
+
   $scope.addNew = function (newCat) {
-
-    newCat.clicks = 0;
-    newCat.wasSelected = false;
-
     CatService.save(newCat);
   }
 }]);
