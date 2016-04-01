@@ -9,8 +9,12 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', function($scope) {
+.controller('View2Ctrl', ['$scope', 'CatService', function($scope, CatService) {
   $scope.addNew = function (newCat) {
-    console.log(newCat);
+
+    newCat.clicks = 0;
+    newCat.wasSelected = false;
+
+    CatService.save(newCat);
   }
 }]);
