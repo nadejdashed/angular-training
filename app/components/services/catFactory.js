@@ -2,7 +2,12 @@
 
 	module.factory("catFactory", catFactory);
 
-    function catFactory($http, dataStorage, $q) {
+    function catFactory($resource, $http, dataStorage, $q) {
+
+    	var Cat = $resource("/cats/:catId", { catId: "@id"}, {
+        	'update': { method:'PUT' }
+    	});
+
         return {
             getAll: getAll,
             create: create,
@@ -14,19 +19,24 @@
 
         /////
         function getAll() {
-            return $http.get("/cats");
+        	var deferred = $q.defer();
+            return Cat.query(function(data) {
+            	return data;
+            }).$promise;
         }
 
         function create(cat) {
-        	return $http.post("/cats", cat);
+        	return Cat.save(cat, function(data) {
+        		return data;
+        	}).$promise;
         }
 
         function remove(cat) {
-        	return $http.delete("/cats/" + cat.id);
+        	return cat.$remove();
         }
 
         function update(cat) {
-        	return $http.put("/cats/" + cat.id, cat);
+        	return cat.$update();
         }
 
         function canVoteFor(cat) {

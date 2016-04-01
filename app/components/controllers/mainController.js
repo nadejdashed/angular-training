@@ -23,8 +23,8 @@
         }
 
         function loadList() {
-            catFactory.getAll().then(function(response) {
-                vm.cats = response.data;
+            catFactory.getAll().then(function(data) {
+                vm.cats = data;
             });            
         }
 
@@ -46,7 +46,7 @@
         };
 
         vm.onCatRemove = function(cat) {
-            catFactory.remove(cat).then(function(response) {
+            catFactory.remove(cat).then(function() {
                 vm.selectedCat = null;
                 var index = vm.cats.findIndex(function(v) {
                     return v.id === cat.id;
@@ -89,8 +89,8 @@
         };
 
         function voteChanged(cat, changedBy) {
-            catFactory.changeVote(cat, changedBy).then(function(response) {
-                cat = angular.copy(response.data);
+            catFactory.changeVote(cat, changedBy).then(function(data) {
+                cat = angular.copy(data);
                 vm.canVote = catFactory.canVoteFor(cat);
             });
         }

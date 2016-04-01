@@ -1,4 +1,4 @@
 (function () {
     "use strict";
-    angular.module("app", ["ngCookies"]);
+    angular.module("app", ["ngCookies", "ngResource"]);
 })();

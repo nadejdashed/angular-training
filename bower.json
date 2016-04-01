@@ -11,11 +11,10 @@
   "dependencies": {
     "angular": "latest",
     "bootstrap": "latest",
-    "angular-mocks": "latest",
+    "angular-mocks": "^1.5.3",
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
-    "angular-resource": "latest",
-    "angular-mocks": "^1.5.3",
+    "angular-resource": "^1.5.3",
     "angular-cookies": "^1.5.3"
   }
 }
