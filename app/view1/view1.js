@@ -10,12 +10,10 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope', 'CatService', function($scope, CatService) {
-  //  $http.get('http://localhost:8000/app/cats.json').then(function (d) {
-  //    //$scope.cats = d;
-  //    console.log(d);
-  // });
 
-  $scope.cats = CatService.getCats();
+  CatService.getCats().then(function (data) {
+    $scope.cats = data.data;
+  });
 
   // $scope.cats = [
   //   {
