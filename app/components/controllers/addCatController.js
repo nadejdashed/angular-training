@@ -1,7 +1,7 @@
 (function(module) {
 	"use strict";
 
-	var catController = function () {
+	var addCatController = function () {
 		var initialCat;
 
 		this.cat = {
@@ -16,6 +16,6 @@
 		};
 	};
 
-	module.controller("catController", catController);
+	module.controller("addCatController", addCatController);
 
 }(angular.module("app")));

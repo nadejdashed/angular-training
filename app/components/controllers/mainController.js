@@ -1,91 +1,79 @@
 (function(module) {
     "use strict";
+    
+    module.controller("mainController", mainController);
 
     // TODO everything is very great!!! Few things only - be careful with intends
-    var mainController = function () {
-    	this.cats = [
-    		{
-                id: 1,
-    			imgSrc: "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
-    			clicked: 0,
-    			name: "Murzik",
-                visited: false, // TODO you could not add this value in array, undefined is false by default
-                votes: 0,
-                birthday: new Date(2014, 4, 11)
-    		}, {
-                id: 2,
-    			imgSrc: "http://24.media.tumblr.com/tumblr_m4jgfkIsWU1qjev1to1_500.jpg",
-    			clicked: 0,
-    			name: "Ceasar",
-                visited: false,
-                votes: 0,
-                birthday: new Date(2015, 5, 14)
-    		}, {
-                id: 3,
-    			imgSrc: "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
-    			clicked: 0,
-    			name: "Koshak",
-                visited: false,
-                votes: 0,
-                birthday: new Date(2005, 5, 1)
-    		}, {
-                id: 4,
-    			imgSrc: "http://24.media.tumblr.com/tumblr_m4jgfkIsWU1qjev1to1_500.jpg",
-    			clicked: 0,
-    			name: "Austin",
-                visited: false,
-                votes: 0,
-                birthday: new Date(2015, 1, 1)
-    		}, {
-                id: 5,
-    			imgSrc: "http://24.media.tumblr.com/tumblr_m9u8u7DV4h1qh66wqo1_500.jpg",
-    			clicked: 0,
-    			name: "Barsik",
-                visited: false,
-                votes: 0,
-                birthday: new Date(2013, 4, 4)
-    		}, {
-                id: 6,
-    			imgSrc: "http://24.media.tumblr.com/tumblr_m4jgfkIsWU1qjev1to1_500.jpg",
-    			clicked: 0,
-    			name: "Alex",
-                visited: false,
-                votes: 0,
-                birthday: new Date(2013, 6, 1)
-    		}
-
-    	];
-        this.catsWithPositiveVotes = [];
-    	this.selectedCat;
-        this.searchQuery;
-        this.orderBy = "name";
+    function mainController(catFactory) {
+        var vm = this;
+    	vm.cats = [];
+        vm.catsWithPositiveVotes = [];
+    	vm.selectedCat;
+        vm.searchQuery;
+        vm.orderBy = "name";
+        vm.detailPanel;
     	
-    	this.onCatSelected = function(cat) {
-    		this.selectedCat = cat;
-            cat.visited = true;
-    	}
 
-        this.onCatClicked = function (cat) {
+        init();
+        //////
+
+        function init() {
+            catFactory.getAll().then(function(response) {
+                vm.cats = response.data;
+            });
+        }
+
+        vm.isCatDetails = function() {
+            return vm.detailPanel === "DETAIL";
+        };
+
+        vm.isNewCatDetails = function() {
+            return vm.detailPanel === "CREATE";
+        }
+
+        vm.onCreateNew = function() {
+            vm.detailPanel = "CREATE";
+        };
+
+        vm.onCatRemove = function(cat) {
+            catFactory.remove(cat).then(function(response) {
+                vm.selectedCat = null;
+                var index = vm.cats.findIndex(function(v) {
+                    return v.id === cat.id;
+                });
+                if (index !== -1) {
+                    vm.cats.splice(index, 1);
+                }
+            });
+        };
+
+    	vm.onCatSelected = function(cat) {
+    		vm.selectedCat = cat;
+            cat.visited = true;
+            vm.detailPanel = "DETAIL";
+    	};
+
+        vm.onCatClicked = function (cat) {
         	cat.clicked++;
         };
 
-        this.onVoteUpClicked = function(cat) {
+        vm.onVoteUpClicked = function(cat) {
             voteChanged(cat, 1);
 
-            var existingCat = this.catsWithPositiveVotes.find(function (v) {
+            var existingCat = vm.catsWithPositiveVotes.find(function (v) {
                 return v.id === cat.id;
             });
             if (!existingCat) {
-                this.catsWithPositiveVotes.push(cat);
+                vm.catsWithPositiveVotes.push(cat);
             }
         };
 
-        this.onVoteDownClicked = function(cat) {
+        vm.onVoteDownClicked = function(cat) {
             voteChanged(cat, -1);
         };
 
-        this.onSearchClicked = function() {
-            this.searchQuery = this.searchText;
+        vm.onSearchClicked = function() {
+            vm.searchQuery = vm.searchText;
         };
 
         function voteChanged(cat, changedBy) {
@@ -94,10 +82,11 @@
             }
 
             cat.votes = cat.votes + changedBy;
+            catFactory.update(cat).then(function(response) {
+                cat = angular.copy(response.data);
+            });
         }
 
     };
-
-    module.controller("mainController", mainController);
 
 }(angular.module("app")));
