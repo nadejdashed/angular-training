@@ -1,8 +1,7 @@
 (function (module) {
-    var catsController = function ($scope, $http) {
+    var catsController = function ($scope, catService) {
 
-        //read json with cats
-        $http.get('json/cats.json').success(function (data) {
+        catService.allCats().then(function (data) {
             $scope.cats = data;
             $scope.cat = data[0];
         });
