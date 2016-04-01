@@ -5,10 +5,11 @@
 			restrict: 'E',
 			templateUrl: './app/templates/cat/cat.template.html',
 			scope: {
-				cat: '=ngModel'
+				cat: '=ngModel',
+				editable: '=?'
 			},
 			link: function(scope, element) {
-				scope.edited = scope.cat;
+				scope.editing = false;
 
 				scope.increaseVote = function(id){
 					scope.cat.vote = scope.cat.vote + 1;
@@ -19,7 +20,7 @@
 				}
 
 				scope.editCat = function(id) {
-					scope.edited = scope.cat;
+					scope.editing = true;
 				}
 			}
 		}
