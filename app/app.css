@@ -6,6 +6,11 @@ body {
 	margin: 40px;
 }
 
+img {
+	width: 100px;
+	height: 100px;
+}
+
 .master {
 	vertical-align: top;
 	display: inline-block;

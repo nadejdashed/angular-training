@@ -1,10 +1,10 @@
 (function(module) {
     "use strict";
-    
+
     module.controller("mainController", mainController);
 
     // TODO everything is very great!!! Few things only - be careful with intends
-    function mainController(catFactory) {
+    function mainController(catFactory, $cookies) {
         var vm = this;
     	vm.cats = [];
         vm.catsWithPositiveVotes = [];
@@ -12,16 +12,26 @@
         vm.searchQuery;
         vm.orderBy = "name";
         vm.detailPanel;
+        vm.canVote;
     	
 
         init();
         //////
 
         function init() {
+            loadList();
+        }
+
+        function loadList() {
             catFactory.getAll().then(function(response) {
                 vm.cats = response.data;
-            });
+            });            
         }
+
+        vm.onReloadList = function() {
+            loadList();
+            vm.detailPanel = null;
+        };
 
         vm.isCatDetails = function() {
             return vm.detailPanel === "DETAIL";
@@ -51,6 +61,8 @@
     		vm.selectedCat = cat;
             cat.visited = true;
             vm.detailPanel = "DETAIL";
+
+            vm.canVote = catFactory.canVoteFor(cat);
     	};
 
         vm.onCatClicked = function (cat) {
@@ -77,13 +89,9 @@
         };
 
         function voteChanged(cat, changedBy) {
-            if (typeof cat.votes === 'undefined') {
-                cat.votes = 0;
-            }
-
-            cat.votes = cat.votes + changedBy;
-            catFactory.update(cat).then(function(response) {
+            catFactory.changeVote(cat, changedBy).then(function(response) {
                 cat = angular.copy(response.data);
+                vm.canVote = catFactory.canVoteFor(cat);
             });
         }
 

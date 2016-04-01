@@ -1,4 +1,4 @@
-<form name="catsForm" novalidate>
+<form name="catsForm" novalidate ng-controller="addCatController as ctrl" ng-submit="ctrl.onSubmitPressed(catsForm)">
 	<div class="item">
 		<b>Name: </b>
 		<input type="text" name="name" ng-model="ctrl.cat.name" required>

@@ -21,6 +21,7 @@
 			</select>
 		</div>
 		<div class="item"><a ng-click="ctrl.onCreateNew()">Create New</a></div>
+		<div class="item"><a ng-click="ctrl.onReloadList()">Reload</a></div>
 		<ul class="item">
 			<li ng-repeat="cat in ctrl.cats | filter:ctrl.searchQuery | orderBy:ctrl.orderBy">
 				<a ng-click="ctrl.onCatSelected(cat)">{{cat.name}} <span ng-show="cat.visited">✓</span></a>
@@ -35,8 +36,8 @@
 		</div>	
 		<div class="item">
 			<b>Votes:</b> {{ctrl.selectedCat.votes}}
-			<button ng-click="ctrl.onVoteUpClicked(ctrl.selectedCat)">+</button>
-			<button ng-click="ctrl.onVoteDownClicked(ctrl.selectedCat)">-</button>
+			<button ng-show="ctrl.canVote" ng-click="ctrl.onVoteUpClicked(ctrl.selectedCat)">+</button>
+			<button ng-show="ctrl.canVote" ng-click="ctrl.onVoteDownClicked(ctrl.selectedCat)">-</button>
 			<span> {{ ctrl.selectedCat.votes | smile }}</span>
 		</div>
 		<div class="item">

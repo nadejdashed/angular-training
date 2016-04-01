@@ -1,21 +1,39 @@
 (function(module) {
-	"use strict";
+    "use strict";
 
-	var addCatController = function () {
-		var initialCat;
+    module.controller("addCatController", addCatController);
 
-		this.cat = {
-			name: "",
-			imageUrl: ""
-		}
+    function addCatController(catFactory) {
+        var vm = this;
+        var initialCat;
 
-		initialCat = angular.copy(this.cat);
+        vm.cat = {};
 
-		this.onCancelPressed = function() {
-			this.cat = angular.copy(initialCat);
-		};
-	};
+        ////
+        function init() {
+            vm.cat = {
+                name: "",
+                imageUrl: ""
+            };
+            initialCat = angular.copy(vm.cat);
+        }
 
-	module.controller("addCatController", addCatController);
+        vm.onCancelPressed = function() {
+            vm.cat = angular.copy(initialCat);
+        };
+
+        vm.onSubmitPressed = function(form) {
+        	if (form.$invalid) {
+        		return;
+        	}
+
+        	catFactory.create(vm.cat).then(function(response) {
+        		alert("New Cat Created");
+        		vm.cat = angular.copy(initialCat);
+        	});
+        }
+    };
+
+
 
 }(angular.module("app")));

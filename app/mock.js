@@ -57,9 +57,16 @@ angular.module('app-mock', ['ngMockE2E'])
           return [200, inputData];
         });
 
-        $httpBackend.whenPOST('/cats').respond(function(method, url, data, headers) {
-            data.push(data);
-            return [200, data];
+        $httpBackend.whenPOST('/cats').respond(function(method, url, inputData, headers) {
+            var newData;
+            if (typeof inputData === 'string') {
+              newData = JSON.parse(inputData);
+            } else {
+              newData = inputData;
+            }
+            newData.id = Math.random();
+            data.push(newData);
+            return [200, newData];
         });
 
         $httpBackend.whenGET(/\.html/).passThrough(); 
