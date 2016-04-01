@@ -1,0 +1,17 @@
+.cats {
+  margin: 20px;
+}
+
+img.cat {
+  height: 200px;
+  width: 300px;
+}
+
+.voteButton {
+  width: 25px;
+  height: 25px;
+}
+
+li {
+  width: 50px;
+}

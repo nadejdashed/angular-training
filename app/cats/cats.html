@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="cats/styles/cats.css" harset="utf-8">
+
+<div class="cats">
+  <div>
+    <input type="text" ng-model="searchText" />
+    <button ng-click="findCat()">search</button>
+
+    <select name="sort" ng-model="orderReverse">
+      <option value="" selected>asc</option>
+      <option value="desc">decs</option>
+    </select>
+  </div>
+
+  <img class="cat" ng-src="{{cat.src}}" alt="{{cat.name}}" />
+  <div>
+    <button class="voteButton" ng-click="incVotes(cat)">+</button>
+    <button class="voteButton" ng-click="decVotes(cat)">-</button>
+  </div>
+  <p>Votes for {{cat.name}}: {{cat.votes}}</p>
+
+  <ul>
+    <li ng-repeat="cat in cats | filter:filterExpression | orderBy:cat.name:orderReverse track by $index"
+        ng-click="selectCat(cat)"
+        ng-style="{color: cat.wasSelected ? 'blue' : none}">
+        {{cat.name}}
+    </li>
+  </ul>
+</div>

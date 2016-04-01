@@ -1,0 +1,29 @@
+{
+  "cats": [
+    {
+      "name": "cat1",
+      "src": "cats/img/cat1.jpg",
+      "votes": 0
+    },
+    {
+      "name": "cat2",
+      "src": "cats/img/cat2.jpg",
+      "votes": 0
+    },
+    {
+      "name": "cat3",
+      "src": "cats/img/cat3.jpg",
+      "votes": 0
+    },
+    {
+      "name": "cat4",
+      "src": "cats/img/cat4.jpg",
+      "votes": 0
+    },
+    {
+      "name": "cat5",
+      "src": "cats/img/cat5.jpg",
+      "votes": 0
+    }
+  ]
+}
