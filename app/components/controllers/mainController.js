@@ -29,6 +29,8 @@
         }];
 
         $scope.selectedCat = {display: false, cat: null};
+        $scope.newCat = null;
+        $scope.isFormVisible = {display: false};
         $scope.searchString = "";
         $scope.inputText = "";
 
@@ -44,12 +46,33 @@
 
         $scope.showCat = function (cat) {
             $scope.selectedCat.cat = cat;
-            $scope.selectedCat.display = true
+            $scope.selectedCat.display = true;
             cat.isViewed = true;
-        }
+        };
 
         $scope.filterCats = function(inputText) {
             $scope.searchString = inputText;
+        }
+
+        $scope.showForm = function() {
+            "use strict";
+            $scope.newCat = {"name": "",
+                "src": "",
+                "vote": 0,
+                isViewed: false};
+            $scope.isFormVisible.display = true;
+        }
+
+        $scope.addCat = function(cat) {
+            "use strict";
+            $scope.cats.push(cat);
+            $scope.isFormVisible.display = false;
+        }
+
+        $scope.cancelEdit = function() {
+            "use strict";
+            $scope.newCat = null;
+            $scope.isFormVisible.display = false;
         }
     };
 

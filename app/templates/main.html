@@ -7,6 +7,9 @@
     <span ng-show="cat.isViewed">V</span>
     &nbsp;
 </div>
+<div>
+    <input type="button" value="Add cat" ng-click="showForm()"/>
+</div>
 
 <div  id="cat-display" ng-show="selectedCat.display">
     <div>
@@ -18,4 +21,22 @@
         <span ng-bind="selectedCat.cat.vote"></span>
         <a href="#" ng-click="increaseVoteForCat(selectedCat.cat)">+</a>
     </div>
+</div>
+
+<div id="addcatFormDiv" style="display: inline-block;" ng-show="isFormVisible.display">
+    <form novalidate id="addCatForm">
+        <div>
+            <label for="catName">Cat Name</label>
+            <input id="catName" ng-model="newCat.name" type="text"/>
+        </div>
+        <div>
+            <label for="catUrl">Cat URL</label>
+            <input id="catUrl" ng-model="newCat.src" type="url"/>
+        </div>
+        <div>
+            <img ng-src="{{newCat.src}}"/>
+        </div>
+        <input type="button" value="Submit Cat" ng-click="addCat(newCat)"/>
+        <input type="button" value="Cancel" ng-click="cancelEdit()"/>
+    </form>
 </div>
