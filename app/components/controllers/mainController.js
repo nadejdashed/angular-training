@@ -1,7 +1,7 @@
 ﻿(function (module) {
 
-    var mainController = function ($scope) {
-        $scope.text = "Hello World?";
+    var mainController = function ($scope, catSenderService) {
+        catSenderService.provideCats();
         $scope.cats = [{
             "id": 1,
             "name": "Alex",
@@ -52,7 +52,7 @@
 
         $scope.filterCats = function(inputText) {
             $scope.searchString = inputText;
-        }
+        };
 
         $scope.showForm = function() {
             "use strict";
@@ -61,19 +61,20 @@
                 "vote": 0,
                 isViewed: false};
             $scope.isFormVisible.display = true;
-        }
+        };
 
         $scope.addCat = function(cat) {
             "use strict";
             $scope.cats.push(cat);
+            catSenderService.saveCats(cat);
             $scope.isFormVisible.display = false;
-        }
+        };
 
         $scope.cancelEdit = function() {
             "use strict";
             $scope.newCat = null;
             $scope.isFormVisible.display = false;
-        }
+        };
     };
 
     module.controller("mainController", mainController);
