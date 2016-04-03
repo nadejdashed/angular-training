@@ -1,0 +1,32 @@
+<div class="form-group">
+  <label for="1">Cat Name</label>
+  <input type="text" class="form-control" id="1" placeholder="Name" ng-model="newCat.name">
+</div>
+<div class="form-group">
+  <label for="2">Cat Image</label>
+  <input type="url" class="form-control" id="2" placeholder="Image" ng-model="newCat.url">
+</div>
+<div class="form-group" ng-show="newCat.name">
+  <div class="row">
+    <div class="col-md-6 panel panel-default">
+      <div class="row">
+        <div class="col-sm-2">Name</div>
+        <div class="col-sm-4">{{newCat.name}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <img class="img-rounded" ng-src="{{newCat.url}}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">Vote</div>
+        <div class="col-sm-4">
+          <button class="glyphicon glyphicon-thumbs-up" ng-click="testVote = testVote + 1"></button>
+          {{testVote}}
+          <button class="glyphicon glyphicon-thumbs-down" ng-click="testVote = testVote - 1"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="submit" class="btn btn-default" ng-click="submitAdd()">Submit</button>

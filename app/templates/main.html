@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Name" ng-model="name"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="search.name = name" type="button">Search</button>
+            </span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <select class="form-control" id="sel1" ng-model="sortOption">
+        <option value="">ASC</option>
+        <option value="true">DESC</option>
+      </select>
+    </div>
+  </div>
+</div>
+<hr>
+<div ng-repeat="cat in cats | filter:search | orderBy: cat.name : sortOption track by cat.id" class="row">
+  <div class="col-md-6 panel panel-default">
+    <div class="row">
+      <div class="col-sm-2">Name</div>
+      <div class="col-sm-4">{{cat.name}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <img class="img-rounded" ng-src="{{cat.url}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">Vote</div>
+      <div class="col-sm-4">
+        <button class="glyphicon glyphicon-thumbs-up" ng-click="cat.vote = cat.vote + 1"></button>
+        {{cat.vote}}
+        <button class="glyphicon glyphicon-thumbs-down" ng-click="cat.vote = cat.vote - 1"></button>
+      </div>
+    </div>
+  </div>
+</div>
