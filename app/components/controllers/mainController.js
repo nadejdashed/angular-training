@@ -1,12 +1,19 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http) {
-        $http({
-            method: 'GET',
-            url: '/json/cats.json'
-        }).then(function(d) {
-            $scope.cats = d.data;
+    var mainController = function ($scope, $http, catService) {
+        //$http({
+        //    method: 'GET',
+        //    url: '/json/cats.json'
+        //}).then(function(d) {
+        //    $scope.cats = d.data;
+        //});
+
+        var getCatResponse = catService.cat.get({id: 3}, function() {
+            // Id will be id=1 because in mock.js has .respond(data[0]);
+            console.log('getCatResponse = ', getCatResponse);
         });
+
+        $scope.cats = catService.queryCat();
 
         $scope.text = "Cats";
         $scope.sorting = ['ascending', 'descending'];
@@ -77,6 +84,12 @@
                     event.preventDefault();
                 }
                 $scope.resetForm(currentCat);
+
+                catService.saveCat(currentCat);
+
+                var queryCatResponse = catService.cat.query(function() {
+                    console.log('queryCatResponse = ', queryCatResponse);
+                });
             } else {
                 currentCat.isMessageVisible = true;
             }

@@ -82,6 +82,7 @@ ul {
 	bottom: 0;
 	left: 0;
 	right: 0;
+	border-radius: 50px;
 	background: url("https://s-media-cache-ak0.pinimg.com/236x/1d/55/31/1d5531352607a1bcd9d83399cf52b087.jpg");
 	opacity: 0.2;
 	z-index: -1;
