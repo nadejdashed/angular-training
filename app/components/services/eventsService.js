@@ -5,7 +5,11 @@
 				Event = $resource('/json/events.json/:eventId', {eventId:'@id'}, {
 					'update': { method:'PUT' }
 				});
-						
+
+			$http.get('/event/1').then(function(){
+				debugger;
+			});
+			
 			function getEvents(){
 				/*if (events) {
 					return $q.resolve(events);

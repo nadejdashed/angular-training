@@ -1,4 +1,4 @@
-﻿(function(module) {
+(function(module) {
 
     var mainController = function ($scope, $timeout) {
         this.text = "Hello World?";
@@ -6,7 +6,9 @@
         
         $timeout(function(){
             $scope.$broadcast('event1');
-        }, 0);        
+        }, 0);  
+        
+        
     };
 
     module.controller("mainController", mainController);
