@@ -1,7 +1,7 @@
 (function(module) {
 
 	var catService = function($resource) {
-		var catResource = $resource('/cat/:catId', {catId: '@id'});
+		var catResource = $resource('/cats/:catId', {catId: '@id'});
 
 		this.getCatsList = function() {
 			return catResource.query().$promise;
@@ -12,8 +12,7 @@
 		}
 
 		this.addCat = function(cat) {
-			var newCat = new catResource(cat);
-			return newCat.$save();
+			return catResource.save(cat);
 		}
 	}
 

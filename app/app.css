@@ -81,3 +81,11 @@ span.view:after {
     transform: rotate(-45deg);
     right: 1px;
 }
+
+.cat-form input.ng-invalid.ng-touched {
+	background-color: #FA787E;
+}
+
+.cat-form input.ng-valid.ng-touched {
+	background-color: #78FA89;
+}

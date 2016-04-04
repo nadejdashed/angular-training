@@ -24,10 +24,10 @@ angular.module('app-mock', ['ngMockE2E'])
     }];
 
     $httpBackend.whenGET(/\.html/).passThrough();
-    $httpBackend.whenGET('/cat').respond(data);
-    $httpBackend.whenGET(/\/cat\/\d+/).respond(data[0]);
+    $httpBackend.whenGET('/cats').respond(data);
+    $httpBackend.whenGET(/\/cats\/\d+/).respond(data[0]);
     
-    $httpBackend.whenPOST('/cat').respond(function(method, url, value, headers){
+    $httpBackend.whenPOST(/\/cats\/\d+/).respond(function(method, url, value, headers){
       data.push(value);
       return [200, value];
     });

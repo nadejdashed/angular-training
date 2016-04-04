@@ -1,5 +1,6 @@
 <ng-form name="catForm" class="cat-form" ng-controller="editController">
 	<label>Name: </label><input name="catName" type="text" ng-model="cat.name" required>
-	<label>Pictrure (URL): </label><input name="catPicture" type="text" ng-pattern="/\w+.\w{2,3}/" ng-model="cat.src" ng-model-options="{ updateOn: 'blur' }" required>
-	<img ng-src="{{cat.src}}">
+	<label>Pictrure (URL): </label><input name="catPicture" type="text" ng-pattern="{{urlPattern}}" ng-model="cat.src" ng-model-options="{ updateOn: 'blur' }" required>
+	<button type="submit" form="catForm" ng-click="addCat()">Submit</button>
+	<img ng-src="{{cat.src}}" err-src="{{defaultImgUrl}}"/>
 </ng-form>
