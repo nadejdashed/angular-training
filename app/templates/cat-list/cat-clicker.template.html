@@ -2,7 +2,7 @@
 	<div class="filters">
 		<div class="order">
 			<span>Order:</span>
-			<select name="" id="" ng-model='orderType'>
+			<select ng-model='orderType'>
 				<option value='name'>Name ascending</option>
 				<option value='-name'>Name discending</option>
 				<option value='vote'>Vote ascending</option>
@@ -23,12 +23,12 @@
 	</div>
 	<div class="cat-list-wrapper">
 		<div class="cat-list">
-			<div class="cat" ng-repeat='cat in cats | orderBy: orderType | filter: filterText' ng-click='selectCat(cat.id - 1)'>
+			<div class="cat" ng-repeat='cat in cats | orderBy: orderType | filter: filterText' ng-click='selectCat(cat.id)'>
 				<cat ng-model='cat' mode='list-item'></cat>
 			</div>
 		</div>
 		<div class="selected-cat cat" ng-if='!!selected'>
-			<cat ng-model='selected' editable='true'></cat>
+			<cat ng-model='selected'></cat>
 		</div>
 	</div>
 </div>

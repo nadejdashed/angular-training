@@ -15,5 +15,8 @@
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
     "angular-resource": "latest"
+  },
+  "resolutions": {
+    "angular": "1.5.3"
   }
 }

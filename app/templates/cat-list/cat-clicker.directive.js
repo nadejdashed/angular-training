@@ -1,6 +1,6 @@
 (function(module) {
 
-	var catClickerDirective = function() {
+	var catClickerDirective = function(catService) {
 		return {
 			restrict: 'E',
 			templateUrl: './app/templates/cat-list/cat-clicker.template.html',
@@ -23,10 +23,13 @@
 				};
 
 				scope.selectCat = function(id) {
-					scope.selected = scope.cats[id];
-					scope.selected.viewed = true;
+					catService.getSingleCat(id)
+						.then(function(data) {
+							scope.selected = data;
+							scope.selected.viewed = true;
 
-					scope.edited = scope.selected;
+							scope.edited = scope.selected;
+						});
 				}
 
 				scope.formatRating = function() {
@@ -36,7 +39,9 @@
 							if(ratedItems.length === 1) {
 								scope.formattedRating[rate] = 'Only ' + ratedItems[0].name + ' has ' + rate + ' votes.';
 							} else {
-								scope.formattedRating[rate] = ratedItems[0].name + ' and ' + (ratedItems.length - 1) + ' more have ' + rate + ' votes.';
+								scope.formattedRating[rate] = ratedItems[0].name +
+															' and ' + (ratedItems.length - 1) +
+															' more have ' + rate + ' votes.';
 							}
 						} else {
 							scope.formattedRating[rate] = 'There are no cats with ' + rate + ' votes.';
@@ -50,6 +55,7 @@
 						negative: [],
 						neutral: []
 					};
+					
 					scope.cats.forEach(function(cat, index) {
 						if(cat.vote) {
 							if(cat.vote > 0) {
@@ -61,6 +67,7 @@
 							scope.rating.neutral.push(cat);
 						}
 					});
+
 					scope.formatRating();
 				}
 

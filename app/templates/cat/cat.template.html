@@ -1,11 +1,7 @@
 <span ng-bind='cat.name'></span>
 <span class='view' ng-if='cat.viewed'></span>
 <img ng-src="{{cat.src}}">
-<span class="up-arrow" ng-click="increaseVote(cat.id - 1)"></span>
+<span class="up-arrow" ng-click="increaseVote()"></span>
 <span ng-bind='cat.vote'></span>
 <span>{{cat.vote < 0 ? ":(" : ":)"}}</span>
-<span class="down-arrow" ng-click="decreaseVote(cat.id - 1)"></span>
-<button ng-if='editable' ng-click="editCat(cat.id - 1)">Edit</button>
-<div ng-if='editing' class="cat-edit">
-	<cat-edit ng-model='edited'></cat-edit>
-</div>
+<span class="down-arrow" ng-click="decreaseVote()"></span>

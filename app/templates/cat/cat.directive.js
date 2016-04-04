@@ -5,23 +5,18 @@
 			restrict: 'E',
 			templateUrl: './app/templates/cat/cat.template.html',
 			scope: {
-				cat: '=ngModel',
-				editable: '=?'
+				cat: '=ngModel'
+			},
+			controller: function($scope) {
+				$scope.increaseVote = function(id){
+					$scope.cat.vote = $scope.cat.vote + 1;
+				}
+
+				$scope.decreaseVote = function(id) {
+					$scope.cat.vote = $scope.cat.vote - 1;
+				}
 			},
 			link: function(scope, element) {
-				scope.editing = false;
-
-				scope.increaseVote = function(id){
-					scope.cat.vote = scope.cat.vote + 1;
-				}
-
-				scope.decreaseVote = function(id) {
-					scope.cat.vote = scope.cat.vote - 1;
-				}
-
-				scope.editCat = function(id) {
-					scope.editing = true;
-				}
 			}
 		}
 	}

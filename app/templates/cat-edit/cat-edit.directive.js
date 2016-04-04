@@ -8,7 +8,7 @@
 				cat: '=ngModel'
 			},
 			controller: function($scope) {
-
+				
 			},
 			link: function(scope, element) {
 				
