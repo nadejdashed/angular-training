@@ -76,6 +76,7 @@
 
         $scope.saveForm = function(currentCat, isValid) {
             if (isValid) {
+                currentCat.date = +new Date();
                 currentCat.name = currentCat.draftName;
                 currentCat.src = currentCat.draftPictUrl ? currentCat.draftPictUrl : 'http://f.tqn.com/y/webclipart/1/S/9/9/5/No-cats.png';
 
@@ -98,6 +99,8 @@
         $scope.saveUrl = function(currentCat) {
             currentCat.src = currentCat.draftPictUrl
         };
+
+        //$scope.catInformation = catInfo($scope.cats[0]);
     };
 
     module.controller("mainController", mainController);

@@ -20,6 +20,7 @@
     <script src="/mock.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/services/mainService.js"></script>
+    <script src="/app/components/filters/mainFilter.js"></script>
     <!-- /build -->
 
 </head>
@@ -27,6 +28,8 @@
 
 <div ng-controller="mainController" class="container">
     <div ng-include="'/app/templates/main.html'"></div>
+
+    <!--<p>{{catInformation}}</p>-->
 
     <div class="selection">
         <ul class="list">
@@ -57,6 +60,8 @@
     <ul class="view">
         <li ng-repeat="currentCat in searchResults track by $index">
             <form name="form[$index]" class="clearfix">
+                <div class="date">{{currentCat.date | date: 'dd-MMM- yyyy'}}</div>
+
                 <div class="picture">
                     <img ng-click="count(currentCat)" ng-src="{{currentCat.src}}"/>
                     <span class="counter">{{currentCat.counter ? currentCat.counter : 0}}</span>
@@ -76,7 +81,7 @@
                     <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
 
                     <div class="draft-name float-left">
-                        <input type="text" name="catName" placeholder="Cat name" required
+                        <input type="text" name="catName" placeholder="Cat name" autocomplete="off" required
                                ng-change="currentCat.isMessageVisible = false"
                                ng-model="currentCat.draftName"
                                ng-pattern="/^\w+$/" />

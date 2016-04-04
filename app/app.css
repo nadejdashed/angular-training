@@ -87,6 +87,16 @@ ul {
 	opacity: 0.2;
 	z-index: -1;
 }
+.view .date {
+	position: absolute;
+	padding: 0 10px;
+	left: 40px;
+	top: -10px;
+	background: #D6D6D6;
+	border-radius: 10px;
+	color: white;
+	font-size: 18px;
+}
 .view .picture {
 	position: relative;
 	display: inline-block;
