@@ -1,20 +1,15 @@
 (function(module) {
-
-
-
-    var catController = function ($scope) {
+    var catController = function ($scope, catService) {
         $scope.clearForm = function () {
-            var cat ={name:"", url:""};
-            $scope.cat = cat;
+            $scope.cat = {name:"", url:""};
         }
 
         $scope.clearForm();
 
         $scope.saveCat = function (cat) {
-            alert("Saving for cat name:" + cat.name + " image:" + cat.url);
+            catService.addCat(cat);
             $scope.clearForm();
         }
     };
     module.controller("addCatController", catController);
-
 }(angular.module("app")));

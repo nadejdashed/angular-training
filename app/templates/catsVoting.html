@@ -35,7 +35,7 @@
     <p><label>Name:</label> {{selectedCat.name}}</p>
     <img src="{{selectedCat.src}}"/>
     <br/>
-    <button ng-click="selectedCat.vote=selectedCat.vote+1" ng-disabled="!selectedCat">+</button>
+    <button ng-click="positiveVote(selectedCat)" ng-disabled="!selectedCat">+</button>
 
     &nbsp;{{selectedCat.vote}}
     <span ng-if="selectedCat.vote>0">:)</span>

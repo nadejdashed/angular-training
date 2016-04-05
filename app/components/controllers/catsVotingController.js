@@ -1,24 +1,17 @@
 (function(module) {
-
     function getPositiveCat($scope) {
-        var positiveCatName = "";
-
-        var filterPositiveCat = function(value){
+        var pCats = $scope.cats.filter(function(value){
             return value.vote>0;
-        }
-
-        var pCats = $scope.cats.filter(filterPositiveCat);
+        });
         if(pCats.length >0){
             $scope.firstPositiveCatName=pCats[0].name;
         }
         $scope.positiveCatCount=pCats.length;
     }
 
-    var catController = function ($scope) {
-        var catsFromJson = parseJson("../../json/cats.json");
-        $scope.cats=catsFromJson;
+    var catController = function ($scope, catService, $cookies) {
+        $scope.cats=catService.getCats();
         $scope.currentDate = new Date();
-
         getPositiveCat($scope);
         
         $scope.selectCat = function (cat) {
@@ -48,9 +41,17 @@
             $scope.search =  search;
 
         };
+
+        $scope.positiveVote = function (cat) {
+            var catId = "posvote" + cat.id;
+            var value = $cookies.get(catId);
+            if(value == undefined || value == false){
+                cat.vote = cat.vote + 1;
+                $cookies.put(catId, true);
+            }
+
+        }
     };
-
-
     module.controller("catsVotingController", catController);
 
 }(angular.module("app")));
