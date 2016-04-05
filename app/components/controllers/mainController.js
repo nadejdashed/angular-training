@@ -4,7 +4,7 @@
     module.controller("mainController", mainController);
 
     // TODO everything is very great!!! Few things only - be careful with intends
-    function mainController(catFactory, $cookies) {
+    function mainController(catFactory) {
         var vm = this;
     	vm.cats = [];
         vm.catsWithPositiveVotes = [];
