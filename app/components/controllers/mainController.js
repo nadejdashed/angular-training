@@ -1,10 +1,7 @@
 ?(function(module) {
 
-    var mainController = function ($scope,$http) {
-      $http.get('json/cats.json')
-      .then(function(resp){
-        $scope.cats = resp.data;
-      });
+    var mainController = function ($scope, $http, catCrudService, catCookiesService) {
+      $scope.cats = catCrudService.getCats()
 
       $scope.selectCat =function(cat) {
         $scope.selectedCat = cat;
@@ -14,6 +11,9 @@
 
       $scope.onSave = function() {
 
+      }
+      $scope.vote = function(cat) {
+        catCookiesService.voteCat(cat)
       }
     };
 
