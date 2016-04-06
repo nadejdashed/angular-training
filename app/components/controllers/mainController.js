@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http, $filter, catService) {
+    var mainController = function ($scope, $http, $cookies, catService) {
         //$http({
         //    method: 'GET',
         //    url: '/json/cats.json'
@@ -103,6 +103,13 @@
 
         $scope.saveUrl = function(currentCat) {
             currentCat.src = currentCat.draftPictUrl
+        };
+
+        $scope.changeVote = function(currentCat, dir) {
+            if (!$cookies.get('catId-' + currentCat.id)) {
+                currentCat.vote += dir;
+                $cookies.put('catId-' + currentCat.id, currentCat.vote);
+            }
         };
     };
 

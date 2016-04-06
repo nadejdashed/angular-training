@@ -13,6 +13,7 @@
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
 
     <!-- build:js /build/angular-training.js -->
@@ -59,7 +60,7 @@
 
     <ul class="view">
         <li ng-repeat="currentCat in searchResults track by $index">
-            <form name="form[$index]" class="clearfix" novalidate>
+            <form name="form[$index]" class="clearfix" ng-submit="saveForm(currentCat, form[$index].$valid)" novalidate>
                 <div class="date">{{currentCat.date | date: 'dd-MMM- yyyy'}}</div>
 
                 <div class="picture">
@@ -77,7 +78,7 @@
                     </li>
                 </ul>
 
-                <div class="control smile" ng-class="currentCat.vote == 0 ? '' : currentCat.vote > 0 ? 'happy' : 'sad'">
+                <div class="control">
                     <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
 
                     <div class="draft-name float-left">
@@ -93,8 +94,12 @@
                                ng-blur="saveUrl(currentCat)" />
                     </div>
 
-                    <input class="vote float-left" type="number" ng-model="currentCat.vote"/>
-                    <button class="btn-submit float-left" ng-class="isNewCat(currentCat) ? 'add' : 'save'" type="submit" ng-click="saveForm(currentCat, form[$index].$valid)">
+                    <div class="number-input smile float-left" ng-class="currentCat.vote == 0 ? '' : currentCat.vote > 0 ? 'happy' : 'sad'">
+                        <input class="vote" type="text" disabled="disabled" ng-model="currentCat.vote" title="Vote" />
+                        <button type="button" class="up" ng-click="changeVote(currentCat, 1)">&#9650;</button>
+                        <button type="button" class="down" ng-click="changeVote(currentCat, -1)">&#9660;</button>
+                    </div>
+                    <button class="btn-submit float-left" ng-class="isNewCat(currentCat) ? 'add' : 'save'" type="submit">
                         {{isNewCat(currentCat) ? 'Add' : 'Save'}}
                     </button>
                 </div>
