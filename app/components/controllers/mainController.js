@@ -82,14 +82,16 @@
             if (isValid) {
                 currentCat.date = +new Date();
                 currentCat.name = currentCat.draftName;
-                currentCat.src = currentCat.draftPictUrl ? currentCat.draftPictUrl : 'http://f.tqn.com/y/webclipart/1/S/9/9/5/No-cats.png';
-
-                $scope.resetForm(currentCat);
+                if (currentCat.draftPictUrl) {
+                    currentCat.src = currentCat.draftPictUrl;
+                }
 
                 if (currentCat.id > $scope.cats.length) {
                     $scope.cats.push(currentCat);
                     catService.saveCat(currentCat);
                 }
+
+                $scope.resetForm(currentCat);
 
                 var queryCatResponse = catService.cat.query(function() {
                     console.log('queryCatResponse = ', queryCatResponse);
