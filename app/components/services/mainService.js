@@ -3,7 +3,6 @@
 	var catService = function($resource) {
 		var Cat = $resource('/cat/:id');
 
-
 		return {
 			cat: Cat,
 			queryCat: function() {

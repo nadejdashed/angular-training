@@ -29,7 +29,7 @@
 <div ng-controller="mainController" class="container">
     <div ng-include="'/app/templates/main.html'"></div>
 
-    <!--<p>{{catInformation}}</p>-->
+    <h3>{{searchResults | catInfo}}</h3>
 
     <div class="selection">
         <ul class="list">
@@ -59,7 +59,7 @@
 
     <ul class="view">
         <li ng-repeat="currentCat in searchResults track by $index">
-            <form name="form[$index]" class="clearfix">
+            <form name="form[$index]" class="clearfix" novalidate>
                 <div class="date">{{currentCat.date | date: 'dd-MMM- yyyy'}}</div>
 
                 <div class="picture">
@@ -94,7 +94,9 @@
                     </div>
 
                     <input class="vote float-left" type="number" ng-model="currentCat.vote"/>
-                    <button class="btn-submit float-left" type="submit" ng-click="saveForm(currentCat, form[$index].$valid)">Save</button>
+                    <button class="btn-submit float-left" ng-class="isNewCat(currentCat) ? 'add' : 'save'" type="submit" ng-click="saveForm(currentCat, form[$index].$valid)">
+                        {{isNewCat(currentCat) ? 'Add' : 'Save'}}
+                    </button>
                 </div>
             </form>
         </li>

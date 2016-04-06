@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http, catService) {
+    var mainController = function ($scope, $http, $filter, catService) {
         //$http({
         //    method: 'GET',
         //    url: '/json/cats.json'
@@ -74,19 +74,22 @@
             currentCat.draftName = currentCat.draftPictUrl = '';
         };
 
+        $scope.isNewCat = function(currentCat) {
+            return currentCat.id > $scope.cats.length;
+        };
+
         $scope.saveForm = function(currentCat, isValid) {
             if (isValid) {
                 currentCat.date = +new Date();
                 currentCat.name = currentCat.draftName;
                 currentCat.src = currentCat.draftPictUrl ? currentCat.draftPictUrl : 'http://f.tqn.com/y/webclipart/1/S/9/9/5/No-cats.png';
 
-                if (currentCat.id > $scope.cats.length) {
-                    $scope.cats.push(currentCat);
-                    event.preventDefault();
-                }
                 $scope.resetForm(currentCat);
 
-                catService.saveCat(currentCat);
+                if (currentCat.id > $scope.cats.length) {
+                    $scope.cats.push(currentCat);
+                    catService.saveCat(currentCat);
+                }
 
                 var queryCatResponse = catService.cat.query(function() {
                     console.log('queryCatResponse = ', queryCatResponse);
@@ -99,8 +102,6 @@
         $scope.saveUrl = function(currentCat) {
             currentCat.src = currentCat.draftPictUrl
         };
-
-        //$scope.catInformation = catInfo($scope.cats[0]);
     };
 
     module.controller("mainController", mainController);
