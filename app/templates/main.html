@@ -35,10 +35,11 @@
 			<b>Cat clicked:</b> {{ ctrl.selectedCat.clicked }} times
 		</div>	
 		<div class="item">
-			<b>Votes:</b> {{ctrl.selectedCat.votes}}
-			<button ng-show="ctrl.canVote" ng-click="ctrl.onVoteUpClicked(ctrl.selectedCat)">+</button>
-			<button ng-show="ctrl.canVote" ng-click="ctrl.onVoteDownClicked(ctrl.selectedCat)">-</button>
-			<span> {{ ctrl.selectedCat.votes | smile }}</span>
+			<vote-spinner votes="{{ctrl.selectedCat.votes}}" 
+				can-vote="ctrl.canVote"
+				on-vote-up="ctrl.onVoteUpClicked(ctrl.selectedCat)"
+				on-vote-down="ctrl.onVoteDownClicked(ctrl.selectedCat)">
+			</vote-spinner>
 		</div>
 		<div class="item">
 			<button ng-click="ctrl.onCatRemove(ctrl.selectedCat)">Remove</button>

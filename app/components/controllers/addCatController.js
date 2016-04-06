@@ -8,7 +8,7 @@
         var initialCat;
 
         vm.cat = {};
-
+        init();
         ////
         function init() {
             vm.cat = {

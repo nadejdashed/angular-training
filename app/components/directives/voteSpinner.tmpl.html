@@ -1,0 +1,6 @@
+<div>
+	<b>Votes:</b> {{votes}}
+	<button ng-show="canVote" ng-click="onVoteUp()">+</button>
+	<button ng-show="canVote" ng-click="onVoteDown()">-</button>
+	<span> {{ votes | smile }}</span>	
+</div>

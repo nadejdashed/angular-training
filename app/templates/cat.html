@@ -1,18 +1,23 @@
-<form name="catsForm" novalidate ng-controller="addCatController as ctrl" ng-submit="ctrl.onSubmitPressed(catsForm)">
+<form name="catsForm" 
+	novalidate
+	ng-controller="addCatController as ctrl" 
+	ng-submit="ctrl.onSubmitPressed(catsForm)"
+	quick-submit>
 	<div class="item">
 		<b>Name: </b>
-		<input type="text" name="name" ng-model="ctrl.cat.name" required>
+		<input type="text" name="name" ng-model="ctrl.cat.name" required >
 		<div ng-show="catsForm.name.$error.required">This field is required</div>
 	</div>
-	<div class="item">
+<!--    		<div class="item">
 		<b>Pic URL: </b>
-		<input type="url" name="imageUrl" ng-model="ctrl.cat.imageUrl" ng-model-options="{ updateOn: 'blur' }" required>
+		<input type="url" name="imageUrl" ng-model="ctrl.cat.imageUrl" ng-model-options="{ updateOn: 'blur' }" required load-focus>
 		<div ng-show="catsForm.imageUrl.$error.required">This field is required</div>
 		<div ng-show="catsForm.imageUrl.$error.url">Url is invalid</div>
 	</div>
 	<div class="item" ng-show="catsForm.imageUrl.$valid">
 		<img ng-src="{{ctrl.cat.imageUrl}}">
-	</div>
+	</div> -->
+	<image-preview ng-model="ctrl.cat.imageUrl"></image-preview>
 
 	<div>
 		<button class="btn btn-default" ng-click="ctrl.onCancelPressed()">Cancel</button>

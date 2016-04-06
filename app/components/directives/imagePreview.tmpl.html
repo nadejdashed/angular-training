@@ -1,0 +1,12 @@
+<div ng-form name="imageForm">
+	<div class="item">
+		<b>Pic URL: </b>
+		<input type="url" name="imageUrl" ng-model="imageSrc" ng-model-options="{ updateOn: 'blur' }" required>
+		<div ng-show="imageForm.imageUrl.$error.required">This field is required</div>
+		<div ng-show="imageForm.imageUrl.$error.url">Url is invalid</div>
+	</div>
+	<div class="item" ng-show="imageForm.imageUrl.$valid">
+		<img ng-src="{{imageSrc}}">
+	</div>
+</div>
+
