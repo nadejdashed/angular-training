@@ -1,10 +1,17 @@
 (function(module) {
 
-    var catController = function ($scope, $http) {
+    var catController = function ($scope, catsService) {
         $scope.cats = [];
         $scope.order = 'asc';
-        $scope.mode = 'view';
         $scope.positiveCats = [];
+
+        var loadCats = function() {catsService.getCats().$promise.then(function(data) {
+            $scope.cats = data;
+            $scope.cats.forEach(function(item) {
+              checkPositiveCats(item);
+            });
+          });
+        }
 
         var checkPositiveCats = function(cat) {
           var index = $scope.positiveCats.indexOf(cat);
@@ -15,34 +22,29 @@
           }
         }
 
-        $scope.selectCat = function(clickEvent,cat){
+        $scope.selectCat = function(cat){
           cat.viewed = true;
           $scope.selectedCat = cat;
         }
 
+        $scope.canVote = function(cat){
+          return !catsService.isVoted(cat);
+        }
+
         $scope.upVote = function(cat){
-          cat.vote++;
-          checkPositiveCats(cat);
+          if($scope.canVote()) {
+            cat.vote++;
+            checkPositiveCats(cat);
+            catsService.doVote(cat);
+          }
         }
 
         $scope.downVote = function(cat){
-          cat.vote--;
-          checkPositiveCats(cat);
-        }
-
-        $scope.cancel = function(){
-          $scope.mode = 'view';
-          $scope.selectedCat = null;
-        }
-
-        $scope.save = function(cat){
-          $scope.cats.push(cat);
-          $scope.mode = 'view';
-        }
-
-        $scope.doEditCat = function(cat){
-          $scope.selectedCat = {id:$scope.cats.length + 1,name:'',src:'',vote:0};
-          $scope.mode = 'edit';
+          if($scope.canVote()) {
+            cat.vote--;
+            checkPositiveCats(cat);
+            catsService.doVote(cat);
+          }
         }
 
         $scope.doSearch = function(){
@@ -50,18 +52,13 @@
           $scope.searchText = $scope.searchString;
         }
 
-        $http.get('json/cats.json').
-          success(function(data, status, headers, config) {
-            $scope.cats = angular.fromJson(data);
-            for(var index in $scope.cats) {
-              checkPositiveCats($scope.cats[index]);
-            }
-            //$scope.selectedCat = $scope.cats[0];
-          }).
-          error(function(data, status, headers, config) {
-            // log error
+        $scope.$parent.$watch('main.editMode',function(newValue, oldValue) {
+          if (newValue !== oldValue && !newValue) {
+            loadCats();
+          }
         });
 
+        loadCats();
     };
 
     module.controller("catCntr", catController);
