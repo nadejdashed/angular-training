@@ -19,5 +19,6 @@ angular.module('myApp.view2', ['ngRoute'])
 
   $scope.addNew = function (newCat) {
     CatService.save(newCat);
+    console.log('new cat added')
   }
 }]);

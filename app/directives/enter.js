@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .directive('enter', function () {
+    .directive('enter', function ($document) {
         return {
             restrict: 'A',
             scope: {
@@ -9,12 +9,12 @@ angular.module('myApp')
                 // destroy
             },
             link: function ($scope, element, attrs) {
-                //console.log("ha");
+                //console.log($document);
 
-                element.on('keydown', function(ev) {
+                $document.on('keydown', function(ev) {
                     if (ev.keyCode != 13) return;
 
-                    debugger;
+                    //debugger;
                     //element.submit();
                     $scope.action();
                     //element.find('button').trigger('click');
