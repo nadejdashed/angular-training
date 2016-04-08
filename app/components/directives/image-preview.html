@@ -1,0 +1,9 @@
+
+
+<div class="container">
+
+    <label style="display: block">Cat image URL:<input focus name="newCatUrl" type="url" ng-model="catImgUrl" ng-blur="setNewCatImgFinal(catImgUrl)" ng-required><span ng-hide="catImgUrl">Field is required</span></label>
+    <img  ng-src="{{newCatImgFinal}}">
+    <img  ng-src="{{catImgUrl}}">
+
+</div>

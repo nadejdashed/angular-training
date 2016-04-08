@@ -1,20 +1,21 @@
 (function(module) {
 
-    var catsController = function ($scope) {
+    var catsController = function ($scope, catsService) {
         $scope.text = "Hello World?";
         $scope.noClicks = 0;
         $scope.searchFilter = "";
         $scope.activeSearchFilter = "";
-
-        $scope.cats = [
+        
+        /*$scope.cats = [
             {catImg: 'cat1.png', catName: 'zcat1', noClicks: 0, votes: 0, visited: false},
             {catImg: 'cat2.png', catName: 'fcat2', noClicks: 0, votes: 0, visited: false},
             {catImg: 'cat3.png', catName: 'cat3', noClicks: 0, votes: 0, visited: false},
             {catImg: 'cat4.png', catName: 'kcat4', noClicks: 0, votes: 0, visited: false},
             {catImg: 'cat5.png', catName: 'cat5', noClicks: 0, votes: 0, visited: false},
             {catImg: 'cat6.png', catName: 'cat6', noClicks: 0, votes: 0, visited: false}
-        ];
+        ];*/
 
+        $scope.cats = catsService.getCats();
 
         //$scope.selectedCat = $scope.cats[0];
 
@@ -41,6 +42,11 @@
 
             
             $scope.newCatImgFinal = imgSrc;
+        }
+
+        $scope.addCat = function(catName, catImg) {
+
+            catsService.addCat(catName, catImg);
         }
     };
 

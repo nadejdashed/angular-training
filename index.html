@@ -11,12 +11,17 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
 
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <script src="/app/mock.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/catsController.js"></script>
+    <script src="/app/components/services/catsService.js"></script>
+
     <!-- /build -->
 
 </head>
@@ -39,6 +44,11 @@
             <div ng-show="selectedCat">{{selectedCat.catName}} Votes: {{selectedCat.votes}}</div>
             <button ng-show="selectedCat" ng-click="addVote(selectedCat)">Vote +</button>
             <button ng-show="selectedCat" ng-click="removeVote(selectedCat)">Vote -</button>
+        </div>
+
+        <div>
+        <form action="/newCat.html">
+        <button type="Submit" value="Add Cat">Add Cat</button>
         </div>
 
 <!-- TASK2
