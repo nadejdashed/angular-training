@@ -1,5 +1,6 @@
 <p>New Cat</p>
-<div ng-form="catForm">
+<div ng-form="catForm" enter="addNew(newCat)">
+
   <p>Name:
     <input name="catName" ng-model="newCat.name" required>
     <span ng-show="catForm.catName.$invalid && catForm.catName.$dirty">required</span>
