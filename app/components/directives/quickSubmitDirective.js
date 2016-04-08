@@ -3,32 +3,34 @@
 
     module.directive("quickSubmit", quickSubmitDirective);
 
-    function quickSubmitDirective($parse) {
+    function quickSubmitDirective($parse, $document) {
         return {
             restrict: "A",
-            //require: "ngSubmit", // Doesn't work! But Why???
-            compile: compileFunc
+            link: linkFunc
         };
 
-        function compileFunc($scope, element, attrs, ctrl) {
-	        return {
-	            post: postLink
-	        };
-	    }
-
-	    function postLink($scope, element, attrs, ngSubmit) {
+	    function linkFunc($scope, element, attrs) {
 	    	var submitFunc;
 	    	if (attrs.ngSubmit) {
 	    		submitFunc = $parse(attrs.ngSubmit);
 	    	}
+
+			var submitOnEnter = function (event) {
+				if (event.keyCode === 13) {
+			       	submitFunc($scope);
+			    }
+			}
+
 	    	if (submitFunc) {
-		        element.bind("keydown", function(event) {
-		            if (event.keyCode === 13) {
-		            	submitFunc($scope);
-		            }
-		        });
+		        $document.bind("keydown", submitOnEnter);
 	    	}
+
+	    	$scope.$on("$destroy", function() {
+	    		$document.unbind("keydown", submitOnEnter);
+	    	});
 		}
+
+
     }
 
 }(angular.module("app")));
