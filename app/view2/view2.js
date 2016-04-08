@@ -18,7 +18,11 @@ angular.module('myApp.view2', ['ngRoute'])
   };
 
   $scope.addNew = function (newCat) {
+    if ($scope.catForm.$invalid){
+      console.log('invalid cat, not adding');
+      return;
+    }
     CatService.save(newCat);
-    console.log('new cat added')
+    console.log('new cat added');
   }
 }]);
