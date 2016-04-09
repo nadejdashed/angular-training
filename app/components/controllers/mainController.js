@@ -95,6 +95,6 @@
             });
         }
 
-    };
+    }
 
 }(angular.module("app")));

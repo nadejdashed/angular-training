@@ -1,17 +1,16 @@
 <expander>
-	<ng-form name="catsForm" 
+	<ng-form name="catsForm"
 		novalidate
-		ng-controller="addCatController as ctrl" 
-		ng-submit="ctrl.onSubmitPressed(catsForm)"
+		ng-submit="addCat.onSubmitPressed(catsForm)"
 		quick-submit>
 		<div class="item">
 			<b>Name: </b>
-			<input type="text" name="name" load-focus ng-model="ctrl.cat.name" required >
+			<input type="text" name="name" load-focus ng-model="addCat.cat.name" required >
 			<div ng-show="catsForm.name.$error.required">This field is required</div>
 		</div>
-		<image-preview ng-model="ctrl.cat.imageUrl"></image-preview>
+		<image-preview ng-model="addCat.cat.imageUrl"></image-preview>
 		<div>
-			<button class="btn btn-default" ng-click="ctrl.onCancelPressed()">Cancel</button>
+			<button class="btn btn-default" ng-click="addCat.onCancelPressed()">Cancel</button>
 			<input class="btn btn-primary" ng-disabled="catsForm.$invalid" type="submit" value="Save">
 		</div>
 	</ng-form>

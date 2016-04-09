@@ -1,10 +1,10 @@
 <fieldset class="expander">
 	<legend>
-		<a ng-click="ctrl.toggleContent()">Toggle</a>
+		<a ng-click="expanderCtrl.toggleContent()">Toggle</a>
 	</legend>
 
-	<div ng-show="ctrl.contentVisible">
-		<div expander-element visible="ctrl.contentVisible">
+	<div ng-show="expanderCtrl.contentVisible">
+		<div expander-element visible="expanderCtrl.contentVisible">
 			<ng-transclude></ng-transclude>
 		</div>
 	</div>

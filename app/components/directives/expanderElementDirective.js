@@ -11,10 +11,10 @@
     		},
     		transclude: "element",
     		link: function($scope, element, attrs, ctrl, transclude) {
-    			var transcludeResult
+    			var transcludeResult;
     			$scope.$watch("visible", function(value) {
     				if (value && !transcludeResult) {
-    					transcludeResult = transclude($scope);
+    					transcludeResult = transclude();
     					element.parent().append(transcludeResult);
     				}
     			});    			

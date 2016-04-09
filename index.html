@@ -21,6 +21,9 @@
     <script src="/app/mock.js"></script>
     <script src="/app/components/common/dataStorage.js"></script>    
 
+    <script src="/app/components/components/catMainComponent.js"></script>
+    <script src="/app/components/components/addCatComponent.js"></script>
+
     <script src="/app/components/directives/expanderDirective.js"></script> 
     <script src="/app/components/directives/expanderElementDirective.js"></script>
     <script src="/app/components/directives/loadFocusDirective.js"></script> 
@@ -37,9 +40,8 @@
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController as ctrl" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
-        <!-- <div ng-include="'/app/templates/cat.html'"></div> -->
+    <div class="container">
+        <cat-main></cat-main>
     </div>
 
 </body>

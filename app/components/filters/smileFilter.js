@@ -3,11 +3,12 @@
 
 	var smileFilter = function() {
 		return function(votes) {
-			if (!votes) {
+			var numVote = parseInt(votes);
+			if (!numVote) {
 				return ":|";
 			}
 
-			return votes > 0 ? ":)" : ":(";
+			return numVote > 0 ? ":)" : ":(";
 		};
 	};
 

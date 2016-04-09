@@ -9,7 +9,7 @@
     		transclude: true,
     		templateUrl: "/app/components/directives/expanderDirective.tmpl.html",
     		controller: Controller,
-    		controllerAs: "ctrl"
+    		controllerAs: "expanderCtrl"
     	};
 
     	function Controller() {
