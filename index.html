@@ -22,6 +22,7 @@
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/services/mainService.js"></script>
     <script src="/app/components/filters/mainFilter.js"></script>
+    <script src="/app/components/directives/mainDirective.js"></script>
     <!-- /build -->
 
 </head>
@@ -42,7 +43,7 @@
         <form class="search" ng-submit="search(searchText)">
             <p>
                 <button type="button" ng-click="addCat()">Add a new cat</button>
-                <input type="text" ng-model="searchText" placeholder="Search text" />
+                <input type="text" ng-model="searchText" placeholder="Search text" focused-element />
                 <button type="submit">Search</button>
             </p>
             <p>
@@ -99,7 +100,9 @@
                         <button type="button" class="up" ng-click="changeVote(currentCat, 1)">&#9650;</button>
                         <button type="button" class="down" ng-click="changeVote(currentCat, -1)">&#9660;</button>
                     </div>
-                    <button class="btn-submit float-left" ng-class="isNewCat(currentCat) ? 'add' : 'save'" type="submit">
+                    <button type="submit" class="btn-submit float-left"
+                            ng-class="isNewCat(currentCat) ? 'add' : 'save'"
+                            pressed-enter="{{$index}}">
                         {{isNewCat(currentCat) ? 'Add' : 'Save'}}
                     </button>
                 </div>
