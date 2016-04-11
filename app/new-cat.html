@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Cats application</title>
+    <title>Cats application. New Cat</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
@@ -11,25 +11,25 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
 
-    <script src="/bower_components/angular/angular.js"></script> <!-- TODO: move to the end of body? -->
+    <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
 
     <!-- build:js /build/angular-training.js -->
-    <script src="/app/components/modules/appModule.js"></script>
-    <script src="/app/components/services/catsResource.js"></script>
+    <script src="/app/app.js"></script>
     <script src="/app/components/services/catsService.js"></script>
-    <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/saveController.js"></script>
+    <script src="/app/components/directives/focusDirective.js"></script>
+    <script src="/app/components/directives/enterKeyDirective.js"></script>
+    <script src="/app/components/directives/imagePreviewDirective.js"></script>
     <script src="/app/mock.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
 
-    <div ng-controller="mainController as main" class="container">
-        <div ng-include="'/app/templates/cat-list.html'"></div>
-        <div ng-include="'/app/templates/cat-view.html'"></div>
+    <div ng-controller="saveController as save" class="container">
+        <div ng-include="'/app/templates/cat-form.html'"></div>
     </div>
 
 </body>

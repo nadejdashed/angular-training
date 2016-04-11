@@ -1,7 +1,7 @@
 <div class="menu">
   <ul>
     <li class="none-list-item">
-       <button class="red">New</button>
+       <button class="red" onclick="window.location='app/new-cat.html'">New</button>
     </li>
     <li class="none-list-item">
       <form ng-submit="filterCatName=searchText"> <!-- TODO move function better to controller --> 
@@ -13,7 +13,7 @@
         </select>
       </form>
     </li>
-    <li class="none-list-item">
+    <li class="none-list-item"><!-- {{cat in cats | orderBy:'votes':1 | limitTo:1}} -->
       <ng-pluralize count="positiveVotes" offset=1
         when="{'0': 'No cat has positive votes.',
                '1': 'Only Tom have positive votes.',

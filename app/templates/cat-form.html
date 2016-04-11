@@ -1,14 +1,19 @@
-<div class="new">
+<form name="catForm" ng-submit="submit(newCat);goto(urlCatList);" novalidate>
   <div>
-    <button class="red">Save</button>
+    <input type="submit" value="Save" class="red" enter-key ng-disabled="!catForm.$valid">
     <button class="red">Cancel</button>
   </div>
   <div>
-    <label for="cat-name">Cat Name:</label> <input id="cat-name" type="text" ng-pattern="'[a-zA-Z]+'" ng-model="newCat.name"/>
+    <label for="catName">Cat Name:</label>
+    <input focus id="catName" name="catName" type="text" ng-pattern="'\\s*([a-zA-Z]{2,}\\s*)+'" ng-model="newCat.name" required/>
+    <span ng-show="catForm.catName.$dirty && catForm.catName.$touched">
+      <span ng-show="catForm.catName.$error.required">Cat name is required!</span>
+      <span ng-show="catForm.catName.$error.pattern">Cat name is invalid!</span>
+    </span>
   </div>
   <div>
-    <label for="cat-image-url">Image URL:</label> <input id="cat-image-url" type="text" ng-model="imgsrc" ng-blur="newCat.imgsrc=imgsrc"/> <!-- TODO use ng-model-options that will the same as ng-blur -->
+    <image-preview image-url="newCat.image"></image-preview>
   </div>
-  <img ng-src="{{newCat.imgsrc}}"/>
-  <!-- TODO output error messages -->
-</div>
+</form>
+<!-- TODO: novalidate -->
+<!-- TODO: cookie -> local storage -->

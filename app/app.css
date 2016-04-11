@@ -42,3 +42,26 @@ li.none-list-item {
 .spinner {
 	width: 50px;
 }
+
+i.required:before {
+	color: red;
+	display: inline;
+	content: '*';
+}
+img.cat {
+	width: 720px;
+}
+input[disabled] {
+	background-color: #8c8c8c;
+	color: #d4d4d4;
+	border-color: #8c8c8c;
+}
+input.ng-invalid.ng-dirty.ng-touched {
+	border: solid 2px red;
+	border-radius: 5px;
+	box-shadow: 1px 1px 2px 0px #c10029;
+	outline-color: #f55;
+}
+.error-message {
+	color: red;
+}

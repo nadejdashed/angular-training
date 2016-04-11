@@ -15,5 +15,10 @@
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
     "angular-resource": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.3",
+    "angular-resource": "^1.5.3",
+    "angular-cookies": "^1.5.3"
   }
 }

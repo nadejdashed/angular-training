@@ -1,0 +1,13 @@
+<!--    <label for="catImageUrl">Image URL:</label> -->
+<div ng-form name="imageForm">
+  <label for="catImageUrl">Image URL:</label>
+  <input type="url" id="catImageUrl" name="catImageUrl" type="text" ng-model="imageUrl" ng-blur="ImageUrlToShow=imageUrl" required/>
+  <!-- TODO use ng-model-options that will the same as ng-blur -->
+  <span ng-show="catForm.catImageUrl.$dirty && catForm.catImageUrl.$touched">
+    <span ng-show="imageForm.imageUrl.$error.required">Image is required!</span>
+    <span ng-show="imageForm.imageUrl.$error.url">URL is invalid!</span>
+  </span>
+  <div>
+    <img class="cat" ng-src="{{ImageUrlToShow}}"/>
+  </div>
+</div>
