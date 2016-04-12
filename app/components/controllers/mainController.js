@@ -111,6 +111,12 @@
                 $cookies.put('catId-' + currentCat.id, currentCat.vote);
             }
         };
+
+        $scope.$watch('searchResults', function(newValue, oldValue) {
+            console.log('|||=== Watch for $scope.searchResults: ===');
+            console.log('||| newValue =', newValue);
+            console.log('||| oldValue =', oldValue);
+        });
     };
 
     module.controller("mainController", mainController);

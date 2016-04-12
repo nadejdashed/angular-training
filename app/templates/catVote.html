@@ -1,0 +1,5 @@
+<div class="number-input smile float-left" ng-class="currentCat.vote == 0 ? '' : currentCat.vote > 0 ? 'happy' : 'sad'">
+    <input class="vote" type="text" disabled="disabled" ng-model="currentCat.vote" title="Vote" />
+    <button type="button" class="up" ng-click="changeVote(currentCat, 1)">&#9650;</button>
+    <button type="button" class="down" ng-click="changeVote(currentCat, -1)">&#9660;</button>
+</div>

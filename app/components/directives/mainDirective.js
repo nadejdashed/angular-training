@@ -11,13 +11,15 @@
 			restrict: 'AE',
 			link: function (scope, element, attrs) {
 
-				$document.on('keydown', function (event) {
-					scope.$apply(function () {
-						if (event.keyCode == 13 && attrs.pressedEnter == 0) {
-							scope.saveForm(scope.currentCat, scope.form[attrs.pressedEnter].$valid);
-						}
+				if (attrs.pressedEnter == 0) {
+					$document.on('keydown', function (event) {
+						scope.$apply(function () {
+							if (event.keyCode == 13) {
+								scope.saveForm(scope.currentCat, scope.form[attrs.pressedEnter].$valid);
+							}
+						});
 					});
-				});
+				}
 
 			}
 		}
@@ -35,17 +37,56 @@
 	var pictUrl = function() {
 		return {
 			restrict: 'E',
+			scope: {
+				current: '=',
+				saveUrl: '&'
+			},
 			template: '<input type="url" name="pictUrl" placeholder="Picture Url"' +
-			'ng-change="currentCat.isMessageVisible = false"' +
-			'ng-model="currentCat.draftPictUrl"' +
-			'ng-blur="saveUrl(currentCat)" />'
+			'ng-change="current.isMessageVisible = false"' +
+			'ng-model="current.draftPictUrl"' +
+			'ng-blur="saveUrl()" />'
 		}
 	};
 
+	var catVote = function() {
+		return {
+			restrict: 'E',
+			replace: true,
+			scope: {
+				currentCat: '=',
+				changeVote: '='
+			},
+			templateUrl: 'app/templates/catVote.html'
+		}
+	};
+	
+	var expander = function() {
+		return {
+			restrict: 'E',
+			scope: {
+				currentCat: '='
+			},
+			templateUrl: 'app/templates/expander.html',
+			link: function(scope, element, attrs, ctrl) {
+				var ul = element.find('ul');
+
+				scope.expander = function() {
+					if (element.hasClass('expanded')) {
+						ul.empty();
+					} else {
+						ul.append('<li>Cat Url: ' + scope.currentCat.src + '</li>');
+					}
+					element.toggleClass('expanded');
+				}
+			}
+		}
+	};
 
 	module.directive('focusedElement', focusedElement);
 	module.directive('pressedEnter', pressedEnter);
 	module.directive('picture', picture);
-	module.directive('pictUrl', pictUrl)
+	module.directive('pictUrl', pictUrl);
+	module.directive('catVote', catVote);
+	module.directive('expander', expander);
 
 }(angular.module('app')));

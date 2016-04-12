@@ -75,6 +75,8 @@
                     </li>
                 </ul>
 
+                <expander class="expander" current-cat="currentCat"></expander>
+
                 <div class="control">
                     <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
 
@@ -85,13 +87,10 @@
                                ng-pattern="/^\w+$/" />
                     </div>
 
-                    <pict-url class="draft-url float-left"></pict-url>
+                    <pict-url class="draft-url float-left" current="currentCat" save-url="saveUrl(currentCat)"></pict-url>
 
-                    <div class="number-input smile float-left" ng-class="currentCat.vote == 0 ? '' : currentCat.vote > 0 ? 'happy' : 'sad'">
-                        <input class="vote" type="text" disabled="disabled" ng-model="currentCat.vote" title="Vote" />
-                        <button type="button" class="up" ng-click="changeVote(currentCat, 1)">&#9650;</button>
-                        <button type="button" class="down" ng-click="changeVote(currentCat, -1)">&#9660;</button>
-                    </div>
+                    <cat-vote current-cat="currentCat" change-vote="changeVote"></cat-vote>
+
                     <button type="submit" class="btn-submit float-left"
                             ng-class="isNewCat(currentCat) ? 'add' : 'save'"
                             pressed-enter="{{$index}}">
