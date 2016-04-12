@@ -64,11 +64,7 @@
             <form name="form[$index]" class="clearfix" ng-submit="saveForm(currentCat, form[$index].$valid)" novalidate>
                 <div class="date">{{currentCat.date | date: 'dd-MMM- yyyy'}}</div>
 
-                <div class="picture">
-                    <img ng-click="count(currentCat)" ng-src="{{currentCat.src}}"/>
-                    <span class="counter">{{currentCat.counter ? currentCat.counter : 0}}</span>
-                    <h2>{{currentCat.name}}</h2>
-                </div>
+                <picture class="picture"></picture>
 
                 <ul class="message" ng-if="currentCat.isMessageVisible">
                     <li ng-if="!form[$index].catName.$valid">
@@ -88,12 +84,8 @@
                                ng-model="currentCat.draftName"
                                ng-pattern="/^\w+$/" />
                     </div>
-                    <div class="draft-url float-left">
-                        <input type="url" name="pictUrl" placeholder="Picture Url"
-                               ng-change="currentCat.isMessageVisible = false"
-                               ng-model="currentCat.draftPictUrl"
-                               ng-blur="saveUrl(currentCat)" />
-                    </div>
+
+                    <pict-url class="draft-url float-left"></pict-url>
 
                     <div class="number-input smile float-left" ng-class="currentCat.vote == 0 ? '' : currentCat.vote > 0 ? 'happy' : 'sad'">
                         <input class="vote" type="text" disabled="disabled" ng-model="currentCat.vote" title="Vote" />
