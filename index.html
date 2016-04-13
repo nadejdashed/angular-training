@@ -21,7 +21,7 @@
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/controllers/catsController.js"></script>
     <script src="/app/components/services/catsService.js"></script>
-
+    <script src="/app/components/directives/voteSpinner.js"></script>
     <!-- /build -->
 
 </head>
@@ -41,9 +41,9 @@
 
         <div>
             <div ><img ng-click="selectedCat.noClicks = selectedCat.noClicks + 1;" ng-src="/images/{{selectedCat.catImg}}"></div>
-            <div ng-show="selectedCat">{{selectedCat.catName}} Votes: {{selectedCat.votes}}</div>
-            <button ng-show="selectedCat" ng-click="addVote(selectedCat)">Vote +</button>
-            <button ng-show="selectedCat" ng-click="removeVote(selectedCat)">Vote -</button>
+
+            <vote-spinner selected-cat="selectedCat"  votes="selectedCat.votes" vote-up=addVote(selectedCat) vote-down=removeVote(selectedCat)></vote-spinner>
+
         </div>
 
         <div>
