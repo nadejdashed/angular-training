@@ -1,26 +1,49 @@
-<img ng-src="{{chosenCat.src}}" height=250px width=250px alt={{chosenCat.name}} />
-<p ng-cloak>
-    {{chosenCat.name}} - Votes:
-    <button ng-click="decreaseVote(chosenCat)">&#8595;</button>
-    {{chosenCat.vote}}
-    <button ng-click="addVote(chosenCat)">&#8593;</button>
-</p>
+<div ng-controller="mainController" class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-offset-1">
+            <img ng-src="{{chosenCat.src}}" height=250px width=250px alt={{chosenCat.name}} />
 
-<label>
-    <button ng-click=setFilter(searchText)>Search</button>
-    <input ng-model="searchText">
-</label>
+            <h3 ><span class="label label-info">Name:</span> {{chosenCat.name}}</h3>
+            <div class="input-group col-lg-4">
+            <span class="input-group-btn">
+                <button class="btn btn-danger" ng-click=decreaseVote(chosenCat) type="submit">-</button>
+            </span>
+                <input type="text" ng-model=chosenCat.vote class="form-control text-center">
+            <span class="input-group-btn">
+                <button class="btn btn-success" ng-click=addVote(chosenCat) type="submit">+</button>
+            </span>
+            </div>
 
-<label>
-    <select name="order" ng-model="order">
-        <option value="+name">asc</option>
-        <option value="-name">desc</option>
-    </select>
-</label>
+            <br>
+            <a ui-sref="addCat" class="btn btn-default" role="button">Add Kitty</a>
+            <a ui-sref="about" class="btn btn-default" role="button">About Page</a>
+        </div>
 
-<div class="catList">
-    <div ng-repeat="cat in cats | filter:catFilter | orderBy:order">
-        <span class="tick" ng-hide="cat.id != chosenCat.id">&#10004;</span>
-        <span ng-click="chooseCat(cat)">{{cat.name}}</span>
+        <div class="col-lg-6">
+            <div class = "input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click=setFilter(searchText) type="submit">Search</button>
+            </span>
+                <input focus="" type="text" ng-model="searchText" class="form-control">
+                <div class="input-group-btn">
+                    <!--TODO use angular bootstrap-->
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a ng-click=setOrder('+name') href="#">ASC</a></li>
+                        <li><a ng-click=setOrder('-name') href="#">DESC</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="cat in cats | filter:catFilter | orderBy:order" ng-class="{active: cat.id == chosenCat.id}">
+                    <!--<span class="tick" ng-hide="cat.id != chosenCat.id">&#10004;</span>-->
+                    <span ng-click="chooseCat(cat)">{{cat.name}}</span>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+
+

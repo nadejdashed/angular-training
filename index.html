@@ -11,19 +11,26 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css"/>
     <!-- /build -->
 
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
+    <script src="/app/mock.js"></script>
+    <script src="/app/components/services/catService.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
+    <script src="/app/components/directives/focus.js"></script>
+    <script src="/app/components/directives/pressEnterKey.js"></script>
+    <script src="/app/components/directives/imagePreview.js"></script>
     <!-- /build -->
 
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body ng-app="app">
-
-    <div ng-controller="mainController" class="container">
-        <div ng-include="'/app/templates/main.html'"></div>
-    </div>
-
+    <div ui-view></div>
 </body>
 </html>

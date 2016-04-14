@@ -1,10 +1,8 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http) {        
-        $http.get('json/cats.json').success(function(data) {
-            $scope.cats = data;
-        });
-        
+    var mainController = function ($scope, $http, $resource, catService) {
+        $scope.cats = catService.getCats();
+
         $scope.addVote = function addVote(cat) {
             cat.vote += 1;
         };
@@ -21,8 +19,12 @@
         $scope.setFilter = function(searchText) {
             $scope.catFilter = {name:searchText};
         };
+
+        $scope.setOrder = function(order) {
+            $scope.order = order;
+        };
     };
     
-    module.controller("mainController", ['$scope', '$http', mainController]);
+    module.controller("mainController", mainController);
 
 }(angular.module("app")));

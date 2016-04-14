@@ -1,0 +1,17 @@
+<div ng-controller="addCatController" class="container">
+    <form class="form-horizontal" ng-submit="addKitty(kitty)" press-enter-key="" novalidate name="x">
+        <image-preview src="kitty.src"></image-preview>
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-6">
+                <input type="text" name="" class="form-control" ng-model="kitty.name" id="inputName" required placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button press-enter-key="" type="submit" class="btn btn-default">Add Kitty</button>
+                <a ui-sref="home" class="btn btn-danger" role="button">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
