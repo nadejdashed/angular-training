@@ -9,15 +9,29 @@
     	});
 
         return {
+            getCat: getCat,
             getAll: getAll,
             create: create,
             remove: remove,
             update: update,
             changeVote: changeVote,
-            canVoteFor: canVoteFor
+            canVoteFor: canVoteFor,
+            getCatsWithPositiveVotes : getCatsWithPositiveVotes
         };
 
         /////
+        var catsWithPositiveVotes = [];
+
+        function getCatsWithPositiveVotes() {
+            return catsWithPositiveVotes;
+        }
+
+        function getCat(id) {
+            return Cat.get({catId:id}, function(data) {
+                return data;
+            }).$promise;
+        }
+
         function getAll() {
         	var deferred = $q.defer();
             return Cat.query(function(data) {
@@ -52,11 +66,24 @@
             	return $q.reject();
             }
 
+            if (changedBy > 0) {
+                addCatWithPositiveVotes(cat);
+            }
+
             cat.votes = cat.votes + changedBy;
             return update(cat).then(function(response) {
             	dataStorage.put("catVoted" + cat.id, true);
             	return response;
             });
+        }
+
+        function addCatWithPositiveVotes(cat) {
+            var existingCat = catsWithPositiveVotes.find(function (v) {
+                return v.id === cat.id;
+            });
+            if (!existingCat) {
+                catsWithPositiveVotes.push(cat);
+            }
         }
     }
 

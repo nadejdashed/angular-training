@@ -1,0 +1,18 @@
+<div class="item"><b>Name:</b> {{detail.selectedCat.name}}</div>
+<div class="item"><b>Birthday:</b> {{detail.selectedCat.birthday | date:'dd-MMM-yyyy'}}</div>
+<div class="item">
+    <b>Cat clicked:</b> {{ detail.selectedCat.clicked }} times
+</div>
+<div class="item">
+    <vote-spinner votes="{{detail.selectedCat.votes}}"
+                  can-vote="detail.canVote"
+                  on-vote-up="detail.onVoteUp()"
+                  on-vote-down="detail.onVoteDown()">
+    </vote-spinner>
+</div>
+<div class="item">
+    <button ng-click="detail.onCatRemove()">Remove</button>
+</div>
+<div class="item">
+    <img ng-src="{{detail.selectedCat.imgSrc}}" ng-click="detail.onCatClicked()" />
+</div>

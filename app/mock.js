@@ -1,5 +1,5 @@
 angular.module('app-mock', ['ngMockE2E'])
-    .run(function($httpBackend) {
+    .run(function ($httpBackend) {
 
         var data = [{
             id: 1,
@@ -46,30 +46,42 @@ angular.module('app-mock', ['ngMockE2E'])
         }];
 
         $httpBackend.whenGET('/cats').respond(data);
-        $httpBackend.whenGET(/^\/cats\/\d+/).respond(data[0]);
-        $httpBackend.whenDELETE(/^\/cats\/\d+/).respond(function(method, url, inputData, headers) {
-          data.splice(0,1);
-          return [200];
+        $httpBackend.whenGET(/^\/cats\/\d+/).respond(function (method, url, inputData) {
+            var result = url.split("/");
+
+            return [200, data[parseInt(result[result.length - 1]) - 1]];
+        });
+        $httpBackend.whenDELETE(/^\/cats\/\d+/).respond(function (method, url, inputData, headers) {
+            data.splice(0, 1);
+            return [200];
         });
 
-        $httpBackend.whenPUT(/^\/cats\/\d+/).respond(function(method, url, inputData, headers) {
-          console.log("cat updated " + url);
-          return [200, inputData];
+        $httpBackend.whenPUT(/^\/cats\/\d+/).respond(function (method, url, inputData, headers) {
+            console.log("cat updated " + url);
+            var result = url.split("/");
+            var index = parseInt(result[result.length - 1]) - 1;
+            data[index] = inputData;
+            return [200, inputData];
         });
 
-        $httpBackend.whenPOST('/cats').respond(function(method, url, inputData, headers) {
+        $httpBackend.whenPOST('/cats').respond(function (method, url, inputData, headers) {
             var newData;
             if (typeof inputData === 'string') {
-              newData = JSON.parse(inputData);
+                newData = JSON.parse(inputData);
             } else {
-              newData = inputData;
+                newData = inputData;
             }
-            newData.id = Math.random();
+            newData.id = Math.floor(Math.random() * (1000));
+            newData.birthday = new Date();
+            newData.votes = 0;
+            newData.imgageSrc = newData.imageUrl;
+            console.log(newData);
+
             data.push(newData);
             return [200, newData];
         });
 
-        $httpBackend.whenGET(/\.html/).passThrough(); 
+        $httpBackend.whenGET(/\.html/).passThrough();
     });
 
 angular.module('app').requires.push('app-mock');

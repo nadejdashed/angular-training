@@ -15,10 +15,12 @@
     <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
  
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/app/mock.js"></script>
+    <script src="/app/routes.js"></script>
     <script src="/app/components/common/dataStorage.js"></script>    
 
     <script src="/app/components/components/catMainComponent.js"></script>
@@ -30,9 +32,11 @@
     <script src="/app/components/directives/imagePreviewDirective.js"></script>
     <script src="/app/components/directives/voteSpinnerDirective.js"></script>
     <script src="/app/components/directives/quickSubmitDirective.js"></script>
-    
+
+    <script src="/app/components/services/sharedCats.js"></script>
     <script src="/app/components/services/catFactory.js"></script>    
     <script src="/app/components/controllers/mainController.js"></script>
+    <script src="/app/components/controllers/catDetailsController.js"></script>
     <script src="/app/components/controllers/addCatController.js"></script>
     <script src="/app/components/filters/smileFilter.js"></script>
     <!-- /build -->
@@ -40,8 +44,19 @@
 </head>
 <body ng-app="app">
 
-    <div class="container">
-        <cat-main></cat-main>
+    <header>
+        <menu>
+            <ul class="menu-list">
+                <li><a ui-sref="catsList" ui-sref-active="active" class="menu-item">Cats List</a></li>
+                <li><a ui-sref="newCat" ui-sref-active="active" class="menu-item">New Cat</a></li>
+                <li><a ui-sref="about" ui-sref-active="active" class="menu-item">About</a></li>
+            </ul>
+        </menu>
+    </header>
+
+    <hr/>
+
+    <div class="container" ui-view>
     </div>
 
 </body>

@@ -20,36 +20,13 @@
 				<option vlaue="-name">Desc</option>
 			</select>
 		</div>
-		<div class="item"><a ng-click="mainCtrl.onCreateNew()">Create New</a></div>
-		<div class="item"><a ng-click="mainCtrl.onReloadList()">Reload</a></div>
 		<ul class="item">
 			<li ng-repeat="cat in mainCtrl.cats | filter:mainCtrl.searchQuery | orderBy:mainCtrl.orderBy">
 				<a ng-click="mainCtrl.onCatSelected(cat)">{{cat.name}} <span ng-show="cat.visited">✓</span></a>
 			</li>
 		</ul>
 	</div>
-	<div class="details" ng-show="mainCtrl.isCatDetails()">
-		<div class="item"><b>Name:</b> {{mainCtrl.selectedCat.name}}</div>
-		<div class="item"><b>Birthday:</b> {{mainCtrl.selectedCat.birthday | date:'dd-MMM-yyyy'}}</div>
-		<div class="item">
-			<b>Cat clicked:</b> {{ mainCtrl.selectedCat.clicked }} times
-		</div>	
-		<div class="item">
-			<vote-spinner votes="{{mainCtrl.selectedCat.votes}}" 
-				can-vote="mainCtrl.canVote"
-				on-vote-up="mainCtrl.onVoteUpClicked(mainCtrl.selectedCat)"
-				on-vote-down="mainCtrl.onVoteDownClicked(mainCtrl.selectedCat)">
-			</vote-spinner>
-		</div>
-		<div class="item">
-			<button ng-click="mainCtrl.onCatRemove(mainCtrl.selectedCat)">Remove</button>
-		</div>
-		<div class="item">
-			<img ng-src="{{mainCtrl.selectedCat.imgSrc}}" ng-click="mainCtrl.onCatClicked(mainCtrl.selectedCat)" />	
-		</div>		
-	</div>
- 	<div class="details" ng-show="mainCtrl.isNewCatDetails()">
-		<add-cat></add-cat>
+	<div class="details"  ui-view>
 	</div>
 </div>
 
