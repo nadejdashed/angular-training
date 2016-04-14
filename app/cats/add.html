@@ -2,12 +2,7 @@
   Name:
   <input type="text" ng-model="newCat.name"/>
   <br/>
-  Url of a cat’s picture:
-  <input type="text" ng-model="newCat.url"/>
-  <br/>
-  Image from the picture’s url:
-  <input type="text" ng-model="newCat.pictureName"/>
-  <br/>
-  <input type="button" ng-click="add(newCat)" value="Save"/>
+  <image-preview new-cat="newCat"></image-preview>
+  <input type="button" ng-click="add(newCat)" value="Save" save="add(newCat)"/>
   <input type="button" ng-click="reset()" value="Reset"/>
 </form>

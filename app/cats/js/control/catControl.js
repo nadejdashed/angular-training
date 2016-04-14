@@ -26,13 +26,6 @@ angular.module("myApp.catControl", ["ngRoute"])
     catService.save($scope.cats);
   }, true);
 
-  $scope.incVotes = function(cat) {
-    cat.votes++;
-  }
-  $scope.decVotes = function(cat) {
-    cat.votes--;
-  }
-
   $scope.selectCat = function(cat) {
     if ($scope.cat !== cat) {
       $scope.cat.wasSelected = true;
@@ -47,7 +40,11 @@ angular.module("myApp.catControl", ["ngRoute"])
   $scope.newCat = {}
 
   $scope.add = function(newCat) {
-    $scope.cats.push(new Cat(newCat.name, newCat.url + "/" + newCat.pictureName));
+    $scope.cats.push({
+      name: newCat.name,
+      src: newCat.url,
+      votes: 0
+    });
     $location.path("/cats");
   }
 

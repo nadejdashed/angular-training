@@ -2,7 +2,7 @@
 
 <div class="cats">
   <div>
-    <input type="text" ng-model="searchText" />
+    <input type="text" ng-model="searchText" focus />
     <button ng-click="findCat()">search</button>
 
     <select name="sort" ng-model="orderReverse">
@@ -12,11 +12,7 @@
   </div>
 
   <img class="cat" ng-src="{{cat.src}}" alt="{{cat.name}}" />
-  <div>
-    <button class="voteButton" ng-click="incVotes(cat)">+</button>
-    <button class="voteButton" ng-click="decVotes(cat)">-</button>
-  </div>
-  <p>Votes for {{cat.name}}: {{cat.votes}}</p>
+  <vote-buttons cat="cat"></vote-buttons>
 
   <ul>
     <li ng-repeat="cat in cats | filter:filterExpression | orderBy:cat.name:orderReverse track by $index"
