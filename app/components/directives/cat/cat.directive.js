@@ -3,7 +3,7 @@
 	var catDirective = function() {
 		return {
 			restrict: 'E',
-			templateUrl: './app/templates/cat/cat.template.html',
+			templateUrl: './app/components/directives/cat/cat.template.html',
 			scope: {
 				cat: '=ngModel'
 			},

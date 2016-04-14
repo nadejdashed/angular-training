@@ -3,14 +3,13 @@
 	var catEditDirective = function(catService) {
 		return {
 			restrict: 'E',
-			templateUrl: './app/templates/cat-edit/cat-edit.template.html',
+			templateUrl: './app/components/directives/cat-edit/cat-edit.template.html',
 			scope: {
 				cat: '=?ngModel'
 			},
 			controller: function($scope) {
 				$scope.defaultImgUrl = 'http://dev.bowdenweb.com/a/i/cons/icomoon/svg/git-cat.svg';
 				$scope.notFoundImgText = 'Sory but there is no such image :(';
-				$scope.urlPattern = '/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi'
 
 				if(!$scope.cat) {
 					$scope.cat = {

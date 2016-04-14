@@ -3,7 +3,7 @@
 	var catClickerDirective = function(catService) {
 		return {
 			restrict: 'E',
-			templateUrl: './app/templates/cat-list/cat-clicker.template.html',
+			templateUrl: './app/components/directives/cat-list/cat-clicker.template.html',
 			scope: {
 				cats: '=ngModel'
 			},

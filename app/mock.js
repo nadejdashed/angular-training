@@ -29,6 +29,7 @@ angular.module('app-mock', ['ngMockE2E'])
     
     $httpBackend.whenPOST(/\/cats\/\d+/).respond(function(method, url, value, headers){
       data.push(value);
+      console.log("Cat was posted!" , value);
       return [200, value];
     });
   });
