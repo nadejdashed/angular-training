@@ -35,13 +35,28 @@ angular.module('app-mock', ['ngMockE2E'])
     ];
 
     $httpBackend.whenGET('/cats').respond(catData);
-    $httpBackend.whenGET(/^\/cats\/d+/).respond(catData[0]);
+    $httpBackend.whenGET(/\/cats\/\d+/).respond(function (method, url, data, headers) {
+      var id = url.split('/cats/')[1];
+      for (var i = 0; i < catData.length; i++) {
+        if (catData[i].id = id) {
+          return catData[i];
+        }
+      }
+      return [404];
+    });
+    $httpBackend.whenDELETE(/\/cats\/\d+/).respond(function (method, url, data, headers) {
+      var id = url.split('/cats/')[1];
+      catData = catData.filter(function (item) {
+        return item.id != id;
+      });
+      return [200];
+    });
 
     $httpBackend.whenPOST('/cats').respond(function (method, url, data, headers) {
       data = JSON.parse(data);
       data.id = catData[catData.length - 1].id + 1;
       catData.push(data);
-      return [200];
+      return [200, data.id];
     });
 
     $httpBackend.whenGET(/\.html/).passThrough();

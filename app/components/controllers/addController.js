@@ -1,6 +1,6 @@
 (function (module) {
 
-  var addController = function ($scope, CatService) {
+  var addController = function ($scope, CatSharedObject) {
     $scope.newCat = {
       id: -1,
       name: '',
@@ -11,7 +11,7 @@
     $scope.testVote = 0;
 
     $scope.submitAdd = function () {
-      CatService.saveCat($scope.newCat);
+      CatSharedObject.saveCat($scope.newCat);
     }
   };
 

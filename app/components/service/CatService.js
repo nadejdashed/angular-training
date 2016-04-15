@@ -1,8 +1,8 @@
 (function (module) {
 
   module.factory('CatService', function ($resource) {
-    var Cat;
-    Cat = $resource('/cats/:id');
+    var Cat = $resource('/cats/:id');
+    
     return {
 
       getCats: function () {
@@ -11,9 +11,17 @@
 
       saveCat: function (cat) {
         Cat.save(cat);
+      },
+
+      deleteCat: function (cat) {
+        Cat.delete({id: cat.id});
+        return true;
+      },
+
+      getCat: function (catId) {
+        return Cat.get({id: catId});
       }
 
     };
-  });
-
+  });  
 }(angular.module("app")));
