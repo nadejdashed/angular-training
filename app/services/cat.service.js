@@ -7,7 +7,7 @@
 			return catResource.query().$promise;
 		}
 
-		this.getSingleCat = function(id) {
+		this.getSingleCat = function(id) {debugger;
 			return catResource.get({catId: id}).$promise;
 		}
 

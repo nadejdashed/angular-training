@@ -7,7 +7,7 @@
 			scope: {
 				cat: '=?ngModel'
 			},
-			controller: function($scope) {
+			controller: function($scope) {debugger;
 				$scope.defaultImgUrl = 'http://dev.bowdenweb.com/a/i/cons/icomoon/svg/git-cat.svg';
 				$scope.notFoundImgText = 'Sory but there is no such image :(';
 
@@ -20,7 +20,7 @@
 					};
 				}
 
-				$scope.addCat = function() {
+				$scope.addCat = function() {debugger;
 					catService.addCat($scope.cat);
 				}
 			},

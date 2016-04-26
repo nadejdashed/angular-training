@@ -13,6 +13,8 @@
 			<span>Filter:</span>
 			<input type="text" ng-model='filterText' focus>
 		</div>
+		<button ng-click="navigateToAddCat()">Add cat</button>
+		<button ng-click="navigateToAbout()">About</button>
 	</div>
 	<div class="general-information">
 		<ul>
@@ -27,8 +29,6 @@
 				<cat ng-model='cat' mode='list-item'></cat>
 			</div>
 		</div>
-		<div class="selected-cat cat" ng-if='!!selected'>
-			<cat ng-model='selected'></cat>
-		</div>
+		<div class="selected-cat cat" ng-if='!!selected' ui-view></div>
 	</div>
 </div>

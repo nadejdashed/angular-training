@@ -5,19 +5,25 @@
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 
+    <!-- BootstrapCSS -->
     <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 
     <!-- build:css /build/app.css -->
     <link rel="stylesheet" type="text/css" href="./app/app.css"/>
     <!-- /build -->
 
-
+    <!-- Angular components -->
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-resource/angular-resource.js"></script>
     <script src="./bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
     <!-- build:js /build/angular-training.js -->
     <script src="./app/app.js"></script>
     <!-- /build -->
+
+    <!-- UI router config -->
+    <script src="./app/config.js"></script>
 
     <!-- Controllers -->
     <script src="./app/components/controllers/main.controller.js"></script>
@@ -26,7 +32,6 @@
     <!-- Services -->
     <script src="app/services/cat.service.js"></script>
 
-    
     <!-- Angular Mocks bower component -->
     <script src="./bower_components/angular-mocks/angular-mocks.js"></script>
 
@@ -45,10 +50,10 @@
 
     <!-- Catclicker list directive -->
     <script src="./app/components/directives/cat-list/cat-clicker.directive.js"></script>
+
+    <base href="/">
 </head>
 <body ng-app="app">
-    <div ng-controller="mainController" class="container">
-        <cat-clicker ng-model='cats'></cat-clicker>
-    </div>
+    <div ui-view></div>
 </body>
 </html>

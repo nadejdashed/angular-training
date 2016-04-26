@@ -1,8 +1,6 @@
-<div ng-controller="editController">
-	<form name="catForm" id="cat-form" submit="addCat()" enter-submit="addCat()">
+<form name="catForm" id="cat-form" submit="addCat()" enter-submit="addCat()">
 	<label>Name: </label><input name="catName" type="text" ng-model="cat.name" required>
 	<label>Pictrure (URL): </label><input name="catPicture" type="url" ng-model="cat.src" ng-model-options="{ updateOn: 'blur' }" required>
-	<button type="submit" form="cat-form">Submit</button>
+	<button type="submit" form="cat-form" ng-click="addCat()">Submit</button>
 	<img ng-src="{{cat.src}}" err-src="{{defaultImgUrl}}"/>
 </form>
-</div>

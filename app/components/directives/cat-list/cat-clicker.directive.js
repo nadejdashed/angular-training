@@ -7,6 +7,27 @@
 			scope: {
 				cats: '=ngModel'
 			},
+			controller: function($scope, $state) {
+				$scope.navigateToAddCat = function() {
+		            $state.go('edit');
+		        }
+
+		        $scope.navigateToAbout = function() {
+		        	$state.go('about');
+		        }
+
+		        $scope.selectCat = function(id) {debugger;
+					catService.getSingleCat(id)
+						.then(function(data) {debugger;
+							$scope.selected = data;
+							$scope.selected.viewed = true;
+
+							$scope.edited = $scope.selected;
+
+							$state.go('cats.cat', {catId: data.id});
+						});
+				}
+			},
 			link: function(scope, element, attrs, ctrl) {
 				scope.selected = scope.cats[0];
 				scope.orderType = 'name';
@@ -21,16 +42,6 @@
 					negative: '',
 					neutral: ''
 				};
-
-				scope.selectCat = function(id) {
-					catService.getSingleCat(id)
-						.then(function(data) {
-							scope.selected = data;
-							scope.selected.viewed = true;
-
-							scope.edited = scope.selected;
-						});
-				}
 
 				scope.formatRating = function() {
 					for(var rate in scope.rating) {
