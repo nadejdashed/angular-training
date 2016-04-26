@@ -1,6 +1,6 @@
 (function(module) {
 
-    var catsController = function ($scope, catsService) {
+    var catsController = function ($scope, catsService, $state) {
         $scope.text = "Hello World?";
         $scope.noClicks = 0;
         $scope.searchFilter = "";
@@ -46,7 +46,12 @@
 
         $scope.addCat = function(catName, catImg) {
 
-            catsService.addCat(catName, catImg);
+            var res = catsService.addCat(catName, catImg);
+            console.log("add cat retur:" + res);
+            /*res.then(function () {
+                $state.go('cats');
+            });*/
+            $state.go('cats');
         }
     };
 

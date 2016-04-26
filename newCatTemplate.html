@@ -1,0 +1,24 @@
+<div class="container">
+
+{{text}}
+
+    <form save-btn-click="addCat(newCatName, newCatImgUrl)" name="newCatForm" class="has-error" >
+
+    <h1>Add new Cat</h1>
+
+    <label style="display: block">Cat name: <input ng-model="newCatName" ng-required required><span ng-hide="newCatName">Field is required</span></label>
+
+    <image-preview cat-img-url='catImgUrl'>
+    </image-preview>
+
+    <!--
+    <label style="display: block">Cat image URL:<input focus name="newCatUrl" type="url" ng-model="newCatImgUrl" ng-blur="setNewCatImgFinal(newCatImgUrl)" ng-required><span ng-hide="newCatImgUrl">Field is required</span></label>
+    <img  ng-src="{{newCatImgFinal}}">
+-->
+
+    <button ng-click="addCat(newCatName, catImgUrl)" ng-disabled="newCatForm.$invalid  || newCatForm.$pending">Save</button>
+    <button>Cancel</button>
+
+    </form>
+
+</div>

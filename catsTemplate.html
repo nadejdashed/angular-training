@@ -1,0 +1,28 @@
+    <div ng-controller="catsCtrl" class="container">
+
+        Search: <input  ng-model="searchFilter"><button ng-click="setActiveSearchFilter(searchFilter)">Search</button>Group by:<select ng-model="catsOrderBy">
+        <option selected value="+catName">Cat Name Asc</option>
+        <option selected value="-catName">Cat Name Desc</option>
+        <option selected value="+votes">Votes Asc</option>
+        <option selected value="-votes">Votes Desc</option>
+    </select>
+        <div ng-repeat="cat in cats | filter:activeSearchFilter | orderBy: catsOrderBy">
+            <a href="#" ng-click="selectCat(cat)">{{cat.catName}}</a><img ng-show="cat.visited" src="/images/visited.png">
+
+        </div>
+
+        <div>
+            <div ><img ng-click="selectedCat.noClicks = selectedCat.noClicks + 1;" ng-src="/images/{{selectedCat.catImg}}"></div>
+
+            <vote-spinner selected-cat="selectedCat"  votes="selectedCat.votes" vote-up=addVote(selectedCat) vote-down=removeVote(selectedCat)></vote-spinner>
+
+        </div>
+
+<!--
+        <div>
+        <form action="/newCat.html">
+        <button type="Submit" value="Add Cat">Add Cat</button>
+        </div>
+        -->
+
+    </div>

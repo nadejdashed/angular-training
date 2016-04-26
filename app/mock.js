@@ -19,6 +19,13 @@ angular.module('app-mock', ['ngMockE2E'])
     });
 
     $httpBackend.whenGET(/\.html/).passThrough();
+
+
+    //try this
+            $httpBackend.whenPUT(/^\/cats\/\d+/).respond(function(method, url, inputData, headers) {
+          console.log("cat updated " + url);
+          return [200, inputData];
+        });
   });
 
 angular.module('app').requires.push('app-mock');
