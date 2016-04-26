@@ -24,6 +24,7 @@ angular.module('app-mock', ['ngMockE2E'])
     //try this
             $httpBackend.whenPUT(/^\/cats\/\d+/).respond(function(method, url, inputData, headers) {
           console.log("cat updated " + url);
+          //return [200, inputData];
           return [200, inputData];
         });
   });

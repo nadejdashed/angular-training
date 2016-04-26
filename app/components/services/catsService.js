@@ -13,27 +13,49 @@ angular.module("app").factory('catsService',['$resource', '$rootScope',
         ];
 
 
-        var catResource = $resource("/cats");
+        //var catResource = $resource("/cats");
+        var catResource = $resource('/cats/:id');
         var getCats = function () {
-            //return catResource.query();
+
+        	//resource based implementation
+            return catResource.query();
+            
+            //array based implementation
             //alert(data.length);
-            return data;
+            //return data;
         };
 
         var addCat = function (newCat) {
-			data.push(newCat);
-/*
-        	$rootScope.$apply(function() {
-            	data.push(newCat);
-        	});*/
-            //catResource.save(newCat);
 
-        }
+        	//array based implementation 1
+			//data.push(newCat);
+
+			//array based implementation 2 - not work
+        	//$rootScope.$apply(function() {
+            //	data.push(newCat);
+        	//});
+
+			//resolurce based implementation - not work
+            return catResource.save(newCat);
+
+        };
+
+        var deleteCat = function (cat) {
+        Cat.delete({id: cat.id});
+        return true;
+      	};
+
+
+      var getCat = function (catId) {
+        return Cat.get({id: catId});
+      };
         
         return {
             name:"catsService",
             getCats:getCats,
-            addCat:addCat
+            addCat:addCat,
+            deleteCat: deleteCat,
+            getCat:getCat
         };
     }]);
 
