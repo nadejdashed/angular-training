@@ -1,0 +1,8 @@
+<label>Name:</label>
+<input my-focus name="catName" type="text" ng-model="myCat.name" ng-minlength="3" required ng-class="{error:!catForm.catName.$valid}"/><br />
+
+<label>Img Url:</label>
+
+<input ng-class="{error:!catForm.catPicture.$valid}" name="catPicture" type="url" ng-minlength="7" ng-pattern="/.+(png|jpg|jpeg)$/"
+       ng-model="myCat.url" required ng-model-options="{ updateOn: 'blur'}"/>
+<br/>

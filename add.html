@@ -25,7 +25,7 @@
 
 </head>
 <body ng-app="app">
-<div class="container" ng-controller="addCatController">
+<div class="container" ng-controller="addCatController" form-submit="saveCat(cat)">
     <div ng-include="'/app/templates/addCat.html'"></div>
 </div>
 </body>

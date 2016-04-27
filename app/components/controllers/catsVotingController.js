@@ -10,7 +10,6 @@
     }
 
     var catController = function ($scope, catService, $cookies) {
-        $scope.cats=catService.getCats();
         $scope.currentDate = new Date();
         getPositiveCat($scope);
         

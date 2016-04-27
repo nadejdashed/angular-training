@@ -1,15 +1,17 @@
 (function(module) {
-    var catController = function ($scope, catService) {
-        $scope.clearForm = function () {
-            $scope.cat = {name:"", url:""};
-        }
-
-        $scope.clearForm();
-
+    var catController = function ($scope, catService, $stateParams, $window) {
+        
+        /*var catId = $stateParams.id;
+        if(catId){
+            var editCat = catService.getCat(catId).then(function (data) {
+                $scope.cat = data;
+            });
+        }*/
+        
         $scope.saveCat = function (cat) {
-            catService.addCat(cat);
-            $scope.clearForm();
+            catService.saveCat(cat);
+            $window.location.href="/#/list";
         }
     };
-    module.controller("addCatController", catController);
+    module.controller("addCatController",catController);
 }(angular.module("app")));

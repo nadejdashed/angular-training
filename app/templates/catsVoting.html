@@ -1,3 +1,8 @@
+
+<div class="container" ng-controller="catsVotingController">
+
+
+
 <h2>Cat Task: {{currentDate| date:'dd-MMM-yyyy'}} </h2>
 
 <p>
@@ -12,7 +17,7 @@
 </p>
 
 <div class="searchArea" ng-cloak>
-    <input type="text" ng-model="mySearch.name"/><button ng-click="searchByName(mySearch.name)">Search</button>
+    <input type="text" ng-model="mySearch.name" my-focus/><button ng-click="searchByName(mySearch.name)">Search</button>
 
     <label>Vote Filter:</label>
     <select ng-model="votesFilter">
@@ -34,26 +39,19 @@
 <div ng-cloak><!--ng-show="selectedCat" -->
     <p><label>Name:</label> {{selectedCat.name}}</p>
     <img src="{{selectedCat.src}}"/>
-    <br/>
-    <button ng-click="positiveVote(selectedCat)" ng-disabled="!selectedCat">+</button>
-
-    &nbsp;{{selectedCat.vote}}
-    <span ng-if="selectedCat.vote>0">:)</span>
-    <span ng-if="selectedCat.vote<0">:(</span>
-    <span ng-if="selectedCat.vote==0">:|</span>
-    &nbsp;
-    <button ng-click="selectedCat.vote=selectedCat.vote-1"  ng-disabled="!selectedCat">-</button>
+    <vote-spinner></vote-spinner>
 </div>
 
-
-<ul ng-cloak class="cats">
+<ul ng-cloak class="cats" my-customer>
     <li ng-repeat="cat in cats | filter: search:cat |filter: filterByVotes('vote',votesFilter) | orderBy:sortBy">
-        <p ng-click="selectCat(cat)"><b>{{cat.name}}
+        <p><b ng-click="selectCat(cat)">{{cat.name}}
             <span ng-show="cat.wasDisplayed"> &#10003;</span>
         </b>
+            <a ui-sref="edit({id: cat.id})">Edit</a>
+            <a ui-sref="delete({id: cat.id})">Delete</a>
         </p>
+
     </li>
 </ul>
 
-<a href="add.html">Add a Cat</a>
-
+</div>

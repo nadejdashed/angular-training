@@ -34,11 +34,43 @@ angular.module('app-mock', ['ngMockE2E'])
        $httpBackend.whenGET(/\.html/).passThrough();
        $httpBackend.whenGET(/\.json/).passThrough();
        $httpBackend.whenGET('/cats').respond(cats);
+
+       $httpBackend.whenGET(/cat\/\w+$/).respond(function (method, url, params) {
+               var re = /.*\/cat\/(\w+)/;
+               var catId = parseInt(url.replace(re, '$1'), 10);
+
+                var cat = null;
+                for(var i = 0; i<cats.length; i++){
+                    if(cats[i].id === catId){
+                        cat = cats[i];
+                        break;
+                    }
+                }
+            return [200,cat];
+       });
        
     $httpBackend.whenPOST('/cats').respond(function(method, url, data){
-      cats.push(data);
-        alert("Name Cat:" + data + ", new length:"+cats.length);
-      return [200, data];
+        var newCat = JSON.parse(data);
+        var oldCat = false;
+        debugger;
+        if(newCat.id != undefined){
+            for(var i=0; i < cats.length; i++){
+                if(cats[i].id === newCat.id){
+                    cats[i].name = newCat.name;
+                    cats[i].src = newCat.src;
+                    oldCat = true;
+                    break;
+                }
+            }
+        }
+
+        if(!oldCat){
+            newCat.vote=0;
+            newCat.id = cats[cats.length-1].id + 1;
+            cats.push(newCat);
+        }
+
+        return [200, data];
     });
   });
 

@@ -96,3 +96,19 @@ button {
 input[type='text'].error,input[type='url'].error {
 	border-color: salmon;
 }
+
+.mainMenu{
+	font-size: 20px;
+	color: #23527c;
+	padding: 10px;
+	background-color: #5bc0de;
+}
+
+.mainMenu li{
+	display: inline-block;
+	margin-right: 7px;
+	padding: 5px;
+	border: solid #303030 1px;
+	border-radius: 9px;
+	background-color: #2aabd2;
+}

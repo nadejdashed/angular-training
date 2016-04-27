@@ -7,11 +7,19 @@ angular.module("app").factory('catService',['$resource',
 
         var addCat = function (newCat) {
             catResource.save(newCat);
-        }
+        };
+
+        var getCat = function (id) {
+            var catResource = $resource('/cat/:catId', {catId:'@id'});
+            return catResource.get({'catId':id}, function (data) {
+                return data;
+            }).$promise;
+        };
         
         return {
             name:"catService",
             getCats:getCats,
-            addCat:addCat
+            saveCat:addCat,
+            getCat:getCat
         };
     }]);

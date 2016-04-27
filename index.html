@@ -19,18 +19,27 @@
     <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="/app/services/catService.js"></script>
-
     <script src="/app/mock.js"></script>
-
     <script src="/app/components/controllers/catsVotingController.js"></script>
+    <script src="/app/components/controllers/addCatController.js"></script>
     <!-- /build -->
+
+
+    <!-- build:js /build/angular-training.js -->
 
 </head>
 <body ng-app="app">
-      <div class="container" ng-controller="catsVotingController">
-        <div ng-include="'/app/templates/catsVoting.html'"></div>
-    </div>
+
+    <ul class="mainMenu">
+        <li ui-sref="about">About</li>
+        <li ui-sref="list">All Cats</li>
+        <li ui-sref="add">Add Cat</li>
+    </ul>
+
+      <div ui-view></div>
+
 </body>
 </html>
