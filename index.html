@@ -15,92 +15,31 @@
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
     <script src="/mock.js"></script>
+    <script src="/app/routes.js"></script>
     <script src="/app/components/controllers/mainController.js"></script>
     <script src="/app/components/services/mainService.js"></script>
     <script src="/app/components/filters/mainFilter.js"></script>
     <script src="/app/components/directives/mainDirective.js"></script>
     <!-- /build -->
 
+    <base href="/">
 </head>
 <body ng-app="app" ng-cloak="">
 
-<div ng-controller="mainController" class="container">
-    <div ng-include="'/app/templates/main.html'"></div>
+<div class="header" ng-include="'/app/templates/main.html'"></div>
 
-    <h3>{{searchResults | catInfo}}</h3>
+<nav>
+    <a ui-sref="intro" ui-sref-active="active">Intro page</a>
+    <a ui-sref="cats" ui-sref-active="active">Cats list</a>
+    <a ui-sref="about" ui-sref-active="active">About cats</a>
+</nav>
 
-    <div class="selection">
-        <ul class="list">
-            <li ng-repeat="cat in cats">
-                <a href="#" ng-click="showCat(cat)" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
-            </li>
-        </ul>
-
-        <form class="search" ng-submit="search(searchText)">
-            <p>
-                <button type="button" ng-click="addCat()">Add a new cat</button>
-                <input type="text" ng-model="searchText" placeholder="Search text" focused-element />
-                <button type="submit">Search</button>
-            </p>
-            <p>
-                <label>
-                    <span>Sort by </span>
-                    <select ng-options="label as label for label in sorting"
-                            ng-model="selected"
-                            ng-init="selected = sorting[0]"
-                            ng-change="sortResults()">
-                    </select>
-                </label>
-            </p>
-        </form>
-    </div>
-
-    <ul class="view">
-        <li ng-repeat="currentCat in searchResults track by $index">
-            <form name="form[$index]" class="clearfix" ng-submit="saveForm(currentCat, form[$index].$valid)" novalidate>
-                <div class="date">{{currentCat.date | date: 'dd-MMM- yyyy'}}</div>
-
-                <picture class="picture"></picture>
-
-                <ul class="message" ng-if="currentCat.isMessageVisible">
-                    <li ng-if="!form[$index].catName.$valid">
-                        Please, insert name consisting of english letters and/or numbers
-                    </li>
-                    <li ng-if="!form[$index].pictUrl.$valid">
-                        Please, insert a real URL-address
-                    </li>
-                </ul>
-
-                <expander class="expander" current-cat="currentCat"></expander>
-
-                <div class="control">
-                    <button class="btn-reset float-left" type="button" ng-click="resetForm(currentCat)">Reset</button>
-
-                    <div class="draft-name float-left">
-                        <input type="text" name="catName" placeholder="Cat name" autocomplete="off" required
-                               ng-change="currentCat.isMessageVisible = false"
-                               ng-model="currentCat.draftName"
-                               ng-pattern="/^\w+$/" />
-                    </div>
-
-                    <pict-url class="draft-url float-left" current="currentCat" save-url="saveUrl(currentCat)"></pict-url>
-
-                    <cat-vote current-cat="currentCat" change-vote="changeVote"></cat-vote>
-
-                    <button type="submit" class="btn-submit float-left"
-                            ng-class="isNewCat(currentCat) ? 'add' : 'save'"
-                            pressed-enter="{{$index}}">
-                        {{isNewCat(currentCat) ? 'Add' : 'Save'}}
-                    </button>
-                </div>
-            </form>
-        </li>
-    </ul>
-</div>
+<div ui-view class="container"></div>
 
 </body>
 </html>

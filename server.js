@@ -27,7 +27,8 @@ app.listen(8000);
 
 // Static request
 app.get('/', function(req, res) {
-    res.sendfile(__dirname + '/' + folder + '/index.html');
+    // res.sendfile(__dirname + '/' + folder + '/index.html');
+    res.sendfile(__dirname + '/index.html');
 });
 app.get('/templates/{name}', function(req, res) {
     res.sendfile(__dirname + '/' + folder + '/templates/' + req.name);

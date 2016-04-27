@@ -1,0 +1,30 @@
+<h3 ng-show="searchResults">{{searchResults | catInfo}}</h3>
+
+<div class="selection">
+    <ul class="list">
+        <li ng-repeat="cat in cats">
+            <a ui-sref="cats.cat({id: cat.id - 1})" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
+            <!--ng-click="showCat(cat)"-->
+        </li>
+    </ul>
+
+    <form class="search" ng-submit="search(searchText)">
+        <p>
+            <button type="button" ng-click="addCat()">Add a new cat</button>
+            <input type="text" ng-model="searchText" placeholder="Search text" focused-element/>
+            <button type="submit">Search</button>
+        </p>
+        <p>
+            <label>
+                <span>Sort by </span>
+                <select ng-options="label as label for label in sorting"
+                        ng-model="selected"
+                        ng-init="selected = sorting[0]"
+                        ng-change="sortResults()">
+                </select>
+            </label>
+        </p>
+    </form>
+</div>
+
+<ul ui-view class="view"></ul>

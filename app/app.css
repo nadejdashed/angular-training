@@ -27,6 +27,64 @@ button:hover {
 	border-radius: 50px;
 }
 
+.header {
+	margin: 10px 60px 0;
+	padding: 10px;
+	border: 10px solid #D6D6D6;
+	border-radius: 50px;
+}
+.header h1 {
+	margin: 0;
+}
+
+nav {
+	margin: 0 100px;
+	height: 64px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 0;
+}
+nav a {
+	display: inline-block;
+	margin-bottom: 10px;
+	margin-right: -10px;
+	padding: 5px 20px 8px;
+	line-height: 20px;
+	vertical-align: top;
+	border: 10px solid #D6D6D6;
+	border-radius: 0 0 30px 30px;
+	border-top: 0;
+	font-size: 22px;
+	text-decoration: none;
+	transition: 0.5s;
+}
+nav a:hover,
+nav a:focus {
+	line-height: 25px;
+	text-decoration: none;
+}
+nav a.active {
+	background: #D6D6D6;
+	color: white;
+	line-height: 30px;
+}
+
+.p404 {
+	margin-top: 50px;
+}
+
+.intro p {
+	position: absolute;
+	padding: 3% 15%;
+	left: 0;
+	right: 0;
+	color: white;
+	font-size: 20px;
+}
+.intro img {
+	border-radius: 50px;
+}
+
 .list li {
 	font-size: 24px;
 }
@@ -222,6 +280,7 @@ button:hover {
 	background: #D6D6D6;
 	color: white;
 	font-size: 28px;
+	transition: border-radius 1s;
 }
 .view .btn-expander::after {
 	content: '\00b1';

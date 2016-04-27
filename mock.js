@@ -27,14 +27,21 @@ angular.module('app-mock', ['ngMockE2E'])
       "date": 1458646391865
     }];
 
-    $httpBackend.whenGET('/cat').respond(data);
-    $httpBackend.whenGET(/^\/cat\/\d+/).respond(data[0]);
-    $httpBackend.whenGET(/\.html/).passThrough();
+      $httpBackend.whenGET('/cat').respond(function(){
+          debugger;
+          return [200, data];
+      });
+      $httpBackend.whenGET(/^\/cat\/\d+/).respond(function(method, url, ndata, headers){
+          debugger;
+          var ind = JSON.parse(ndata);
+          return [200, data[ind]];
+      });
+      $httpBackend.whenGET(/\.html/).passThrough();
 
-    $httpBackend.whenPOST('/cat').respond(function(method, url, ndata, headers){
-      data.push(JSON.parse(ndata));
-      return [200, ndata];
-    });
+      $httpBackend.whenPOST('/cat').respond(function(method, url, ndata, headers){
+          data.push(JSON.parse(ndata));
+          return [200, ndata];
+      });
   });
 
 angular.module('app').requires.push('app-mock');

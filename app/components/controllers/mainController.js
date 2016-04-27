@@ -1,6 +1,6 @@
 ﻿(function(module) {
 
-    var mainController = function ($scope, $http, $cookies, catService) {
+    var mainController = function ($scope, $http, $cookies, $location, catService) {
         //$http({
         //    method: 'GET',
         //    url: '/json/cats.json'
@@ -14,8 +14,7 @@
         });
 
         $scope.cats = catService.queryCat();
-
-        $scope.text = "Cats";
+        
         $scope.sorting = ['ascending', 'descending'];
 
         $scope.addCat = function() {
@@ -46,6 +45,7 @@
             $scope.searchResults = [];
             $scope.searchResults[0] = cat;
             $scope.searchResults[0].viewed = true;
+            // $location.path('/cats/' + cat.id);
         };
 
         $scope.search = function(text) {
@@ -63,9 +63,11 @@
         };
 
         $scope.sortResults = function() {
-            $scope.searchResults.sort($scope.sortCats);
-            if ($scope.selected == 'descending') {
-                $scope.searchResults.reverse();
+            if ($scope.searchResults) {
+                $scope.searchResults.sort($scope.sortCats);
+                if ($scope.selected == 'descending') {
+                    $scope.searchResults.reverse();
+                }
             }
         };
 
