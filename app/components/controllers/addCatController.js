@@ -8,9 +8,11 @@
             });
         }*/
         
-        $scope.saveCat = function (cat) {
-            catService.saveCat(cat);
-            $window.location.href="/#/list";
+        $scope.saveCat = function (cat, isValid) {
+            if(isValid) {
+                catService.saveCat(cat);
+                $window.location.href = "/#/list";
+            }
         }
     };
     module.controller("addCatController",catController);

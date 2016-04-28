@@ -39,7 +39,7 @@
 <div ng-cloak><!--ng-show="selectedCat" -->
     <p><label>Name:</label> {{selectedCat.name}}</p>
     <img src="{{selectedCat.src}}"/>
-    <vote-spinner></vote-spinner>
+    <vote-spinner v="selectedCat.vote" n="selectedCat.name"></vote-spinner>
 </div>
 
 <ul ng-cloak class="cats" my-customer>
@@ -48,7 +48,6 @@
             <span ng-show="cat.wasDisplayed"> &#10003;</span>
         </b>
             <a ui-sref="edit({id: cat.id})">Edit</a>
-            <a ui-sref="delete({id: cat.id})">Delete</a>
         </p>
 
     </li>

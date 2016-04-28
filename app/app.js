@@ -79,7 +79,7 @@
             restrict: 'E',
             templateUrl:"app/templates/addCatFields.html",
             scope:{
-                myCat: '=catValue'
+                myCatSrc: '=bind'
             }
         };
     });
@@ -87,6 +87,14 @@
     app.directive('voteSpinner', function () {
         return {
             restrict: 'E',
+
+
+            scope:{
+                /*cat: '=myCat'//myCat="selectedCat",cat*/
+                vote:'=v',
+                name:'=n'
+            },
+
             templateUrl:"app/templates/voteSpinner.html"
         };
     });

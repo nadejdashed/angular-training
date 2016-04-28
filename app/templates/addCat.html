@@ -2,23 +2,13 @@
 
 <h2>Cat Task</h2>
 
-<form name="catForm" form-submit="saveCat(cat)">
-    <!--<image-preview catValue="cat"></image-preview>-->
-
+<form name="catForm" form-submit="saveCat(cat, catForm.$valid)">
     <label>Name:</label>
     <input my-focus name="catName" type="text" ng-model="cat.name" ng-minlength="3" required ng-class="{error:!catForm.catName.$valid}"/><br />
-
-    <label>Img Url:</label>
-
-    <input ng-class="{error:!catForm.catPicture.$valid}" name="catPicture" type="url" ng-minlength="7" ng-pattern="/.+(png|jpg|jpeg)$/"
-           ng-model="cat.src" required ng-model-options="{ updateOn: 'blur'}"/>
-    <br/>
-
-    <img ng-src="{{cat.src}}" ng-show="cat.src"/>
-    <img ng-hide="cat.src"/>
+    <image-preview bind="cat.src"></image-preview>
 
     <div>
-        <button ng-class="{disabled:!catForm.$valid}" ng-click="saveCat(cat)" ng-disabled="!catForm.$valid">Save</button>
+        <button ng-class="{disabled:!catForm.$valid}" ng-click="saveCat(cat, catForm.$valid)" ng-disabled="!catForm.$valid">Save</button>
         <button  ng-click="clearForm()">Cancel</button>
     </div>
 </form>
