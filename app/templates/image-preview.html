@@ -1,0 +1,7 @@
+<div>
+    <label>Url:</label>
+    <input name="{{imageName}}" type="url" ng-model="cat.src" ng-blur="checkImage($event)" ng-model-options="{ updateOn: 'blur'}" required><br>
+</div>
+<div>
+    <img ng-show="validImage" ng-src="{{cat.src}}" />
+</div>

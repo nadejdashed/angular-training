@@ -15,6 +15,7 @@
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- build:js /build/angular-training.js -->
     <script src="/app/app.js"></script>
@@ -22,64 +23,21 @@
     <script src="/app/components/controllers/catCntr.js"></script>
     <script src="/app/components/controllers/addCatCntr.js"></script>
     <script src="/app/components/services/catsService.js"></script>
+    <script src="/app/components/directives/focus.js"></script>
+    <script src="/app/components/directives/saveClick.js"></script>
+    <script src="/app/components/directives/imagePreview.js"></script>
+        <script src="/app/components/directives/voteSpinner.js"></script>
     <script src="/app/mock.js"></script>
     <!-- /build -->
 
 </head>
 <body ng-app="app">
-    <div ng-controller="mainController as main"class="container" >
-        <div ng-show="!main.editMode" ng-controller="catCntr">
-        <div><br>
-            <ng-pluralize count="positiveCats.length" offset=1
-                     when="{'0': 'No cat has positive vote.',
-                        '1': '{{positiveCats[0].name}} has positive vote.',
-                        'one': '{{positiveCats[0].name}} and one other cat have positive votes.',
-                        'other': '{{positiveCats[0].name}} and {} more cats have positive votes.'}">
-            </ng-pluralize>
-        </div>
-        <div ng-cloak class="search">
-            <input type="text" ng-model="searchString"></input>
-            <button ng-click="doSearch()">search</button>
-            <select ng-model="order">
-                <option selected>asc</option>
-                <option>desc</option>  
-            </select>
-        </div>
-        <ul ng-cloak>
-            <li ng-repeat="cat in cats | filter:{name:searchText}| orderBy:['-vote',order === 'desc'?'name':'-name']" ng-class="{red: cat.id === selectedCat.id, 'cat-viewed':cat.viewed === true}">
-            <span ng-click="selectCat(cat)">{{cat.name}}: {{cat.vote}}</span>
-            </li>
-        </ul>
-        <button ng-click="addNewCat(); main.changeView()">Add New</button>
-        <div ng-cloak ng-show="selectedCat">
-            <h2>{{selectedCat.name}}</h2> 
-            <div class="spiner" ng-show="canVote(selectedCat)">
-                <button ng-click="downVote(selectedCat)">-</button> {{selectedCat.vote}}
-                <button ng-click="upVote(selectedCat)">+</button>
-            </div>
-            <img ng-click="upVote(selectedCat)" ng-src="{{selectedCat.src}}"/>
-        </div>
-        </div>
-        <div ng-show="main.editMode" ng-controller="addCatCntr" class="editForm" ng-form name="editForm">
-                <span class="error" ng-show="editForm.catName.$error.required">Name required!</span><br>
-                <span class="error" ng-show="editForm.catImg.$error.required">Url required!</span>
-                <span class="error"ng-show="editForm.catImg.$error.url">Invalid url!</span>
-                <div>
-                    <label>Name:</label>
-                    <input name="catName" type="text" ng-model="cat.name" required></input>
-                </div>
-            <div>
-                <label>Url:</label>
-                <input name="catImg" type="url" ng-model="cat.src" ng-model-options="{ updateOn: 'blur'}" required>
-            </div>
-            <div>
-                <button ng-disabled="editForm.$invalid" ng-click="save(); main.changeView()">Save</button>
-                <button ng-click="cancel(); main.changeView()">Cancel</button>
-            </div>
-            <div>
-                <img ng-show="editForm.catImg.$valid" ng-src="{{cat.src}}" />
-            </div>
-        </div>
-    </div>
+<div class="menu">
+<ul class="menu">
+  <li><a ui-sref="cats">Cats</a></li>
+  <li><a ui-sref="about">About</a></li>
+</ul>
+</div>
+<div ui-view class="cats"></div>
 </body>
 </html>

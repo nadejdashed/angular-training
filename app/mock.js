@@ -23,14 +23,27 @@ angular.module('app-mock', ['ngMockE2E'])
   "vote": 5
 }];
 
+    $httpBackend.when('GET', /\.html$/).passThrough();
+    $httpBackend.when('GET', /\.jpg$/).passThrough();
     $httpBackend.whenGET('/cat').respond(cats);
-    $httpBackend.whenGET(/\/cat\/\d+/).respond(cats[0]);
+    $httpBackend.whenGET(/\/cat\/\d+/,undefined,['cat']).respond(function(method, url, data) {
+      var catId = parseInt(url.substring(5));
+      var cat = cats[catId - 1];
+      if(cat){
+        return [200, cat];
+      }
+      return [404];
+    });
     
     $httpBackend.whenPOST(/\/cat\/\d+/).respond(function(method, url, data, headers){
       var newCat = {};
       newCat = angular.fromJson(data); 
-      newCat.id = cats.length + 1;
-      cats.push(newCat);
+      if(newCat.id) {
+        cats[newCat.id-1] = newCat;
+      } else {
+        newCat.id = cats.length + 1;
+        cats.push(newCat);
+      }
       return [200, data];
     });
   });

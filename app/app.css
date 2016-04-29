@@ -10,8 +10,8 @@ li, img {
 }
 
 img {
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 300px;
 }
 
 .cat-viewed:after{
@@ -63,4 +63,35 @@ input.ng-invalid {
 	height: 30px;
 	width: 25px;
 	margin: 5px;
+}
+
+.menu>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.menu>li {
+    float: left;
+}
+
+.menu>li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menu>li a:hover {
+    background-color: #111;
+}
+.cats{
+	margin: 30px 50px; 
+}
+.cats-list>div{
+	float: left;
+	margin-left: 50px;
 }

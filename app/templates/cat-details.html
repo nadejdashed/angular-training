@@ -1,0 +1,5 @@
+<div ng-show="selectedCat">
+	<h2>{{selectedCat.name}}</h2> 
+	<vote-spinner value="selectedCat" up="upVote(selectedCat)" down="downVote(selectedCat)" can-vote="canVote(selectedCat)"></vote-spinner>
+	<img ng-click="upVote(selectedCat)" ng-src="{{selectedCat.src}}"/>
+</div>

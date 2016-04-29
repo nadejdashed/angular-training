@@ -1,0 +1,27 @@
+<div class="cats-list">
+    <div>
+    <div>
+        <ng-pluralize count="positiveCats.length" offset=1
+                 when="{'0': 'No cat has positive vote.',
+                    '1': '{{positiveCats[0].name}} has positive vote.',
+                    'one': '{{positiveCats[0].name}} and one other cat have positive votes.',
+                    'other': '{{positiveCats[0].name}} and {} more cats have positive votes.'}">
+        </ng-pluralize>
+    </div>
+    <div class="search">
+        <input type="text" my-focus ng-model="searchString"></input>
+        <button ng-click="doSearch()">search</button>
+        <select ng-model="order">
+            <option selected>asc</option>
+            <option>desc</option>  
+        </select>
+    </div>
+    <ul>
+        <li ng-repeat="cat in cats | filter:{name:searchText}| orderBy:['-vote',order === 'desc'?'name':'-name']" ng-class="{red: cat.id === selectedCat.id, 'cat-viewed':cat.viewed === true}">
+        <span ng-click="selectCat(cat)">{{cat.name}}: {{cat.vote}}</span>
+        </li>
+    </ul>
+    <button ng-click="addNewCat()">Add New</button>
+    </div>
+    <div ui-view></div>
+</div>
