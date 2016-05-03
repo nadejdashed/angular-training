@@ -1,0 +1,22 @@
+<div style="padding-left:20px; padding-right:20px">
+    <div class="container" >
+        <h1>Login</h1>
+        <hr/>
+        <form name="loginForm">
+            <fieldset>
+                <label for="login">Name:</label>
+                <input id="login" type="text" required placeholder="Login" ng-model="user.name" />
+                <label for="password">Password:</label>
+                <input id="password" type="password" required placeholder="Password" ng-model="user.password" />
+
+            </fieldset>
+
+            <br />
+            <br />
+
+            <button type="submit" class="btn btn-primary" ng-click="login(user, loginForm)">Submit</button>
+            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+
+        </form>
+    </div>
+</div>
