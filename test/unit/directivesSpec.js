@@ -23,9 +23,28 @@ describe('collapsible', function(){
 	});
 
 	it('filter', function(){
-		expect(elem.find('div:visible').length).toBe(1);
+		expect(elem.find('.ng-hide').length).toBe(0);
 		isolateScope.toggleVisibility();
 		expect(isolateScope.visible).toBe(false);
-		expect(elem.find('div:visible').length).toBe(0);
+		scope.$digest();
+		expect(elem.find('.ng-hide').length).toBe(1);
+	});
+});
+
+describe('datePicker', function(){
+	var scope, elem;
+
+	beforeEach(module('templates'));
+	beforeEach(module('eventsApp'));
+
+	beforeEach(inject(function($compile, $rootScope, $templateCache){
+		scope = $rootScope.$new();
+		elem = '<date-picker></date-picker>';
+		elem = $compile(elem)(scope);
+		scope.$digest();
+	}));
+
+	it('filter', function(){
+		expect(scope.calendar.year).toBe(2016);
 	});
 });

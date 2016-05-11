@@ -11,6 +11,7 @@ module.exports = function(config) {
       'app/lib/angular-mocks/angular-mocks.js',
       'app/js/app.js',
       'app/js/**/*.js',
+      'app/templates/**/*.html',
       'test/unit/**/*.js'
     ],
     exclude: [
@@ -20,7 +21,16 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     plugins: [
       'karma-jasmine',
-      'karma-phantomjs-launcher'
-    ]
+      'karma-phantomjs-launcher',
+      'karma-ng-html2js-preprocessor'
+    ],
+    preprocessors: {
+      'app/templates/**/*.html': ['ng-html2js']
+    },
+    ngHtml2JsPreprocessor: {
+      moduleName: 'templates',
+      stripPrefix: 'app/',
+      prependPrefix: '/'
+    }
   });
 };
