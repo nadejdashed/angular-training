@@ -1,55 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Mentors && Mentees</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/angular/angular-csp.css"/>
-    <link rel="stylesheet" type="text/css" href="/build/app.css"/>
-    <link rel="stylesheet" type="text/css" href="/bower_components/angular-emoji-filter-hd/dist/emoji.min.css"/>
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="/build/angular-training.js"></script>
+﻿<html ng-app="forms">
+<head>
+  <title>Ode To Food</title>
+  <link href="/styles/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/styles/animate.css" rel="stylesheet"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
 </head>
-<body ng-app="app">
+<body>
+
+<nav ng-include="'templates/nav.html'"></nav>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8" ng-controller="errorProneController as model">
-            <div>
-                <h4>Alerts</h4>
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="model.alertMessage" />
-                    <div>
-                        {{ model.alertMessage.length }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <select class="form-control"
-                            ng-model="model.alertType"
-                            ng-options="type for type in model.alertTypes"
-                            >
-                    </select>
-                </div>
-                <button class="btn btn-default btn-lg" ng-click="model.createAlert()">
-                    Create Alert
-                </button>
-            </div>
-            <hr/>
-            <div>
-                <h4>Exceptions</h4>
-                <button class="btn btn-default btn-lg" ng-click="model.createException()">Throw Exception</button>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <alerts></alerts>
-        </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div ng-view></div>
     </div>
+    <div class="col-md-4">
+      <alerts></alerts>
+    </div>
+  </div>
 </div>
 
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/bower_components/angular-messages/angular-messages.js"></script>
+
+<script src="/common/module.js"></script>
+<script src="/common/js/services/alerting.js"></script>
+<script src="/common/js/directives/alerts.js"></script>
+<!--<script src="/common/js/services/requestCounter.js"></script>-->
+<!--<script src="/common/js/directives/workSpinner.js"></script>-->
+<!--<script src="/common/js/services/exceptionHandler.js"></script>-->
+<!--<script src="/common/js/services/interpolateDebug.js"></script>-->
+<!--<script src="/common/js/services/requestCounter.js"></script>-->
+
+<script src="app.js"></script>
+<script src="js/services/user.js"></script>
+<script src="js/controllers/editProfileController.js"></script>
+<script src="js/controllers/resultController.js"></script>
+<script src="js/controllers/errorProneController.js"></script>
+<script src="js/directives/forminput.js"></script>
+<script src="js/directives/rating.js"></script>
+<script src="js/directives/startsWith.js"></script>
+<script src="js/directives/username.js"></script>
 </body>
 </html>
