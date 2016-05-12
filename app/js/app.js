@@ -4,8 +4,7 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute', 'ngSanitiz
 	.config(function ($routeProvider, $locationProvider, $httpProvider, $sceDelegateProvider) {
 
 		$sceDelegateProvider.resourceUrlWhitelist([
-			'self',
-			'http://www.aerlingus.com/html/cms/templates/cms-resrc-img/cms-resrc-img-banner.html'
+			'self'
 		]);
 			
 		$routeProvider.when('/newEvent',

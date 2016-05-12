@@ -1,6 +1,6 @@
 'use strict';
 eventsApp.controller('MainMenuController',
-    function MainMenuController($scope, $location, authService, $sce) {
+    function MainMenuController($scope, $location, authService) {
         $scope.createEvent = function() {
             $location.replace();
             $location.url('/newEvent');
@@ -12,8 +12,5 @@ eventsApp.controller('MainMenuController',
         
         $scope.$watch(authService.getUser, function(data){
             $scope.user = data;
-        })
-        
-        $scope.data = '<span style="color:red">Temp text</span>';
-        $scope.data2 = $sce.trustAsHtml($scope.data);
+        });
     });
