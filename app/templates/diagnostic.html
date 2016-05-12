@@ -1,0 +1,22 @@
+﻿<div ng-controller="errorProneController as model">
+  <div>
+    <h4>Alerts</h4>
+
+    <div class="form-group">
+      <input type="text" ng-model="model.alertMessage" class="form-control"/>
+      <div>{{ model.alertMessag.length }}</div>
+      <work-spinner>Working</work-spinner>
+    </div>
+    <div class="form-group">
+      <select class="form-control"
+              data-ng-model="model.alertType"
+              data-ng-options="type for type in model.alertTypes"></select>
+    </div>
+    <button class="btn btn-default btn-lg" ng-click="model.createAlert()">Create Alert</button>
+  </div>
+  <hr/>
+  <div>
+    <h4>Exceptions</h4>
+    <button ng-click="model.createException()" class="btn btn-default btn-lg">Throw Exception</button>
+  </div>
+</div>

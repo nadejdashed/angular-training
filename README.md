@@ -1,4 +1,10 @@
-angular-training
-================
+# [AngularJS](http://www.angularjs.org/) Application demo
 
-Repository for training about Angular
+***
+
+## Purpose
+
+The app covers the following topics:
+* Forms
+* Diagnostic
+* Angular UI
