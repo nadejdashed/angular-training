@@ -1,0 +1,25 @@
+<div class="container" ng-controller="profileController">
+    <h2>Cat Task</h2>
+    <form name="profileForm" >
+        <label>User Name:</label>
+        <input type="text" required ng-model="profile.username"/>
+        <br/>
+        <label>Password:</label>
+        <input type="password" required ng-model="profile.password1"/>
+        <br/>
+        <label>Repeat Password:</label>
+        <input type="password" required ng-model="profile.password2"/>
+        <br/>
+        <label>Email:</label>
+        <input type="email" required ng-model="profile.email"/>
+        <br/>
+        <label>Votde For Cats:</label>
+        <p>{{profile.voted}}</p>
+
+        <div>
+            <button ng-class="{disabled:!profileForm.$valid}" ng-click="saveProfile(profile, profileForm.$valid)" ng-disabled="!profileForm.$valid">Save</button>
+            <button  ng-click="clearForm()">Cancel</button>
+        </div>
+    </form>
+    <br>
+</div>

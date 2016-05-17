@@ -1,0 +1,19 @@
+<div class="container" ng-controller="loginController">
+    <h2>Cat Task</h2>
+    <form name="loginForm" ng-hide="logedIn">
+        <label>User Name:</label>
+        <input type="text" required ng-model="login.username"/>
+        <br/>
+        <label>Password:</label>
+        <input type="password" required ng-model="login.password"/>
+        <div>
+            <button ng-class="{disabled:!loginForm.$valid}" ng-click="loginTo(login)" ng-disabled="!loginForm.$valid">Login</button>
+        </div>
+    </form>
+
+    <div ng-show="logedIn">
+        You are logged in.
+        <button  ng-click="logout()">Logout</button>
+    </div>
+    <br>
+</div>

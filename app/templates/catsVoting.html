@@ -1,9 +1,18 @@
-
 <div class="container" ng-controller="catsVotingController">
-
-
-
 <h2>Cat Task: {{currentDate| date:'dd-MMM-yyyy'}} </h2>
+
+    <div modal="showModal" close="deleteCancel()">
+        <div class="modal-header">
+            <h4>Modal Dialog</h4>
+        </div>
+        <div class="modal-body">
+            <p>Example paragraph with some text.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="deleteCatOk()">Okay</button>
+            <button class="btn" ng-click="deleteCancel()">Cancel</button>
+        </div>
+    </div>
 
 <p>
 
@@ -39,7 +48,7 @@
 <div ng-cloak><!--ng-show="selectedCat" -->
     <p><label>Name:</label> {{selectedCat.name}}</p>
     <img src="{{selectedCat.src}}"/>
-    <vote-spinner v="selectedCat.vote" n="selectedCat.name"></vote-spinner>
+    <vote-spinner v="selectedCat.vote" n="selectedCat.name" c="selectedCat.id" f="upVote(selectedCat)"></vote-spinner>
 </div>
 
 <ul ng-cloak class="cats" my-customer>
@@ -47,9 +56,9 @@
         <p><b ng-click="selectCat(cat)">{{cat.name}}
             <span ng-show="cat.wasDisplayed"> &#10003;</span>
         </b>
-            <a ui-sref="edit({id: cat.id})">Edit</a>
+            <a ui-sref="edit({id: cat.id})" ng-show="logedUserId===cat.userId">Edit</a>
+            <a ng-click="deleteCat(cat)" ng-show="logedUserId===cat.userId">Delete</a>
         </p>
-
     </li>
 </ul>
 

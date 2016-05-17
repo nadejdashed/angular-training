@@ -33,7 +33,22 @@ angular.module('app-mock', ['ngMockE2E'])
 
        $httpBackend.whenGET(/\.html/).passThrough();
        $httpBackend.whenGET(/\.json/).passThrough();
-       $httpBackend.whenGET('/cats').respond(cats);
+
+       $httpBackend.whenDELETE(/cat\/\w+$/).respond(function (method, url, params) {
+           debugger;
+           var re = /.*\/cat\/(\w+)/;
+           var catId = parseInt(url.replace(re, '$1'), 10);
+
+           var cat = null;
+           for(var i = 0; i<cats.length; i++){
+               if(cats[i].id > catId){
+                   cats[i-1] = cats[i];
+               }
+           }
+
+           cats = cats.slice(0, (cats.length -1));
+           return [200];
+       });
 
        $httpBackend.whenGET(/cat\/\w+$/).respond(function (method, url, params) {
                var re = /.*\/cat\/(\w+)/;
@@ -72,6 +87,8 @@ angular.module('app-mock', ['ngMockE2E'])
 
         return [200, data];
     });
+
+       $httpBackend.whenGET('/cats').respond(cats);
   });
 
 angular.module('app').requires.push('app-mock');

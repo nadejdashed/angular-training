@@ -1,12 +1,10 @@
 <div class="container" ng-controller="addCatController">
 
 <h2>Cat Task</h2>
-
-<form name="catForm" form-submit="saveCat(cat, catForm.$valid)">
+<form name="catForm" form-submit="saveCat(cat, catForm.$valid)" ng-show="logedIn">
     <label>Name:</label>
     <input my-focus name="catName" type="text" ng-model="cat.name" ng-minlength="3" required ng-class="{error:!catForm.catName.$valid}"/><br />
     <image-preview bind="cat.src"></image-preview>
-
     <div>
         <button ng-class="{disabled:!catForm.$valid}" ng-click="saveCat(cat, catForm.$valid)" ng-disabled="!catForm.$valid">Save</button>
         <button  ng-click="clearForm()">Cancel</button>

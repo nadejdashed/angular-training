@@ -21,12 +21,18 @@
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
+    <script src="/app/components/directives/directives.js"></script>
+    <script src="/app/components/config/routerConfig.js"></script>
     <script src="/app/services/catService.js"></script>
+    <script src="/app/services/profileService.js"></script>
+    <script src="/app/services/loginService.js"></script>
+    <script src="/app/services/votingService.js"></script>
     <script src="/app/mock.js"></script>
     <script src="/app/components/controllers/catsVotingController.js"></script>
     <script src="/app/components/controllers/addCatController.js"></script>
+    <script src="/app/components/controllers/profileController.js"></script>
+    <script src="/app/components/controllers/loginController.js"></script>
     <!-- /build -->
-
 
     <!-- build:js /build/angular-training.js -->
 
@@ -37,6 +43,8 @@
         <li ui-sref="about">About</li>
         <li ui-sref="list">All Cats</li>
         <li ui-sref="add">Add Cat</li>
+        <li ui-sref="profile">Profile</li>
+        <li ui-sref="login">Login</li>
     </ul>
 
       <div ui-view></div>

@@ -9,31 +9,20 @@
         $scope.positiveCatCount=pCats.length;
     }
 
-    var catController = function ($scope, catService, $cookies) {
+    var catController = function ($scope, catService, $cookies, votingService) {
         $scope.currentDate = new Date();
+        var loginId = $cookies.get("logedIn");
+        $scope.logedUserId = loginId;
+        $scope.cats = catService.getCats();
         getPositiveCat($scope);
-        
         $scope.selectCat = function (cat) {
             cat.wasDisplayed=true;
             $scope.selectedCat = cat;
             getPositiveCat($scope);
         };
-        $scope.mySearch ={};
-
-        $scope.filterByVotes = function(prop, option){
-            return function(item){
-                if(option == undefined){
-                    return true;
-                }
-                switch (option){
-                    case "1": return item[prop]>0; break;
-                    case "2": return item[prop]==0;break;
-                    case "3": return item[prop]<0;break;
-                    default: return true;break;
-                }
-            }
-        }
         
+        $scope.mySearch ={};
+        $scope.filterByVotes = votingService.filterByVotes;
         $scope.searchByName = function (name) {
             var search = {};
             search.name=name;
@@ -41,15 +30,12 @@
 
         };
 
-        $scope.positiveVote = function (cat) {
-            var catId = "posvote" + cat.id;
-            var value = $cookies.get(catId);
-            if(value == undefined || value == false){
-                cat.vote = cat.vote + 1;
-                $cookies.put(catId, true);
-            }
-
-        }
+        $scope.deleteCat = function (cat) {
+            catService.deleteCat(cat.id);
+            $scope.cats = catService.getCats();
+        };
+        
+        $scope.upVote = votingService.upVote;
     };
     module.controller("catsVotingController", catController);
 
