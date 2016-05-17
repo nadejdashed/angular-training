@@ -2,7 +2,8 @@
   "id": 1,
   "name": "Alex",
   "src": "http://25.media.tumblr.com/tumblr_lncvc9SMfW1qbe5pxo1_500.jpg",
-  "vote": 0
+  "vote": 0,
+  "userId":"1"
 }, {
   "id": 2,
   "name": "Viktor",

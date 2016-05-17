@@ -9,6 +9,7 @@
         $scope.saveCat = function (cat, isValid) {
             if(isValid) {
                 cat.userId = loginId;
+                debugger;
                 catService.saveCat(cat);
                 $window.location.href = "/#/list";
             }

@@ -1,19 +1,13 @@
 <div class="container" ng-controller="catsVotingController">
 <h2>Cat Task: {{currentDate| date:'dd-MMM-yyyy'}} </h2>
-
-    <div modal="showModal" close="deleteCancel()">
-        <div class="modal-header">
-            <h4>Modal Dialog</h4>
-        </div>
-        <div class="modal-body">
-            <p>Example paragraph with some text.</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" ng-click="deleteCatOk()">Okay</button>
-            <button class="btn" ng-click="deleteCancel()">Cancel</button>
-        </div>
+    <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header"><h3 class="modal-title">Question</h3> </div>
+    <div class="modal-body">Are you sure to delete {{catName}}?</div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="deleteCatOk()">Yes</button>
+        <button class="btn btn-warning" type="button" ng-click="closeMW()">No</button>
     </div>
-
+</script>
 <p>
 
     <ng-pluralize count="positiveCatCount" offset=1

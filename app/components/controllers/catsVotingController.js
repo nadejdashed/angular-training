@@ -9,7 +9,7 @@
         $scope.positiveCatCount=pCats.length;
     }
 
-    var catController = function ($scope, catService, $cookies, votingService) {
+    var catController = function ($scope, catService, $cookies, votingService, $uibModal) {
         $scope.currentDate = new Date();
         var loginId = $cookies.get("logedIn");
         $scope.logedUserId = loginId;
@@ -31,10 +31,25 @@
         };
 
         $scope.deleteCat = function (cat) {
-            catService.deleteCat(cat.id);
-            $scope.cats = catService.getCats();
+            $uibModal.open(
+                {
+                    templateUrl:'myModalContent.html',
+                    controller: function ($scope, $uibModalInstance) {
+                        $scope.catName = cat.name;
+                        $scope.closeMW = function () {
+                            $uibModalInstance.dismiss("cancel");
+                        }
+
+                        $scope.deleteCatOk = function () {
+                            catService.deleteCat(cat.id);
+                            $scope.cats = catService.getCats();
+                            $uibModalInstance.close();
+                        }
+                    }
+                }
+            );
         };
-        
+
         $scope.upVote = votingService.upVote;
     };
     module.controller("catsVotingController", catController);
