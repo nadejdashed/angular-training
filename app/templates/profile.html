@@ -2,16 +2,35 @@
     <h2>Cat Task</h2>
     <form name="profileForm" >
         <label>User Name:</label>
-        <input type="text" required ng-model="profile.username"/>
+        <input type="text" name="userNameField" minlength="5" maxlength="42" username-valid required ng-model="profile.username"/>
+        <div ng-messages="profileForm.userNameField.$error" style="color:maroon" role="alert">
+            <div ng-messages-include="app/templates/error_messages.html"></div>
+        </div>
+
         <br/>
         <label>Password:</label>
-        <input type="password" required ng-model="profile.password1"/>
+        <input name="password1" type="password" strong-pass required data-ng-model="profile.password1" equals="{{profile.password2}}"/>{{profileForm.pass.$valid}}
+
+        <div ng-messages="profileForm.password1.$error" style="color:maroon" role="alert">
+            <div ng-messages-include="app/templates/error_messages.html"></div>
+        </div>
+
         <br/>
         <label>Repeat Password:</label>
-        <input type="password" required ng-model="profile.password2"/>
+        <input type="password" name="password2" required ng-model="profile.password2" equals="{{profile.password1}}"/>{{profileForm.pass1.$valid}}
+
+        <div ng-messages="profileForm.password2.$error" style="color:maroon" role="alert">
+            <div ng-messages-include="app/templates/error_messages.html"></div>
+        </div>
+
         <br/>
         <label>Email:</label>
-        <input type="email" required ng-model="profile.email"/>
+        <input type="email" name="userMail" required ng-model="profile.email"/>
+
+        <div ng-messages="profileForm.userMail.$error" style="color:maroon" role="alert">
+            <div ng-messages-include="app/templates/error_messages.html"></div>
+        </div>
+
         <br/>
         <label>Votde For Cats:</label>
         <p>{{profile.voted}}</p>
