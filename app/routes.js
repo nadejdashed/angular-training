@@ -23,13 +23,13 @@
                         return catService.queryCat();
                     }
                 },
-                controller: function($scope, $stateParams, getCats) {
-                    var cat = getCats[$stateParams.id];
-                    console.log('getCats ---->', getCats);
-
-                    if (cat) {
-                        $scope.$parent.showCat(cat);
-                    }
+                controller: function($scope, $stateParams, $timeout, getCats) {
+                    $timeout(function() {
+                        var cat = getCats[$stateParams.id];
+                        if (cat) {
+                            $scope.$parent.showCat(cat);
+                        }
+                    }, 10);
                 }
             })
             .state('about', {

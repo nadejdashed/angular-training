@@ -45,7 +45,6 @@
             $scope.searchResults = [];
             $scope.searchResults[0] = cat;
             $scope.searchResults[0].viewed = true;
-            // $location.path('/cats/' + cat.id);
         };
 
         $scope.search = function(text) {
