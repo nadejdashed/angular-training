@@ -45,7 +45,6 @@
         }
 
         $scope.addCat = function(catName, catImg) {
-
             var res = catsService.addCat(catName, catImg);
             console.log("add cat retur:" + res);
             /*res.then(function () {

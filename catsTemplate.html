@@ -6,14 +6,17 @@
         <option selected value="+votes">Votes Asc</option>
         <option selected value="-votes">Votes Desc</option>
     </select>
-        <div ng-repeat="cat in cats | filter:activeSearchFilter | orderBy: catsOrderBy">
+        <!-- TODO try to search "0". All results will be kept because it's sorted by all fields. To search in one field is necessary to send object as parameter  -->
+        <div ng-repeat="cat in cats | filter:{catName: activeSearchFilter} | orderBy: catsOrderBy">
             <a href="#" ng-click="selectCat(cat)">{{cat.catName}}</a><img ng-show="cat.visited" src="/images/visited.png">
 
         </div>
 
         <div>
+            <!-- TODO try to keep all functions in controller -->
             <div ><img ng-click="selectedCat.noClicks = selectedCat.noClicks + 1;" ng-src="/images/{{selectedCat.catImg}}"></div>
 
+          
             <vote-spinner selected-cat="selectedCat"  votes="selectedCat.votes" vote-up=addVote(selectedCat) vote-down=removeVote(selectedCat)></vote-spinner>
 
         </div>

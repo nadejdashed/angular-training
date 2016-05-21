@@ -1,4 +1,6 @@
-
+    <!-- TODO don't use ng-show for every block. It's better to wrap these element in one and make ng-show to it -->
+    <!-- also it's possible to make solution without ng-show. I don't think that this directive should be responsible to that -->
+    <!-- cats layout is responsible to it -->
 		<div ng-show="selectedCat">{{selectedCat.catName}} Votes: {{votes}}</div>
             <button ng-show="selectedCat" ng-click="voteUp()">Vote +</button>
             <button ng-show="selectedCat" ng-click="voteDown()">Vote -</button>

@@ -24,6 +24,8 @@ var myModule = angular.module('app');
 
                 		//alert("Save!");
                 		//$scope.action;
+                    // TODO this code will work only if focus is on one of the field. 
+                    // It's OK but try to use also scope.$apply(scope.$eval(attrs.formSubmit); 
                 		element[0].submit();
                 	}
                 });

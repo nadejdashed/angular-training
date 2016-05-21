@@ -3,6 +3,7 @@
 angular.module("app").factory('catsService',['$resource', '$rootScope',
     function($resource, $rootScope){
 
+      // TODO remove unnecessary code. This code and commented code. 
     var data = [
             {catImg: 'cat1.png', catName: 'zcat1', noClicks: 0, votes: 0, visited: false},
             {catImg: 'cat2.png', catName: 'fcat2', noClicks: 0, votes: 0, visited: false},
@@ -41,12 +42,14 @@ angular.module("app").factory('catsService',['$resource', '$rootScope',
         };
 
         var deleteCat = function (cat) {
+          // TODO should be catResource.delete({id: cat.id});
         Cat.delete({id: cat.id});
         return true;
       	};
 
 
       var getCat = function (catId) {
+        // TODO should be catResource.get({id: catId});
         return Cat.get({id: catId});
       };
         

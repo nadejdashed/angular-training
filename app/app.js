@@ -3,6 +3,7 @@
     angular.module("app", ['ngResource', 'ui.router'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
+      // TODO left only one url (one page) to catsTemplate.html
     .state('cats', {
       url: "/",
       templateUrl: "catsTemplate.html"
