@@ -5,7 +5,8 @@
     <title>Cats application</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <!-- TODO do not necessary to add two bootstrap file, delete one of them -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>    
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
 
     <!-- build:css /build/app.css -->
@@ -20,6 +21,7 @@
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- TODO add jquery before angular. In this case angular will use jquery instead of jqlite -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -51,7 +53,7 @@
         <li ui-sref="profile">Profile</li>
         <li ui-sref="login">Login</li>
     </ul>
-
+    
       <div ui-view></div>
 
 </body>

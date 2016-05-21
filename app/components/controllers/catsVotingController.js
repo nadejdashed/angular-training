@@ -7,6 +7,8 @@
             $scope.firstPositiveCatName=pCats[0].name;
         }
         $scope.positiveCatCount=pCats.length;
+        // TODO better to save $scope.positiveCatCount. It helps avoid firstPositiveCatName and positiveCatCount variable. You will use in html:
+        // positiveCatCount.count, positiveCatCount[0]
     }
 
     var catController = function ($scope, catService, $cookies, votingService, $uibModal) {
@@ -24,6 +26,8 @@
         $scope.mySearch ={};
         $scope.filterByVotes = votingService.filterByVotes;
         $scope.searchByName = function (name) {
+            // TODO try to write less code 
+            // $scope.search = {name: name};
             var search = {};
             search.name=name;
             $scope.search =  search;

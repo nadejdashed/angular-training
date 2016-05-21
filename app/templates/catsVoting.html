@@ -1,59 +1,65 @@
+<!--TODO be careful with indents and formatting. Code became unreadable-->
+<!--TODO use catsVotingController is the route configuration. Try to escape unnecessary controllers-->
 <div class="container" ng-controller="catsVotingController">
-<h2>Cat Task: {{currentDate| date:'dd-MMM-yyyy'}} </h2>
-    <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header"><h3 class="modal-title">Question</h3> </div>
-    <div class="modal-body">Are you sure to delete {{catName}}?</div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="deleteCatOk()">Yes</button>
-        <button class="btn btn-warning" type="button" ng-click="closeMW()">No</button>
-    </div>
-</script>
-<p>
+	<h2>Cat Task: {{currentDate| date:'dd-MMM-yyyy'}} </h2>
+	<script type="text/ng-template" id="myModalContent.html">
+		<div class="modal-header"><h3 class="modal-title">Question</h3></div>
+		<div class="modal-body">Are you sure to delete {{catName}}?</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" type="button" ng-click="deleteCatOk()">Yes</button>
+			<button class="btn btn-warning" type="button" ng-click="closeMW()">No</button>
+		</div>
+	</script>
+	<p>
 
-    <ng-pluralize count="positiveCatCount" offset=1
-                  when="{'0': 'No cat has positive vote.',
+		<ng-pluralize count="positiveCatCount" offset=1
+									when="{'0': 'No cat has positive vote.',
                   '1': '{{firstPositiveCatName}} has positive vote.',
                   'one': '{{firstPositiveCatName}} and one other cat hpositive votes.',
                   'other': '{{firstPositiveCatName}} and {} more cats have positive votes.'}">
-    </ng-pluralize>
+		</ng-pluralize>
 
-</p>
+	</p>
 
-<div class="searchArea" ng-cloak>
-    <input type="text" ng-model="mySearch.name" my-focus/><button ng-click="searchByName(mySearch.name)">Search</button>
+	<div class="searchArea" ng-cloak>
+		<input type="text" ng-model="mySearch.name" my-focus/>
+		<button ng-click="searchByName(mySearch.name)">Search</button>
 
-    <label>Vote Filter:</label>
-    <select ng-model="votesFilter">
-        <option value="1">:)</option>
-        <option value="2">:|</option>
-        <option value="3">:(</option>
-        <option value="all">All</option>
-    </select>
+		<label>Vote Filter:</label>
+		<select ng-model="votesFilter">
+			<option value="1">:)</option>
+			<option value="2">:|</option>
+			<option value="3">:(</option>
+			<option value="all">All</option>
+		</select>
 
-    <label>Order by:</label>
-    <select ng-model="sortBy">
-        <option value="name">Name Asc</option>
-        <option value="-name">Name Desc</option>
-        <option value="vote">Vote Asc</option>
-        <option value="-vote">Vote Desc</option>
-    </select>
-</div>
+		<label>Order by:</label>
+		<select ng-model="sortBy">
+			<option value="name">Name Asc</option>
+			<option value="-name">Name Desc</option>
+			<option value="vote">Vote Asc</option>
+			<option value="-vote">Vote Desc</option>
+		</select>
+	</div>
 
-<div ng-cloak><!--ng-show="selectedCat" -->
-    <p><label>Name:</label> {{selectedCat.name}}</p>
-    <img src="{{selectedCat.src}}"/>
-    <vote-spinner v="selectedCat.vote" n="selectedCat.name" c="selectedCat.id" f="upVote(selectedCat)"></vote-spinner>
-</div>
+	<div ng-cloak><!--ng-show="selectedCat" -->
+		<p><label>Name:</label> {{selectedCat.name}}</p>
+		<!--TODO use ng-src. It will prevent no existed request to localhost/{{selectedCat.src}}. It relates more to images outside the ui-view but be attentive to that -->
+		<img src="{{selectedCat.src}}"/>
+		<vote-spinner v="selectedCat.vote" n="selectedCat.name" c="selectedCat.id"
+									f="upVote(selectedCat)"></vote-spinner>
+	</div>
 
-<ul ng-cloak class="cats" my-customer>
-    <li ng-repeat="cat in cats | filter: search:cat |filter: filterByVotes('vote',votesFilter) | orderBy:sortBy">
-        <p><b ng-click="selectCat(cat)">{{cat.name}}
-            <span ng-show="cat.wasDisplayed"> &#10003;</span>
-        </b>
-            <a ui-sref="edit({id: cat.id})" ng-show="logedUserId===cat.userId">Edit</a>
-            <a ng-click="deleteCat(cat)" ng-show="logedUserId===cat.userId">Delete</a>
-        </p>
-    </li>
-</ul>
+	<ul ng-cloak class="cats" my-customer>
+		<li
+			ng-repeat="cat in cats | filter: search:cat |filter: filterByVotes('vote',votesFilter) | orderBy:sortBy">
+			<p><b ng-click="selectCat(cat)">{{cat.name}}
+				<span ng-show="cat.wasDisplayed"> &#10003;</span>
+			</b>
+				<a ui-sref="edit({id: cat.id})" ng-show="logedUserId===cat.userId">Edit</a>
+				<a ng-click="deleteCat(cat)" ng-show="logedUserId===cat.userId">Delete</a>
+			</p>
+		</li>
+	</ul>
 
 </div>

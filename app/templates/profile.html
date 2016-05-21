@@ -36,6 +36,7 @@
         <p>{{profile.voted}}</p>
 
         <div>
+            <!--TODO to escape inversion in condition you can use profileForm.$invalid-->
             <button ng-class="{disabled:!profileForm.$valid}" ng-click="saveProfile(profile, profileForm.$valid)" ng-disabled="!profileForm.$valid">Save</button>
             <button  ng-click="clearForm()">Cancel</button>
         </div>

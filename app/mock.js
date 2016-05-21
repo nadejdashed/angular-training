@@ -64,7 +64,7 @@ angular.module('app-mock', ['ngMockE2E'])
             return [200,cat];
        });
        
-    $httpBackend.whenPOST('/cats').respond(function(method, url, data){
+    $httpBackend.whenPOST('/cat').respond(function(method, url, data){
         var newCat = JSON.parse(data);
         var oldCat = false;
         debugger;
@@ -88,7 +88,7 @@ angular.module('app-mock', ['ngMockE2E'])
         return [200, data];
     });
 
-       $httpBackend.whenGET('/cats').respond(cats);
+       $httpBackend.whenGET('/cat').respond(cats);
   });
 
 angular.module('app').requires.push('app-mock');

@@ -25,15 +25,16 @@
             restrict: 'A',
             require:'ngModel',
             link:function (scope, elm, attrs, ngModelCtrl) {
-                ngModelCtrl.$parsers.unshift(function (viewValue) {
+                // TODO ngModelCtrl have array of validators it will be cleat to use validators here
+                /*ngModelCtrl.$parsers.unshift(function (viewValue) {
                     ngModelCtrl.$setValidity('usernameValid', isValidUserName(viewValue));
                     return viewValue;
-                });
+                });*/
+                ngModelCtrl.$validators.usernameValid = isValidUserName;
             }
         };
     });
-
-   
+    
     module.directive('equals', function() {
         return {
             restrict: 'A',
