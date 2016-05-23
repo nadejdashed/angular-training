@@ -3,24 +3,32 @@
 angular.module("myApp.catService", ["ngResource", "ngCookies"])
 
 .factory("catService", function($resource, $cookieStore, $q) {
-  var KEY = "cats";
-  var cats = $cookieStore.get(KEY);
-  var catResource = $resource("cats/js/json/cats.json");
+    var KEY = "cats";
+    var cats = $cookieStore.get(KEY);
+    var catResource = $resource("/cats/:id", {
+        id: "@id"
+    }, {
+        'query': {
+            method: 'GET',
+            isArray: true
+        }
+    });
 
-  return {
-    get: function() {
-      if (cats) {
-        return $q.resolve(cats);
-      }
-
-      return catResource.get().$promise.then(function(response) {
-        cats = response.cats;
-        $cookieStore.put(KEY, cats);
-        return cats;
-      });
-    },
-    save: function (cats) {
-      $cookieStore.put(KEY, cats);
-    }
-  };
+    return {
+        getAll: function() {
+          if (cats) {
+              return $q.resolve(cats);
+          }
+          return catResource.query(function(cats) {
+            $cookieStore.put(KEY, cats);
+            return cats;
+          }).$promise;
+        },
+        get: function (catId) {
+          return catResource.get({id: catId});
+        },
+        save: function(cats) {
+            $cookieStore.put(KEY, cats);
+        }
+    };
 });

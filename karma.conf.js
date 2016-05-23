@@ -5,9 +5,19 @@ module.exports = function(config){
 
     files : [
       "app/bower_components/angular/angular.js",
-      "app/bower_components/angular-route/angular-route.js",
+      "app/bower_components/angular-ui-router/release/angular-ui-router.js",
+      "app/bower_components/angular-resource/angular-resource.js",
+      "app/bower_components/angular-cookies/angular-cookies.js",
       "app/bower_components/angular-mocks/angular-mocks.js",
-      "app/cats/test/*.js"
+      "app/app.js",
+      "app/cats/js/mocks.js",
+      "app/cats/js/control/catControl.js",
+      "app/cats/js/service/catService.js",
+      "app/cats/js/directive/focus/focus.js",
+      "app/cats/js/directive/save/save.js",
+      "app/cats/js/directive/imagePreview/imagePreview.js",
+      "app/cats/js/directive/voteButtons/voteButtons.js",
+      "app/cats/js/test/*.js"
     ],
 
     autoWatch : true,

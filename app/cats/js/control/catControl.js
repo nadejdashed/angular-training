@@ -1,23 +1,9 @@
 "use strict";
 
-angular.module("myApp.catControl", ["ngRoute"])
+angular.module("myApp.catControl", [])
 
-.config(["$routeProvider", function($routeProvider) {
-  $routeProvider.when("/cats", {
-    templateUrl: "cats/cats.html",
-    controller: "CatControl"
-  });
-  $routeProvider.when("/cats/add", {
-    templateUrl: "cats/add.html",
-    controller: "CatControl"
-  });
-  $routeProvider.otherwise({
-    redirectTo: "/cats"
-  });
-}])
-
-.controller("CatControl", function($scope, $location, catService) {
-  catService.get().then(function(cats) {
+.controller("catControl", function($scope, $state, catService) {
+  catService.getAll().then(function(cats) {
     $scope.cats = cats;
     $scope.cat = cats[0];
   });
@@ -41,11 +27,12 @@ angular.module("myApp.catControl", ["ngRoute"])
 
   $scope.add = function(newCat) {
     $scope.cats.push({
+      id: "_" + Math.random().toString(36).substr(2, 9),
       name: newCat.name,
       src: newCat.url,
       votes: 0
     });
-    $location.path("/cats");
+    $state.go("cats");
   }
 
   $scope.reset = function() {

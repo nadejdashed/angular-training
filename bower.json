@@ -7,11 +7,12 @@
   "private": true,
   "dependencies": {
     "angular": "latest",
-    "angular-route": "latest",
+    "angular-ui-router": "latest",
     "angular-loader": "latest",
     "angular-mocks": "latest",
     "angular-resource": "latest",
     "angular-cookies": "latest",
+    "angular-mocks": "latest",
     "html5-boilerplate": "latest"
   }
 }
