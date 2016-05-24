@@ -26,6 +26,7 @@ describe('the mainController', function() {
 
     beforeEach(module('app'));
     beforeEach(inject(function($rootScope, $controller){
+        // TODO be careful in creation global variable, make it private 
         $scope = $rootScope.$new();
         mainController = $controller('mainController', {$scope: $scope});
     }));
