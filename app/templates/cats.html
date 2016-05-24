@@ -9,9 +9,12 @@
         </ng-pluralize>
     </div>
     <div class="search">
+        <!-- TODO input is self closing tag -->
         <input type="text" my-focus ng-model="searchString"></input>
+        <!-- TODO to prevent issues with different scope it's better to put searchString in doSearch function. It means to execute doSearch(searchString) -->
         <button ng-click="doSearch()">search</button>
         <select ng-model="order">
+            <!-- TODO not necessary to mark selected because it will be already set using ng-model -->
             <option selected>asc</option>
             <option>desc</option>  
         </select>

@@ -4,6 +4,7 @@
       return {
           restrict: 'E',
           scope:{
+            // TODO it's not necessary to put cat or imageName in the directive. It will be enough only imageUrl
           	cat:'=cat',
           	imageName:'@imageElementName'
           },
@@ -12,6 +13,7 @@
           controller: function($scope) {
             $scope.validImage = false;
 
+            // TODO add error using ng-model controller as was described on form validation lecture
             $scope.checkImage = function(event){
               if(event.target.value) {
                 var image = new Image();

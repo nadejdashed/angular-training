@@ -1,5 +1,7 @@
+<!-- TODO move addCatCntr to view level as you already did it for catCtrl -->
 <div ng-controller="addCatCntr" class="editForm" ng-form name="editForm">
         <span class="error" ng-show="editForm.catName.$error.required">Name required!</span><br>
+        <!-- TODO catImg field name should be used only in image-preview directive. Outside nobody should know about this field -->
         <span class="error" ng-show="editForm.catImg.$error.required">Url required!</span>
         <span class="error"ng-show="editForm.catImg.$error.url">Invalid url!</span>
         <div>

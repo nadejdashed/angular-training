@@ -11,6 +11,8 @@
 		      templateUrl: "/app/templates/cats.html",
 		      resolve: {
 		      	cats: function(catsService) {
+							// TODO not necessary to write then here (it creates new unnecessary promise). Resolve section already work with promise
+							// return catsService.getCats().$promise
 		      		return catsService.getCats().$promise.then(function(data) {
             			return data;
 	          		});
@@ -28,6 +30,7 @@
 		      
 		      },
 		      controller: function($scope, cat){
+						// TODO add cat to scope and use it on the view
 		      }
 		    })
 		    .state('addNewCat', {

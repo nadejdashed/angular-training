@@ -1,8 +1,10 @@
 (function(module) {
 
+  // TODO split controller to to catsController where will be functionality to cat list and catController where will be functionality only for one cat
+  // Try to make components responsible only for one thing (view, directive)
     var catController = function ($scope, catsService, $state, cats) {
         $scope.cats = cats;
-        $scope.order = 'asc';
+        $scope.order = 'desc';
         $scope.positiveCats = [];
 
         var checkPositiveCats = function(cat) {
@@ -25,6 +27,7 @@
         }
 
         $scope.upVote = function(cat){
+          // TODO there is an issue. canVote function should receive the cat as a parameter 
           if($scope.canVote()) {
             cat.vote++;
             checkPositiveCats(cat);
@@ -33,6 +36,7 @@
         }
 
         $scope.downVote = function(cat){
+          // TODO there is an issue. canVote function should receive the cat as a parameter
           if($scope.canVote()) {
             cat.vote--;
             checkPositiveCats(cat);
@@ -49,6 +53,7 @@
               $state.go('addNewCat');
         };
 
+      // TODO remove it because it's already moved in the image-preview directive
         $scope.checkImage = function(){
               if($scope.cat.src) {
                 var image = new Image();

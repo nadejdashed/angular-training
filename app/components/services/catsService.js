@@ -8,6 +8,8 @@ function catService($resource, $cookies, $q) {
 		return Cat.query();
 	}
 	this.getCat = function(_id) {
+		// TODO not necessary to write then here (it creates new unnecessary promise)
+		// Or even better return the resource: return catsService.getCat({id: _id}). Developers will have access to promise when it's necessary
 		return Cat.get({id: _id}).$promise.then(function(cat){
 			return cat;
 		});
@@ -17,6 +19,7 @@ function catService($resource, $cookies, $q) {
 		return newCat.$save();
 	}
 	this.doVote = function(cat){
+		// TODO cat is already a Resource
 		var newCat = new Cat(cat);
 		newCat.$save();
 		$cookies.putObject("cat"+cat.id, true);

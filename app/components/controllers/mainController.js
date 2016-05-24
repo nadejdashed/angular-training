@@ -1,4 +1,5 @@
-﻿(function(module) {
+// TODO remove unnecessary file
+?(function(module) {
 
     var mainController = function ($scope) {
         var vm = this;
