@@ -15,6 +15,8 @@
 					$document.on('keydown', function (event) {
 						scope.$apply(function () {
 							if (event.keyCode == 13) {
+								// TODO do not use exactly function. The directive should be universal
+								// Use scope.$eval(attr.pressedEnter)
 								scope.saveForm(scope.currentCat, scope.form[attrs.pressedEnter].$valid);
 							}
 						});
@@ -41,6 +43,8 @@
 				current: '=',
 				saveUrl: '&'
 			},
+			// TODO it is not universal to use current object here. Better send only pictUrl.
+			// Also this directive should doesn't know about isMessageVisible, assign function to scope that will make this (like saveUrl)
 			template: '<input type="url" name="pictUrl" placeholder="Picture Url"' +
 			'ng-change="current.isMessageVisible = false"' +
 			'ng-model="current.draftPictUrl"' +
@@ -52,6 +56,8 @@
 		return {
 			restrict: 'E',
 			replace: true,
+			// TODO Change vote could be implemented using & and it will be better
+			// in this case currentCat won't be necessary and only vote will be sent to directive
 			scope: {
 				currentCat: '=',
 				changeVote: '='
@@ -71,6 +77,7 @@
 				var ul = element.find('ul');
 
 				scope.expander = function() {
+					// TODO better to use function hide/show that will change visibility of element and not remove it from DOM (it is difficult operation)
 					if (element.hasClass('expanded')) {
 						ul.empty();
 					} else {

@@ -5,7 +5,10 @@
 			var firstName, result;
 			var count = 0;
 
+			// TODO for these purpose better to use ng-pluralize but I'm glad that you wrote custom filter
 			if (arr) {
+				// TODO better to create array catWithPositiveVotes = arr.filter(function(){....});
+				// and then use count = catWithPositiveVotes.length, firstName = catWithPositiveVotes[0]. It will be clear code
 				arr.forEach(function(elm) {
 					if (elm.vote > 0) {
 						count++;

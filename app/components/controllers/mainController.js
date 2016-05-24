@@ -1,5 +1,6 @@
-﻿(function(module) {
+(function(module) {
 
+    // TODO split controller to different one: catsController, catFormController
     var mainController = function ($scope, $http, $cookies, $location, catService) {
         //$http({
         //    method: 'GET',
@@ -8,6 +9,7 @@
         //    $scope.cats = d.data;
         //});
 
+        // TODO remove unused code
         var getCatResponse = catService.cat.get({id: 3}, function() {
             // Id will be id=1 because in mock.js has .respond(data[0]);
             console.log('getCatResponse = ', getCatResponse);
@@ -29,6 +31,7 @@
             ]
         };
 
+        // TODO function doesn't do anything. Use {{arr|orderBy:order}} on the view
         $scope.sortCats = function(cat1, cat2) {
             if (cat1.name.toLowerCase() > cat2.name.toLowerCase()) return 1;
         };
@@ -47,6 +50,8 @@
             $scope.searchResults[0].viewed = true;
         };
 
+        // TODO use built-in filters instead of creating the similar function: $filter('filter)(...), $filter('orderBy')(...)
+        // Or in template {{arr|filter:{name:name}|orderBy:order}}
         $scope.search = function(text) {
             text = text ? text.toLowerCase() : '';
 
@@ -72,9 +77,11 @@
 
         $scope.resetForm = function(currentCat) {
             currentCat.isMessageVisible = false;
+            // TODO you can create new object currentCat = {}; Something like this
             currentCat.draftName = currentCat.draftPictUrl = '';
         };
 
+        // TODO it is not very good check. Better to leave new cat without id till it returns from the server
         $scope.isNewCat = function(currentCat) {
             return currentCat.id > $scope.cats.length;
         };
@@ -94,6 +101,7 @@
 
                 $scope.resetForm(currentCat);
 
+                // TODO do not use Resource here, execute catService.queryCat here 
                 var queryCatResponse = catService.cat.query(function() {
                     console.log('queryCatResponse = ', queryCatResponse);
                 });

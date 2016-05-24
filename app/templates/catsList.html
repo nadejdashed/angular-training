@@ -2,6 +2,7 @@
 
 <div class="selection">
     <ul class="list">
+        <!-- TODO use built-in filter for searching and ordering -->
         <li ng-repeat="cat in cats">
             <a ui-sref="cats.cat({id: cat.id - 1})" ng-class="cat.viewed ? 'viewed' : ''">{{cat.name}}</a>
             <!--ng-click="showCat(cat)"-->
@@ -17,7 +18,8 @@
         <p>
             <label>
                 <span>Sort by </span>
-                <select ng-options="label as label for label in sorting"
+                <!-- TODO very strange ng-options. Try to make it easier: sortValue for sortValue in sorting  -->
+                <select ng-options="sortValue for sortValue in sorting"
                         ng-model="selected"
                         ng-init="selected = sorting[0]"
                         ng-change="sortResults()">
