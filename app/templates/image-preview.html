@@ -1,9 +1,12 @@
 <!--    <label for="catImageUrl">Image URL:</label> -->
 <div ng-form name="imageForm">
   <label for="catImageUrl">Image URL:</label>
+  <!--todo: remove ids, there can be more than one preview on the page-->
   <input type="url" id="catImageUrl" name="catImageUrl" type="text" ng-model="imageUrl" ng-blur="ImageUrlToShow=imageUrl" required/>
   <!-- TODO use ng-model-options that will the same as ng-blur -->
+  <!--todo: decouple from catForm, require: ^form as an option -->
   <span ng-show="catForm.catImageUrl.$dirty && catForm.catImageUrl.$touched">
+    <!--todo: use ng-messages-->
     <span ng-show="imageForm.imageUrl.$error.required">Image is required!</span>
     <span ng-show="imageForm.imageUrl.$error.url">URL is invalid!</span>
   </span>

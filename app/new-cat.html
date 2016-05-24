@@ -22,6 +22,8 @@
     <script src="/app/components/directives/focusDirective.js"></script>
     <script src="/app/components/directives/enterKeyDirective.js"></script>
     <script src="/app/components/directives/imagePreviewDirective.js"></script>
+    <!--if you had routing you wouldn't miss this line-->
+    <script src="/app/components/services/catsResource.js"></script>
     <script src="/app/mock.js"></script>
     <!-- /build -->
 
@@ -29,6 +31,7 @@
 <body ng-app="app">
 
     <div ng-controller="saveController as save" class="container">
+        <!--todo: use routing instead of ng-include-->
         <div ng-include="'/app/templates/cat-form.html'"></div>
     </div>
 
