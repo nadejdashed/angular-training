@@ -2,6 +2,7 @@
 	<div class="item">
 		<b>Pic URL: </b>
 		<input type="url" name="imageUrl" ng-model="imageSrc" ng-model-options="{ updateOn: 'blur' }" required>
+		<!--todo: use ng-messages-->
 		<div ng-show="imageForm.imageUrl.$error.required">This field is required</div>
 		<div ng-show="imageForm.imageUrl.$error.url">Url is invalid</div>
 	</div>

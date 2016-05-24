@@ -7,6 +7,7 @@
             })
             .state("catsList.detail", {
                 url: "/cat/:catId",
+                // why not make catDetails a directive as well?
                 templateUrl: "/app/templates/catDetail.html",
                 controller: "catDetailsController",
                 controllerAs: "detail",

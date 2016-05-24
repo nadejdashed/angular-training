@@ -4,6 +4,10 @@
 
     function catFactory($resource, $http, dataStorage, $q) {
 
+        /////
+        // todo: never define vars after return, except for function definition
+        var catsWithPositiveVotes = [];
+
     	var Cat = $resource("/cats/:catId", { catId: "@id"}, {
         	'update': { method:'PUT' }
     	});
@@ -18,9 +22,6 @@
             canVoteFor: canVoteFor,
             getCatsWithPositiveVotes : getCatsWithPositiveVotes
         };
-
-        /////
-        var catsWithPositiveVotes = [];
 
         function getCatsWithPositiveVotes() {
             return catsWithPositiveVotes;
