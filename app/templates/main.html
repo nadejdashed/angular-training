@@ -11,10 +11,12 @@
     <input type="button" value="Add cat" ng-click="showForm()"/>
 </div>
 
+<!-- TODO can check selectedCat (null is false, object is true), code will be easier to read -->
 <div  id="cat-display" ng-show="selectedCat.display">
     <div>
         <span>{{selectedCat.cat.name}}</span>
         <br/>
+        <!-- TODO use ng-src it will prevent unexpected requet to the service -->
         <img src="{{selectedCat.cat.src}}"/>
         <br/>
         <a href="#" ng-click="decreaseVoteForCat(selectedCat.cat)">-</a>

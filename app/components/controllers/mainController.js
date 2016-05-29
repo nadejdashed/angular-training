@@ -2,6 +2,8 @@
 
     var mainController = function ($scope, catSenderService) {
         catSenderService.provideCats();
+        // TODO Why don't scope.cats fill  using catSenderService.provideCats()
+        // we use mocks on the practice. Please see example https://github.com/nadejdashed/angular-training/blob/lecture-test/app/js/mock.js
         $scope.cats = [{
             "id": 1,
             "name": "Alex",
@@ -28,8 +30,10 @@
             isViewed: false
         }];
 
+        // TODO selectedCat could be cat object, in template it's possible to check if cat is selected (null is false, object is true)
         $scope.selectedCat = {display: false, cat: null};
         $scope.newCat = null;
+        // TODO isFormVisible could be boolean, no other properties except display exist in object
         $scope.isFormVisible = {display: false};
         $scope.searchString = "";
         $scope.inputText = "";
@@ -56,6 +60,7 @@
 
         $scope.showForm = function() {
             "use strict";
+            // TODO The empty fields can be skipped, ng-model will create them itself
             $scope.newCat = {"name": "",
                 "src": "",
                 "vote": 0,

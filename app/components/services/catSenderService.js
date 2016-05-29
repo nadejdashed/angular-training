@@ -9,6 +9,7 @@ angular.module("app").service("catSenderService", function($resource){
     };
 
     this.provideCats = function() {
+        // TODO query is function that executes without parameters - Cat.query();
         return Cat.query({catId: 'all'});
     };
 
