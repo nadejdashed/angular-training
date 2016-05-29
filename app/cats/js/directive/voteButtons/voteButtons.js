@@ -6,6 +6,7 @@ angular.module("myApp.voteButtonsDirective", [])
   return {
     restrict: "E",
     scope: {
+      // todo: just "="
       cat: "=cat"
     },
     link: function(scope, element, attrs) {
