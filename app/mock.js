@@ -30,6 +30,7 @@ angular.module('app-mock', ['ngMockE2E'])
             var cat = JSON.parse(data);
             cat.vote = 0;
             cats.push(cat);
+            // TODO better return cat such as it's already prepared object
             return [200, data];
         });
         $httpBackend.whenGET(/\.html/).passThrough();

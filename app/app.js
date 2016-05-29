@@ -11,6 +11,7 @@
             .state('addCat', {
                 url: "/cats",
                 templateUrl: "app/templates/form.html"
+              // TODO add controllers in views. It will help to use one template to few controllers
             })
             .state('about', {
                 url: "/about",

@@ -1,5 +1,6 @@
 <div ng-controller="mainController" class="container">
     <div class="row">
+        <!-- TODO you can add check ng-show="chosenCat" -->
         <div class="col-lg-4 col-md-offset-1">
             <img ng-src="{{chosenCat.src}}" height=250px width=250px alt={{chosenCat.name}} />
 
@@ -26,7 +27,8 @@
             </span>
                 <input focus="" type="text" ng-model="searchText" class="form-control">
                 <div class="input-group-btn">
-                    <!--TODO use angular bootstrap-->
+                    <!-- TODO use angular bootstrap (https://angular-ui.github.io/bootstrap/#/dropdown) -->
+                    <!-- It prevent usage setOrder for every li or you can create your own directive and add event for ul in directive -->
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a ng-click=setOrder('+name') href="#">ASC</a></li>
