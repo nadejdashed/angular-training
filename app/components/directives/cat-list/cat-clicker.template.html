@@ -25,10 +25,13 @@
 	</div>
 	<div class="cat-list-wrapper">
 		<div class="cat-list">
+			<!-- TODO it's better to filter result at first and only after it order it -->
 			<div class="cat" ng-repeat='cat in cats | orderBy: orderType | filter: filterText' ng-click='selectCat(cat.id)'>
 				<cat ng-model='cat' mode='list-item'></cat>
 			</div>
 		</div>
+		<!-- TODO ng-if check is not necessary. View do it according URL, use ng-show better. It won't remove DOM from template -->
+		<!-- ng-show='selected' -->
 		<div class="selected-cat cat" ng-if='!!selected' ui-view></div>
 	</div>
 </div>

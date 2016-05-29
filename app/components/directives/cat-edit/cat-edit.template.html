@@ -1,3 +1,4 @@
+<!-- TODO remove default HTML5 validation and add custom -->
 <form name="catForm" id="cat-form" submit="addCat()" enter-submit="addCat()">
 	<label>Name: </label><input name="catName" type="text" ng-model="cat.name" required>
 	<label>Pictrure (URL): </label><input name="catPicture" type="url" ng-model="cat.src" ng-model-options="{ updateOn: 'blur' }" required>

@@ -14,6 +14,7 @@
 					if(!catVote) {
 						$scope.cat.vote = vote ? $scope.cat.vote + 1 : $scope.cat.vote - 1;
 						$cookies.put($scope.cat.id + '', $scope.cat.vote + '');
+						// TODO do not forget to save result on the server (using mocks off course)
 					} 
 				}
 

@@ -4,6 +4,7 @@
 		var catResource = $resource('/cats/:catId', {catId: '@id'});
 
 		this.getCatsList = function() {
+			// TODO better return Resources. Where it's necessary you could take promise from the Resource
 			return catResource.query().$promise;
 		}
 

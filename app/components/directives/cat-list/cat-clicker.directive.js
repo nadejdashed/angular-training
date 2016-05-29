@@ -7,6 +7,8 @@
 			scope: {
 				cats: '=ngModel'
 			},
+			// TODO to not overload code in directive please use controller as separate file and then link by controller name
+			// controller: 'catClickerDirective'
 			controller: function($scope, $state) {
 				$scope.navigateToAddCat = function() {
 		            $state.go('edit');
@@ -16,18 +18,22 @@
 		        	$state.go('about');
 		        }
 
+				// TODO do not forget to remove debuggers
+				// TODO better to put cat as parameter. It's already exist in list of cat. Also selected cat from the server should be taken in cat view 
 		        $scope.selectCat = function(id) {debugger;
 					catService.getSingleCat(id)
 						.then(function(data) {debugger;
 							$scope.selected = data;
 							$scope.selected.viewed = true;
 
+							// TODO I don't see code that use this edited
 							$scope.edited = $scope.selected;
 
 							$state.go('cats.cat', {catId: data.id});
 						});
 				}
 			},
+			// TODO use link function if you need access to element. It will be easier to read code of directive if controller will be separate file 
 			link: function(scope, element, attrs, ctrl) {
 				scope.selected = scope.cats[0];
 				scope.orderType = 'name';
@@ -43,6 +49,8 @@
 					neutral: ''
 				};
 
+				// TODO this is not functional code and can be moved to template using ng-pluralize
+				// in this case formattedRating won't be necessary
 				scope.formatRating = function() {
 					for(var rate in scope.rating) {
 						var ratedItems = scope.rating[rate];

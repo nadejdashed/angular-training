@@ -12,6 +12,7 @@
 						scope.submit();
 					}
 				});
+				// TODO unlink function when scope destroy
 			}
 		}
 	}

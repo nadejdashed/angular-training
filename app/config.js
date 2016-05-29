@@ -18,6 +18,7 @@
 				url: 'cats/:catId',
 				templateUrl: './app/templates/selected-cat.template.html',
 				resolve: {
+					// TODO usually resolve returns already instance (it means cat)
 					catId: ['$stateParams', function($stateParams) {
 						debugger;
 						return $stateParams.catId;

@@ -22,6 +22,7 @@
 
 				$scope.addCat = function() {debugger;
 					catService.addCat($scope.cat);
+					// TODO add functionality to go to home page
 				}
 			},
 			link: function(scope, element) {
@@ -30,6 +31,7 @@
 		}
 	}
 
+	// TODO make separate file. This directive is very useful and can be used somewhere else 
 	var errorSrcDirective = function() {
 		return {
 			link: function(scope, element, attrs) {
