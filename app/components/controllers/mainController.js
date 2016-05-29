@@ -1,4 +1,4 @@
-?(function(module) {
+(function(module) {
 
     var mainController = function ($scope, $http, catCrudService, catCookiesService) {
       $scope.cats = catCrudService.getCats()

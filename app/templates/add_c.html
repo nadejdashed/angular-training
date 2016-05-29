@@ -3,6 +3,7 @@
   <!-- TODO better to use model as object. it helps avoid take field one by one and you can use full object from the beginning: newCat.filterText, newCat.catImageUrl -->
   <input type="text" required name="name" class="form-control" placeholder="cat's name" ng-model="filterText">
   <input type="url" required name="imgUrl" class="form-control" placeholder="Image url" ng-model-options="{ updateOn: 'blur'}" ng-model="catImageUrl">
+  <!-- TODO use ng-src instead of src. It prevent empty request if it will be not in template -->
   <img ng-show="addCat.imgUrl.$valid" class="big" src="{{catImageUrl}}">
   <span ng-show="!addCat.imgUrl.$valid">This Url is invalid! </span>
   <span ng-show="!addCat.$valid">This Form is invalid! </span>
