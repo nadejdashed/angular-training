@@ -17,6 +17,7 @@
   </div>
 </div>
 <hr>
+<!-- todo: please write cat preview directive -->
 <div ng-repeat="cat in cats | filter:search | orderBy: cat.name : sortOption track by cat.id" class="row">
   <div class="col-md-6 panel panel-default">
     <div class="row">
@@ -28,6 +29,7 @@
         <img class="img-rounded" ng-src="{{cat.url}}">
       </div>
     </div>
+    <!-- todo: voting directive -->
     <div class="row">
       <div class="col-sm-2">Vote</div>
       <div class="col-sm-4">
